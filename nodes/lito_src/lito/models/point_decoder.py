@@ -11,15 +11,7 @@ import typing as T
 
 from timm.models.vision_transformer import Mlp
 
-try:
-    import xformers
-    import xformers.ops
-
-    _SwiGLU = xformers.ops.SwiGLU
-except ImportError:
-    print("xformers.ops not found, please install it")
-    xformers = None
-    from lito.models.layers import SwiGLU as _SwiGLU
+from lito.models.layers import SwiGLU as _SwiGLU
 
 import torch
 import torch.nn.functional

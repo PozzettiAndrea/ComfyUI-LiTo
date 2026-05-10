@@ -25,4 +25,6 @@ c-compiler = "*"
 timm = ">=0.9.16"
 lightning = ">=2.0.0"
 rembg = { version = "*", extras = ["cpu"] }
-xformers = "*"
+# lpips: required by LightTokenizationTrainer.__init__ even when loading
+# checkpoints with strict=False (constructs lpips.LPIPS(net="vgg") in __init__)
+lpips = { git = "https://github.com/richzhang/PerceptualSimilarity.git" }

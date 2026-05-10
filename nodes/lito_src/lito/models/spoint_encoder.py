@@ -9,14 +9,7 @@ import typing as T
 
 from timm.models.vision_transformer import Mlp
 
-try:
-    import xformers.ops
-
-    _SwiGLU = xformers.ops.SwiGLU
-except ImportError:
-    print("xformers.ops not found, please install it")
-    xformers = None
-    from lito.models.layers import SwiGLU as _SwiGLU
+from lito.models.layers import SwiGLU as _SwiGLU
 
 import pytorch3d.ops
 import torch
@@ -751,7 +744,7 @@ class SPointCrossAttentionLayer(torch.nn.Module):
         use_cached: bool = False,
         use_grad_checkpointing: bool = False,
         debug: bool = False,
-        attn_backend: str = "xformers",
+        attn_backend: str = "flash",
     ) -> torch.Tensor:
         """
         Args:
@@ -1059,7 +1052,7 @@ class SPointSelfAttentionLayer(torch.nn.Module):
         shift_ratio: T.Union[float, torch.Tensor] = 0,
         use_grad_checkpointing: bool = False,
         debug: bool = False,
-        attn_backend: str = "xformers",
+        attn_backend: str = "flash",
     ) -> torch.Tensor:
         """
         Args:

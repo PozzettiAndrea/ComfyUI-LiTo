@@ -9,15 +9,9 @@ import typing as T
 import numpy as np
 from timm.models.vision_transformer import Mlp
 
-try:
-    import xformers
-    import xformers.ops
-
-    _SwiGLU = xformers.ops.SwiGLU
-except ImportError:
-    print("xformers not available")
-    xformers = None
-    _SwiGLU = None  # set after the SwiGLU class is defined below
+# SwiGLU is bound to the pure-PyTorch implementation in this file at module load
+# (late-bound after the class definition below). xformers' SwiGLU is no longer used.
+_SwiGLU = None  # set after the SwiGLU class is defined below
 
 import torch
 from torch import nn

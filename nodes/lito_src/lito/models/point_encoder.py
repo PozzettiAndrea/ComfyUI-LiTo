@@ -7,17 +7,12 @@ import typing as T
 
 import numpy as np
 
-try:
-    import xformers.ops as xops
-except ImportError:
-    print("xformers.ops not found, please install it")
-    xops = None
-
 import torch
 from torch import nn
 
 from lito.models import perceiver_encoder, pointnet_utils
 from lito.models.layers import FourierEmbed
+from plibs.flash_utils import create_block_diagonal_attn_bias_from_seq_lens
 
 
 class ShapeLatent(torch.nn.Module):
@@ -320,15 +315,15 @@ class PointEncoder(torch.nn.Module):
             #       f'min={_ntoken.min()}, '
             #       f'{input_token_bidx_counts_list}')
 
-            cross_attn_bias = xops.fmha.BlockDiagonalMask.from_seqlens(
+            cross_attn_bias = create_block_diagonal_attn_bias_from_seq_lens(
                 q_seqlen=[self.num_latent] * b,  # (b,)
                 kv_seqlen=input_token_bidx_counts_list,  # (b,)
             )
-            self_attn_bias = xops.fmha.BlockDiagonalMask.from_seqlens(
+            self_attn_bias = create_block_diagonal_attn_bias_from_seq_lens(
                 q_seqlen=[self.num_latent] * b,  # (b,)
                 kv_seqlen=[self.num_latent] * b,  # (b,)
             )
-            writeback_attn_bias = xops.fmha.BlockDiagonalMask.from_seqlens(
+            writeback_attn_bias = create_block_diagonal_attn_bias_from_seq_lens(
                 q_seqlen=input_token_bidx_counts_list,  # (b,)
                 kv_seqlen=[self.num_latent] * b,  # (b,)
             )
@@ -336,15 +331,15 @@ class PointEncoder(torch.nn.Module):
             structural_attn_dicts = [
                 dict(
                     cross=dict(
-                        mode="xops",
+                        mode="flash_varlen",
                         attn_bias=cross_attn_bias,
                     ),
                     self=dict(
-                        mode="xops",
+                        mode="flash_varlen",
                         attn_bias=self_attn_bias,
                     ),
                     writeback=dict(
-                        mode="xops",
+                        mode="flash_varlen",
                         attn_bias=writeback_attn_bias if self.encoder.add_write_back else None,
                     ),
                 )

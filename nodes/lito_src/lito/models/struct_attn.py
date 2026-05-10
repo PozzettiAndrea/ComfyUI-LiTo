@@ -2,16 +2,19 @@
 # Copyright (C) 2024 Apple Inc. All rights reserved.
 #
 # The file implements structural attention.
+#
+# Originally used xformers.ops.memory_efficient_attention with
+# xformers BlockDiagonalMask. Rewritten to call flash_attn directly:
+#   - plain attention -> flash_attn.flash_attn_func
+#   - block-diagonal -> flash_attn.flash_attn_varlen_func with cu_seqlens
+# pulled from a BlockDiagonalSeqLens shim (see plibs/flash_utils.py).
 
 import typing as T
 
-try:
-    import xformers.ops as xops
-except ImportError:
-    xops = None
-    print("xformers not imported")
-
+import flash_attn
 import torch
+
+from plibs.flash_utils import BlockDiagonalSeqLens, create_block_diagonal_attn_bias_from_seq_lens
 
 # flash attention currently supports only float16 and bfloat16
 FLASH_ATTN_DTYPE = torch.bfloat16
@@ -30,6 +33,49 @@ else:
     FLASH_ATTN_DTYPE = torch.float16
 
 
+def _flash_varlen(
+    query: torch.Tensor,  # (1, total_q, h, d) or (total_q, h, d)
+    key: torch.Tensor,  # (1, total_kv, h, d) or (total_kv, h, d)
+    value: torch.Tensor,  # (1, total_kv, h, dv) or (total_kv, h, dv)
+    attn_bias: BlockDiagonalSeqLens,
+    p: float,
+    scale: T.Optional[float],
+    leading_batch_dim: bool,
+) -> torch.Tensor:
+    """Run flash_attn_varlen_func against a BlockDiagonalSeqLens shim.
+
+    flash_attn varlen wants packed (total, h, d) inputs. xformers expected
+    (1, total, h, d) at the call site. ``leading_batch_dim`` controls whether
+    we squeeze the leading dim before calling and re-add it on the way out,
+    so callers that previously fed (1, ...) tensors do not need to change shape.
+    """
+    if leading_batch_dim:
+        assert query.size(0) == 1 and key.size(0) == 1 and value.size(0) == 1
+        q = query.squeeze(0)
+        k = key.squeeze(0)
+        v = value.squeeze(0)
+    else:
+        q, k, v = query, key, value
+
+    ori_dtype = v.dtype
+    with torch.autocast(device_type="cuda", enabled=False):
+        out = flash_attn.flash_attn_varlen_func(
+            q=q.to(dtype=FLASH_ATTN_DTYPE).contiguous(),
+            k=k.to(dtype=FLASH_ATTN_DTYPE).contiguous(),
+            v=v.to(dtype=FLASH_ATTN_DTYPE).contiguous(),
+            cu_seqlens_q=attn_bias.cu_seqlens_q.to(device=q.device, dtype=torch.int32),
+            cu_seqlens_k=attn_bias.cu_seqlens_k.to(device=k.device, dtype=torch.int32),
+            max_seqlen_q=attn_bias.max_seqlen_q,
+            max_seqlen_k=attn_bias.max_seqlen_k,
+            dropout_p=p,
+            softmax_scale=scale,
+        ).to(dtype=ori_dtype)  # (total_q, h, dv)
+
+    if leading_batch_dim:
+        out = out.unsqueeze(0)  # (1, total_q, h, dv)
+    return out
+
+
 def construct_structural_attn_given_delta_t(
     input_timestamps: torch.Tensor,
     latent_t0: T.Union[torch.Tensor, float],
@@ -37,8 +83,9 @@ def construct_structural_attn_given_delta_t(
     num_latents: int,
 ):
     r"""
-    Construct xformers' attention bias that improves the
-    speed of attention and causality, etc.
+    Construct an attention bias that improves the speed of attention and
+    causality, etc. The returned attn_bias is a BlockDiagonalSeqLens shim
+    that downstream code can pass to flash_attn varlen.
 
     Given `latent_t_start`, t0, `latent_delta_t`, dt,
     and `num_latents`, n, the latent timestamp
@@ -76,7 +123,7 @@ def construct_structural_attn_given_delta_t(
             (b, num_latents)
         structural_attn_dict:
             attn_bias:
-                xformers attention bias object
+                BlockDiagonalSeqLens shim
             sort_idx:
                 (b, m) used to sort input tokens
             nonzero_latent_idxs:
@@ -147,25 +194,17 @@ def construct_structural_attn_given_delta_t(
     nonzero_latent_idxs = (subseq_count > 0).nonzero(as_tuple=True)[0]  # (num_zero_latent,)
     nonzero_subseq_count = subseq_count[nonzero_latent_idxs]  # (num_zero_latent,)
 
-    # during forward, we are to use BlockDiagonal attention bias in xformers,
-    # which calls flash attention underneath. There is an upper bound to the
-    # max number of blocks supported by each flash_attention kernel call.
-    # The max number of block is 65535. This unfortunately limits the number
-    # of latents across all samples in a batch (ie, b * num_latents).
-    # To deal with this, we can either set b * num_latens to be less than 65535,
-    # or we are going to chunk the points so that num_cells_in_a_chunk <= 65535.
-    # see: https://github.com/facebookresearch/xformers/issues/998
-    # https://github.com/facebookresearch/xformers/issues/845#issuecomment-1858112818
-    # Since in our setting b * num_latent is unlikely to be greater than 65535,
-    # I decided to not implement the part and keep the code simpler.
+    # The flash_attn varlen kernel has a per-call upper bound on the number of
+    # blocks (~65535). In our setting b * num_latent is unlikely to exceed that,
+    # so we don't chunk here; if it ever does, raise so the caller can handle it.
     MAX_NUM_BLOCKS = 65535
     if len(nonzero_latent_idxs) > MAX_NUM_BLOCKS:
         raise RuntimeError(
-            f"max number of blocks reached, {len(nonzero_latent_idxs)}. Please ask Rick to implement chunking."
+            f"max number of blocks reached, {len(nonzero_latent_idxs)}. Implement chunking."
         )
 
     # we are going to treat the latent (b, num_latent, h, d) as (1, b * num_latents, h, d)
-    attn_bias = xops.fmha.BlockDiagonalMask.from_seqlens(
+    attn_bias = create_block_diagonal_attn_bias_from_seq_lens(
         q_seqlen=[1] * (len(nonzero_latent_idxs)),
         kv_seqlen=nonzero_subseq_count.tolist(),
     )
@@ -217,11 +256,13 @@ def structural_memory_efficient_attention(
             the default scale (q.shape[-1]**-0.5) will be used.
         structural_attn_dict:
             dict containing the structural mode and information.
-            If None, typical attention is used.
+            If None, typical attention is used (flash_attn.flash_attn_func on CUDA,
+            torch SDPA elsewhere).
 
-            mode = 'xops'
-                use the standard attn_bias from xformers
-                attn_bias: xops.fmha.attn_bias.AttentionBias
+            mode = 'flash_varlen'  (was 'xops' before the xformers->flash rewrite)
+                attn_bias: BlockDiagonalSeqLens shim carrying cu_seqlens / max_seqlen
+                The (b=1, total, h, d) shape from before is preserved at the call
+                site; we squeeze and pass packed (total, h, d) to flash internally.
 
             mode = 'sort_kv_per_b'
                 sort the key and value along the sequence dimension based on the given sort_idx
@@ -246,48 +287,45 @@ def structural_memory_efficient_attention(
     """
 
     if structural_attn_dict is None:
-        if xops is not None:
+        if query.is_cuda:
             with torch.autocast(device_type="cuda", enabled=False):
                 ori_dtype = value.dtype
-                out = xops.memory_efficient_attention(
-                    query.to(dtype=FLASH_ATTN_DTYPE),  # (b, n, h, dim_head)
-                    key.to(dtype=FLASH_ATTN_DTYPE),  # (b, m, h, dim_head)
-                    value.to(dtype=FLASH_ATTN_DTYPE),  # (b, m, h, dim_head)
-                    p=p,
-                    scale=scale,
-                    attn_bias=None,
+                out = flash_attn.flash_attn_func(
+                    query.to(dtype=FLASH_ATTN_DTYPE).contiguous(),
+                    key.to(dtype=FLASH_ATTN_DTYPE).contiguous(),
+                    value.to(dtype=FLASH_ATTN_DTYPE).contiguous(),
+                    dropout_p=p,
+                    softmax_scale=scale,
                 ).to(dtype=ori_dtype)  # (b, n, h, dim_head)
             return out
-        # Fallback: PyTorch native SDPA (CPU / MPS, when xformers is unavailable).
-        # xformers layout: (b, n, h, d) -> PyTorch SDPA: (b, h, n, d)
-        q = query.transpose(1, 2)  # (b, h, n, d)
-        k = key.transpose(1, 2)  # (b, h, m, d)
-        v = value.transpose(1, 2)  # (b, h, m, d)
+        # Fallback: PyTorch native SDPA (CPU / MPS).
+        # (b, n, h, d) -> SDPA layout (b, h, n, d)
+        q = query.transpose(1, 2)
+        k = key.transpose(1, 2)
+        v = value.transpose(1, 2)
         out = torch.nn.functional.scaled_dot_product_attention(
             q,
             k,
             v,
             scale=scale,
             dropout_p=p,
-        )  # (b, h, n, d)
-        return out.transpose(1, 2)  # (b, n, h, d)
+        )
+        return out.transpose(1, 2)
 
     # structural attention
     mode = structural_attn_dict["mode"]
 
-    if mode == "xops":
+    if mode == "flash_varlen":
         assert "attn_bias" in structural_attn_dict
-        with torch.autocast(device_type="cuda", enabled=False):
-            ori_dtype = value.dtype
-            out = xops.memory_efficient_attention(
-                query.to(dtype=FLASH_ATTN_DTYPE).contiguous(),  # (b, n, h, dim_head)
-                key.to(dtype=FLASH_ATTN_DTYPE).contiguous(),  # (b, m, h, dim_head)
-                value.to(dtype=FLASH_ATTN_DTYPE).contiguous(),  # (b, m, h, dim_head)
-                p=p,
-                scale=scale,
-                attn_bias=structural_attn_dict["attn_bias"],
-            ).to(dtype=ori_dtype)  # (b, n, h, dim_head)
-        return out
+        return _flash_varlen(
+            query=query,  # (1, total_q, h, d)
+            key=key,
+            value=value,
+            attn_bias=structural_attn_dict["attn_bias"],
+            p=p,
+            scale=scale,
+            leading_batch_dim=True,
+        )
     elif mode in {
         "sort_kv_per_b",
         "sorted_kv_per_b",
@@ -312,7 +350,7 @@ def structural_memory_efficient_attention(
             structural_attn_dict=structural_attn_dict,
         )
     else:
-        raise NotImplementedError
+        raise NotImplementedError(mode)
 
 
 def _structural_attn(
@@ -352,8 +390,8 @@ def _structural_attn(
                     all we need is to reshape
 
             attn_biases:
-                list of (num_chunks, ) xops.fmha.attn_bias.BlockDiagonalMask.
-                each is a xformers attention bias object.
+                list of (num_chunks, ) BlockDiagonalSeqLens shims
+                (was xformers BlockDiagonalMask before the rewrite).
 
             q_start_idxs:
                 list of int, (num_chunks + 1,).
@@ -411,13 +449,13 @@ def _structural_attn(
             index=kv_sort_idx.reshape(b, m, 1, 1).expand(-1, -1, h, dv),
         )  # (b, m, h, dv)
 
-        # reshaoe
+        # reshape
         query = query.reshape(b * n, h, d)  # (bn, h, d)
         key = key.reshape(b * m, h, d)  # (b * m, h, d)
         value = value.reshape(b * m, h, dv)  # (b * m, h, dv)
 
     elif mode == "sorted_kv_per_b":
-        # reshaoe
+        # reshape
         query = query.reshape(b * n, h, d)  # (bn, h, d)
         key = key.reshape(b * m, h, d)  # (b * m, h, d)
         value = value.reshape(b * m, h, dv)  # (b * m, h, dv)
@@ -457,7 +495,7 @@ def _structural_attn(
 
     nonzero_query_idxs = structural_attn_dict.get("nonzero_query_idxs", None)  # (num_nonzero_query,)
     if nonzero_query_idxs is not None:
-        query = query[nonzero_query_idxs].unsqueeze(0)  # (q', h, d)
+        query = query[nonzero_query_idxs]  # (q', h, d)
 
     num_kv_padded: int = structural_attn_dict.get("num_kv_padded", None)  # (,)
     if num_kv_padded is not None:
@@ -465,8 +503,8 @@ def _structural_attn(
         key = key[:num_valid]  # (k', h, d)
         value = value[:num_valid]  # (k', h, dv)
 
-    # attention
-    attn_biases: T.List[xops.AttentionBias] = structural_attn_dict["attn_biases"]  # (num_chunks,)
+    # attention via flash varlen
+    attn_biases: T.List[BlockDiagonalSeqLens] = structural_attn_dict["attn_biases"]  # (num_chunks,)
     q_start_idxs: T.List[int] = structural_attn_dict["q_start_idxs"]  # (num_chunks + 1, )
     kv_start_idxs: T.List[int] = structural_attn_dict["kv_start_idxs"]  # (num_chunks + 1, )
     num_chunks = len(attn_biases)
@@ -480,22 +518,19 @@ def _structural_attn(
         if len(attn_bias.k_seqinfo.seqstart) > 2**16:
             raise RuntimeError(f"attn_bias.k: nblock={len(attn_bias.k_seqinfo.seqstart)}")
 
-        with torch.autocast(device_type="cuda", enabled=False):
-            ori_dtype = value.dtype
-            out = xops.memory_efficient_attention(
-                query=query[None, q_start_idxs[chunk_idx] : q_start_idxs[chunk_idx + 1]].to(
-                    dtype=FLASH_ATTN_DTYPE
-                ),  # (1, seq=bn_chunk, h, d)
-                key=key[None, kv_start_idxs[chunk_idx] : kv_start_idxs[chunk_idx + 1]].to(dtype=FLASH_ATTN_DTYPE),
-                value=value[None, kv_start_idxs[chunk_idx] : kv_start_idxs[chunk_idx + 1]].to(dtype=FLASH_ATTN_DTYPE),
-                p=p,
-                scale=scale,
-                attn_bias=attn_bias,
-            ).to(dtype=ori_dtype)  # (1, seq=bn_chunk, h, dv)
+        out = _flash_varlen(
+            query=query[q_start_idxs[chunk_idx] : q_start_idxs[chunk_idx + 1]],  # (chunk_q, h, d)
+            key=key[kv_start_idxs[chunk_idx] : kv_start_idxs[chunk_idx + 1]],  # (chunk_kv, h, d)
+            value=value[kv_start_idxs[chunk_idx] : kv_start_idxs[chunk_idx + 1]],  # (chunk_kv, h, dv)
+            attn_bias=attn_bias,
+            p=p,
+            scale=scale,
+            leading_batch_dim=False,
+        )  # (chunk_q, h, dv)
         outs.append(out)
-    out = torch.cat(outs, dim=1)  # (1, q', h, dv)
+    out = torch.cat(outs, dim=0)  # (q', h, dv)
 
-    # we need to inflat the result to the original shape with zero
+    # we need to inflate the result to the original shape with zero
     if nonzero_query_idxs is not None:
         _attn_out = torch.zeros(
             b * n,
@@ -504,7 +539,7 @@ def _structural_attn(
             dtype=out.dtype,
             device=out.device,
         )  # (bn, h, dv)
-        _attn_out[nonzero_query_idxs] = out.squeeze(0)
+        _attn_out[nonzero_query_idxs] = out
         out = _attn_out.reshape(b, n, h, dv)  # (b, n, h, dv)
     else:
         out = out.reshape(b, n, h, dv)  # (b, n, h, dv)

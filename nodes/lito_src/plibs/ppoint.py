@@ -7,37 +7,31 @@
 import math
 import typing as T
 
-try:
-    import xformers.ops as xops
-except ImportError:
-    xops = None
-    print("xformers.ops not imported.")
-
 from timeit import default_timer as timer
 
-try:
-    import flash_attn
-except ImportError:
-    print("flash_attn not imported.")
-    flash_attn = None
+import flash_attn
+
+# Legacy alias kept so the dead "xformers" code paths below still parse; xops is
+# never called now that ATTN_BACKEND defaults to "flash". The xformers->flash
+# rewrite re-routes BlockDiagonal attention through plibs.flash_utils +
+# flash_attn.flash_attn_varlen_func.
+xops = None
 
 import pytorch3d.ops
 import torch
 
 from plibs.linalg_utils import repeat_interleave
-from plibs.xformers_utils import create_block_diagonal_attn_bias_from_seq_lens
+from plibs.flash_utils import create_block_diagonal_attn_bias_from_seq_lens
 
 if torch.cuda.is_available():
     device = torch.device("cuda")
     prop = torch.cuda.get_device_properties(device)
     print(f"GPU Name: {prop.name}")
     print(f"Compute Capability: {prop.major}.{prop.minor}")
-    if prop.major >= 10:
-        ATTN_BACKEND = "flash"
-    else:
-        ATTN_BACKEND = "xformers"
-else:
-    ATTN_BACKEND = "xformers"
+
+# flash_attn supports Ampere+ (sm_80) which covers our entire target hardware
+# matrix. The legacy "xformers" backend in this file is no longer reachable.
+ATTN_BACKEND = "flash"
 
 
 class PackedPoint:

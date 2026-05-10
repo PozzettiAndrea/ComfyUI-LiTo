@@ -9,22 +9,12 @@ import typing as T
 
 from timm.models.vision_transformer import Mlp
 
-try:
-    import xformers
-    import xformers.ops as xops
-
-    _SwiGLU = xformers.ops.SwiGLU
-except ImportError:
-    print("xformers not found, please install it")
-    xformers = None
-    xops = None
-    from lito.models.layers import SwiGLU as _SwiGLU
-
 import torch
 
 from lito.models import layers, perceiver_encoder, resnet
-from lito.models.layers import FinalLayer
+from lito.models.layers import FinalLayer, SwiGLU as _SwiGLU
 from plibs import utils
+from plibs.flash_utils import create_block_diagonal_attn_bias_from_seq_lens
 
 
 class Upsample2DLayer(torch.nn.Module):
@@ -355,14 +345,14 @@ class VectorDecoderSlow(torch.nn.Module):
         chunk_size = 65535  # flash attn supports max 65535 blocks
         num_chunks = (num_blocks + chunk_size - 1) // chunk_size
         if num_chunks == 1:
-            attn_bias = xops.fmha.BlockDiagonalMask.from_seqlens(
+            attn_bias = create_block_diagonal_attn_bias_from_seq_lens(
                 q_seqlen=unique_idx_counts.tolist(),  # (num_block,)
                 kv_seqlen=unique_idx_counts.tolist(),  # (num_block,)
             )
             latents = self_attn_layer(
                 x=latents.unsqueeze(0),  # (1, bqhw, d)
                 structural_attn_dict=dict(
-                    mode="xops",
+                    mode="flash_varlen",
                     attn_bias=attn_bias,
                 ),
             ).squeeze(0)  # (bqhw, d)
@@ -375,14 +365,14 @@ class VectorDecoderSlow(torch.nn.Module):
                 sidx = start_idx_1[cidx_start - 1] if chunk_idx >= 1 else 0
                 eidx = start_idx_1[cidx_end - 1]
 
-                attn_bias = xops.fmha.BlockDiagonalMask.from_seqlens(
+                attn_bias = create_block_diagonal_attn_bias_from_seq_lens(
                     q_seqlen=unique_idx_counts[cidx_start:cidx_end].tolist(),  # (num_block,)
                     kv_seqlen=unique_idx_counts[cidx_start:cidx_end].tolist(),  # (num_block,)
                 )
                 _latents = self_attn_layer(
                     x=latents[sidx:eidx].unsqueeze(0),  # (1, n, d)
                     structural_attn_dict=dict(
-                        mode="xops",
+                        mode="flash_varlen",
                         attn_bias=attn_bias,
                     ),
                 ).squeeze(0)  # (n, d)
