@@ -1,4 +1,4 @@
-"""LiToPreprocess node - background removal and image conditioning."""
+"""LiToPreprocess node - background removal + crop, outputs IMAGE + MASK."""
 
 import logging
 
@@ -17,7 +17,9 @@ class LiToPreprocess(io.ComfyNode):
     Preprocess an image for LiTo image-to-3D generation.
 
     Removes background (optional), crops/pads to center the object,
-    and resizes to 518x518 RGBA.
+    and resizes to 518x518. Outputs a standard ComfyUI IMAGE + MASK pair
+    so downstream nodes can mix and match (you can also skip this node and
+    pass an IMAGE + MASK from any other source directly to LiToImageTo3D).
     """
 
     @classmethod
@@ -26,7 +28,7 @@ class LiToPreprocess(io.ComfyNode):
             node_id="LiToPreprocess",
             display_name="LiTo Preprocess Image",
             category="LiTo",
-            description="Preprocess image for LiTo: background removal, crop, resize to 518x518.",
+            description="Background removal + crop + resize to 518x518. Outputs IMAGE + MASK.",
             inputs=[
                 io.Image.Input("image", tooltip="Input image (RGB or RGBA)"),
                 io.Boolean.Input(
@@ -54,11 +56,8 @@ class LiToPreprocess(io.ComfyNode):
                 ),
             ],
             outputs=[
-                io.Image.Output(display_name="preview", tooltip="Preprocessed RGBA image for preview"),
-                io.Custom("LITO_COND").Output(
-                    display_name="cond_image",
-                    tooltip="Conditioning tensor for LiTo inference",
-                ),
+                io.Image.Output(display_name="image", tooltip="Cropped/resized RGB image (518x518)"),
+                io.Mask.Output(display_name="mask", tooltip="Foreground alpha mask (518x518)"),
             ],
         )
 
@@ -93,8 +92,8 @@ class LiToPreprocess(io.ComfyNode):
         if remove_bg:
             has_alpha = False
             if pil_image.mode == "RGBA":
-                alpha = np.array(pil_image)[:, :, 3]
-                if not np.all(alpha == 255):
+                alpha_in = np.array(pil_image)[:, :, 3]
+                if not np.all(alpha_in == 255):
                     has_alpha = True
 
             if has_alpha:
@@ -165,18 +164,15 @@ class LiToPreprocess(io.ComfyNode):
                 start_x = (w - min_dim) // 2
                 output_np = output_np[start_y:start_y + min_dim, start_x:start_x + min_dim]
 
-        # Resize to target resolution
-        output = Image.fromarray(output_np.astype(np.uint8))
+        # Resize to target resolution (LANCZOS works on RGBA in one pass)
+        output = Image.fromarray(output_np.astype(np.uint8), mode="RGBA")
         output = output.resize((IMG_RESOLUTION, IMG_RESOLUTION), Image.Resampling.LANCZOS)
+        output_float = np.array(output).astype(np.float32) / 255.0  # (H, W, 4) [0, 1]
 
-        # Convert to float tensors
-        output_float = np.array(output).astype(np.float32) / 255.0  # (h, w, 4) [0, 1]
+        # ComfyUI conventions:
+        # - IMAGE: (B, H, W, 3) float [0,1] RGB
+        # - MASK:  (B, H, W)    float [0,1]  (1 = foreground)
+        image_out = torch.from_numpy(output_float[:, :, :3]).unsqueeze(0).float()
+        mask_out = torch.from_numpy(output_float[:, :, 3]).unsqueeze(0).float()
 
-        # Conditioning tensor: (h, w, 4rgba) float [0, 1] - straight alpha
-        cond_rgba = torch.from_numpy(output_float).float()
-
-        # Preview image for ComfyUI: (1, H, W, 3) float [0, 1] - premultiplied RGB
-        preview_rgb = output_float[:, :, :3] * output_float[:, :, 3:4]
-        preview_tensor = torch.from_numpy(preview_rgb).unsqueeze(0).float()
-
-        return io.NodeOutput(preview_tensor, cond_rgba)
+        return io.NodeOutput(image_out, mask_out)

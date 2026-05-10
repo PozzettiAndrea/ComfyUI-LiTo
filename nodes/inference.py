@@ -5,10 +5,53 @@ import time
 from typing import Any
 
 import torch
+import torch.nn.functional as F
 import comfy.model_management as mm
 from comfy_api.latest import io
 
 log = logging.getLogger("comfyui-lito")
+
+IMG_RESOLUTION = 518
+
+
+def _compose_cond_rgba(image: torch.Tensor, mask: torch.Tensor, device: torch.device) -> torch.Tensor:
+    """Combine ComfyUI IMAGE + MASK into LiTo's (1, 1, H, W, 4rgba) conditioning tensor.
+
+    LiTo expects 518x518 RGBA with straight (not premultiplied) alpha in [0, 1].
+    """
+    # IMAGE: (B, H, W, 3) [0,1] RGB. Take first.
+    rgb = image[0]  # (H, W, 3)
+    # MASK: (B, H, W) [0,1]. Take first.
+    if mask.ndim == 4:
+        # Some upstream nodes emit (B, H, W, 1)
+        alpha = mask[0, ..., 0]
+    else:
+        alpha = mask[0]  # (H, W)
+
+    H, W = rgb.shape[:2]
+    if alpha.shape != (H, W):
+        # Resize mask to match image
+        alpha = F.interpolate(
+            alpha.unsqueeze(0).unsqueeze(0).float(),
+            size=(H, W),
+            mode="bilinear",
+            align_corners=False,
+        )[0, 0]
+
+    rgba = torch.cat([rgb, alpha.unsqueeze(-1)], dim=-1)  # (H, W, 4)
+
+    # Resize to LiTo's expected 518x518
+    if H != IMG_RESOLUTION or W != IMG_RESOLUTION:
+        rgba = F.interpolate(
+            rgba.permute(2, 0, 1).unsqueeze(0),  # (1, 4, H, W)
+            size=(IMG_RESOLUTION, IMG_RESOLUTION),
+            mode="bilinear",
+            align_corners=False,
+            antialias=True,
+        )[0].permute(1, 2, 0)  # (518, 518, 4)
+
+    rgba = rgba.clamp(0.0, 1.0).to(device=device).float()
+    return rgba.unsqueeze(0).unsqueeze(0)  # (1, 1, 518, 518, 4)
 
 # Cache for loaded models to avoid reloading on each run
 _model_cache = {}
@@ -75,7 +118,8 @@ class LiToImageTo3D(io.ComfyNode):
             description="Generate 3D Gaussians from image. ~4.7s on H100 (compiled), ~15s uncompiled.",
             inputs=[
                 io.Custom("LITO_MODEL").Input("model", tooltip="Model from LiToLoadModel"),
-                io.Custom("LITO_COND").Input("cond_image", tooltip="Preprocessed image from LiToPreprocess"),
+                io.Image.Input("image", tooltip="Input image (will be resized to 518x518)"),
+                io.Mask.Input("mask", tooltip="Foreground mask (1=object, 0=background)"),
                 io.Int.Input(
                     "sampling_steps",
                     default=20,
@@ -119,7 +163,8 @@ class LiToImageTo3D(io.ComfyNode):
     def execute(
         cls,
         model: Any,
-        cond_image: torch.Tensor,
+        image: torch.Tensor,
+        mask: torch.Tensor,
         sampling_steps: int = 20,
         cfg_scale: float = 3.0,
         sampling_method: str = "heun",
@@ -141,8 +186,8 @@ class LiToImageTo3D(io.ComfyNode):
         # Set seed for reproducibility
         torch.manual_seed(seed)
 
-        # Prepare conditioning: (b=1, q=1, h, w, 4rgba) [0, 1]
-        cond_rgba = cond_image.to(device=device).unsqueeze(0).unsqueeze(0)
+        # Compose IMAGE + MASK into LiTo's (1, 1, 518, 518, 4rgba) conditioning tensor
+        cond_rgba = _compose_cond_rgba(image, mask, device)
 
         # Step 1: Sample latent tokens via DiT
         log.info("Sampling latent tokens (%d steps, %s, cfg=%.1f)...", sampling_steps, sampling_method, cfg_scale)
