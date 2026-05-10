@@ -18,7 +18,7 @@ from tqdm import tqdm
 
 import torch.optim
 
-from lito.datasets import base
+base = None
 from lito.script_utils.config_utils import instantiate_from_config
 
 # IMPORTANT: pytorch-lightning's default strategy when using multi-node

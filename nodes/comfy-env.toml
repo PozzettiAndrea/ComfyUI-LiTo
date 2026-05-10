@@ -21,11 +21,8 @@ plyfile = "*"
 c-compiler = "*"
 
 [pypi-dependencies]
-# torch-coupled packages live in pypi to avoid conda pulling a different torch family
+# timm in pypi (not conda) to keep conda's torch family out of the solve
 timm = ">=0.9.16"
-open3d = ">=0.18.0"
 pytorch-lightning = ">=2.0.0"
-lpips = { git = "https://github.com/richzhang/PerceptualSimilarity.git" }
 rembg = "*"
 xformers = "*"
-webdataset = "*"

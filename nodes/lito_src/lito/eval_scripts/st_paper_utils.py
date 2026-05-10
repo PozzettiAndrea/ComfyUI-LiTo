@@ -9,19 +9,28 @@ import os
 from timeit import default_timer as timer
 import typing as T
 
-import imageio.v3 as iio
-import matplotlib
 import numpy as np
-import open3d as o3d
-
 import torch
 
-from plibs import gs_utils, o3d_utils, render as p_render, rigid_motion
-
+# Optional heavy imports — only used in mesh/PCD visualization helpers that
+# the ComfyUI inference path never calls.
 try:
-    from lito.trainers import st_trainer
+    import imageio.v3 as iio
 except ImportError:
-    st_trainer = None
+    iio = None
+try:
+    import matplotlib
+except ImportError:
+    matplotlib = None
+try:
+    import open3d as o3d
+except ImportError:
+    o3d = None
+
+from plibs import gs_utils, rigid_motion
+o3d_utils = None
+p_render = None
+st_trainer = None
 
 
 @torch.inference_mode()

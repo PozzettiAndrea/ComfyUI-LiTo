@@ -10,18 +10,36 @@ import os
 from timeit import default_timer as timer
 import typing as T
 
-import matplotlib.pyplot as plt
 import numpy as np
-import open3d as o3d
-from pygltflib.utils import glb2gltf
 import skimage
 
-from pytorch3d.renderer.points.pulsar.renderer import Renderer as PulsarRenderer
-from pytorch3d.renderer.points.rasterize_points import _RasterizePoints as RasterizePoints
 import torch
 
-from plibs import linalg_utils, pr_utils, render, rigid_motion
-from plibs.print_utils import imagesc
+# Optional heavy/platform-specific imports — only needed in helper paths the
+# ComfyUI inference wrapper does not exercise.
+try:
+    import matplotlib.pyplot as plt
+except ImportError:
+    plt = None
+try:
+    import open3d as o3d
+except ImportError:
+    o3d = None
+try:
+    from pygltflib.utils import glb2gltf
+except ImportError:
+    glb2gltf = None
+try:
+    from pytorch3d.renderer.points.pulsar.renderer import Renderer as PulsarRenderer
+    from pytorch3d.renderer.points.rasterize_points import _RasterizePoints as RasterizePoints
+except ImportError:
+    PulsarRenderer = None
+    RasterizePoints = None
+
+from plibs import linalg_utils, rigid_motion
+pr_utils = None
+render = None
+imagesc = None
 
 
 def to_tensor(

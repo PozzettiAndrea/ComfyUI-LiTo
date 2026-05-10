@@ -16,36 +16,46 @@ import typing as T
 import warnings
 import zipfile
 
-# import cv2
-import imageio
 import numpy as np
-import open3d as o3d
-import pyexr
 import scipy as sp
 import scipy.signal
 from scipy.spatial.transform import Rotation
-
-# import torch_scatter
 import skimage
 
-import pytorch3d.ops
-import pytorch3d.renderer
-import pytorch3d.structures
 import torch
-import torchvision
 
-from plibs import (
-    byte_dict_utils,
-    exr_utils,
-    gs_utils,
-    img_utils,
-    linalg_utils,
-    mesh_utils,
-    render,
-    rigid_motion,
-    sample_utils,
-    utils,
-)
+# Optional heavy/platform-specific imports — only used in mesh-rendering / EXR
+# paths that the ComfyUI inference wrapper does not call.
+try:
+    import imageio
+except ImportError:
+    imageio = None
+try:
+    import open3d as o3d
+except ImportError:
+    o3d = None
+try:
+    import pyexr
+except ImportError:
+    pyexr = None
+try:
+    import torchvision
+except ImportError:
+    torchvision = None
+try:
+    import pytorch3d.ops
+    import pytorch3d.renderer
+    import pytorch3d.structures
+except ImportError:
+    pytorch3d = None
+
+from plibs import gs_utils, linalg_utils, rigid_motion, utils
+byte_dict_utils = None
+exr_utils = None
+img_utils = None
+mesh_utils = None
+render = None
+sample_utils = None
 
 try:
     import nvdiffrast.torch as dr

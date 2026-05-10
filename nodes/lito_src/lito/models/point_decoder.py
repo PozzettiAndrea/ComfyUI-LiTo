@@ -29,8 +29,7 @@ from plibs import linalg_utils, sh_utils, utils
 from plibs.ppoint import PackedPoint
 
 # ruff: isort: off
-import lito.integrations.trellis  # ensures kaolin shim is installed on macOS before any trellis import
-
+# Trellis integration removed for the ComfyUI wrapper (mesh decoding only)
 try:
     import lito.integrations.trellis.representations.mesh as trellis_mesh
     import trellis.models.structured_latent_vae.decoder_mesh as slat_vae_mesh

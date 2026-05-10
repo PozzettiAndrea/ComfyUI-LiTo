@@ -15,17 +15,11 @@ import shutil
 import tempfile
 import typing as T
 
-try:
-    import mlx.core as mx
-
-    HAS_MLX = True
-except ImportError:
-    mx = None
-    HAS_MLX = False
+mx = None
+HAS_MLX = False
 
 from timeit import default_timer as timer
 
-from cleanfid import fid
 import numpy as np
 import PIL.Image
 
@@ -33,7 +27,16 @@ import torch
 import torch.distributed as dist
 import torch.nn.functional as F
 from torch.utils.data._utils.collate import default_collate
-from torch.utils.tensorboard import SummaryWriter
+
+# Optional eval/training imports
+try:
+    from cleanfid import fid
+except ImportError:
+    fid = None
+try:
+    from torch.utils.tensorboard import SummaryWriter
+except ImportError:
+    SummaryWriter = None
 
 from lito.flow import path
 from lito.models import dit

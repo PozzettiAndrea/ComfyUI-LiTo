@@ -14,29 +14,43 @@ import time
 from timeit import default_timer as timer
 import typing as T
 
-from lightning.pytorch.loggers import TensorBoardLogger
-import lpips
 import numpy as np
-import open3d as o3d
 from packaging import version
 
-import pytorch3d.io
-import pytorch3d.loss
-import pytorch3d.ops
-import pytorch3d.renderer
-import pytorch3d.structures
 import torch
 import torch.nn.functional as F
 from torch.utils.data._utils.collate import default_collate
-from torch.utils.tensorboard import SummaryWriter
 
-from lito.datasets import obj_wdset
-from lito.eval_scripts import eval_utils_metrics
+# Optional heavy/training-only imports — only needed for code paths the
+# ComfyUI inference wrapper does not call.
+try:
+    from lightning.pytorch.loggers import TensorBoardLogger
+except ImportError:
+    TensorBoardLogger = None
+try:
+    import lpips
+except ImportError:
+    lpips = None
+try:
+    import pytorch3d.io
+    import pytorch3d.loss
+    import pytorch3d.ops
+    import pytorch3d.renderer
+    import pytorch3d.structures
+except ImportError:
+    pytorch3d = None
+try:
+    from torch.utils.tensorboard import SummaryWriter
+except ImportError:
+    SummaryWriter = None
+
+# Training-only modules removed from the vendored source for the ComfyUI wrapper.
+obj_wdset = None
+eval_utils_metrics = None
+TrellisSparseStructurePipeline = None
+get_trellis_sparse_structure_pipeline = None
+
 from lito.flow import path
-from lito.integrations.trellis.trellis_sparse_structure import (
-    TrellisSparseStructurePipeline,
-    get_trellis_sparse_structure_pipeline,
-)
 from lito.models.point_decoder import GaussianDecoderXv
 from lito.models.spoint_encoder import SPointEncoder
 from lito.odelibs import ode_solvers

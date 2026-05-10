@@ -12,7 +12,8 @@ from scipy.spatial.transform import Rotation
 
 import torch
 
-from plibs import linalg_utils, sample_utils
+from plibs import linalg_utils
+sample_utils = None
 
 
 class RigidMotion:
