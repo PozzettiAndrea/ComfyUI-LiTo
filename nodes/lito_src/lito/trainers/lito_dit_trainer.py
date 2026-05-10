@@ -3,6 +3,7 @@
 #
 # The file implements the pytorch lightning module (trainer) for
 # learning a generative model of shape tokens.
+from __future__ import annotations  # type annotations stay as strings, never evaluated
 
 import contextlib
 import copy

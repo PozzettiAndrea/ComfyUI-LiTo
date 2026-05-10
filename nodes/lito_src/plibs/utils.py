@@ -2,6 +2,7 @@
 # For licensing see accompanying LICENSE file.
 # Copyright (C) 2024 Apple Inc. All Rights Reserved.
 #
+from __future__ import annotations  # type annotations stay as strings, never evaluated
 
 import copy
 import json

@@ -2,6 +2,7 @@
 # Copyright (C) 2026 Apple Inc. All rights reserved.
 #
 # The file implements trainer for Light Tokenization.
+from __future__ import annotations  # type annotations stay as strings, never evaluated
 
 import contextlib
 import math

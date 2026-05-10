@@ -2,6 +2,8 @@
 # Copyright (C) 2024 Apple Inc. All rights reserved.
 #
 # The file implements visualization util functions used by shape tokenization paper.
+from __future__ import annotations  # type annotations stay as strings, never evaluated
+
 import copy
 import gc
 import math

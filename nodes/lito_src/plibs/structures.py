@@ -2,6 +2,8 @@
 # Copyright (C) 2022 Apple Inc. All rights reserved.
 #
 # The file implements the basic data containers.
+from __future__ import annotations  # type annotations stay as strings, never evaluated
+
 import copy
 import io
 import json
