@@ -1,0 +1,30 @@
+[cuda]
+packages = ["pytorch3d", "gsplat", "nvdiffrast", "flash-attn", "spconv"]
+
+[dependencies]
+numpy = ">=2.0"
+scipy = ">=1.11.0"
+pillow = ">=10.0.0"
+einops = "*"
+omegaconf = "*"
+easydict = ">=1.13"
+loguru = ">=0.7.2"
+tqdm = "*"
+scikit-image = ">=0.23.1"
+opencv = ">=4.9.0"
+open3d = ">=0.18.0"
+timm = ">=0.9.16"
+pyyaml = "*"
+colorama = "*"
+requests = "*"
+plyfile = "*"
+
+[target.linux-64.dependencies]
+c-compiler = "*"
+
+[pypi-dependencies]
+pytorch-lightning = ">=2.0.0"
+lpips = { git = "https://github.com/richzhang/PerceptualSimilarity.git" }
+rembg = "*"
+xformers = "*"
+webdataset = "*"

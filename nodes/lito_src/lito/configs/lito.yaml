@@ -1,0 +1,286 @@
+# This config is to initialize the architecture in lito_dit_trainer.py
+
+mode: tokenizer
+velocity_outputs:
+- xyz
+min_num_encoder_points: 1048576
+max_num_encoder_points: 1048576
+min_num_flow_points: 16384
+max_num_flow_points: 16384
+center_inputs:
+- rgb
+center_outputs: null
+t_eps: 0.001
+fpoint_encoder_config:
+  target: lito.models.spoint_encoder.SPointEncoder
+  params:
+    coord_inputs:
+    - xyz
+    mlp_inputs:
+    - xyz
+    - rgb
+    - encoded_ray_origin_direction_w
+    - encoded_xyz
+    - encoded_rgb
+    mlp_config_dict: null
+    init_query_method: subsample
+    init_query_config:
+      num_latent: 8192
+      cell_width: null
+    perceiver_inputs:
+    - feature
+    perceiver_config_dict:
+      target: lito.models.spoint_encoder.SPointPerceiverEncoder
+      params:
+        dim_latent: 512
+        num_blocks: 2
+        dim_qkv: 512
+        cross_attn_type: localized_knn
+        self_attn_type: localized_voxel
+        num_in_cluster: null
+        num_clusters: null
+        cross_cell_widths: 0.25
+        self_cell_widths: 0.25
+        num_self_attn: 6
+        num_self_heads: 16
+        num_cross_heads: 16
+        dropout_prob: 0
+        use_rmsnorm: true
+        mlp_ratio: 4
+        mlp_type: swiglu
+        linear_in_attn_add_bias: true
+        mlp_add_bias: true
+        add_kv_linear: true
+    vperceiver_init_query_method: null
+    vperceiver_init_query_config: null
+    vperceiver_inputs: null
+    vperceiver_config_dict: null
+    dim_output: 32
+    xyz_pos_encoding_config: null
+    rgb_pos_encoding_config: null
+    tao_pos_encoding_config: null
+    pos_encoding_configs:
+      xyz:
+        target: lito.models.layers.FourierEmbed
+        params:
+          dim_pos: 3
+          include_input: false
+          min_freq_log2: 0
+          max_freq_log2: 12
+          num_freqs: 32
+          log_sampling: true
+      rgb:
+        target: lito.models.layers.FourierEmbed
+        params:
+          dim_pos: 3
+          include_input: false
+          min_freq_log2: 0
+          max_freq_log2: 8
+          num_freqs: 32
+          log_sampling: true
+      ray_origin_direction_w:
+        target: lito.models.layers.PluckerEmbed
+        params: {}
+    convert_output_to_batch_format: true
+time_embedder_config:
+  target: lito.models.layers.TimeEmbedder
+  params:
+    dim_output: 64
+    max_timestamp: 1
+    num_freqs: 16
+    mlp_dim_feature: 64
+velocity_decoder_config:
+  target: lito.models.point_decoder.VelocityCrossAttnDecoder
+  params:
+    num_latent: null
+    dim_latent: 32
+    dim_point: 3
+    num_blocks: 3
+    dim_qkv: 512
+    dim_cond_feature: 64
+    num_self_attn: 0
+    num_self_heads: 8
+    num_cross_heads: 8
+    dropout_prob: 0
+    use_rmsnorm: true
+    mlp_ratio: 4
+    dim_net: 512
+    pos_enc_name_xyz: fourier
+    min_freq_log2: 0
+    max_freq_log2: 12
+    num_freqs: 32
+    dim_output: 3
+gs_decoder_config:
+  target: lito.models.point_decoder.GaussianDecoderXv
+  params:
+    dim_latent: 32
+    given_point_inputs:
+    - xyz
+    - xyz_encoded
+    num_given_mlp_layers: 1
+    perceiver_dim: 512
+    perceiver_num_blocks: 6
+    perceiver_num_self_attn: 2
+    perceiver_cross_attn_type: global
+    perceiver_self_attn_type: localized_voxel
+    gs_expansion_ratio: 64
+    gs_num_output_mlp_layers: 1
+    gs_shape_outputs:
+    - xyz_w
+    - quaternion_prenorm
+    - scaling_logit
+    gs_color_outputs:
+    - opacity_logit
+    - rgb_sh
+    perceiver_num_in_cluster: null
+    perceiver_num_clusters: null
+    perceiver_cross_cell_widths: null
+    perceiver_self_cell_widths: 0.25
+    region_scaling: 0.05
+    rgb_sh_degree: 3
+    bound_output_rgb: false
+    fixed_bound_output_rgb_bug: true
+    use_unit_opacity: false
+    opacity_logit_bias: 0.1
+    opacity_logit_scale: 1.0
+    min_opacity: 0
+    max_opacity: 1
+    min_opacity_clip: null
+    max_opacity_clip: null
+    max_scaling: null
+    scaling_activation: sigmoid
+    scaling_scalar: 0.01
+    scaling_logit_bias: 0
+    min_scaling: 0.001
+    num_heads: 8
+    mlp_type: swiglu
+    linear_in_attn_add_bias: true
+    mlp_add_bias: false
+    pos_enc_name_xyz: fourier
+    pos_enc_config:
+      dim_pos: 3
+      include_input: false
+      min_freq_log2: 0
+      max_freq_log2: 12
+      num_freqs: 32
+      log_sampling: true
+voxel_decoder_config:
+  target: lito.models.point_decoder.SSLatentDecoder
+  params:
+    num_latent: null
+    dim_latent: 32
+    res_ss_latent: 16
+    dim_ss_latent: 8
+    num_blocks: 4
+    dim_perceiver: 512
+    dim_qkv: 1024
+    num_self_attn: 2
+    num_self_heads: 8
+    num_cross_heads: 8
+    dropout_prob: 0
+    use_rmsnorm: true
+    mlp_ratio: 4
+    add_input_linear: true
+    dim_input_linear: 512
+mesh_decoder_config:
+  target: lito.models.point_decoder.MeshDecoder_v2
+  params:
+    dim_latent: 32
+    grid_size: 64
+    num_given_mlp_layers: 1
+    model_vertex_normal: true
+    perceiver_dim: 512
+    perceiver_num_blocks: 6
+    perceiver_num_self_attn: 2
+    perceiver_self_attn_type: localized_voxel
+    perceiver_num_in_cluster: null
+    perceiver_num_clusters: null
+    num_heads: 16
+    mlp_type: swiglu
+    linear_in_attn_add_bias: true
+    mlp_add_bias: true
+    pos_enc_name_xyz: fourier
+    pos_enc_config:
+      dim_pos: 3
+      include_input: true
+      min_freq_log2: 0
+      max_freq_log2: 12
+      num_freqs: 32
+      log_sampling: true
+ode_sampling_method: euler
+flow_matching_path_type: linear
+noise_type: gaussian
+optim_config:
+  lr_256: 0.0001
+  gradient_clip_val: 1
+  max_epochs: -1
+  max_steps: -1
+  num_sanity_val_steps: 1
+  val_check_interval: 2000
+  monitor_loss_name: loss/total_loss
+  batch_size: 1
+  lr: 0.0001
+  weight_decay: 0
+  beta1: 0.9
+  beta2: 0.98
+  plot_lr: false
+  artifact_dir: /mnt/task_wrapper/user_output/artifacts
+  min_iter_ms: 0
+  debug_xyz: false
+  loss_weight_velocity: 1.0
+  loss_weight_3dgs: 1
+  loss_weight_rgb: 1
+  loss_weight_rgb_l1: 1
+  loss_weight_rgb_ssim: 0
+  loss_weight_rgb_lpips: 0.2
+  loss_weight_voxel_l2: 0
+  loss_weight_voxel_l1: 0
+  loss_weight_voxel_huber: 1
+  mip_kernel_size: 0.1
+  loss_weight_kl: 0
+  loss_weight_kl_global: 0.0001
+  std_posterior: 0.001
+  min_forward_sec: -1
+  spoint_encoder_use_grad_checkpointing: true
+  gs_decoder_use_grad_checkpointing: true
+  lpips_use_grad_checkpointing: true
+  max_lpips_size: 518
+  lr_scheduler_config:
+    target: lito.script_utils.lr_scheduler.TFScheduler
+    params:
+      model_size: 512
+      lr_factor: 0.4
+      warmup_steps: 4000
+mesh_optim_config:
+  mesh_occ_grid_source: model_est
+  normal_align_mode: origin
+  glctx: cuda
+  use_masked_loss: true
+  min_num_occ_to_add: 0
+  max_num_occ_to_add: 0
+  occ_expand_type: dilate
+  loss_weight_mask: 1.0
+  loss_weight_xyz_c: 10.0
+  loss_weight_xyz_c_l2_sqrt: 1.0
+  loss_weight_z_c: 0.0
+  loss_weight_z_c_huber: 1.0
+  loss_weight_z_c_l2: 0.0
+  loss_weight_face_normal: 1.0
+  loss_weight_face_normal_sinusoid: 1.0
+  loss_weight_face_normal_l1: 0.0
+  loss_weight_face_normal_ssim: 0.0
+  loss_weight_face_normal_lpips: 0.0
+  loss_weight_vertex_normal: 1.0
+  loss_weight_vertex_normal_sinusoid: 1.0
+  loss_weight_vertex_normal_l1: 0.0
+  loss_weight_vertex_normal_ssim: 0.0
+  loss_weight_vertex_normal_lpips: 0.0
+  loss_weight_reg: 1.0
+  loss_weight_reg_sdf: 0.2
+debug: false
+keep_latent_coord: false
+freeze_encoder: true
+freeze_velocity_decoder: true
+freeze_gaussian_decoder: true
+freeze_voxel_decoder: true
+freeze_mesh_decoder: true

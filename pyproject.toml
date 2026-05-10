@@ -1,0 +1,13 @@
+[project]
+name = "comfyui-lito"
+description = "ComfyUI wrapper for LiTo: single-image to 3D Gaussian Splat generation"
+version = "0.1.0"
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/PozzettiAndrea/ComfyUI-LiTo"
+
+[tool.comfy]
+PublisherId = "pznodes"
+DisplayName = "LiTo Image-to-3D"
+Icon = ""
