@@ -2,6 +2,8 @@
 # Copyright (C) 2024 Apple Inc. All rights reserved.
 #
 # The file implements helper functions to use gaussian splatting.
+from __future__ import annotations  # type annotations stay as strings, never evaluated
+
 import math
 import os
 import traceback
@@ -9,11 +11,20 @@ import typing as T
 
 import numpy as np
 from plyfile import PlyData, PlyElement
-import spz
 
-import pytorch3d.ops
-import pytorch3d.transforms
 import torch
+
+# Optional heavy imports — only used in helper paths the ComfyUI inference
+# wrapper does not exercise (SPZ compression, pytorch3d-based mesh ops).
+try:
+    import spz
+except ImportError:
+    spz = None
+try:
+    import pytorch3d.ops
+    import pytorch3d.transforms
+except ImportError:
+    pytorch3d = None
 
 from plibs import linalg_utils, rigid_motion, sh_utils
 
