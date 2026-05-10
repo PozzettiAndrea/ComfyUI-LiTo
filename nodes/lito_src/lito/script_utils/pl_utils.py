@@ -2,6 +2,8 @@
 # Copyright (C) 2024 Apple Inc. All rights reserved.
 #
 # The file implements the utils to use pytorch-lightning.
+from __future__ import annotations  # type annotations stay as strings, never evaluated
+
 import copy
 from datetime import datetime
 import os

@@ -71,6 +71,15 @@ class LiToPreprocess(io.ComfyNode):
         fill_ratio: float = 0.8,
         keep_optical_axis: bool = True,
     ):
+        # comfy-env's worker replaces builtins.print with a wrapper named
+        # "_forwarded_print"; numba (pulled in via rembg -> pymatting) does
+        # getattr(__main__, print.__name__) at import time and crashes if
+        # __main__ doesn't carry that attr. Register it before importing rembg.
+        import sys, builtins
+        _main = sys.modules.get("__main__")
+        if _main is not None and not hasattr(_main, builtins.print.__name__):
+            setattr(_main, builtins.print.__name__, builtins.print)
+
         import rembg
         from lito.eval_scripts import st_paper_utils
 
