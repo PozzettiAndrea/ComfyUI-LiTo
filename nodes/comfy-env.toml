@@ -23,6 +23,6 @@ c-compiler = "*"
 [pypi-dependencies]
 # timm in pypi (not conda) to keep conda's torch family out of the solve
 timm = ">=0.9.16"
-pytorch-lightning = ">=2.0.0"
+lightning = ">=2.0.0"
 rembg = { version = "*", extras = ["cpu"] }
 xformers = "*"
