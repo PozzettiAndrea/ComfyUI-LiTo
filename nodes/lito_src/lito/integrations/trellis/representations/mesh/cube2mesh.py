@@ -2,7 +2,9 @@
 
 from easydict import EasyDict as edict
 from trellis.modules.sparse import SparseTensor
-from trellis.representations.mesh.flexicubes.flexicubes import FlexiCubes
+# Vendored FlexiCubes lives next to this file (see flexicubes/) so we don't
+# depend on TRELLIS having its own flexicubes git submodule populated.
+from .flexicubes.flexicubes import FlexiCubes
 
 import torch
 

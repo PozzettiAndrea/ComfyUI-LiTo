@@ -19,14 +19,16 @@ def _compose_cond_rgba(image: torch.Tensor, mask: torch.Tensor, device: torch.de
 
     LiTo expects 518x518 RGBA with straight (not premultiplied) alpha in [0, 1].
     """
-    # IMAGE: (B, H, W, 3) [0,1] RGB. Take first.
-    rgb = image[0]  # (H, W, 3)
+    # IMAGE: (B, H, W, C) [0,1]. Take first; force 3-channel — the MASK input
+    # is the authoritative alpha, so drop any alpha that came in on the IMAGE.
+    rgb = image[0, ..., :3]  # (H, W, 3)
     # MASK: (B, H, W) [0,1]. Take first.
     if mask.ndim == 4:
         # Some upstream nodes emit (B, H, W, 1)
         alpha = mask[0, ..., 0]
     else:
         alpha = mask[0]  # (H, W)
+    alpha = alpha.clamp(0.0, 1.0)
 
     H, W = rgb.shape[:2]
     if alpha.shape != (H, W):

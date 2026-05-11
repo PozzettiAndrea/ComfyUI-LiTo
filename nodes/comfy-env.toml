@@ -1,5 +1,5 @@
 [cuda]
-packages = ["pytorch3d", "gsplat", "nvdiffrast", "flash-attn", "spconv"]
+packages = ["pytorch3d", "gsplat", "nvdiffrast", "flash-attn", "spconv", "cumm"]
 
 [dependencies]
 numpy = ">=2.0"
@@ -41,3 +41,6 @@ tqdm = "*"
 # in eagerly even on the inference path. Pinned to the same commit Apple uses
 # in their pyproject's [trellis] extra.
 utils3d = { git = "https://github.com/EasternJournalist/utils3d.git", rev = "9a4eb15e4021b67b12c460c7057d642626897ec8" }
+pccm = ">=0.4.16"
+ccimport = ">=0.4.4"
+einops = "*"
