@@ -16,6 +16,7 @@ pyyaml = "*"
 colorama = "*"
 requests = "*"
 plyfile = "*"
+av = "*"
 
 [target.linux-64.dependencies]
 c-compiler = "*"
