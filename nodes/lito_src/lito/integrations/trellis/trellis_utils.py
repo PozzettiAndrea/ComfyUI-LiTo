@@ -6,7 +6,11 @@
 import os
 import sys
 
-REPO_ROOT = os.path.normpath(os.path.join(__file__, "..", "..", "..", "..", ".."))
+# In the upstream Apple layout this file lives at src/lito/integrations/trellis/
+# and the repo root is 5 levels up. In our ComfyUI wrapper we vendor lito as
+# nodes/lito_src/lito/..., so the equivalent "repo root" (the directory that
+# contains third_party/) is one level shallower.
+REPO_ROOT = os.path.normpath(os.path.join(__file__, "..", "..", "..", ".."))
 
 
 def add_trellis_to_sys_path(

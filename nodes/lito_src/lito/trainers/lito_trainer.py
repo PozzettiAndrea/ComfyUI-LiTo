@@ -48,8 +48,15 @@ except ImportError:
 # Training-only modules removed from the vendored source for the ComfyUI wrapper.
 obj_wdset = None
 eval_utils_metrics = None
-TrellisSparseStructurePipeline = None
-get_trellis_sparse_structure_pipeline = None
+
+# TRELLIS sparse-structure pipeline IS used at inference time (the gaussian
+# decoder seeds its initial coordinates from voxel_ss_pipeline when
+# voxel_decoder_config is set in the checkpoint). Wire it up properly instead
+# of stubbing.
+from lito.integrations.trellis.trellis_sparse_structure import (
+    TrellisSparseStructurePipeline,
+    get_trellis_sparse_structure_pipeline,
+)
 
 from lito.flow import path
 from lito.models.point_decoder import GaussianDecoderXv
