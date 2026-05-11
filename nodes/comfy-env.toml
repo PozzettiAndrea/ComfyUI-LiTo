@@ -28,3 +28,4 @@ rembg = { version = "*", extras = ["cpu"] }
 # lpips: required by LightTokenizationTrainer.__init__ even when loading
 # checkpoints with strict=False (constructs lpips.LPIPS(net="vgg") in __init__)
 lpips = { git = "https://github.com/richzhang/PerceptualSimilarity.git" }
+psutil = "*"
