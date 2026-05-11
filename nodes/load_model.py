@@ -2,10 +2,13 @@
 
 import logging
 import os
+import threading
+import time
 from pathlib import Path
 
 import torch
 import comfy.model_management as mm
+import comfy.utils
 from comfy_api.latest import io
 
 log = logging.getLogger("comfyui-lito")
@@ -15,39 +18,6 @@ CHECKPOINT_URLS = {
     "lito_dit_rgba (recommended)": "https://ml-site.cdn-apple.com/models/lito/lito_dit_rgba.ckpt",
     "lito_dit (paper)": "https://ml-site.cdn-apple.com/models/lito/lito_dit.ckpt",
 }
-
-# Expected approximate file sizes for verification
-EXPECTED_SIZES = {
-    "lito_dit_rgba.ckpt": 3_000_000_000,  # ~3GB estimated
-    "lito_dit.ckpt": 3_000_000_000,
-}
-
-
-def _comfy_tqdm():
-    """tqdm that shows download progress in ComfyUI's UI."""
-    try:
-        import comfy.utils
-        import tqdm as _tqdm_mod
-    except ImportError:
-        return None
-    holder = {"pbar": None, "total": 0, "done": 0}
-
-    class _T(_tqdm_mod.tqdm):
-        def __init__(self, *a, **kw):
-            super().__init__(*a, **kw)
-            if self.total and self.total > 0 and holder["pbar"] is None:
-                holder["total"] = self.total
-                holder["done"] = 0
-                holder["pbar"] = comfy.utils.ProgressBar(self.total)
-
-        def update(self, n=1):
-            ret = super().update(n)
-            if n and holder["pbar"] and holder["total"] > 0:
-                holder["done"] = min(holder["done"] + n, holder["total"])
-                holder["pbar"].update_absolute(holder["done"], holder["total"])
-            return ret
-
-    return _T
 
 
 try:
@@ -70,7 +40,7 @@ class LiToLoadModel(io.ComfyNode):
             node_id="LiToLoadModel",
             display_name="(Down)Load LiTo Model",
             category="LiTo",
-            description="Load LiTo image-to-3D model. Downloads checkpoint (~3GB) on first use.",
+            description="Load LiTo image-to-3D model. Downloads checkpoint (~7GB) on first use.",
             inputs=[
                 io.Combo.Input(
                     "checkpoint",
@@ -130,8 +100,15 @@ class LiToLoadModel(io.ComfyNode):
 
     @staticmethod
     def _get_or_download_checkpoint(url: str, models_dir: Path) -> Path:
-        """Download checkpoint if not already cached."""
-        from lito.eval_scripts.st_model_utils import download_checkpoint
+        """Fast parallel download via hf_transfer (Rust, HTTP Range parallelism).
+
+        Apple's CDN advertises accept-ranges: bytes; hf_transfer fans out 16
+        concurrent range requests, typically saturating a 1 Gbps NIC. Downloads
+        to <name>.partial then renames on success so a Ctrl+C never leaves a
+        truncated file at the cached path.
+        """
+        import hf_transfer
+        import requests
 
         filename = os.path.basename(url)
         local_path = models_dir / filename
@@ -140,11 +117,44 @@ class LiToLoadModel(io.ComfyNode):
             log.info("Using cached checkpoint: %s", local_path)
             return local_path
 
-        log.info("Downloading checkpoint from %s ...", url)
-        # Use vendored download function (streams with tqdm)
-        result_path = download_checkpoint(
-            url=url,
-            download_dir_root=str(models_dir),
-            overwrite=False,
+        # Probe size for the progress bar
+        head = requests.head(url, allow_redirects=True, timeout=30)
+        head.raise_for_status()
+        total_size = int(head.headers["content-length"])
+
+        partial = local_path.with_suffix(local_path.suffix + ".partial")
+        if partial.exists():
+            partial.unlink()  # hf_transfer doesn't resume; start clean
+
+        pbar = comfy.utils.ProgressBar(total_size)
+        done = 0
+        lock = threading.Lock()
+
+        def on_chunk(chunk_size: int) -> None:
+            nonlocal done
+            with lock:
+                done += chunk_size
+                pbar.update_absolute(done, total_size)
+
+        log.info(
+            "Downloading %s (%.2f GB) via hf_transfer (16 parallel ranges)...",
+            url, total_size / 1e9,
         )
-        return Path(result_path)
+        t0 = time.time()
+        hf_transfer.download(
+            url=url,
+            filename=str(partial),
+            max_files=16,
+            chunk_size=10 * 1024 * 1024,
+            parallel_failures=3,
+            max_retries=5,
+            callback=on_chunk,
+        )
+        elapsed = time.time() - t0
+        log.info(
+            "Downloaded %.2f GB in %.1fs (%.1f MB/s) -> %s",
+            total_size / 1e9, elapsed, total_size / elapsed / 1e6, local_path,
+        )
+
+        os.rename(partial, local_path)
+        return local_path

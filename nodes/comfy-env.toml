@@ -30,3 +30,7 @@ rembg = { version = "*", extras = ["cpu"] }
 lpips = { git = "https://github.com/richzhang/PerceptualSimilarity.git" }
 psutil = "*"
 comfy-aimdo = "*"
+# hf_transfer: Rust-backed parallel HTTP Range downloader. Despite the name,
+# works against arbitrary URLs (no HF allowlist). Used by the loader node to
+# pull the 7.37 GB Apple CDN checkpoint in 30-60s instead of ~5 min.
+hf_transfer = "*"
