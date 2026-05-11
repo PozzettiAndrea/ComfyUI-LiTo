@@ -29,3 +29,4 @@ rembg = { version = "*", extras = ["cpu"] }
 # checkpoints with strict=False (constructs lpips.LPIPS(net="vgg") in __init__)
 lpips = { git = "https://github.com/richzhang/PerceptualSimilarity.git" }
 psutil = "*"
+comfy-aimdo = "*"
