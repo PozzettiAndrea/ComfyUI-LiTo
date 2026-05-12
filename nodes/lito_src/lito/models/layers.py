@@ -7,7 +7,7 @@ import math
 import typing as T
 
 import numpy as np
-from timm.models.vision_transformer import Mlp
+from lito.models._comfy_mlp import Mlp
 
 # SwiGLU is bound to the pure-PyTorch implementation in this file at module load
 # (late-bound after the class definition below). xformers' SwiGLU is no longer used.

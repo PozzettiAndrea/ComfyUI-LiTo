@@ -7,7 +7,7 @@ import copy
 import math
 import typing as T
 
-from timm.models.vision_transformer import Mlp
+from lito.models._comfy_mlp import Mlp
 
 import torch
 

@@ -27,9 +27,10 @@ from contextlib import nullcontext as _nullcontext
 if torch.cuda.is_available():
     import comfy.model_management as _comfy_mm
     device = _comfy_mm.get_torch_device()
-    prop = torch.cuda.get_device_properties(device)
-    print(f"GPU Name: {prop.name}")
-    print(f"Compute Capability: {prop.major}.{prop.minor}")
+    if device.type == "cuda":
+        prop = torch.cuda.get_device_properties(device)
+        print(f"GPU Name: {prop.name}")
+        print(f"Compute Capability: {prop.major}.{prop.minor}")
 
 # flash_attn supports Ampere+ (sm_80) which covers our entire target hardware
 # matrix. The legacy "xformers" backend in this file is no longer reachable.

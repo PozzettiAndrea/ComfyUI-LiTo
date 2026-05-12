@@ -1,3 +1,2 @@
 [node_reqs]
-ComfyUI-PLYPreview = "XuanYu-github/comfyui-PlyPreview"
-comfyui-camerapack = "PozzettiAndrea/ComfyUI-CameraPack"
+ComfyUI-TurntableGSViewer = "PozzettiAndrea/ComfyUI-TurntableGSViewer"

@@ -6,7 +6,8 @@
 import typing as T
 
 import einops
-from timm.models.vision_transformer import DropPath, Mlp
+from timm.models.vision_transformer import DropPath
+from lito.models._comfy_mlp import Mlp
 
 import torch
 from torch import nn
