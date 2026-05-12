@@ -67,7 +67,7 @@ def _ops():
     global _OPS
     if _OPS is None:
         import comfy.ops
-        _OPS = comfy.ops.disable_weight_init
+        _OPS = comfy.ops.manual_cast
     return _OPS
 
 
@@ -242,13 +242,13 @@ class DecoderBlock(torch.nn.Module):
         # cond_feature -> adaln modulators
         if self.dim_cond_feature is not None and self.dim_cond_feature > 0:
             self.ca_modulator = torch.nn.Sequential(
-                torch._ops().Linear(
+                _ops().Linear(
                     self.dim_cond_feature,
                     self.dim_cond_feature,
                     bias=True,
                 ),
                 torch.nn.SiLU(),
-                torch._ops().Linear(
+                _ops().Linear(
                     self.dim_cond_feature,
                     6 * self.dim_token,
                     bias=True,
@@ -258,14 +258,14 @@ class DecoderBlock(torch.nn.Module):
             self.ca_modulator = None
 
         if use_cross_attn_layernorm1:
-            self.ca_ln1 = torch._ops().LayerNorm(
+            self.ca_ln1 = _ops().LayerNorm(
                 self.dim_token,
                 elementwise_affine=(self.ca_modulator is None),
                 eps=self.eps,
             )
         else:
             self.ca_ln1 = torch.nn.Identity()
-        self.ca_ln2 = torch._ops().LayerNorm(
+        self.ca_ln2 = _ops().LayerNorm(
             self.dim_token,
             elementwise_affine=(self.ca_modulator is None),
             eps=self.eps,
@@ -323,17 +323,17 @@ class DecoderBlock(torch.nn.Module):
         for _ in range(self.num_self_attn):
             if self.dim_cond_feature > 0:
                 mod_layer = torch.nn.Sequential(
-                    torch._ops().Linear(self.dim_cond_feature, self.dim_cond_feature, bias=True),
+                    _ops().Linear(self.dim_cond_feature, self.dim_cond_feature, bias=True),
                     torch.nn.SiLU(),
-                    torch._ops().Linear(self.dim_cond_feature, 6 * self.dim_token, bias=True),
+                    _ops().Linear(self.dim_cond_feature, 6 * self.dim_token, bias=True),
                 )
 
             else:
                 mod_layer = None
             _sa_modulator_layers.append(mod_layer)
 
-            ln1 = torch._ops().LayerNorm(self.dim_token, elementwise_affine=(mod_layer is None), eps=self.eps)
-            ln2 = torch._ops().LayerNorm(self.dim_token, elementwise_affine=(mod_layer is None), eps=self.eps)
+            ln1 = _ops().LayerNorm(self.dim_token, elementwise_affine=(mod_layer is None), eps=self.eps)
+            ln2 = _ops().LayerNorm(self.dim_token, elementwise_affine=(mod_layer is None), eps=self.eps)
             _ln1_layers.append(ln1)
             _ln2_layers.append(ln2)
 
@@ -611,16 +611,16 @@ class SelfDecoderBlock(torch.nn.Module):
         for layer_idx in range(self.num_self_attn):
             if self.dim_cond_feature > 0:
                 mod_layer = torch.nn.Sequential(
-                    torch._ops().Linear(self.dim_cond_feature, self.dim_cond_feature, bias=True),
+                    _ops().Linear(self.dim_cond_feature, self.dim_cond_feature, bias=True),
                     torch.nn.SiLU(),
-                    torch._ops().Linear(self.dim_cond_feature, 6 * self.dim_token, bias=True),
+                    _ops().Linear(self.dim_cond_feature, 6 * self.dim_token, bias=True),
                 )
             else:
                 mod_layer = None
             _sa_modulator_layers.append(mod_layer)
 
-            ln1 = torch._ops().LayerNorm(self.dim_token, elementwise_affine=(mod_layer is None), eps=self.eps)
-            ln2 = torch._ops().LayerNorm(self.dim_token, elementwise_affine=(mod_layer is None), eps=self.eps)
+            ln1 = _ops().LayerNorm(self.dim_token, elementwise_affine=(mod_layer is None), eps=self.eps)
+            ln2 = _ops().LayerNorm(self.dim_token, elementwise_affine=(mod_layer is None), eps=self.eps)
             _ln1_layers.append(ln1)
             _ln2_layers.append(ln2)
 
@@ -923,7 +923,7 @@ class VelocityCrossAttnDecoder(torch.nn.Module):
             self.dim_net = self.dim_point_token
             self.input_linear = None
         else:
-            self.input_linear = torch._ops().Linear(
+            self.input_linear = _ops().Linear(
                 in_features=self.dim_point_token,
                 out_features=self.dim_net,
             )
@@ -1074,7 +1074,7 @@ def get_output_mlp(
     current_dim = dim_in
     for layer_idx in range(num_layers):
         layers.append(
-            torch._ops().LayerNorm(
+            _ops().LayerNorm(
                 normalized_shape=current_dim,
                 eps=1e-6,
             )
@@ -1223,7 +1223,7 @@ class GaussianDecoderXv(torch.nn.Module):
             else:
                 raise NotImplementedError
         self.point_linear_dim_in = current_dim
-        self.point_linear = torch._ops().Linear(
+        self.point_linear = _ops().Linear(
             in_features=self.point_linear_dim_in,
             out_features=perceiver_dim,
         )
@@ -1661,7 +1661,7 @@ class SSLatentDecoder(torch.nn.Module):
 
         # input linear (applied to shape tokens)
         if self.add_input_linear:
-            self.input_linear = torch._ops().Linear(
+            self.input_linear = _ops().Linear(
                 in_features=self.dim_latent,
                 out_features=self.dim_input_linear,
             )
@@ -1797,7 +1797,7 @@ class SSLatentDecoder_simplified(torch.nn.Module):
             **pos_enc_config,
         )
         self.point_linear_dim_in = self.xyz_encoding.dim_out
-        self.point_linear = torch._ops().Linear(
+        self.point_linear = _ops().Linear(
             in_features=self.point_linear_dim_in,
             out_features=dim_perceiver,
         )
@@ -1816,7 +1816,7 @@ class SSLatentDecoder_simplified(torch.nn.Module):
 
         # input linear (applied to shape tokens)
         if self.add_input_linear:
-            self.input_linear = torch._ops().Linear(
+            self.input_linear = _ops().Linear(
                 in_features=self.dim_latent,
                 out_features=self.dim_input_linear,
             )
@@ -1981,7 +1981,7 @@ class MeshDecoder_v2(torch.nn.Module):
 
         # linear layer for query (occ_xyz_w)
         self.point_linear_dim_in = self.xyz_encoding.dim_out
-        self.point_linear = torch._ops().Linear(
+        self.point_linear = _ops().Linear(
             in_features=self.point_linear_dim_in,
             out_features=perceiver_dim,
         )

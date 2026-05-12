@@ -637,7 +637,6 @@ class LiToDiTTrainer(base_trainer.BaseTrainer):
             raise NotImplementedError(self.patch_encoder_name)
 
     @torch.no_grad()
-    @torch.compile
     def inference_sample_latent(
         self,
         cond_rgba: torch.Tensor,  # (b, q, h, w, 4rgba) [0, 1] rgb is straight

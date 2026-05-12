@@ -18,7 +18,7 @@ def _ops():
     global _OPS
     if _OPS is None:
         import comfy.ops
-        _OPS = comfy.ops.disable_weight_init
+        _OPS = comfy.ops.manual_cast
     return _OPS
 
 
@@ -126,7 +126,7 @@ class SpatialDino(torch.nn.Module):
                     in_channels += 1
                 else:
                     raise NotImplementedError
-            self.learnable_model = torch._ops().Conv2d(
+            self.learnable_model = _ops().Conv2d(
                 in_channels=in_channels,
                 out_channels=self.learnable_params["out_channels"],
                 kernel_size=self.model.patch_size,
@@ -546,7 +546,7 @@ class SpatialDinov2(torch.nn.Module):
                 else:
                     raise NotImplementedError(input_type)
 
-            self.learnable_model = torch._ops().Conv2d(
+            self.learnable_model = _ops().Conv2d(
                 in_channels=in_channels,
                 out_channels=self.learnable_model_params["out_channels"],
                 kernel_size=self.dinov2_model.patch_size,
@@ -554,7 +554,7 @@ class SpatialDinov2(torch.nn.Module):
             )
 
             if self.learnable_model_params["add_layer_norm"]:
-                self.learnable_linear_layernorm = torch._ops().LayerNorm(
+                self.learnable_linear_layernorm = _ops().LayerNorm(
                     self.learnable_model_params["out_channels"],
                     eps=1e-6,
                 )
@@ -575,7 +575,7 @@ class SpatialDinov2(torch.nn.Module):
 
         # joint layernorm
         if self.learnable_add_joint_layernorm:
-            self.learnable_joint_layernorm = torch._ops().LayerNorm(dim_out_feature, eps=1e-6)
+            self.learnable_joint_layernorm = _ops().LayerNorm(dim_out_feature, eps=1e-6)
         else:
             self.learnable_joint_layernorm = None
 

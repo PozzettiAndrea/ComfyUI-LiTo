@@ -19,7 +19,7 @@ def _ops():
     global _OPS
     if _OPS is None:
         import comfy.ops
-        _OPS = comfy.ops.disable_weight_init
+        _OPS = comfy.ops.manual_cast
     return _OPS
 
 def _comfy_device():
@@ -75,22 +75,15 @@ class ConditionEmbedder(nn.Module):
         return cond
 
 
-class Linear(nn.Linear):
-    def reset_parameters(self) -> None:
-        torch.nn.init.xavier_uniform_(self.weight)
-        if self.bias is not None:
-            torch.nn.init.constant_(self.bias, 0)
-
-
 class SwiGLUFeedForward(nn.Module):
     def __init__(self, dim, hidden_dim, multiple_of=256):
         super().__init__()
         hidden_dim = int(2 * hidden_dim / 3)
         hidden_dim = multiple_of * ((hidden_dim + multiple_of - 1) // multiple_of)
 
-        self.w1 = Linear(dim, hidden_dim, bias=False)
-        self.w2 = Linear(hidden_dim, dim, bias=True)
-        self.w3 = Linear(dim, hidden_dim, bias=False)
+        self.w1 = _ops().Linear(dim, hidden_dim, bias=False)
+        self.w2 = _ops().Linear(hidden_dim, dim, bias=True)
+        self.w3 = _ops().Linear(dim, hidden_dim, bias=False)
 
     def forward(self, x):
         return self.w2(F.silu(self.w1(x)) * self.w3(x))

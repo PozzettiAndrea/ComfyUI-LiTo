@@ -19,7 +19,7 @@ def _ops():
     global _OPS
     if _OPS is None:
         import comfy.ops
-        _OPS = comfy.ops.disable_weight_init
+        _OPS = comfy.ops.manual_cast
     return _OPS
 
 
@@ -60,7 +60,7 @@ class PerceiverEncoderBlock(torch.nn.Module):
             assert self.layer_idx is not None
 
         if self.add_kv_linear:
-            self.kv_linear = torch._ops().Linear(
+            self.kv_linear = _ops().Linear(
                 in_features=dim_token,
                 out_features=dim_token,
                 bias=False,  # followed by layernorm

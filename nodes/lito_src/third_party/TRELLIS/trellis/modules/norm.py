@@ -1,13 +1,21 @@
 import torch
 import torch.nn as nn
 
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.manual_cast
+    return _OPS
 
-class LayerNorm32(nn.LayerNorm):
+
+class LayerNorm32(_ops().LayerNorm):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return super().forward(x.float()).type(x.dtype)
     
 
-class GroupNorm32(nn.GroupNorm):
+class GroupNorm32(_ops().GroupNorm):
     """
     A GroupNorm layer that converts to float32 before the forward pass.
     """

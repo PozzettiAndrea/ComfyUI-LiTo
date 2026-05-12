@@ -15,7 +15,7 @@ def _ops():
     global _OPS
     if _OPS is None:
         import comfy.ops
-        _OPS = comfy.ops.disable_weight_init
+        _OPS = comfy.ops.manual_cast
     return _OPS
 
 
@@ -785,10 +785,10 @@ class PointNetLayer(torch.nn.Module):
         self.mlp_bns = torch.nn.ModuleList()
         last_channel = self.in_channel
         for out_channel in mlp:
-            self.mlp_convs.append(torch._ops().Conv2d(in_channels=last_channel, out_channels=out_channel, kernel_size=1))
+            self.mlp_convs.append(_ops().Conv2d(in_channels=last_channel, out_channels=out_channel, kernel_size=1))
 
             if self.norm_type == "layernorm":
-                norm = torch._ops().LayerNorm(normalized_shape=out_channel)
+                norm = _ops().LayerNorm(normalized_shape=out_channel)
             elif self.norm_type == "batchnorm":
                 norm = torch.nn.BatchNorm2d(num_features=out_channel)
             elif self.norm_type == "none":
@@ -944,7 +944,7 @@ class PointNet(torch.nn.Module):
             self.layers.append(layer)
 
         # final linear layer
-        self.final_linear = torch._ops().Linear(current_dim, self.out_channel)
+        self.final_linear = _ops().Linear(current_dim, self.out_channel)
 
     def forward(
         self,
@@ -1044,10 +1044,10 @@ class VNetLayer(torch.nn.Module):
         self.mlp_bns = torch.nn.ModuleList()
         last_channel = self.in_channel
         for out_channel in mlp:
-            self.mlp_linears.append(torch._ops().Linear(in_features=last_channel, out_features=out_channel))
+            self.mlp_linears.append(_ops().Linear(in_features=last_channel, out_features=out_channel))
 
             if self.norm_type == "layernorm":
-                norm = torch._ops().LayerNorm(normalized_shape=out_channel)
+                norm = _ops().LayerNorm(normalized_shape=out_channel)
             elif self.norm_type == "batchnorm":
                 # note that it is different -- original pointnet uses batchnorm2d,
                 # which compute statistics among selected neighbor-only (b, m, k).
@@ -1232,7 +1232,7 @@ class VNet(torch.nn.Module):
             self.layers.append(layer)
 
         # final linear layer
-        self.final_linear = torch._ops().Linear(current_dim, self.out_channel)
+        self.final_linear = _ops().Linear(current_dim, self.out_channel)
 
     def forward(
         self,

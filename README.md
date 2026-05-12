@@ -1,3 +1,5 @@
+WORK IN PROGRESS
+
 # ComfyUI-LiTo
 
 ComfyUI wrapper for [LiTo](https://apple.github.io/ml-lito/) (Surface Light Field Tokenization), Apple Research's image-to-3D Gaussian Splat generator from ICLR 2026.

@@ -24,7 +24,7 @@ def _ops():
     global _OPS
     if _OPS is None:
         import comfy.ops
-        _OPS = comfy.ops.disable_weight_init
+        _OPS = comfy.ops.manual_cast
     return _OPS
 
 
@@ -72,8 +72,8 @@ class PointwiseResnetVoxelBlock(torch.nn.Module):
         self.cell_width = cell_width
         self.shift_ratio = shift_ratio
 
-        self.linear_in_coord = torch._ops().Linear(self.dim_coord, self.dim_hidden)
-        self.linear_in_feature = torch._ops().Linear(self.dim_in, self.dim_hidden)
+        self.linear_in_coord = _ops().Linear(self.dim_coord, self.dim_hidden)
+        self.linear_in_feature = _ops().Linear(self.dim_in, self.dim_hidden)
         blocks = []
         for i in range(num_layers):
             block = PointwiseResnet(
@@ -85,7 +85,7 @@ class PointwiseResnetVoxelBlock(torch.nn.Module):
             )
             blocks.append(block)
         self.blocks = torch.nn.ModuleList(blocks)
-        self.linear_out = torch._ops().Linear(self.dim_hidden, self.dim_out)
+        self.linear_out = _ops().Linear(self.dim_hidden, self.dim_out)
         self._init_parameteres()
 
     def _init_parameteres(self):
@@ -476,17 +476,17 @@ class SPointCrossAttentionLayer(torch.nn.Module):
         self.add_bias = add_bias
 
         # linear projection
-        self.linear_q = torch._ops().Linear(
+        self.linear_q = _ops().Linear(
             in_features=self.dim_q,
             out_features=self.dim_qkv,
             bias=self.add_bias,
         )
-        self.linear_kv = torch._ops().Linear(
+        self.linear_kv = _ops().Linear(
             in_features=self.dim_kv,
             out_features=2 * self.dim_qkv,
             bias=self.add_bias,
         )
-        self.linear_out = torch._ops().Linear(
+        self.linear_out = _ops().Linear(
             in_features=self.dim_qkv,
             out_features=self.dim_q,
             bias=self.add_bias,
@@ -496,8 +496,8 @@ class SPointCrossAttentionLayer(torch.nn.Module):
             self.rmsnorm_k = RMSNorm(self.dim_qkv)
 
         # pre layer normalization
-        self.layernorm_q = torch._ops().LayerNorm(self.dim_q)
-        self.layernorm_kv = torch._ops().LayerNorm(self.dim_kv)
+        self.layernorm_q = _ops().LayerNorm(self.dim_q)
+        self.layernorm_kv = _ops().LayerNorm(self.dim_kv)
 
     def _forward_xformers(
         self,
@@ -869,12 +869,12 @@ class SPointSelfAttentionLayer(torch.nn.Module):
         self.add_bias = add_bias
 
         # linear projection
-        self.linear_qkv = torch._ops().Linear(
+        self.linear_qkv = _ops().Linear(
             in_features=self.dim_in,
             out_features=3 * self.dim_qkv,
             bias=self.add_bias,
         )
-        self.linear_out = torch._ops().Linear(
+        self.linear_out = _ops().Linear(
             in_features=self.dim_qkv,
             out_features=self.dim_in,
             bias=self.add_bias,
@@ -1170,7 +1170,7 @@ class SPointPerceiverEncoderBlock(torch.nn.Module):
         self.add_kv_linear = add_kv_linear
 
         if self.add_kv_linear:
-            self.kv_linear = torch._ops().Linear(
+            self.kv_linear = _ops().Linear(
                 in_features=dim_token,
                 out_features=dim_token,
                 bias=False,  # followed by layernorm
@@ -1178,7 +1178,7 @@ class SPointPerceiverEncoderBlock(torch.nn.Module):
         else:
             self.kv_linear = None
 
-        self.ca_ln = torch._ops().LayerNorm(dim_latent, eps=1e-6)
+        self.ca_ln = _ops().LayerNorm(dim_latent, eps=1e-6)
 
         self.ca_layer = SPointCrossAttentionLayer(
             dim_q=dim_latent,
@@ -1217,8 +1217,8 @@ class SPointPerceiverEncoderBlock(torch.nn.Module):
         _ln1_layers = []
         _ln2_layers = []
         for _ in range(num_self_attn):
-            ln1 = torch._ops().LayerNorm(dim_latent, eps=1e-6)
-            ln2 = torch._ops().LayerNorm(dim_latent, eps=1e-6)
+            ln1 = _ops().LayerNorm(dim_latent, eps=1e-6)
+            ln2 = _ops().LayerNorm(dim_latent, eps=1e-6)
             _ln1_layers.append(ln1)
             _ln2_layers.append(ln2)
 
@@ -1742,7 +1742,7 @@ class SPointEncoder(torch.nn.Module):
             "voxel_avg_coord_avg_feature",
         ]:
             if self.dim_perceiver_kv != self.perceiver_dim:
-                self.perceiver_init_query_linear = torch._ops().Linear(
+                self.perceiver_init_query_linear = _ops().Linear(
                     in_features=self.dim_perceiver_kv,
                     out_features=self.perceiver_dim,
                     bias=True,
@@ -1809,7 +1809,7 @@ class SPointEncoder(torch.nn.Module):
                 "voxel_avg_coord_avg_feature",
             ]:
                 if self.dim_perceiver_kv != self.vperceiver_dim:
-                    self.vperceiver_init_query_linear = torch._ops().Linear(
+                    self.vperceiver_init_query_linear = _ops().Linear(
                         in_features=self.dim_perceiver_kv,
                         out_features=self.vperceiver_dim,
                         bias=True,
@@ -1824,7 +1824,7 @@ class SPointEncoder(torch.nn.Module):
 
         # output layer
         self.use_fp32_for_final_layer = use_fp32_for_final_layer
-        self.final_layer = torch._ops().Linear(
+        self.final_layer = _ops().Linear(
             in_features=self.vperceiver_dim,
             out_features=self.dim_output,
         )

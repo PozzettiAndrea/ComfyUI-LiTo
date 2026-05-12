@@ -18,7 +18,7 @@ def _ops():
     global _OPS
     if _OPS is None:
         import comfy.ops
-        _OPS = comfy.ops.disable_weight_init
+        _OPS = comfy.ops.manual_cast
     return _OPS
 
 
@@ -190,7 +190,7 @@ class PointEncoder(torch.nn.Module):
 
         # output layer
         if self.dim_perceiver != self.dim_latent:
-            self.final_layer = torch._ops().Linear(
+            self.final_layer = _ops().Linear(
                 in_features=self.dim_perceiver,
                 out_features=self.dim_latent,
             )

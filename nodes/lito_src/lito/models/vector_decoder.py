@@ -20,7 +20,7 @@ def _ops():
     global _OPS
     if _OPS is None:
         import comfy.ops
-        _OPS = comfy.ops.disable_weight_init
+        _OPS = comfy.ops.manual_cast
     return _OPS
 
 
@@ -49,7 +49,7 @@ class Upsample2DLayer(torch.nn.Module):
         padding = (kernel_size - 1) // 2
 
         if self.add_conv:
-            self.conv = torch._ops().Conv2d(
+            self.conv = _ops().Conv2d(
                 in_channels=in_channels,
                 out_channels=out_channels,
                 kernel_size=kernel_size,
@@ -149,7 +149,7 @@ class VectorDecoderSlow(torch.nn.Module):
                 num_freqs=self.dim_perceiver // 4,
                 log_sampling=True,
             )  # output dim = 2hw * num_freqs * 2sin_cos
-            self.q_pos_encoder = torch._ops().Embedding(
+            self.q_pos_encoder = _ops().Embedding(
                 num_embeddings=self.init_shape[0],
                 embedding_dim=self.dim_perceiver,
             )
@@ -243,7 +243,7 @@ class VectorDecoderSlow(torch.nn.Module):
 
         # final linear layer
         if self.dim_upsample_output != self.dim_output:
-            self.final_linear = torch._ops().Linear(
+            self.final_linear = _ops().Linear(
                 in_features=self.dim_upsample_output,
                 out_features=self.dim_output,
             )
@@ -562,7 +562,7 @@ class VectorDecoder(torch.nn.Module):
                 num_freqs=self.dim_perceiver // 4,
                 log_sampling=True,
             )  # output dim = 2hw * num_freqs * 2sin_cos
-            self.q_pos_encoder = torch._ops().Embedding(
+            self.q_pos_encoder = _ops().Embedding(
                 num_embeddings=self.init_shape[0],
                 embedding_dim=self.dim_perceiver,
             )
@@ -580,7 +580,7 @@ class VectorDecoder(torch.nn.Module):
                 log_sampling=True,
             )  # output dim = 3qhw * num_freqs * 2sin_cos + 3xyz
             self.dim_pos_output = self.zyx_pos_encoder.dim_out
-            self.init_query_linear = torch._ops().Linear(
+            self.init_query_linear = _ops().Linear(
                 in_features=self.dim_pos_output,
                 out_features=self.dim_perceiver,
             )
@@ -654,7 +654,7 @@ class VectorDecoder(torch.nn.Module):
 
         # final linear layer
         if self.dim_upsample_output != self.dim_output:
-            self.final_linear = torch._ops().Linear(
+            self.final_linear = _ops().Linear(
                 in_features=self.dim_upsample_output,
                 out_features=self.dim_output,
             )
@@ -787,7 +787,7 @@ def get_mlp(
     current_dim = dim_in
     for layer_idx in range(num_layers):
         layers.append(
-            torch._ops().LayerNorm(
+            _ops().LayerNorm(
                 normalized_shape=current_dim,
                 eps=1e-6,
             )
@@ -901,7 +901,7 @@ class VectorDecoder2(torch.nn.Module):
                     num_freqs=self.dim_perceiver // 4,
                     log_sampling=True,
                 )  # output dim = 2hw * num_freqs * 2sin_cos
-                self.q_pos_encoder = torch._ops().Embedding(
+                self.q_pos_encoder = _ops().Embedding(
                     num_embeddings=self.init_map_shape[0],
                     embedding_dim=self.dim_perceiver,
                 )
@@ -913,7 +913,7 @@ class VectorDecoder2(torch.nn.Module):
             elif self.init_map_method == "given":
                 assert self.init_query_map_given_dim is not None and self.init_query_map_given_dim > 0
                 if self.init_query_map_given_dim != self.dim_perceiver:
-                    self.init_linear_map = torch._ops().Linear(
+                    self.init_linear_map = _ops().Linear(
                         in_features=self.init_query_map_given_dim,
                         out_features=self.dim_perceiver,
                     )
@@ -942,7 +942,7 @@ class VectorDecoder2(torch.nn.Module):
             elif self.init_token_method == "given":
                 assert self.init_query_token_given_dim is not None and self.init_query_token_given_dim > 0
                 if self.init_query_token_given_dim != self.dim_perceiver:
-                    self.init_linear_token = torch._ops().Linear(
+                    self.init_linear_token = _ops().Linear(
                         in_features=self.init_query_token_given_dim,
                         out_features=self.dim_perceiver,
                     )

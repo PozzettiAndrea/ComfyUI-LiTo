@@ -6,7 +6,7 @@ def _ops():
     global _OPS
     if _OPS is None:
         import comfy.ops
-        _OPS = comfy.ops.disable_weight_init
+        _OPS = comfy.ops.manual_cast
     return _OPS
 
 
@@ -16,7 +16,8 @@ class SparseConv3d(nn.Module):
         super(SparseConv3d, self).__init__()
         if 'torchsparse' not in globals():
             import torchsparse
-        self.conv = torchsparse._ops().Conv3d(in_channels, out_channels, kernel_size, stride, 0, dilation, bias)
+        _SparseConv3d = getattr(torchsparse.nn, "Conv3d")
+        self.conv = _SparseConv3d(in_channels, out_channels, kernel_size, stride, 0, dilation, bias)
 
     def forward(self, x: SparseTensor) -> SparseTensor:
         out = self.conv(x.data)
@@ -32,7 +33,8 @@ class SparseInverseConv3d(nn.Module):
         super(SparseInverseConv3d, self).__init__()
         if 'torchsparse' not in globals():
             import torchsparse
-        self.conv = torchsparse._ops().Conv3d(in_channels, out_channels, kernel_size, stride, 0, dilation, bias, transposed=True)
+        _SparseConv3d = getattr(torchsparse.nn, "Conv3d")
+        self.conv = _SparseConv3d(in_channels, out_channels, kernel_size, stride, 0, dilation, bias, transposed=True)
 
     def forward(self, x: SparseTensor) -> SparseTensor:
         out = self.conv(x.data)        

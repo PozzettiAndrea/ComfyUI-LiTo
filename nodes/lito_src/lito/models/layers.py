@@ -25,7 +25,7 @@ def _ops():
     global _OPS
     if _OPS is None:
         import comfy.ops
-        _OPS = comfy.ops.disable_weight_init
+        _OPS = comfy.ops.manual_cast
     return _OPS
 
 
@@ -467,12 +467,12 @@ class PointwiseResnet(torch.nn.Module):
         self.linear_in = self.linear_out = self.ffn_swiglu = None
         if self.activation_fn == "gelu":
             self.nonlinearity = torch.nn.GELU(approximate="tanh")
-            self.linear_in = torch._ops().Linear(self.dim_in, self.dim_hidden, bias=bias)
-            self.linear_out = torch._ops().Linear(self.dim_hidden, self.dim_out, bias=bias)
+            self.linear_in = _ops().Linear(self.dim_in, self.dim_hidden, bias=bias)
+            self.linear_out = _ops().Linear(self.dim_hidden, self.dim_out, bias=bias)
         elif self.activation_fn == "silu":
             self.nonlinearity = torch.nn.SiLU()
-            self.linear_in = torch._ops().Linear(self.dim_in, self.dim_hidden, bias=bias)
-            self.linear_out = torch._ops().Linear(self.dim_hidden, self.dim_out, bias=bias)
+            self.linear_in = _ops().Linear(self.dim_in, self.dim_hidden, bias=bias)
+            self.linear_out = _ops().Linear(self.dim_hidden, self.dim_out, bias=bias)
         elif self.activation_fn == "swiglu":
             self.ffn_swiglu = _SwiGLU(
                 in_features=dim_in,
@@ -487,7 +487,7 @@ class PointwiseResnet(torch.nn.Module):
         if self.dim_in == self.dim_out:
             self.skip_linear = None
         else:
-            self.skip_linear = torch._ops().Linear(self.dim_in, self.dim_out, bias=False)
+            self.skip_linear = _ops().Linear(self.dim_in, self.dim_out, bias=False)
 
         self._init_parameteres()
 
@@ -878,9 +878,9 @@ class SwiGLUFeedForward(nn.Module):
             hidden_dim = int(ffn_dim_multiplier * hidden_dim)
         hidden_dim = multiple_of * ((hidden_dim + multiple_of - 1) // multiple_of)
 
-        self.w1 = torch._ops().Linear(dim, hidden_dim, bias=False)
-        self.w2 = torch._ops().Linear(hidden_dim, dim, bias=False)
-        self.w3 = torch._ops().Linear(dim, hidden_dim, bias=False)
+        self.w1 = _ops().Linear(dim, hidden_dim, bias=False)
+        self.w2 = _ops().Linear(hidden_dim, dim, bias=False)
+        self.w3 = _ops().Linear(dim, hidden_dim, bias=False)
 
     def forward(self, x):
         return self.w2(torch.nn.functional.silu(self.w1(x)) * self.w3(x))
