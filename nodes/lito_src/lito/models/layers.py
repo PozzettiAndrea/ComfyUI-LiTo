@@ -790,9 +790,9 @@ class SwiGLU(nn.Module):
     Used as a fallback when xformers is not installed (e.g. on macOS).
     Matches the ``xformers.ops.SwiGLU`` interface and weight naming exactly:
 
-    - ``w1``: in_features → hidden_features (value branch)
-    - ``w2``: in_features → hidden_features (gate branch)
-    - ``w3``: hidden_features → out_features (output projection)
+    - ``w1``: in_features -> hidden_features (value branch)
+    - ``w2``: in_features -> hidden_features (gate branch)
+    - ``w3``: hidden_features -> out_features (output projection)
     - forward: ``w3(silu(w1(x)) * w2(x))``
 
     When ``_pack_weights=True``, ``w1`` / ``w2`` are merged into a single
