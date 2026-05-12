@@ -18,34 +18,34 @@ Capturing execution frames: basic.json
   [ComfyUI]     Inputs: {"mask": ["5", 1]}
   [ComfyUI]   Node 17: MaskPreview
   [ComfyUI]     Inputs: {"mask": ["9", 0]}
-  [ComfyUI]   Node 25: PreviewGaussians
-  [ComfyUI]     Inputs: {"fov_degrees": 512, "image_width": 512, "image_height": "", "preview_gaussian": "", "ply_path": ["6", 0]}
-  [ComfyUI] Generated prompt_id: 476b0ad7-8856-480a-ac4c-ed8b880c936b
+  [ComfyUI]   Node 27: PreviewGaussians
+  [ComfyUI]     Inputs: {"fov_degrees": 512, "image_width": 512, "image_height": "{\"v\":1,\"pos\":[0.35532688579342964,3.4202540140738975,1.7336131604031435],\"target\":[0.0006612539291381836,-0.002025216817855835,-0.007065
+  [ComfyUI] Generated prompt_id: 28268add-90b3-4cb5-bcd9-92c4beba059a
   [ComfyUI] Calling execution.validate_prompt()...
-  [ComfyUI] Failed to validate prompt for output 25:
+  [ComfyUI] Failed to validate prompt for output 27:
   [ComfyUI] * (prompt):
+  [ComfyUI]   - Failed to convert an input value to a INT value: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
-  [ComfyUI]   - Failed to convert an input value to a INT value: image_height, , invalid literal for int() with base 10: ''
-  [ComfyUI] * PreviewGaussians 25:
+  [ComfyUI] * PreviewGaussians 27:
+  [ComfyUI]   - Failed to convert an input value to a INT value: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
-  [ComfyUI]   - Failed to convert an input value to a INT value: image_height, , invalid literal for int() with base 10: ''
   [ComfyUI] Output will be ignored
   [ComfyUI] Validation result: valid=True
-  [ComfyUI]   Node errors: {"25": {"errors": [{"type": "value_bigger_than_max", "message": "Value 512.0 bigger than max of 170.0", "details": "fov_degrees", "extra_info": {"input_name": "fov_degrees", "input_config": ["FLOAT", {"default": 50.0, "min": 5.0, "max": 170.0, "step": 1.0, "tooltip": "Vertical field of view in degrees"}], "received_value": 512.0}}, {"type": "invalid_input_type", "message": "Failed to convert an input value to a INT value", "details": "image_height, , invalid literal for int() with base 10: ''",
+  [ComfyUI]   Node errors: {"27": {"errors": [{"type": "invalid_input_type", "message": "Failed to convert an input value to a INT value", "details": "image_height, {\"v\":1,\"pos\":[0.35532688579342964,3.4202540140738975,1.7336131604031435],\"target\":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],\"fov\":50,\"scale\":20,\"opacity\":1}, invalid literal for int() with base 10: '{\"v\":1,\"pos\":[0.35532688579342964,3.4202540140738975,1.7336131604031435],\"target\":[0.0006612539291381836,-0.00202521681
   [ComfyUI] === Validation PASSED ===
   [ComfyUI] got prompt
-  [ComfyUI] Failed to validate prompt for output 25:
+  [ComfyUI] Failed to validate prompt for output 27:
   [ComfyUI] * (prompt):
+  [ComfyUI]   - Failed to convert an input value to a INT value: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
-  [ComfyUI]   - Failed to convert an input value to a INT value: image_height, , invalid literal for int() with base 10: ''
-  [ComfyUI] * PreviewGaussians 25:
+  [ComfyUI] * PreviewGaussians 27:
+  [ComfyUI]   - Failed to convert an input value to a INT value: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
-  [ComfyUI]   - Failed to convert an input value to a INT value: image_height, , invalid literal for int() with base 10: ''
   [ComfyUI] Output will be ignored
-  [ComfyUI] Prompt executed in 0.08 seconds
+  [ComfyUI] Prompt executed in 0.06 seconds
   Node executed (1 total), capturing...
   Frame 2 saved (frame_001.jpg, t=0.8s)
-  [capture-node] freeze=8ms shot=223ms unfreeze=0ms saved=True
+  [capture-node] freeze=14ms shot=234ms unfreeze=0ms saved=True
   Execution complete (t=0.8s)
   [3d-wait] Phase 1: Waiting for 'Loading 3D Model' text to disappear...
   [3d-wait] Phase 1 done in 0.0s
@@ -57,12 +57,12 @@ Capturing execution frames: basic.json
 waiting for event "console"
 ============================================================
   [3d-wait] Total 3D wait: 60.1s
-  Captured 2 unique frames over 61.27s
+  Captured 2 unique frames over 61.32s
   [debug] iframes: 1
-  [debug]   iframe[0]: src=http://127.0.0.1:41880/extensions/ComfyUI-TurntableGSViewer/viewer_gaussian.html, canvas=486x413, rafFrozen=True
+  [debug]   iframe[0]: src=http://127.0.0.1:41882/extensions/ComfyUI-TurntableGSViewer/viewer_gaussian.html, canvas=486x413, rafFrozen=True
   [timing] trigger_3d_previews: 0.0s
   Saved high-quality screenshot: basic_executed.png
   [timing] final_screenshot: 0.6s
     Status: FAILED
-    Error: 1 node(s) had validation errors and were silently skipped: node 25: fov_degrees
+    Error: 1 node(s) had validation errors and were silently skipped: node 27: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
     Details: Workflow: /node/ComfyUI-LiTo/workflows/basic.json

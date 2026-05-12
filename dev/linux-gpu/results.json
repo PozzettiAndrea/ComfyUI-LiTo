@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-05-12T21:46:09.761708+00:00",
+  "timestamp": "2026-05-12T22:17:36.113762+00:00",
   "platform": "linux",
   "hardware": {
     "os": "Linux-6.8.0-107-generic-x86_64-with-glibc2.35",
     "cpu": "Intel(R) Xeon(R) CPU E5-2697 v4 @ 2.30GHz",
     "gpu": "NVIDIA GeForce RTX 3090"
   },
-  "commit_hash": "a8ff1eebb4be4fdd8d2b94aae36c3fc8ce54df1e",
+  "commit_hash": "f8f98446ebe5c74736e95d7816f0139ab82d5a60",
   "run_url": null,
   "success": false,
   "summary": {
@@ -18,8 +18,8 @@
     {
       "name": "basic",
       "status": "fail",
-      "duration_seconds": 70.94,
-      "error": "1 node(s) had validation errors and were silently skipped: node 25: fov_degrees\n\nDetails:\nWorkflow: /node/ComfyUI-LiTo/workflows/basic.json",
+      "duration_seconds": 71.24,
+      "error": "1 node(s) had validation errors and were silently skipped: node 27: image_height, {\"v\":1,\"pos\":[0.35532688579342964,3.4202540140738975,1.7336131604031435],\"target\":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],\"fov\":50,\"scale\":20,\"opacity\":1}, invalid literal for int() with base 10: '{\"v\":1,\"pos\":[0.35532688579342964,3.4202540140738975,1.7336131604031435],\"target\":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],\"fov\":50,\"scale\":20,\"opacity\":1}'\n\nDetails:\nWorkflow: /node/ComfyUI-LiTo/workflows/basic.json",
       "hardware": {
         "os": "Linux-6.8.0-107-generic-x86_64-with-glibc2.35",
         "cpu": "Intel(R) Xeon(R) CPU E5-2697 v4 @ 2.30GHz",
@@ -27,11 +27,11 @@
       },
       "resources": {
         "ram": {
-          "peak": 0.88,
-          "avg": 0.79
+          "peak": 1.03,
+          "avg": 1.03
         },
         "total_ram_gb": 31.2,
-        "samples": 69,
+        "samples": 70,
         "vram": {
           "peak": 0.25,
           "avg": 0.25

@@ -13,8 +13,8 @@
 [Console-log] [TurntableGSViewer] Registering Preview Gaussians node
 [Console-log] [GaussianViewer] Initialized successfully
 [Console-log] [GaussianViewer] Ready - waiting for LOAD_MESH message
-[Console-warning] [.WebGL-0x63c0a7ad800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Console-warning] [.WebGL-0x63c0a7ad800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Console-warning] [.WebGL-0x63c0a7ad800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Console-warning] [.WebGL-0x63c0a7ad800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[Console-warning] [.WebGL-0x15dc0a230600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Console-warning] [.WebGL-0x15dc0a230600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Console-warning] [.WebGL-0x15dc0a230600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Console-warning] [.WebGL-0x15dc0a230600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
 [Console-log] [comfy-test] graphToPrompt: 7 nodes, missing class_type: [], sample: {"inputs":{"checkpoint":"lito_dit_rgba (recommended)","compile":false,"precision":"auto"},"class_type":"LiToLoadModel","_meta":{"title":"(Down)Load LiTo Model"}}

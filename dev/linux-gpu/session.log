@@ -1,4 +1,4 @@
-[00:00] Crash dump logging enabled: /logs/LiTo-2138/dev/linux-gpu/crash_dump.log
+[00:00] Crash dump logging enabled: /logs/LiTo-2211/dev/linux-gpu/crash_dump.log
 [00:00] 
 [00:00] [1/5] SYNTAX
 [00:00] ----------------------------------------
@@ -7,15 +7,15 @@
 [00:00] Found pyproject.toml (modern format)
 [00:00] Found requirements.txt (legacy format)
 [00:00] Unicode check: OK (all characters cp1252-safe)
-[00:01] Warnings (non-blocking):
+[00:00] Warnings (non-blocking):
 
 nodes/lito_src/lito/eval_scripts/st_model_utils.py:
   Line 118: torch.load() ? use comfy.utils.load_torch_file()
 
 nodes/lito_src/plibs/structures.py:
   Line 10225: torch.load() ? use comfy.utils.load_torch_file()
-[00:01] Forbidden patterns check: OK
-[00:01] [SYNTAX] PASSED
+[00:00] Forbidden patterns check: OK
+[00:00] [SYNTAX] PASSED
 [00:01] 
 [00:01] [2/5] INSTALL
 [00:01] ----------------------------------------
@@ -24,313 +24,313 @@ nodes/lito_src/plibs/structures.py:
 [00:01] 
 Setting up ComfyUI...
 [00:01] Creating virtual environment...
-[00:01] Running: uv venv /workspaces/LiTo-2138/.venv --python 3.11
+[00:01] Running: uv venv /workspaces/LiTo-2211/.venv --python 3.11
 [00:01] Cloning ComfyUI (latest)...
-[00:01] Running: git clone --depth 1 https://github.com/comfyanonymous/ComfyUI.git /workspaces/LiTo-2138/ComfyUI
-[00:03] Installing ComfyUI requirements...
-[00:03] Running: uv pip install --python /workspaces/LiTo-2138/.venv/bin/python --index-url https://download.pytorch.org/whl/cu128 --extra-index-url https://pypi.org/simple --index-strategy unsafe-best-match -r /workspaces/LiTo-2138/ComfyUI/requirements.txt
-[02:15] 
+[00:01] Running: git clone --depth 1 https://github.com/comfyanonymous/ComfyUI.git /workspaces/LiTo-2211/ComfyUI
+[00:02] Installing ComfyUI requirements...
+[00:02] Running: uv pip install --python /workspaces/LiTo-2211/.venv/bin/python --index-url https://download.pytorch.org/whl/cu128 --extra-index-url https://pypi.org/simple --index-strategy unsafe-best-match -r /workspaces/LiTo-2211/ComfyUI/requirements.txt
+[01:54] 
 Installing custom node...
-[02:15] Copying ComfyUI-LiTo to custom_nodes/...
-[02:15] Installing node requirements...
-[02:15] Running: uv pip install --python /workspaces/LiTo-2138/.venv/bin/python --index-url https://download.pytorch.org/whl/cu128 --extra-index-url https://pypi.org/simple --index-strategy unsafe-best-match -r /workspaces/LiTo-2138/ComfyUI/custom_nodes/ComfyUI-LiTo/requirements.txt
-[02:17] 
+[01:54] Copying ComfyUI-LiTo to custom_nodes/...
+[01:54] Installing node requirements...
+[01:54] Running: uv pip install --python /workspaces/LiTo-2211/.venv/bin/python --index-url https://download.pytorch.org/whl/cu128 --extra-index-url https://pypi.org/simple --index-strategy unsafe-best-match -r /workspaces/LiTo-2211/ComfyUI/custom_nodes/ComfyUI-LiTo/requirements.txt
+[01:57] 
 Running install.py...
-[02:17] Running: /workspaces/LiTo-2138/.venv/bin/python /workspaces/LiTo-2138/ComfyUI/custom_nodes/ComfyUI-LiTo/install.py
-[02:18]   
-[02:18]   Installing 1 node dependencies...
-[02:18]     Cloning ComfyUI-TurntableGSViewer...
-[02:18]     Installing requirements for ComfyUI-TurntableGSViewer...
-[02:18]   
-[02:18]   [requirements] Re-installing main package requirements...
-[02:18]     Installing requirements for ComfyUI-LiTo...
-[02:21]   [comfy-env] Workspace: /workspaces/LiTo-2138/ComfyUI/.ce
-[02:21]   [comfy-env] ComfyUI: /workspaces/LiTo-2138/ComfyUI
-[02:21]   [comfy-env] Found 1 node config(s):
-[02:21]     - lito-nodes <- custom_nodes/ComfyUI-LiTo/nodes/comfy-env.toml (python=host)
-[02:21]   [comfy-env] Bootstrap interpreter has python 3.11 + torch 2.11.0 (cu128). Looking for cuda-only wheels matching cu128/torch2.11/cp311.
-[02:21]   [comfy-env] GPU: Detection: smi
-[02:21]   Driver: 580.126.20
-[02:21]   CUDA: 13.0
-[02:21]   Recommended: CUDA 13.0
-[02:21]   
-[02:21]     GPU 0: NVIDIA GeForce RTX 3090 (sm_86) [Ampere] 24576MB
-[02:21]   [comfy-env] Comfyui feature -> torch 2.11.0 from https://download.pytorch.org/whl/cu128 (CUDA 12.8 via bootstrap torch)
-[02:21]   [comfy-env] cuda-wheels: 6 package(s) need a matched (cuda, torch, python) combo: ['pytorch3d', 'gsplat', 'nvdiffrast', 'flash-attn', 'spconv', 'cumm']
-[02:21]   [comfy-env] cuda-wheels tier 1 (bootstrap): probing cu12.8/torch2.11/cp311
-[02:21]   [cuda-wheels] Looking up pytorch3d: cu128 torch2.11 cp311 manylinux linux
-[02:21]   [cuda-wheels]   Found: pytorch3d-0.7.9+cu128torch2.11-cp311-cp311-manylinux_2_35_x86_64.whl
-[02:21]   [cuda-wheels] Looking up gsplat: cu128 torch2.11 cp311 manylinux linux
-[02:21]   [cuda-wheels]   Found: gsplat-1.5.3+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[02:21]   [cuda-wheels] Looking up nvdiffrast: cu128 torch2.11 cp311 manylinux linux
-[02:21]   [cuda-wheels]   Found: nvdiffrast-0.4.0+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[02:21]   [cuda-wheels] Looking up flash-attn: cu128 torch2.11 cp311 manylinux linux
-[02:22]   [cuda-wheels]   https://pozzettiandrea.github.io/cuda-wheels/v2/flash_attn/: HTTPError: HTTP Error 404: Not Found
-[02:22]   [cuda-wheels]   Found: flash_attn-2.8.3+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[02:22]   [cuda-wheels] Looking up spconv: cu128 torch2.11 cp311 manylinux linux
-[02:22]   [cuda-wheels]   Found: spconv-2.3.8+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[02:22]   [cuda-wheels] Looking up cumm: cu128 torch2.11 cp311 manylinux linux
-[02:22]   [cuda-wheels]   Found: cumm-0.8.2+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[02:22]   [comfy-env] cuda-wheels combo: cu12.8/torch2.11 (bootstrap matches; per-node envs will pin to this)
-[02:22]   [comfy-env] Comfyui feature pin: torch ==2.11.0, torchvision ==0.26.*, torchaudio ==2.11.*
-[02:22]   [comfy-env] Host glibc 2.35 -> comfyui feature system-requirements
-[02:22]   [comfy-env] cuda-wheels combo: per-node cuda features will pin ['torch', 'torchaudio', 'torchvision'] via pypi-options.dependency-overrides (https://download.pytorch.org/whl/cu128)
-[02:22]   [cuda-wheels] Looking up pytorch3d: cu128 torch2.11 cp311 manylinux linux
-[02:22]   [cuda-wheels]   Found: pytorch3d-0.7.9+cu128torch2.11-cp311-cp311-manylinux_2_35_x86_64.whl
-[02:22]   [cuda-wheels] Looking up gsplat: cu128 torch2.11 cp311 manylinux linux
-[02:22]   [cuda-wheels]   Found: gsplat-1.5.3+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[02:22]   [cuda-wheels] Looking up nvdiffrast: cu128 torch2.11 cp311 manylinux linux
-[02:22]   [cuda-wheels]   Found: nvdiffrast-0.4.0+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[02:22]   [cuda-wheels] Looking up flash-attn: cu128 torch2.11 cp311 manylinux linux
-[02:22]   [cuda-wheels]   https://pozzettiandrea.github.io/cuda-wheels/v2/flash_attn/: HTTPError: HTTP Error 404: Not Found
-[02:22]   [cuda-wheels]   Found: flash_attn-2.8.3+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[02:22]   [cuda-wheels] Looking up spconv: cu128 torch2.11 cp311 manylinux linux
-[02:22]   [cuda-wheels]   Found: spconv-2.3.8+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[02:22]   [cuda-wheels] Looking up cumm: cu128 torch2.11 cp311 manylinux linux
-[02:22]   [cuda-wheels]   Found: cumm-0.8.2+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[02:22]   [comfy-env] lito-nodes: cuda-wheels deferred for post-pixi install (pytorch3d, gsplat, nvdiffrast, flash-attn, spconv, cumm)
-[02:22]   [comfy-env] lito-nodes: torch override -> torch==2.11.0, torchvision==0.26.*, torchaudio==2.11.* from https://download.pytorch.org/whl/cu128
-[02:22]   Generated /workspaces/LiTo-2138/ComfyUI/.ce/pixi.toml
-[02:22]   [comfy-env] Installing 1 environment(s):
-[02:22]     - lito-nodes (python=host, 12 pypi deps, 6 cuda wheels)
-[02:22]   [comfy-env] Running `pixi install --all`...
-[02:35]      WARN Skipped running the post-link scripts because `run-post-link-scripts` = `false`
-[02:35]     	- bin/.librsvg-pre-unlink.sh
-[02:35]     To enable them, run:
-[02:35]     	pixi config set --local run-post-link-scripts insecure
-[02:35]     More info:
-[02:35]     	https://pixi.sh/latest/reference/pixi_configuration/#run-post-link-scripts
-[05:02]     The following environments have been installed: default, comfyui, lito-nodes.
-[05:02]   [comfy-env] Note: env `default` is on disk but no node declares it in this run. Leaving as-is. Remove via `pixi clean --environment default` if intended.
-[05:02]   [comfy-env] lito-nodes: installing cuda-wheels with --no-deps (pytorch3d, gsplat, nvdiffrast, flash-attn, spconv, cumm)
-[05:02]     Using Python 3.11.15 environment at: .pixi/envs/lito-nodes
-[05:06]     Resolved 6 packages in 3.91s
-[05:06]     Downloading pytorch3d (68.9MiB)
-[05:06]     Downloading cumm (49.4MiB)
-[05:06]     Downloading gsplat (21.5MiB)
-[05:06]     Downloading nvdiffrast (18.7MiB)
-[05:06]     Downloading spconv (47.4MiB)
-[05:06]     Downloading flash-attn (242.3MiB)
-[05:08]      Downloaded nvdiffrast
-[05:09]      Downloaded gsplat
-[05:10]      Downloaded spconv
-[05:11]      Downloaded cumm
-[05:11]      Downloaded pytorch3d
-[05:17]      Downloaded flash-attn
-[05:17]     Prepared 6 packages in 10.92s
-[05:17]     Installed 6 packages in 67ms
-[05:17]      + cumm==0.8.2+cu128torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/cumm-latest/cumm-0.8.2%2Bcu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
-[05:17]      + flash-attn==2.8.3+cu128torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/flash_attn-latest/flash_attn-2.8.3%2Bcu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
-[05:17]      + gsplat==1.5.3+cu128torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/gsplat-latest/gsplat-1.5.3%2Bcu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
-[05:17]      + nvdiffrast==0.4.0+cu128torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/nvdiffrast-latest/nvdiffrast-0.4.0%2Bcu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
-[05:17]      + pytorch3d==0.7.9+cu128torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/pytorch3d-latest/pytorch3d-0.7.9%2Bcu128torch2.11-cp311-cp311-manylinux_2_35_x86_64.whl)
-[05:17]      + spconv==2.3.8+cu128torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/spconv-latest/spconv-2.3.8%2Bcu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
-[05:17]   [comfy-env] Install log: /workspaces/LiTo-2138/ComfyUI/.ce/install.log
-[05:17]   
-[05:17]   Installation complete!
-[05:17] Installing 1 node dependency(ies)...
-[05:17]   ComfyUI-TurntableGSViewer from PozzettiAndrea/ComfyUI-TurntableGSViewer
-[05:17]   ComfyUI-TurntableGSViewer already exists, skipping...
-[05:17] Installing validation endpoint...
-[05:17]   Cloning PozzettiAndrea/ComfyUI-validate-endpoint...
-[05:17] Running: git clone --depth 1 https://github.com/PozzettiAndrea/ComfyUI-validate-endpoint.git /workspaces/LiTo-2138/ComfyUI/custom_nodes/ComfyUI-validate-endpoint
-[05:18] CUDA packages installed (no mock): pytorch3d, gsplat, nvdiffrast, flash_attn, spconv, cumm
-[05:18] [INSTALL] PASSED
-[05:18] 
-[05:18] [3/5] REGISTRATION
-[05:18] ----------------------------------------
-[05:18] 
+[01:57] Running: /workspaces/LiTo-2211/.venv/bin/python /workspaces/LiTo-2211/ComfyUI/custom_nodes/ComfyUI-LiTo/install.py
+[01:57]   
+[01:57]   Installing 1 node dependencies...
+[01:57]     Cloning ComfyUI-TurntableGSViewer...
+[01:58]     Installing requirements for ComfyUI-TurntableGSViewer...
+[01:58]   
+[01:58]   [requirements] Re-installing main package requirements...
+[01:58]     Installing requirements for ComfyUI-LiTo...
+[02:00]   [comfy-env] Workspace: /workspaces/LiTo-2211/ComfyUI/.ce
+[02:00]   [comfy-env] ComfyUI: /workspaces/LiTo-2211/ComfyUI
+[02:00]   [comfy-env] Found 1 node config(s):
+[02:00]     - lito-nodes <- custom_nodes/ComfyUI-LiTo/nodes/comfy-env.toml (python=host)
+[02:00]   [comfy-env] Bootstrap interpreter has python 3.11 + torch 2.11.0 (cu128). Looking for cuda-only wheels matching cu128/torch2.11/cp311.
+[02:00]   [comfy-env] GPU: Detection: smi
+[02:00]   Driver: 580.126.20
+[02:00]   CUDA: 13.0
+[02:00]   Recommended: CUDA 13.0
+[02:00]   
+[02:00]     GPU 0: NVIDIA GeForce RTX 3090 (sm_86) [Ampere] 24576MB
+[02:00]   [comfy-env] Comfyui feature -> torch 2.11.0 from https://download.pytorch.org/whl/cu128 (CUDA 12.8 via bootstrap torch)
+[02:00]   [comfy-env] cuda-wheels: 6 package(s) need a matched (cuda, torch, python) combo: ['pytorch3d', 'gsplat', 'nvdiffrast', 'flash-attn', 'spconv', 'cumm']
+[02:00]   [comfy-env] cuda-wheels tier 1 (bootstrap): probing cu12.8/torch2.11/cp311
+[02:00]   [cuda-wheels] Looking up pytorch3d: cu128 torch2.11 cp311 manylinux linux
+[02:00]   [cuda-wheels]   Found: pytorch3d-0.7.9+cu128torch2.11-cp311-cp311-manylinux_2_35_x86_64.whl
+[02:00]   [cuda-wheels] Looking up gsplat: cu128 torch2.11 cp311 manylinux linux
+[02:01]   [cuda-wheels]   Found: gsplat-1.5.3+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[02:01]   [cuda-wheels] Looking up nvdiffrast: cu128 torch2.11 cp311 manylinux linux
+[02:01]   [cuda-wheels]   Found: nvdiffrast-0.4.0+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[02:01]   [cuda-wheels] Looking up flash-attn: cu128 torch2.11 cp311 manylinux linux
+[02:01]   [cuda-wheels]   https://pozzettiandrea.github.io/cuda-wheels/v2/flash_attn/: HTTPError: HTTP Error 404: Not Found
+[02:01]   [cuda-wheels]   Found: flash_attn-2.8.3+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[02:01]   [cuda-wheels] Looking up spconv: cu128 torch2.11 cp311 manylinux linux
+[02:01]   [cuda-wheels]   Found: spconv-2.3.8+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[02:01]   [cuda-wheels] Looking up cumm: cu128 torch2.11 cp311 manylinux linux
+[02:01]   [cuda-wheels]   Found: cumm-0.8.2+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[02:01]   [comfy-env] cuda-wheels combo: cu12.8/torch2.11 (bootstrap matches; per-node envs will pin to this)
+[02:01]   [comfy-env] Comfyui feature pin: torch ==2.11.0, torchvision ==0.26.*, torchaudio ==2.11.*
+[02:01]   [comfy-env] Host glibc 2.35 -> comfyui feature system-requirements
+[02:01]   [comfy-env] cuda-wheels combo: per-node cuda features will pin ['torch', 'torchaudio', 'torchvision'] via pypi-options.dependency-overrides (https://download.pytorch.org/whl/cu128)
+[02:01]   [cuda-wheels] Looking up pytorch3d: cu128 torch2.11 cp311 manylinux linux
+[02:01]   [cuda-wheels]   Found: pytorch3d-0.7.9+cu128torch2.11-cp311-cp311-manylinux_2_35_x86_64.whl
+[02:01]   [cuda-wheels] Looking up gsplat: cu128 torch2.11 cp311 manylinux linux
+[02:01]   [cuda-wheels]   Found: gsplat-1.5.3+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[02:01]   [cuda-wheels] Looking up nvdiffrast: cu128 torch2.11 cp311 manylinux linux
+[02:01]   [cuda-wheels]   Found: nvdiffrast-0.4.0+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[02:01]   [cuda-wheels] Looking up flash-attn: cu128 torch2.11 cp311 manylinux linux
+[02:01]   [cuda-wheels]   https://pozzettiandrea.github.io/cuda-wheels/v2/flash_attn/: HTTPError: HTTP Error 404: Not Found
+[02:01]   [cuda-wheels]   Found: flash_attn-2.8.3+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[02:01]   [cuda-wheels] Looking up spconv: cu128 torch2.11 cp311 manylinux linux
+[02:01]   [cuda-wheels]   Found: spconv-2.3.8+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[02:01]   [cuda-wheels] Looking up cumm: cu128 torch2.11 cp311 manylinux linux
+[02:01]   [cuda-wheels]   Found: cumm-0.8.2+cu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[02:01]   [comfy-env] lito-nodes: cuda-wheels deferred for post-pixi install (pytorch3d, gsplat, nvdiffrast, flash-attn, spconv, cumm)
+[02:01]   [comfy-env] lito-nodes: torch override -> torch==2.11.0, torchvision==0.26.*, torchaudio==2.11.* from https://download.pytorch.org/whl/cu128
+[02:01]   Generated /workspaces/LiTo-2211/ComfyUI/.ce/pixi.toml
+[02:01]   [comfy-env] Installing 1 environment(s):
+[02:01]     - lito-nodes (python=host, 12 pypi deps, 6 cuda wheels)
+[02:01]   [comfy-env] Running `pixi install --all`...
+[02:15]      WARN Skipped running the post-link scripts because `run-post-link-scripts` = `false`
+[02:15]     	- bin/.librsvg-pre-unlink.sh
+[02:15]     To enable them, run:
+[02:15]     	pixi config set --local run-post-link-scripts insecure
+[02:15]     More info:
+[02:15]     	https://pixi.sh/latest/reference/pixi_configuration/#run-post-link-scripts
+[03:40]     The following environments have been installed: default, comfyui, lito-nodes.
+[03:40]   [comfy-env] Note: env `default` is on disk but no node declares it in this run. Leaving as-is. Remove via `pixi clean --environment default` if intended.
+[03:40]   [comfy-env] lito-nodes: installing cuda-wheels with --no-deps (pytorch3d, gsplat, nvdiffrast, flash-attn, spconv, cumm)
+[03:40]     Using Python 3.11.15 environment at: .pixi/envs/lito-nodes
+[03:43]     Resolved 6 packages in 3.36s
+[03:43]     Downloading flash-attn (242.3MiB)
+[03:43]     Downloading spconv (47.4MiB)
+[03:43]     Downloading cumm (49.4MiB)
+[03:43]     Downloading gsplat (21.5MiB)
+[03:43]     Downloading pytorch3d (68.9MiB)
+[03:43]     Downloading nvdiffrast (18.7MiB)
+[03:45]      Downloaded nvdiffrast
+[03:46]      Downloaded gsplat
+[03:47]      Downloaded spconv
+[03:48]      Downloaded cumm
+[03:48]      Downloaded pytorch3d
+[03:51]      Downloaded flash-attn
+[03:51]     Prepared 6 packages in 8.14s
+[03:51]     Installed 6 packages in 55ms
+[03:51]      + cumm==0.8.2+cu128torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/cumm-latest/cumm-0.8.2%2Bcu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
+[03:51]      + flash-attn==2.8.3+cu128torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/flash_attn-latest/flash_attn-2.8.3%2Bcu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
+[03:51]      + gsplat==1.5.3+cu128torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/gsplat-latest/gsplat-1.5.3%2Bcu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
+[03:51]      + nvdiffrast==0.4.0+cu128torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/nvdiffrast-latest/nvdiffrast-0.4.0%2Bcu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
+[03:51]      + pytorch3d==0.7.9+cu128torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/pytorch3d-latest/pytorch3d-0.7.9%2Bcu128torch2.11-cp311-cp311-manylinux_2_35_x86_64.whl)
+[03:51]      + spconv==2.3.8+cu128torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/spconv-latest/spconv-2.3.8%2Bcu128torch2.11-cp311-cp311-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
+[03:51]   [comfy-env] Install log: /workspaces/LiTo-2211/ComfyUI/.ce/install.log
+[03:51]   
+[03:51]   Installation complete!
+[03:51] Installing 1 node dependency(ies)...
+[03:51]   ComfyUI-TurntableGSViewer from PozzettiAndrea/ComfyUI-TurntableGSViewer
+[03:51]   ComfyUI-TurntableGSViewer already exists, skipping...
+[03:51] Installing validation endpoint...
+[03:51]   Cloning PozzettiAndrea/ComfyUI-validate-endpoint...
+[03:51] Running: git clone --depth 1 https://github.com/PozzettiAndrea/ComfyUI-validate-endpoint.git /workspaces/LiTo-2211/ComfyUI/custom_nodes/ComfyUI-validate-endpoint
+[03:52] CUDA packages installed (no mock): pytorch3d, gsplat, nvdiffrast, flash_attn, spconv, cumm
+[03:52] [INSTALL] PASSED
+[03:52] 
+[03:52] [3/5] REGISTRATION
+[03:52] ----------------------------------------
+[03:52] 
 [DEBUG] server=None, server_url=None, api=None
-[05:18] 
+[03:52] 
 Starting ComfyUI server...
-[05:18] Starting ComfyUI server on port 41880...
-[05:18] Starting ComfyUI server on port 41880...
-[05:18] Waiting for server to be ready (timeout: 600s)...
-[05:20]   [ComfyUI] setup plugin alembic.autogenerate.schemas
-[05:20]   [ComfyUI] setup plugin alembic.autogenerate.tables
-[05:20]   [ComfyUI] setup plugin alembic.autogenerate.types
-[05:20]   [ComfyUI] setup plugin alembic.autogenerate.constraints
-[05:20]   [ComfyUI] setup plugin alembic.autogenerate.defaults
-[05:20]   [ComfyUI] setup plugin alembic.autogenerate.comments
-[05:20]   [ComfyUI] [comfy-env] ComfyUI-LiTo: 1 isolation env(s):
-[05:20]   [ComfyUI] [comfy-env]   nodes -> /workspaces/LiTo-2138/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes
-[05:20]   [ComfyUI] [comfy-env] prestartup complete
-[05:20]   [ComfyUI] 
-[05:20]   [ComfyUI] Prestartup times for custom nodes:
-[05:20]   [ComfyUI]    0.3 seconds: /workspaces/LiTo-2138/ComfyUI/custom_nodes/ComfyUI-LiTo
-[05:20]   [ComfyUI] 
-[05:28]   [ComfyUI] WARNING: You need pytorch with cu130 or higher to use optimized CUDA operations.
-[05:28]   [ComfyUI] Found comfy_kitchen backend triton: {'available': True, 'disabled': True, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8']}
-[05:28]   [ComfyUI] Found comfy_kitchen backend cuda: {'available': True, 'disabled': True, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8']}
-[05:28]   [ComfyUI] Found comfy_kitchen backend eager: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_mxfp8', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_mxfp8', 'scaled_mm_nvfp4']}
-[05:28]   [ComfyUI] Checkpoint files will always be loaded safely.
-[05:28]   [ComfyUI] Total VRAM 24124 MB, total RAM 31924 MB
-[05:28]   [ComfyUI] pytorch version: 2.11.0+cu128
-[05:28]   [ComfyUI] Set vram state to: NORMAL_VRAM
-[05:28]   [ComfyUI] Device: cuda:0 NVIDIA GeForce RTX 3090 : cudaMallocAsync
-[05:28]   [ComfyUI] Using async weight offloading with 2 streams
-[05:28]   [ComfyUI] Enabled pinned memory 28731.0
-[05:28]   [ComfyUI] Using pytorch attention
-[05:35]   [ComfyUI] aimdo: /project/src-posix/cuda-funchooks.c:52:DEBUG:aimdo_setup_hooks: hooks successfully installed
-[05:35]   [ComfyUI] aimdo: /project/src/control.c:151:INFO:comfy-aimdo inited for GPU: NVIDIA GeForce RTX 3090 (VRAM: 24124 MB)
-[05:35]   [ComfyUI] DynamicVRAM support detected and enabled
-[05:35]   [ComfyUI] Python version: 3.11.15 (main, May  8 2026, 18:33:10) [Clang 22.1.3 ]
-[05:35]   [ComfyUI] ComfyUI version: 0.21.0
-[05:35]   [ComfyUI] comfy-aimdo version: 0.3.0
-[05:35]   [ComfyUI] comfy-kitchen version: 0.2.8
-[05:35]   [ComfyUI] ****** User settings have been changed to be stored on the server instead of browser storage. ******
-[05:35]   [ComfyUI] ****** For multi-user setups add the --multi-user CLI argument to enable multiple user profiles. ******
-[05:35]   [ComfyUI] ComfyUI frontend version: 1.43.18
-[05:35]   [ComfyUI] [Prompt Server] web root: /workspaces/LiTo-2138/.venv/lib/python3.11/site-packages/comfyui_frontend_package/static
-[05:35]   [ComfyUI] Asset seeder disabled
-[05:37]   [ComfyUI] loading...
-[05:37]   [ComfyUI] calling register_nodes
-[05:37]   [ComfyUI] [comfy-env] Version: 0.3.75
-[05:38]   [ComfyUI] [comfy-env] register_nodes: ComfyUI-LiTo
-[05:38]   [ComfyUI] [comfy-env] ComfyUI source dir: /workspaces/LiTo-2138/ComfyUI
-[05:38]   [ComfyUI] [comfy-env] Found 1 isolation env(s)
-[05:38]   [ComfyUI] [comfy-env] Scanning nodes metadata (isolation root)...
-[05:38]   [ComfyUI] [comfy-env] Metadata scan: /root/.pixi/bin/pixi run --as-is --manifest-path /workspaces/LiTo-2138/ComfyUI/.ce/pixi.toml -e lito-nodes python /tmp/comfy_meta_c7j3by1e.py /workspaces/LiTo-2138/ComfyUI/custom_nodes/ComfyUI-LiTo nodes
-[05:38]   [ComfyUI] [comfy-env] Scan env PATH for nodes:
-[05:38]   [ComfyUI] [comfy-env]   [0] /root/.local/bin
-[05:38]   [ComfyUI] [comfy-env]   [1] /usr/local/nvidia/bin
-[05:38]   [ComfyUI] [comfy-env]   [2] /usr/local/cuda/bin
-[05:38]   [ComfyUI] [comfy-env]   [3] /usr/local/sbin
-[05:38]   [ComfyUI] [comfy-env]   [4] /usr/local/bin
-[05:38]   [ComfyUI] [comfy-env]   [5] /usr/sbin
-[05:38]   [ComfyUI] [comfy-env]   [6] /usr/bin
-[05:38]   [ComfyUI] [comfy-env]   [7] /sbin
-[05:38]   [ComfyUI] [comfy-env]   [8] /bin
-[05:47]   [ComfyUI] [comfy-env] Metadata scan stderr for nodes:
-[05:47]   [ComfyUI] [comfy-env]   [meta-scan] importing nodes from /workspaces/LiTo-2138/ComfyUI/custom_nodes/ComfyUI-LiTo
-[05:47]   [ComfyUI] [comfy-env]   WARNING:root:WARNING: You need pytorch with cu130 or higher to use optimized CUDA operations.
-[05:47]   [ComfyUI] [comfy-env]   [meta-scan] import OK
-[05:47]   [ComfyUI] [comfy-env] Scanned nodes: 5 nodes (9.3s)
-[05:47]   [ComfyUI] [comfy-env] Scanned nodes root: 5 nodes (9.4s)
-[05:47]   [ComfyUI] [comfy-env] Imported nodes root: 5 nodes (isolation)
-[05:47]   [ComfyUI] [comfy-env] Registered 5 total nodes
-[05:47]   [ComfyUI] 
-[05:47]   [ComfyUI] Import times for custom nodes:
-[05:47]   [ComfyUI]    0.0 seconds: /workspaces/LiTo-2138/ComfyUI/custom_nodes/websocket_image_save.py
-[05:47]   [ComfyUI]    0.0 seconds: /workspaces/LiTo-2138/ComfyUI/custom_nodes/ComfyUI-validate-endpoint
-[05:47]   [ComfyUI]    0.0 seconds: /workspaces/LiTo-2138/ComfyUI/custom_nodes/ComfyUI-TurntableGSViewer
-[05:47]   [ComfyUI]    9.5 seconds: /workspaces/LiTo-2138/ComfyUI/custom_nodes/ComfyUI-LiTo
-[05:47]   [ComfyUI] 
-[05:47]   [ComfyUI] Context impl SQLiteImpl.
-[05:47]   [ComfyUI] Will assume non-transactional DDL.
-[05:47]   [ComfyUI] Context impl SQLiteImpl.
-[05:47]   [ComfyUI] Will assume non-transactional DDL.
-[05:47]   [ComfyUI] Running upgrade  -> 0001_assets, Initial assets schema
-[05:47]   [ComfyUI] Revision ID: 0001_assets
-[05:47]   [ComfyUI] Revises: None
-[05:47]   [ComfyUI] Create Date: 2025-12-10 00:00:00
-[05:47]   [ComfyUI] Running upgrade 0001_assets -> 0002_merge_to_asset_references, Merge AssetInfo and AssetCacheState into unified asset_references table.
-[05:47]   [ComfyUI] Running upgrade 0002_merge_to_asset_references -> 0003_add_metadata_job_id, Add system_metadata and job_id columns to asset_references.
-[05:47]   [ComfyUI] Change preview_id FK from assets.id to asset_references.id.
-[05:48]   [ComfyUI] Database upgraded from None to 0003_add_metadata_job_id
-[05:48]   [ComfyUI] Starting server
-[05:48]   [ComfyUI] 
-[05:48]   [ComfyUI] To see the GUI go to: http://127.0.0.1:41880
-[05:48] Server responding, waiting for nodes to load...
-[06:08] Server is ready!
-[06:08] Checking for import errors in server logs...
-[06:08] No import errors detected
-[06:08] Found 720 registered nodes
-[06:09] [REGISTRATION] PASSED
-[06:09] 
-[06:09] [4/5] INSTANTIATION
-[06:09] ----------------------------------------
-[06:09] 
-[DEBUG] server=<comfy_test.comfyui.server.ComfyUIServer object at 0x7b9cf6c79840>, server_url=None, api=<comfy_test.comfyui.api.ComfyUIAPI object at 0x7b9cf6281000>
-[06:09] Testing node constructors...
-[06:09] All 5 node(s) instantiated successfully!
-[06:09] [INSTANTIATION] PASSED
-[06:09] 
-[06:09] [5/5] EXECUTION
-[06:09] ----------------------------------------
-[06:09] 
-[DEBUG] server=<comfy_test.comfyui.server.ComfyUIServer object at 0x7b9cf6c79840>, server_url=None, api=<comfy_test.comfyui.api.ComfyUIAPI object at 0x7b9cf6281000>
-[06:09] GPU runner - will execute 1 workflow(s)
-[06:09] Running 1 workflow(s) (all with videos)...
-[06:09] Installing screenshot dependencies (playwright, pillow)...
-[06:10]   Packages installed, downloading chromium browser...
-[06:32]   Screenshot dependencies installed successfully
-[06:32] Starting headless browser...
-[06:33]   Installing Vulkan stack (apt)...
-[06:33]   Vulkan install error: [Errno 2] No such file or directory: 'sudo'
-[06:33]   GPU detected (no Vulkan) -- using ANGLE/OpenGL rendering
-[06:33] Capturing execution frames: basic.json
-[06:41]   Frame 1 saved (frame_000.jpg, t=0.0s)
-[06:41]   Validating workflow...
-[06:41]   [ComfyUI] === /validate endpoint called ===
-[06:41]   [ComfyUI] Received JSON with keys: ['prompt']
-[06:41]   [ComfyUI] Prompt has 7 nodes
-[06:41]   [ComfyUI]   Node 1: LiToLoadModel
-[06:41]   Warning: 1 node(s) have validation errors (will fail after screenshots)
-[06:41]   [ComfyUI]     Inputs: {"checkpoint": "lito_dit_rgba (recommended)", "compile": false, "precision": "auto"}
-[06:41]   Queuing workflow for execution...
-[06:41]   [ComfyUI]   Node 5: LoadImage
-[06:41]   [ComfyUI]     Inputs: {"image": "apple.png"}
-[06:41]   [ComfyUI]   Node 6: LiToExportPLY
-[06:41]   [ComfyUI]     Inputs: {"filename": "lito_output", "gaussians": ["8", 0]}
-[06:41]   [ComfyUI]   Node 8: LiToImageTo3D
-[06:41]   [ComfyUI]     Inputs: {"sampling_steps": 20, "cfg_scale": 3, "sampling_method": "heun", "seed": 42, "model": ["1", 0], "image": ["5", 0], "mask": ["9", 0]}
-[06:41]   [ComfyUI]   Node 9: InvertMask
-[06:41]   [ComfyUI]     Inputs: {"mask": ["5", 1]}
-[06:41]   [ComfyUI]   Node 17: MaskPreview
-[06:41]   [ComfyUI]     Inputs: {"mask": ["9", 0]}
-[06:41]   [ComfyUI]   Node 25: PreviewGaussians
-[06:41]   [ComfyUI]     Inputs: {"fov_degrees": 512, "image_width": 512, "image_height": "", "preview_gaussian": "", "ply_path": ["6", 0]}
-[06:41]   [ComfyUI] Generated prompt_id: 476b0ad7-8856-480a-ac4c-ed8b880c936b
-[06:41]   [ComfyUI] Calling execution.validate_prompt()...
-[06:41]   [ComfyUI] Failed to validate prompt for output 25:
-[06:41]   [ComfyUI] * (prompt):
-[06:41]   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
-[06:41]   [ComfyUI]   - Failed to convert an input value to a INT value: image_height, , invalid literal for int() with base 10: ''
-[06:41]   [ComfyUI] * PreviewGaussians 25:
-[06:41]   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
-[06:41]   [ComfyUI]   - Failed to convert an input value to a INT value: image_height, , invalid literal for int() with base 10: ''
-[06:41]   [ComfyUI] Output will be ignored
-[06:41]   [ComfyUI] Validation result: valid=True
-[06:41]   [ComfyUI]   Node errors: {"25": {"errors": [{"type": "value_bigger_than_max", "message": "Value 512.0 bigger than max of 170.0", "details": "fov_degrees", "extra_info": {"input_name": "fov_degrees", "input_config": ["FLOAT", {"default": 50.0, "min": 5.0, "max": 170.0, "step": 1.0, "tooltip": "Vertical field of view in degrees"}], "received_value": 512.0}}, {"type": "invalid_input_type", "message": "Failed to convert an input value to a INT value", "details": "image_height, , invalid literal for int() with base 10: ''",
-[06:41]   [ComfyUI] === Validation PASSED ===
-[06:41]   [ComfyUI] got prompt
-[06:41]   [ComfyUI] Failed to validate prompt for output 25:
-[06:41]   [ComfyUI] * (prompt):
-[06:41]   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
-[06:41]   [ComfyUI]   - Failed to convert an input value to a INT value: image_height, , invalid literal for int() with base 10: ''
-[06:41]   [ComfyUI] * PreviewGaussians 25:
-[06:41]   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
-[06:41]   [ComfyUI]   - Failed to convert an input value to a INT value: image_height, , invalid literal for int() with base 10: ''
-[06:41]   [ComfyUI] Output will be ignored
-[06:41]   [ComfyUI] Prompt executed in 0.08 seconds
-[06:41]   Node executed (1 total), capturing...
-[06:41]   Frame 2 saved (frame_001.jpg, t=0.8s)
-[06:41]   [capture-node] freeze=8ms shot=223ms unfreeze=0ms saved=True
-[06:41]   Execution complete (t=0.8s)
-[06:41]   [3d-wait] Phase 1: Waiting for 'Loading 3D Model' text to disappear...
-[06:41]   [3d-wait] Phase 1 done in 0.0s
-[06:41]   [3d-wait] Phase 2: iframes=1
-[06:41]   [3d-wait] iframe viewer_ready=False (matched 0 console logs)
-[06:41]   [3d-wait] Waiting for 'Loaded successfully' console message (timeout=60s)...
-[07:41]   [3d-wait] iframe wait exception: Timeout 60000ms exceeded while waiting for event "console"
+[03:52] Starting ComfyUI server on port 41882...
+[03:52] Starting ComfyUI server on port 41882...
+[03:52] Waiting for server to be ready (timeout: 600s)...
+[03:54]   [ComfyUI] setup plugin alembic.autogenerate.schemas
+[03:54]   [ComfyUI] setup plugin alembic.autogenerate.tables
+[03:54]   [ComfyUI] setup plugin alembic.autogenerate.types
+[03:54]   [ComfyUI] setup plugin alembic.autogenerate.constraints
+[03:54]   [ComfyUI] setup plugin alembic.autogenerate.defaults
+[03:54]   [ComfyUI] setup plugin alembic.autogenerate.comments
+[03:54]   [ComfyUI] [comfy-env] ComfyUI-LiTo: 1 isolation env(s):
+[03:54]   [ComfyUI] [comfy-env]   nodes -> /workspaces/LiTo-2211/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes
+[03:54]   [ComfyUI] [comfy-env] prestartup complete
+[03:54]   [ComfyUI] 
+[03:54]   [ComfyUI] Prestartup times for custom nodes:
+[03:54]   [ComfyUI]    0.2 seconds: /workspaces/LiTo-2211/ComfyUI/custom_nodes/ComfyUI-LiTo
+[03:54]   [ComfyUI] 
+[04:01]   [ComfyUI] WARNING: You need pytorch with cu130 or higher to use optimized CUDA operations.
+[04:01]   [ComfyUI] Found comfy_kitchen backend triton: {'available': True, 'disabled': True, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8']}
+[04:01]   [ComfyUI] Found comfy_kitchen backend eager: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_mxfp8', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_mxfp8', 'scaled_mm_nvfp4']}
+[04:01]   [ComfyUI] Found comfy_kitchen backend cuda: {'available': True, 'disabled': True, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8']}
+[04:01]   [ComfyUI] Checkpoint files will always be loaded safely.
+[04:01]   [ComfyUI] Total VRAM 24124 MB, total RAM 31924 MB
+[04:01]   [ComfyUI] pytorch version: 2.11.0+cu128
+[04:01]   [ComfyUI] Set vram state to: NORMAL_VRAM
+[04:01]   [ComfyUI] Device: cuda:0 NVIDIA GeForce RTX 3090 : cudaMallocAsync
+[04:01]   [ComfyUI] Using async weight offloading with 2 streams
+[04:01]   [ComfyUI] Enabled pinned memory 28731.0
+[04:01]   [ComfyUI] Using pytorch attention
+[04:07]   [ComfyUI] aimdo: /project/src-posix/cuda-funchooks.c:52:DEBUG:aimdo_setup_hooks: hooks successfully installed
+[04:07]   [ComfyUI] aimdo: /project/src/control.c:151:INFO:comfy-aimdo inited for GPU: NVIDIA GeForce RTX 3090 (VRAM: 24124 MB)
+[04:07]   [ComfyUI] DynamicVRAM support detected and enabled
+[04:07]   [ComfyUI] Python version: 3.11.15 (main, May  8 2026, 18:33:10) [Clang 22.1.3 ]
+[04:07]   [ComfyUI] ComfyUI version: 0.21.0
+[04:07]   [ComfyUI] comfy-aimdo version: 0.3.0
+[04:07]   [ComfyUI] comfy-kitchen version: 0.2.8
+[04:07]   [ComfyUI] ****** User settings have been changed to be stored on the server instead of browser storage. ******
+[04:07]   [ComfyUI] ****** For multi-user setups add the --multi-user CLI argument to enable multiple user profiles. ******
+[04:07]   [ComfyUI] ComfyUI frontend version: 1.43.18
+[04:07]   [ComfyUI] [Prompt Server] web root: /workspaces/LiTo-2211/.venv/lib/python3.11/site-packages/comfyui_frontend_package/static
+[04:07]   [ComfyUI] Asset seeder disabled
+[04:10]   [ComfyUI] loading...
+[04:10]   [ComfyUI] calling register_nodes
+[04:10]   [ComfyUI] [comfy-env] Version: 0.3.75
+[04:10]   [ComfyUI] [comfy-env] register_nodes: ComfyUI-LiTo
+[04:10]   [ComfyUI] [comfy-env] ComfyUI source dir: /workspaces/LiTo-2211/ComfyUI
+[04:10]   [ComfyUI] [comfy-env] Found 1 isolation env(s)
+[04:10]   [ComfyUI] [comfy-env] Scanning nodes metadata (isolation root)...
+[04:10]   [ComfyUI] [comfy-env] Metadata scan: /root/.pixi/bin/pixi run --as-is --manifest-path /workspaces/LiTo-2211/ComfyUI/.ce/pixi.toml -e lito-nodes python /tmp/comfy_meta_8z2a5ur_.py /workspaces/LiTo-2211/ComfyUI/custom_nodes/ComfyUI-LiTo nodes
+[04:10]   [ComfyUI] [comfy-env] Scan env PATH for nodes:
+[04:10]   [ComfyUI] [comfy-env]   [0] /root/.local/bin
+[04:10]   [ComfyUI] [comfy-env]   [1] /usr/local/nvidia/bin
+[04:10]   [ComfyUI] [comfy-env]   [2] /usr/local/cuda/bin
+[04:10]   [ComfyUI] [comfy-env]   [3] /usr/local/sbin
+[04:10]   [ComfyUI] [comfy-env]   [4] /usr/local/bin
+[04:10]   [ComfyUI] [comfy-env]   [5] /usr/sbin
+[04:10]   [ComfyUI] [comfy-env]   [6] /usr/bin
+[04:10]   [ComfyUI] [comfy-env]   [7] /sbin
+[04:10]   [ComfyUI] [comfy-env]   [8] /bin
+[04:18]   [ComfyUI] [comfy-env] Metadata scan stderr for nodes:
+[04:18]   [ComfyUI] [comfy-env]   [meta-scan] importing nodes from /workspaces/LiTo-2211/ComfyUI/custom_nodes/ComfyUI-LiTo
+[04:18]   [ComfyUI] [comfy-env]   WARNING:root:WARNING: You need pytorch with cu130 or higher to use optimized CUDA operations.
+[04:18]   [ComfyUI] [comfy-env]   [meta-scan] import OK
+[04:18]   [ComfyUI] [comfy-env] Scanned nodes: 5 nodes (7.5s)
+[04:18]   [ComfyUI] [comfy-env] Scanned nodes root: 5 nodes (7.5s)
+[04:18]   [ComfyUI] [comfy-env] Imported nodes root: 5 nodes (isolation)
+[04:18]   [ComfyUI] [comfy-env] Registered 5 total nodes
+[04:18]   [ComfyUI] 
+[04:18]   [ComfyUI] Import times for custom nodes:
+[04:18]   [ComfyUI]    0.0 seconds: /workspaces/LiTo-2211/ComfyUI/custom_nodes/websocket_image_save.py
+[04:18]   [ComfyUI]    0.0 seconds: /workspaces/LiTo-2211/ComfyUI/custom_nodes/ComfyUI-validate-endpoint
+[04:18]   [ComfyUI]    0.0 seconds: /workspaces/LiTo-2211/ComfyUI/custom_nodes/ComfyUI-TurntableGSViewer
+[04:18]   [ComfyUI]    7.7 seconds: /workspaces/LiTo-2211/ComfyUI/custom_nodes/ComfyUI-LiTo
+[04:18]   [ComfyUI] 
+[04:18]   [ComfyUI] Context impl SQLiteImpl.
+[04:18]   [ComfyUI] Will assume non-transactional DDL.
+[04:18]   [ComfyUI] Context impl SQLiteImpl.
+[04:18]   [ComfyUI] Will assume non-transactional DDL.
+[04:18]   [ComfyUI] Running upgrade  -> 0001_assets, Initial assets schema
+[04:18]   [ComfyUI] Revision ID: 0001_assets
+[04:18]   [ComfyUI] Revises: None
+[04:18]   [ComfyUI] Create Date: 2025-12-10 00:00:00
+[04:18]   [ComfyUI] Running upgrade 0001_assets -> 0002_merge_to_asset_references, Merge AssetInfo and AssetCacheState into unified asset_references table.
+[04:19]   [ComfyUI] Running upgrade 0002_merge_to_asset_references -> 0003_add_metadata_job_id, Add system_metadata and job_id columns to asset_references.
+[04:19]   [ComfyUI] Change preview_id FK from assets.id to asset_references.id.
+[04:19]   [ComfyUI] Database upgraded from None to 0003_add_metadata_job_id
+[04:19]   [ComfyUI] Starting server
+[04:19]   [ComfyUI] 
+[04:19]   [ComfyUI] To see the GUI go to: http://127.0.0.1:41882
+[04:19] Server responding, waiting for nodes to load...
+[04:39] Server is ready!
+[04:39] Checking for import errors in server logs...
+[04:39] No import errors detected
+[04:39] Found 720 registered nodes
+[04:39] [REGISTRATION] PASSED
+[04:39] 
+[04:39] [4/5] INSTANTIATION
+[04:39] ----------------------------------------
+[04:39] 
+[DEBUG] server=<comfy_test.comfyui.server.ComfyUIServer object at 0x741b56a64490>, server_url=None, api=<comfy_test.comfyui.api.ComfyUIAPI object at 0x741b5606d000>
+[04:39] Testing node constructors...
+[04:40] All 5 node(s) instantiated successfully!
+[04:40] [INSTANTIATION] PASSED
+[04:40] 
+[04:40] [5/5] EXECUTION
+[04:40] ----------------------------------------
+[04:40] 
+[DEBUG] server=<comfy_test.comfyui.server.ComfyUIServer object at 0x741b56a64490>, server_url=None, api=<comfy_test.comfyui.api.ComfyUIAPI object at 0x741b5606d000>
+[04:40] GPU runner - will execute 1 workflow(s)
+[04:40] Running 1 workflow(s) (all with videos)...
+[04:40] Installing screenshot dependencies (playwright, pillow)...
+[04:42]   Packages installed, downloading chromium browser...
+[05:05]   Screenshot dependencies installed successfully
+[05:05] Starting headless browser...
+[05:06]   Installing Vulkan stack (apt)...
+[05:06]   Vulkan install error: [Errno 2] No such file or directory: 'sudo'
+[05:06]   GPU detected (no Vulkan) -- using ANGLE/OpenGL rendering
+[05:06] Capturing execution frames: basic.json
+[05:13]   Frame 1 saved (frame_000.jpg, t=0.0s)
+[05:13]   Validating workflow...
+[05:13]   [ComfyUI] === /validate endpoint called ===
+[05:13]   [ComfyUI] Received JSON with keys: ['prompt']
+[05:13]   [ComfyUI] Prompt has 7 nodes
+[05:13]   [ComfyUI]   Node 1: LiToLoadModel
+[05:13]   Warning: 1 node(s) have validation errors (will fail after screenshots)
+[05:13]   [ComfyUI]     Inputs: {"checkpoint": "lito_dit_rgba (recommended)", "compile": false, "precision": "auto"}
+[05:13]   Queuing workflow for execution...
+[05:13]   [ComfyUI]   Node 5: LoadImage
+[05:13]   [ComfyUI]     Inputs: {"image": "apple.png"}
+[05:13]   [ComfyUI]   Node 6: LiToExportPLY
+[05:13]   [ComfyUI]     Inputs: {"filename": "lito_output", "gaussians": ["8", 0]}
+[05:13]   [ComfyUI]   Node 8: LiToImageTo3D
+[05:14]   [ComfyUI]     Inputs: {"sampling_steps": 20, "cfg_scale": 3, "sampling_method": "heun", "seed": 42, "model": ["1", 0], "image": ["5", 0], "mask": ["9", 0]}
+[05:14]   [ComfyUI]   Node 9: InvertMask
+[05:14]   [ComfyUI]     Inputs: {"mask": ["5", 1]}
+[05:14]   [ComfyUI]   Node 17: MaskPreview
+[05:14]   [ComfyUI]     Inputs: {"mask": ["9", 0]}
+[05:14]   [ComfyUI]   Node 27: PreviewGaussians
+[05:14]   [ComfyUI]     Inputs: {"fov_degrees": 512, "image_width": 512, "image_height": "{\"v\":1,\"pos\":[0.35532688579342964,3.4202540140738975,1.7336131604031435],\"target\":[0.0006612539291381836,-0.002025216817855835,-0.007065
+[05:14]   [ComfyUI] Generated prompt_id: 28268add-90b3-4cb5-bcd9-92c4beba059a
+[05:14]   [ComfyUI] Calling execution.validate_prompt()...
+[05:14]   [ComfyUI] Failed to validate prompt for output 27:
+[05:14]   [ComfyUI] * (prompt):
+[05:14]   [ComfyUI]   - Failed to convert an input value to a INT value: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
+[05:14]   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
+[05:14]   [ComfyUI] * PreviewGaussians 27:
+[05:14]   [ComfyUI]   - Failed to convert an input value to a INT value: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
+[05:14]   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
+[05:14]   [ComfyUI] Output will be ignored
+[05:14]   [ComfyUI] Validation result: valid=True
+[05:14]   [ComfyUI]   Node errors: {"27": {"errors": [{"type": "invalid_input_type", "message": "Failed to convert an input value to a INT value", "details": "image_height, {\"v\":1,\"pos\":[0.35532688579342964,3.4202540140738975,1.7336131604031435],\"target\":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],\"fov\":50,\"scale\":20,\"opacity\":1}, invalid literal for int() with base 10: '{\"v\":1,\"pos\":[0.35532688579342964,3.4202540140738975,1.7336131604031435],\"target\":[0.0006612539291381836,-0.00202521681
+[05:14]   [ComfyUI] === Validation PASSED ===
+[05:14]   [ComfyUI] got prompt
+[05:14]   [ComfyUI] Failed to validate prompt for output 27:
+[05:14]   [ComfyUI] * (prompt):
+[05:14]   [ComfyUI]   - Failed to convert an input value to a INT value: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
+[05:14]   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
+[05:14]   [ComfyUI] * PreviewGaussians 27:
+[05:14]   [ComfyUI]   - Failed to convert an input value to a INT value: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
+[05:14]   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
+[05:14]   [ComfyUI] Output will be ignored
+[05:14]   [ComfyUI] Prompt executed in 0.06 seconds
+[05:14]   Node executed (1 total), capturing...
+[05:14]   Frame 2 saved (frame_001.jpg, t=0.8s)
+[05:14]   [capture-node] freeze=14ms shot=234ms unfreeze=0ms saved=True
+[05:14]   Execution complete (t=0.8s)
+[05:14]   [3d-wait] Phase 1: Waiting for 'Loading 3D Model' text to disappear...
+[05:14]   [3d-wait] Phase 1 done in 0.0s
+[05:14]   [3d-wait] Phase 2: iframes=1
+[05:14]   [3d-wait] iframe viewer_ready=False (matched 0 console logs)
+[05:14]   [3d-wait] Waiting for 'Loaded successfully' console message (timeout=60s)...
+[06:14]   [3d-wait] iframe wait exception: Timeout 60000ms exceeded while waiting for event "console"
 =========================== logs ===========================
 waiting for event "console"
 ============================================================
-[07:41]   [3d-wait] Total 3D wait: 60.1s
-[07:41]   Captured 2 unique frames over 61.27s
-[07:41]   [debug] iframes: 1
-[07:41]   [debug]   iframe[0]: src=http://127.0.0.1:41880/extensions/ComfyUI-TurntableGSViewer/viewer_gaussian.html, canvas=486x413, rafFrozen=True
-[07:41]   [timing] trigger_3d_previews: 0.0s
-[07:44]   Saved high-quality screenshot: basic_executed.png
-[07:44]   [timing] final_screenshot: 0.6s
-[07:44] Results saved to /logs/LiTo-2138/dev/linux-gpu/results.json
-[07:44] Saved: /logs/LiTo-2138/dev/linux-gpu/index.html
-[07:44] 
+[06:14]   [3d-wait] Total 3D wait: 60.1s
+[06:14]   Captured 2 unique frames over 61.32s
+[06:14]   [debug] iframes: 1
+[06:14]   [debug]   iframe[0]: src=http://127.0.0.1:41882/extensions/ComfyUI-TurntableGSViewer/viewer_gaussian.html, canvas=486x413, rafFrozen=True
+[06:14]   [timing] trigger_3d_previews: 0.0s
+[06:17]   Saved high-quality screenshot: basic_executed.png
+[06:17]   [timing] final_screenshot: 0.6s
+[06:17] Results saved to /logs/LiTo-2211/dev/linux-gpu/results.json
+[06:17] Saved: /logs/LiTo-2211/dev/linux-gpu/index.html
+[06:17] 
 linux: FAILED
-[07:44] Error: Workflow execution failed (1 error(s))
-[07:44] Details: basic.json: 1 node(s) had validation errors and were silently skipped: node 25: fov_degrees
+[06:17] Error: Workflow execution failed (1 error(s))
+[06:17] Details: basic.json: 1 node(s) had validation errors and were silently skipped: node 27: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
 
 Details:
 Workflow: /node/ComfyUI-LiTo/workflows/basic.json
-[07:44] Stopping ComfyUI server...
+[06:17] Stopping ComfyUI server...
