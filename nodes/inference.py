@@ -1,5 +1,6 @@
 """LiToImageTo3D node - DiT sampling + Gaussian decoding."""
 
+import contextlib
 import logging
 import time
 from typing import Any
@@ -7,9 +8,71 @@ from typing import Any
 import torch
 import torch.nn.functional as F
 import comfy.model_management as mm
+import comfy.utils
 from comfy_api.latest import io
 
 log = logging.getLogger("comfyui-lito")
+
+
+def _say(stage: str, msg: str) -> None:
+    """Print + log a stage marker. print() ensures it shows up in the worker log
+    regardless of the logger config; log.info() keeps things tidy when run
+    outside the comfy-env worker pipe."""
+    line = f"[LiTo] {stage}: {msg}"
+    print(line, flush=True)
+    log.info(line)
+
+
+@contextlib.contextmanager
+def _progress_through_tqdm(total: int, label: str):
+    """Patch tqdm.tqdm so each iteration also bumps a comfy ProgressBar (which
+    powers the ComfyUI node progress UI) and emits a one-line worker-log update
+    every ~10% with elapsed + eta."""
+    import tqdm as _tqdm_mod
+    try:
+        import lito.odelibs.ode_solvers as _ode_mod
+    except Exception:
+        _ode_mod = None
+
+    pbar = comfy.utils.ProgressBar(total)
+    orig_tqdm = _tqdm_mod.tqdm
+    orig_ode_tqdm = getattr(_ode_mod, "tqdm", None) if _ode_mod is not None else None
+    start = time.time()
+
+    class _PatchedTqdm:
+        def __init__(self_inner, iterable=None, *a, **kw):
+            self_inner._wrapped = orig_tqdm(iterable, *a, **kw)
+            self_inner._step = 0
+            self_inner._n_total = getattr(self_inner._wrapped, "total", total) or total
+        def __iter__(self_inner):
+            milestone = max(1, self_inner._n_total // 10)
+            for item in self_inner._wrapped:
+                yield item
+                self_inner._step += 1
+                pbar.update(1)
+                if self_inner._step % milestone == 0 or self_inner._step == self_inner._n_total:
+                    elapsed = time.time() - start
+                    rate = self_inner._step / elapsed if elapsed > 0 else 0
+                    eta = (self_inner._n_total - self_inner._step) / rate if rate > 0 else 0
+                    _say(label, f"{self_inner._step}/{self_inner._n_total} "
+                                f"({elapsed:.1f}s elapsed, ~{eta:.0f}s remaining)")
+        def __getattr__(self_inner, name):
+            return getattr(self_inner._wrapped, name)
+        def __enter__(self_inner):
+            self_inner._wrapped.__enter__()
+            return self_inner
+        def __exit__(self_inner, *exc):
+            return self_inner._wrapped.__exit__(*exc)
+
+    _tqdm_mod.tqdm = _PatchedTqdm
+    if _ode_mod is not None and orig_ode_tqdm is not None:
+        _ode_mod.tqdm = _PatchedTqdm
+    try:
+        yield pbar
+    finally:
+        _tqdm_mod.tqdm = orig_tqdm
+        if _ode_mod is not None and orig_ode_tqdm is not None:
+            _ode_mod.tqdm = orig_ode_tqdm
 
 IMG_RESOLUTION = 518
 
@@ -176,7 +239,13 @@ class LiToImageTo3D(io.ComfyNode):
         precision = model["precision"]
         dtype = _get_dtype(precision)
 
-        # Load model into GPU
+        t_total = time.time()
+        _say("start", f"device={device}, dtype={precision}, steps={sampling_steps}, "
+                     f"method={sampling_method}, cfg={cfg_scale}, seed={seed}")
+
+        # ── load ──────────────────────────────────────────────────────────────
+        t0 = time.time()
+        _say("load", f"checkpoint={model['checkpoint_path']}, compile={model['compile']}")
         models = _load_and_cache_model(
             model["checkpoint_path"],
             model["compile"],
@@ -185,49 +254,47 @@ class LiToImageTo3D(io.ComfyNode):
         )
         dit_model = models["model"]
         st_model = models["st_model"]
+        _say("load", f"ok in {time.time() - t0:.1f}s")
 
-        # Set seed for reproducibility
+        # ── prep ──────────────────────────────────────────────────────────────
         torch.manual_seed(seed)
-
-        # Compose IMAGE + MASK into LiTo's (1, 1, 518, 518, 4rgba) conditioning tensor
         cond_rgba = _compose_cond_rgba(image, mask, device).to(dtype=dtype)
 
-        # Step 1: Sample latent tokens via DiT
-        log.info("Sampling latent tokens (%d steps, %s, cfg=%.1f)...", sampling_steps, sampling_method, cfg_scale)
+        # ── sample latent tokens (DiT) ────────────────────────────────────────
+        # Heun does 2 NFE per outer step but the tqdm in ode_solvers wraps the
+        # outer loop, so sampling_steps is the right total.
+        _say("sample", f"DiT, {sampling_steps} {sampling_method} steps")
         t0 = time.time()
-
-        out_dict = dit_model.inference_sample_latent(
-            cond_rgba=cond_rgba,
-            ode_sampling_method=sampling_method,
-            ode_num_steps=sampling_steps,
-            cfg_scale=cfg_scale,
-            use_ema=True,
-        )
-
+        with _progress_through_tqdm(sampling_steps, label="sample"):
+            out_dict = dit_model.inference_sample_latent(
+                cond_rgba=cond_rgba,
+                ode_sampling_method=sampling_method,
+                ode_num_steps=sampling_steps,
+                cfg_scale=cfg_scale,
+                use_ema=True,
+            )
         t_sample = time.time() - t0
-        log.info("Sampling done in %.1fs", t_sample)
+        _say("sample", f"done in {t_sample:.1f}s")
 
-        # Step 2: Decode latents to 3D Gaussians
-        log.info("Decoding Gaussians...")
+        # ── decode latents to Gaussians ───────────────────────────────────────
+        init_coord_src = "voxel_decoder" if st_model.voxel_decoder is not None else "sample_xyz"
+        decode_steps = 50  # used only when init_coord_src == "sample_xyz"
+        _say("decode", f"Gaussians via {init_coord_src}"
+                       + (f" ({decode_steps} init steps)" if init_coord_src == "sample_xyz" else ""))
         t0 = time.time()
-
-        # Determine init coordinate source
-        if st_model.voxel_decoder is not None:
-            init_coord_src = "voxel_decoder"
-        else:
-            init_coord_src = "sample_xyz"
-
-        gs_dicts = st_model.inference_estimate_gaussians(
-            fpoint_latent=out_dict["unnormalized_latent"],
-            init_coord_src=init_coord_src,
-            steps_for_sample_xyz=50,
-        )
+        decode_total = decode_steps if init_coord_src == "sample_xyz" else 1
+        with _progress_through_tqdm(decode_total, label="decode"):
+            gs_dicts = st_model.inference_estimate_gaussians(
+                fpoint_latent=out_dict["unnormalized_latent"],
+                init_coord_src=init_coord_src,
+                steps_for_sample_xyz=decode_steps,
+            )
         gs_dict = gs_dicts[0]
-
         t_decode = time.time() - t0
-        log.info("Decoding done in %.1fs (total: %.1fs)", t_decode, t_sample + t_decode)
+        num_gauss = gs_dict["xyz_w"].shape[0] if gs_dict["xyz_w"].dim() == 2 else gs_dict["xyz_w"].numel() // 3
+        _say("decode", f"done in {t_decode:.1f}s, {num_gauss} Gaussians")
 
-        # Move to CPU to free VRAM
+        # ── pack outputs (move to CPU to free VRAM) ───────────────────────────
         gs_output = {
             "xyz_w": gs_dict["xyz_w"].cpu(),
             "rgb_sh": gs_dict["rgb_sh"].cpu(),
@@ -235,5 +302,6 @@ class LiToImageTo3D(io.ComfyNode):
             "quaternion": gs_dict["quaternion"].cpu(),
             "opacity": gs_dict["opacity"].cpu(),
         }
-
+        _say("done", f"total {time.time() - t_total:.1f}s "
+                    f"(load + sample {t_sample:.1f}s + decode {t_decode:.1f}s)")
         return io.NodeOutput(gs_output)

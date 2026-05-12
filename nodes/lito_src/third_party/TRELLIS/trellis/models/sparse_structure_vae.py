@@ -107,7 +107,7 @@ class UpsampleBlock3d(nn.Module):
         
 
 class SparseStructureEncoder(nn.Module):
-    """
+    r"""
     Encoder for Sparse Structure (\mathcal{E}_S in the paper Sec. 3.3).
     
     Args:
@@ -216,7 +216,7 @@ class SparseStructureEncoder(nn.Module):
         
 
 class SparseStructureDecoder(nn.Module):
-    """
+    r"""
     Decoder for Sparse Structure (\mathcal{D}_S in the paper Sec. 3.3).
     
     Args:

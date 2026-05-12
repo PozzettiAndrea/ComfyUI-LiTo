@@ -3955,7 +3955,7 @@ class RGBDImage:
         ref_blur_sigma: float = 10.0,
         print_every_iter: int = 1,
     ) -> T.Dict[str, T.Any]:
-        """
+        r"""
         Given a list of rgbd_images, each of which might be captured using different
         exposure and white balancing settings, find the correction such that after
         applied the correction the rgbd_images look similar in terms of exposure and
@@ -4359,7 +4359,7 @@ class RGBDImage:
         max_retry: int = 1,
         min_overlapping: float = 0.25,  # min overlapping to be considered a valid ref
     ) -> T.Dict[str, T.Any]:
-        """
+        r"""
         Given a list of rgbd_images, each of which might be captured using different
         exposure and white balancing settings, find the correction such that after
         applied the correction the rgbd_images look similar in terms of exposure and
