@@ -25,7 +25,8 @@ from plibs.flash_utils import create_block_diagonal_attn_bias_from_seq_lens
 from contextlib import nullcontext as _nullcontext
 
 if torch.cuda.is_available():
-    device = torch.device("cuda")
+    import comfy.model_management as _comfy_mm
+    device = _comfy_mm.get_torch_device()
     prop = torch.cuda.get_device_properties(device)
     print(f"GPU Name: {prop.name}")
     print(f"Compute Capability: {prop.major}.{prop.minor}")

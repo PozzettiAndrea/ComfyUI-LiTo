@@ -64,10 +64,12 @@ def get_seqstart(
 
     if isinstance(seqlens, (tuple, list)):
         if len(seqlens) == 0:
-            device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+            import comfy.model_management as _comfy_mm
+            device = _comfy_mm.get_torch_device()
             zero = torch.zeros(1, dtype=torch.int32, device=device)
             return 0, 0, [0], zero
-        device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+        import comfy.model_management as _comfy_mm
+        device = _comfy_mm.get_torch_device()
         seqlens_tensor = torch.tensor(seqlens, dtype=torch.int32, device=device)
         max_seqlen = int(max(seqlens))
         min_seqlen = int(min(seqlens))
