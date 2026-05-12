@@ -8,6 +8,9 @@ from ..renderers import OctreeRenderer, GaussianRenderer, MeshRenderer
 from ..representations import Octree, Gaussian, MeshExtractResult
 from ..modules import sparse as sp
 from .random_utils import sphere_hammersley_sequence
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 
 
 def yaw_pitch_r_fov_to_extrinsics_intrinsics(yaws, pitchs, rs, fovs):
@@ -22,15 +25,15 @@ def yaw_pitch_r_fov_to_extrinsics_intrinsics(yaws, pitchs, rs, fovs):
     extrinsics = []
     intrinsics = []
     for yaw, pitch, r, fov in zip(yaws, pitchs, rs, fovs):
-        fov = torch.deg2rad(torch.tensor(float(fov))).cuda()
-        yaw = torch.tensor(float(yaw)).cuda()
-        pitch = torch.tensor(float(pitch)).cuda()
+        fov = torch.deg2rad(torch.tensor(float(fov))).to(_comfy_device())
+        yaw = torch.tensor(float(yaw)).to(_comfy_device())
+        pitch = torch.tensor(float(pitch)).to(_comfy_device())
         orig = torch.tensor([
             torch.sin(yaw) * torch.cos(pitch),
             torch.cos(yaw) * torch.cos(pitch),
             torch.sin(pitch),
-        ]).cuda() * r
-        extr = utils3d.torch.extrinsics_look_at(orig, torch.tensor([0, 0, 0]).float().cuda(), torch.tensor([0, 0, 1]).float().cuda())
+        ]).to(_comfy_device()) * r
+        extr = utils3d.torch.extrinsics_look_at(orig, torch.tensor([0, 0, 0]).float().to(_comfy_device()), torch.tensor([0, 0, 1]).float().to(_comfy_device()))
         intr = utils3d.torch.intrinsics_from_fov_xy(fov, fov)
         extrinsics.append(extr)
         intrinsics.append(intr)

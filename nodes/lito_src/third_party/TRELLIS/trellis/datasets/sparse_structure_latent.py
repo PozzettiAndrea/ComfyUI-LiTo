@@ -8,6 +8,9 @@ from ..representations.octree import DfsOctree as Octree
 from ..renderers import OctreeRenderer
 from .components import StandardDatasetBase, TextConditionedMixin, ImageConditionedMixin
 from .. import models
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 
 
 class SparseStructureLatentVisMixin:
@@ -35,7 +38,7 @@ class SparseStructureLatentVisMixin:
             decoder.load_state_dict(torch.load(ckpt_path, map_location='cpu', weights_only=True))
         else:
             decoder = models.from_pretrained(self.pretrained_ss_dec)
-        self.ss_dec = decoder.cuda().eval()
+        self.ss_dec = decoder.to(_comfy_device()).eval()
 
     def _delete_ss_dec(self):
         del self.ss_dec
@@ -56,7 +59,7 @@ class SparseStructureLatentVisMixin:
     @torch.no_grad()
     def visualize_sample(self, x_0: Union[torch.Tensor, dict]):
         x_0 = x_0 if isinstance(x_0, torch.Tensor) else x_0['x_0']
-        x_0 = self.decode_latent(x_0.cuda())
+        x_0 = self.decode_latent(x_0.to(_comfy_device()))
         
         renderer = OctreeRenderer()
         renderer.rendering_options.resolution = 512
@@ -79,9 +82,9 @@ class SparseStructureLatentVisMixin:
                 np.sin(yaw) * np.cos(pitch),
                 np.cos(yaw) * np.cos(pitch),
                 np.sin(pitch),
-            ]).float().cuda() * 2
-            fov = torch.deg2rad(torch.tensor(30)).cuda()
-            extrinsics = utils3d.torch.extrinsics_look_at(orig, torch.tensor([0, 0, 0]).float().cuda(), torch.tensor([0, 0, 1]).float().cuda())
+            ]).float().to(_comfy_device()) * 2
+            fov = torch.deg2rad(torch.tensor(30)).to(_comfy_device())
+            extrinsics = utils3d.torch.extrinsics_look_at(orig, torch.tensor([0, 0, 0]).float().to(_comfy_device()), torch.tensor([0, 0, 1]).float().to(_comfy_device()))
             intrinsics = utils3d.torch.intrinsics_from_fov_xy(fov, fov)
             exts.append(extrinsics)
             ints.append(intrinsics)
@@ -89,7 +92,7 @@ class SparseStructureLatentVisMixin:
         images = []
         
         # Build each representation
-        x_0 = x_0.cuda()
+        x_0 = x_0.to(_comfy_device())
         for i in range(x_0.shape[0]):
             representation = Octree(
                 depth=10,
@@ -104,7 +107,7 @@ class SparseStructureLatentVisMixin:
             representation.position = coords.float() / resolution
             representation.depth = torch.full((representation.position.shape[0], 1), int(np.log2(resolution)), dtype=torch.uint8, device='cuda')
 
-            image = torch.zeros(3, 1024, 1024).cuda()
+            image = torch.zeros(3, 1024, 1024).to(_comfy_device())
             tile = [2, 2]
             for j, (ext, intr) in enumerate(zip(exts, ints)):
                 res = renderer.render(representation, ext, intr, colors_overwrite=representation.position)

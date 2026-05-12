@@ -16,6 +16,9 @@ from .random_utils import sphere_hammersley_sequence
 from .render_utils import render_multiview
 from ..renderers import GaussianRenderer
 from ..representations import Strivec, Gaussian, MeshExtractResult
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 
 
 @torch.no_grad()
@@ -50,10 +53,10 @@ def _fill_holes(
         y, p = sphere_hammersley_sequence(i, num_views)
         yaws.append(y)
         pitchs.append(p)
-    yaws = torch.tensor(yaws).cuda()
-    pitchs = torch.tensor(pitchs).cuda()
+    yaws = torch.tensor(yaws).to(_comfy_device())
+    pitchs = torch.tensor(pitchs).to(_comfy_device())
     radius = 2.0
-    fov = torch.deg2rad(torch.tensor(40)).cuda()
+    fov = torch.deg2rad(torch.tensor(40)).to(_comfy_device())
     projection = utils3d.torch.perspective_from_fov_xy(fov, fov, 1, 3)
     views = []
     for (yaw, pitch) in zip(yaws, pitchs):
@@ -61,8 +64,8 @@ def _fill_holes(
             torch.sin(yaw) * torch.cos(pitch),
             torch.cos(yaw) * torch.cos(pitch),
             torch.sin(pitch),
-        ]).cuda().float() * radius
-        view = utils3d.torch.view_look_at(orig, torch.tensor([0, 0, 0]).float().cuda(), torch.tensor([0, 0, 1]).float().cuda())
+        ]).to(_comfy_device()).float() * radius
+        view = utils3d.torch.view_look_at(orig, torch.tensor([0, 0, 0]).float().to(_comfy_device()), torch.tensor([0, 0, 1]).float().to(_comfy_device()))
         views.append(view)
     views = torch.stack(views, dim=0)
 
@@ -239,7 +242,7 @@ def postprocess_mesh(
 
     # Remove invisible faces
     if fill_holes:
-        vertices, faces = torch.tensor(vertices).cuda(), torch.tensor(faces.astype(np.int32)).cuda()
+        vertices, faces = torch.tensor(vertices).to(_comfy_device()), torch.tensor(faces.astype(np.int32)).to(_comfy_device())
         vertices, faces = _fill_holes(
             vertices, faces,
             max_hole_size=fill_holes_max_hole_size,
@@ -306,17 +309,17 @@ def bake_texture(
         lambda_tv (float): Weight of total variation loss in optimization.
         verbose (bool): Whether to print progress.
     """
-    vertices = torch.tensor(vertices).cuda()
-    faces = torch.tensor(faces.astype(np.int32)).cuda()
-    uvs = torch.tensor(uvs).cuda()
-    observations = [torch.tensor(obs / 255.0).float().cuda() for obs in observations]
-    masks = [torch.tensor(m>0).bool().cuda() for m in masks]
-    views = [utils3d.torch.extrinsics_to_view(torch.tensor(extr).cuda()) for extr in extrinsics]
-    projections = [utils3d.torch.intrinsics_to_perspective(torch.tensor(intr).cuda(), near, far) for intr in intrinsics]
+    vertices = torch.tensor(vertices).to(_comfy_device())
+    faces = torch.tensor(faces.astype(np.int32)).to(_comfy_device())
+    uvs = torch.tensor(uvs).to(_comfy_device())
+    observations = [torch.tensor(obs / 255.0).float().to(_comfy_device()) for obs in observations]
+    masks = [torch.tensor(m>0).bool().to(_comfy_device()) for m in masks]
+    views = [utils3d.torch.extrinsics_to_view(torch.tensor(extr).to(_comfy_device())) for extr in extrinsics]
+    projections = [utils3d.torch.intrinsics_to_perspective(torch.tensor(intr).to(_comfy_device()), near, far) for intr in intrinsics]
 
     if mode == 'fast':
-        texture = torch.zeros((texture_size * texture_size, 3), dtype=torch.float32).cuda()
-        texture_weights = torch.zeros((texture_size * texture_size), dtype=torch.float32).cuda()
+        texture = torch.zeros((texture_size * texture_size, 3), dtype=torch.float32).to(_comfy_device())
+        texture_weights = torch.zeros((texture_size * texture_size), dtype=torch.float32).to(_comfy_device())
         rastctx = utils3d.torch.RastContext(backend='cuda')
         for observation, view, projection in tqdm(zip(observations, views, projections), total=len(observations), disable=not verbose, desc='Texture baking (fast)'):
             with torch.no_grad():
@@ -356,7 +359,7 @@ def bake_texture(
                 _uv.append(rast['uv'].detach())
                 _uv_dr.append(rast['uv_dr'].detach())
 
-        texture = torch.nn.Parameter(torch.zeros((1, texture_size, texture_size, 3), dtype=torch.float32).cuda())
+        texture = torch.nn.Parameter(torch.zeros((1, texture_size, texture_size, 3), dtype=torch.float32).to(_comfy_device()))
         optimizer = torch.optim.Adam([texture], betas=(0.5, 0.9), lr=1e-2)
 
         def exp_anealing(optimizer, step, total_steps, start_lr, end_lr):
@@ -482,7 +485,7 @@ def simplify_gs(
     
     # simplify
     observations, extrinsics, intrinsics = render_multiview(gs, resolution=1024, nviews=100)
-    observations = [torch.tensor(obs / 255.0).float().cuda().permute(2, 0, 1) for obs in observations]
+    observations = [torch.tensor(obs / 255.0).float().to(_comfy_device()).permute(2, 0, 1) for obs in observations]
     
     # Following https://arxiv.org/pdf/2411.06019
     renderer = GaussianRenderer({

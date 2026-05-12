@@ -9,6 +9,9 @@ from ..modules.sparse.basic import SparseTensor
 from .. import models
 from ..utils.render_utils import get_renderer
 from ..utils.data_utils import load_balanced_group_indices
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 
 
 class SLatVisMixin:
@@ -36,7 +39,7 @@ class SLatVisMixin:
             decoder.load_state_dict(torch.load(ckpt_path, map_location='cpu', weights_only=True))
         else:
             decoder = models.from_pretrained(self.pretrained_slat_dec)
-        self.slat_dec = decoder.cuda().eval()
+        self.slat_dec = decoder.to(_comfy_device()).eval()
 
     def _delete_slat_dec(self):
         del self.slat_dec
@@ -57,7 +60,7 @@ class SLatVisMixin:
     @torch.no_grad()
     def visualize_sample(self, x_0: Union[SparseTensor, dict]):
         x_0 = x_0 if isinstance(x_0, SparseTensor) else x_0['x_0']
-        reps = self.decode_latent(x_0.cuda())
+        reps = self.decode_latent(x_0.to(_comfy_device()))
         
         # Build camera
         yaws = [0, np.pi / 2, np.pi, 3 * np.pi / 2]
@@ -72,9 +75,9 @@ class SLatVisMixin:
                 np.sin(yaw) * np.cos(pitch),
                 np.cos(yaw) * np.cos(pitch),
                 np.sin(pitch),
-            ]).float().cuda() * 2
-            fov = torch.deg2rad(torch.tensor(40)).cuda()
-            extrinsics = utils3d.torch.extrinsics_look_at(orig, torch.tensor([0, 0, 0]).float().cuda(), torch.tensor([0, 0, 1]).float().cuda())
+            ]).float().to(_comfy_device()) * 2
+            fov = torch.deg2rad(torch.tensor(40)).to(_comfy_device())
+            extrinsics = utils3d.torch.extrinsics_look_at(orig, torch.tensor([0, 0, 0]).float().to(_comfy_device()), torch.tensor([0, 0, 1]).float().to(_comfy_device()))
             intrinsics = utils3d.torch.intrinsics_from_fov_xy(fov, fov)
             exts.append(extrinsics)
             ints.append(intrinsics)
@@ -82,7 +85,7 @@ class SLatVisMixin:
         renderer = get_renderer(reps[0])
         images = []
         for representation in reps:
-            image = torch.zeros(3, 1024, 1024).cuda()
+            image = torch.zeros(3, 1024, 1024).to(_comfy_device())
             tile = [2, 2]
             for j, (ext, intr) in enumerate(zip(exts, ints)):
                 res = renderer.render(representation, ext, intr)

@@ -6,6 +6,9 @@ from torch.utils.data import DataLoader
 from easydict import EasyDict as edict
 
 from ..basic import BasicTrainer
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 
 
 class SparseStructureVaeTrainer(BasicTrainer):
@@ -116,7 +119,7 @@ class SparseStructureVaeTrainer(BasicTrainer):
         for i in range(0, num_samples, batch_size):
             batch = min(batch_size, num_samples - i)
             data = next(iter(dataloader))
-            args = {k: v[:batch].cuda() if isinstance(v, torch.Tensor) else v[:batch] for k, v in data.items()}
+            args = {k: v[:batch].to(_comfy_device()) if isinstance(v, torch.Tensor) else v[:batch] for k, v in data.items()}
             z = self.models['encoder'](args['ss'].float(), sample_posterior=False)
             logits = self.models['decoder'](z)
             recon = (logits > 0).long()

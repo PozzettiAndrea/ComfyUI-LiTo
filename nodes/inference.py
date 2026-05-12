@@ -68,9 +68,9 @@ def _get_dtype(precision: str) -> torch.dtype:
     }[precision]
 
 
-def _load_and_cache_model(checkpoint_path: str, compile: bool, device: torch.device):
+def _load_and_cache_model(checkpoint_path: str, compile: bool, device: torch.device, dtype: torch.dtype):
     """Load model from checkpoint, cache for reuse."""
-    cache_key = (checkpoint_path, compile)
+    cache_key = (checkpoint_path, compile, dtype)
     if cache_key in _model_cache:
         log.info("Using cached model")
         return _model_cache[cache_key]
@@ -82,12 +82,12 @@ def _load_and_cache_model(checkpoint_path: str, compile: bool, device: torch.dev
         checkpoint_url=checkpoint_path,
         download_dir_root="",  # Already local
         overwrite=False,
-        dtype=torch.float,
+        dtype=dtype,
         device=device,
         load_params=True,
     )
     model = mdict["model"]
-    model.to(device=device)
+    model.to(device=device, dtype=dtype)
     model.eval()
     model.freeze()
 
@@ -181,6 +181,7 @@ class LiToImageTo3D(io.ComfyNode):
             model["checkpoint_path"],
             model["compile"],
             device,
+            dtype,
         )
         dit_model = models["model"]
         st_model = models["st_model"]
@@ -189,20 +190,19 @@ class LiToImageTo3D(io.ComfyNode):
         torch.manual_seed(seed)
 
         # Compose IMAGE + MASK into LiTo's (1, 1, 518, 518, 4rgba) conditioning tensor
-        cond_rgba = _compose_cond_rgba(image, mask, device)
+        cond_rgba = _compose_cond_rgba(image, mask, device).to(dtype=dtype)
 
         # Step 1: Sample latent tokens via DiT
         log.info("Sampling latent tokens (%d steps, %s, cfg=%.1f)...", sampling_steps, sampling_method, cfg_scale)
         t0 = time.time()
 
-        with torch.autocast(device_type="cuda", dtype=dtype, enabled=True):
-            out_dict = dit_model.inference_sample_latent(
-                cond_rgba=cond_rgba,
-                ode_sampling_method=sampling_method,
-                ode_num_steps=sampling_steps,
-                cfg_scale=cfg_scale,
-                use_ema=True,
-            )
+        out_dict = dit_model.inference_sample_latent(
+            cond_rgba=cond_rgba,
+            ode_sampling_method=sampling_method,
+            ode_num_steps=sampling_steps,
+            cfg_scale=cfg_scale,
+            use_ema=True,
+        )
 
         t_sample = time.time() - t0
         log.info("Sampling done in %.1fs", t_sample)
@@ -217,13 +217,12 @@ class LiToImageTo3D(io.ComfyNode):
         else:
             init_coord_src = "sample_xyz"
 
-        with torch.autocast(device_type="cuda", enabled=True):
-            gs_dicts = st_model.inference_estimate_gaussians(
-                fpoint_latent=out_dict["unnormalized_latent"],
-                init_coord_src=init_coord_src,
-                steps_for_sample_xyz=50,
-            )
-            gs_dict = gs_dicts[0]
+        gs_dicts = st_model.inference_estimate_gaussians(
+            fpoint_latent=out_dict["unnormalized_latent"],
+            init_coord_src=init_coord_src,
+            steps_for_sample_xyz=50,
+        )
+        gs_dict = gs_dicts[0]
 
         t_decode = time.time() - t0
         log.info("Decoding done in %.1fs (total: %.1fs)", t_decode, t_sample + t_decode)

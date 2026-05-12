@@ -7,6 +7,9 @@ import open3d as o3d
 from .base import Pipeline
 from . import samplers
 from ..modules import sparse as sp
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 
 
 class TrellisTextTo3DPipeline(Pipeline):
@@ -71,7 +74,7 @@ class TrellisTextTo3DPipeline(Pipeline):
         model = CLIPTextModel.from_pretrained(name)
         tokenizer = AutoTokenizer.from_pretrained(name)
         model.eval()
-        model = model.cuda()
+        model = model.to(_comfy_device())
         self.text_cond_model = {
             'model': model,
             'tokenizer': tokenizer,
@@ -85,7 +88,7 @@ class TrellisTextTo3DPipeline(Pipeline):
         """
         assert isinstance(text, list) and all(isinstance(t, str) for t in text), "text must be a list of strings"
         encoding = self.text_cond_model['tokenizer'](text, max_length=77, padding='max_length', truncation=True, return_tensors='pt')
-        tokens = encoding['input_ids'].cuda()
+        tokens = encoding['input_ids'].to(_comfy_device())
         embeddings = self.text_cond_model['model'](input_ids=tokens).last_hidden_state
         
         return embeddings
@@ -244,7 +247,7 @@ class TrellisTextTo3DPipeline(Pipeline):
         mesh.vertices = o3d.utility.Vector3dVector(vertices)
         voxel_grid = o3d.geometry.VoxelGrid.create_from_triangle_mesh_within_bounds(mesh, voxel_size=1/64, min_bound=(-0.5, -0.5, -0.5), max_bound=(0.5, 0.5, 0.5))
         vertices = np.array([voxel.grid_index for voxel in voxel_grid.get_voxels()])
-        return torch.tensor(vertices).int().cuda()
+        return torch.tensor(vertices).int().to(_comfy_device())
 
     @torch.no_grad()
     def run_variant(
@@ -270,7 +273,7 @@ class TrellisTextTo3DPipeline(Pipeline):
         cond = self.get_cond([prompt])
         coords = self.voxelize(mesh)
         coords = torch.cat([
-            torch.arange(num_samples).repeat_interleave(coords.shape[0], 0)[:, None].int().cuda(),
+            torch.arange(num_samples).repeat_interleave(coords.shape[0], 0)[:, None].int().to(_comfy_device()),
             coords.repeat(num_samples, 1)
         ], 1)
         torch.manual_seed(seed)

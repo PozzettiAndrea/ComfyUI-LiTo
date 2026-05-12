@@ -3,6 +3,9 @@ import numpy as np
 from plyfile import PlyData, PlyElement
 from .general_utils import inverse_sigmoid, strip_symmetric, build_scaling_rotation
 import utils3d
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 
 
 class Gaussian:
@@ -63,10 +66,10 @@ class Gaussian:
 
         self.rotation_activation = torch.nn.functional.normalize
         
-        self.scale_bias = self.inverse_scaling_activation(torch.tensor(self.scaling_bias)).cuda()
-        self.rots_bias = torch.zeros((4)).cuda()
+        self.scale_bias = self.inverse_scaling_activation(torch.tensor(self.scaling_bias)).to(_comfy_device())
+        self.rots_bias = torch.zeros((4)).to(_comfy_device())
         self.rots_bias[0] = 1
-        self.opacity_bias = self.inverse_opacity_activation(torch.tensor(self.opacity_bias)).cuda()
+        self.opacity_bias = self.inverse_opacity_activation(torch.tensor(self.opacity_bias)).to(_comfy_device())
 
     @property
     def get_scaling(self):

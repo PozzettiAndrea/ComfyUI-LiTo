@@ -20,8 +20,8 @@ def matmul(x: torch.Tensor, y: torch.Tensor) -> torch.Tensor:
     Pytorch's matmul and bmm use a large amount of memory in backward.
     For example:
     ```
-    x = torch.randn(1, 4096, 4096).cuda()
-    y = torch.randn(192, 4096, 1).cuda()
+    x = torch.randn(1, 4096, 4096).to(_comfy_device())
+    y = torch.randn(192, 4096, 1).to(_comfy_device())
     x.requires_grad = True
     with profile(
         activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA],
@@ -108,6 +108,9 @@ def gumbel_multinomial(
     Gumbel noise per category and taking the `topk` of `log(weights) + gumbel`.
     For `replacement=False`, this matches the distribution of repeatedly drawing
     from a categorical distribution proportional to the weights, removing the
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
     chosen item, renormalizing, and repeating.
 
     This function is intended as a drop-in alternative to `torch.multinomial`

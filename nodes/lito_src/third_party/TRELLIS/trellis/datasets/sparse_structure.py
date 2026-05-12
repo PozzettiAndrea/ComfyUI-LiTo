@@ -9,6 +9,9 @@ import utils3d
 from .components import StandardDatasetBase
 from ..representations.octree import DfsOctree as Octree
 from ..renderers import OctreeRenderer
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 
 
 class SparseStructure(StandardDatasetBase):
@@ -72,9 +75,9 @@ class SparseStructure(StandardDatasetBase):
                 np.sin(yaw) * np.cos(pitch),
                 np.cos(yaw) * np.cos(pitch),
                 np.sin(pitch),
-            ]).float().cuda() * 2
-            fov = torch.deg2rad(torch.tensor(30)).cuda()
-            extrinsics = utils3d.torch.extrinsics_look_at(orig, torch.tensor([0, 0, 0]).float().cuda(), torch.tensor([0, 0, 1]).float().cuda())
+            ]).float().to(_comfy_device()) * 2
+            fov = torch.deg2rad(torch.tensor(30)).to(_comfy_device())
+            extrinsics = utils3d.torch.extrinsics_look_at(orig, torch.tensor([0, 0, 0]).float().to(_comfy_device()), torch.tensor([0, 0, 1]).float().to(_comfy_device()))
             intrinsics = utils3d.torch.intrinsics_from_fov_xy(fov, fov)
             exts.append(extrinsics)
             ints.append(intrinsics)
@@ -82,7 +85,7 @@ class SparseStructure(StandardDatasetBase):
         images = []
         
         # Build each representation
-        ss = ss.cuda()
+        ss = ss.to(_comfy_device())
         for i in range(ss.shape[0]):
             representation = Octree(
                 depth=10,
@@ -96,7 +99,7 @@ class SparseStructure(StandardDatasetBase):
             representation.position = coords.float() / self.resolution
             representation.depth = torch.full((representation.position.shape[0], 1), int(np.log2(self.resolution)), dtype=torch.uint8, device='cuda')
 
-            image = torch.zeros(3, 1024, 1024).cuda()
+            image = torch.zeros(3, 1024, 1024).to(_comfy_device())
             tile = [2, 2]
             for j, (ext, intr) in enumerate(zip(exts, ints)):
                 res = renderer.render(representation, ext, intr, colors_overwrite=representation.position)

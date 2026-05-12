@@ -12,6 +12,9 @@ from ...renderers import MeshRenderer
 from ...modules.sparse import SparseTensor
 from ...utils.loss_utils import l1_loss, smooth_l1_loss, ssim, lpips
 from ...utils.data_utils import recursive_to_device
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 
 
 class SLatVaeMeshDecoderTrainer(BasicTrainer):
@@ -347,9 +350,9 @@ class SLatVaeMeshDecoderTrainer(BasicTrainer):
                 np.sin(yaw) * np.cos(pitch),
                 np.cos(yaw) * np.cos(pitch),
                 np.sin(pitch),
-            ]).float().cuda() * 2
-            fov = torch.deg2rad(torch.tensor(30)).cuda()
-            extrinsics = utils3d.torch.extrinsics_look_at(orig, torch.tensor([0, 0, 0]).float().cuda(), torch.tensor([0, 0, 1]).float().cuda())
+            ]).float().to(_comfy_device()) * 2
+            fov = torch.deg2rad(torch.tensor(30)).to(_comfy_device())
+            extrinsics = utils3d.torch.extrinsics_look_at(orig, torch.tensor([0, 0, 0]).float().to(_comfy_device()), torch.tensor([0, 0, 1]).float().to(_comfy_device()))
             intrinsics = utils3d.torch.intrinsics_from_fov_xy(fov, fov)
             extrinsics = extrinsics.unsqueeze(0).expand(num_samples, -1, -1)
             intrinsics = intrinsics.unsqueeze(0).expand(num_samples, -1, -1)

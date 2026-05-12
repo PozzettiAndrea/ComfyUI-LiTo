@@ -6,6 +6,9 @@ import numpy as np
 from PIL import Image
 
 from ....utils import dist_utils
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 
 
 class ImageConditionedMixin:
@@ -36,7 +39,7 @@ class ImageConditionedMixin:
         """
         with dist_utils.local_master_first():
             dinov2_model = torch.hub.load('facebookresearch/dinov2', self.image_cond_model_name, pretrained=True)
-        dinov2_model.eval().cuda()
+        dinov2_model.eval().to(_comfy_device())
         transform = transforms.Compose([
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
         ])
@@ -57,13 +60,13 @@ class ImageConditionedMixin:
             image = [i.resize((518, 518), Image.LANCZOS) for i in image]
             image = [np.array(i.convert('RGB')).astype(np.float32) / 255 for i in image]
             image = [torch.from_numpy(i).permute(2, 0, 1).float() for i in image]
-            image = torch.stack(image).cuda()
+            image = torch.stack(image).to(_comfy_device())
         else:
             raise ValueError(f"Unsupported type of image: {type(image)}")
         
         if self.image_cond_model is None:
             self._init_image_cond_model()
-        image = self.image_cond_model['transform'](image).cuda()
+        image = self.image_cond_model['transform'](image).to(_comfy_device())
         features = self.image_cond_model['model'](image, is_training=True)['x_prenorm']
         patchtokens = F.layer_norm(features, features.shape[-1:])
         return patchtokens

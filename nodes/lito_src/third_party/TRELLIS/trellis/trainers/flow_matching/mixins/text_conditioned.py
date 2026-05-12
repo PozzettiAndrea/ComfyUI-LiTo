@@ -5,6 +5,9 @@ import torch
 from transformers import AutoTokenizer, CLIPTextModel
 
 from ....utils import dist_utils
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 
 
 class TextConditionedMixin:
@@ -28,7 +31,7 @@ class TextConditionedMixin:
             model = CLIPTextModel.from_pretrained(self.text_cond_model_name)
             tokenizer = AutoTokenizer.from_pretrained(self.text_cond_model_name)
         model.eval()
-        model = model.cuda()
+        model = model.to(_comfy_device())
         self.text_cond_model = {
             'model': model,
             'tokenizer': tokenizer,
@@ -44,7 +47,7 @@ class TextConditionedMixin:
         if self.text_cond_model is None:
             self._init_text_cond_model()
         encoding = self.text_cond_model['tokenizer'](text, max_length=77, padding='max_length', truncation=True, return_tensors='pt')
-        tokens = encoding['input_ids'].cuda()
+        tokens = encoding['input_ids'].to(_comfy_device())
         embeddings = self.text_cond_model['model'](input_ids=tokens).last_hidden_state
         
         return embeddings

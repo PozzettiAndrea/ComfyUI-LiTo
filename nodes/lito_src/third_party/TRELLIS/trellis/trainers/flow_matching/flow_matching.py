@@ -12,6 +12,9 @@ from ...utils.general_utils import dict_reduce
 from .mixins.classifier_free_guidance import ClassifierFreeGuidanceMixin
 from .mixins.text_conditioned import TextConditionedMixin
 from .mixins.image_conditioned import ImageConditionedMixin
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 
 
 class FlowMatchingTrainer(BasicTrainer):
@@ -206,7 +209,7 @@ class FlowMatchingTrainer(BasicTrainer):
         for i in range(0, num_samples, batch_size):
             batch = min(batch_size, num_samples - i)
             data = next(iter(dataloader))
-            data = {k: v[:batch].cuda() if isinstance(v, torch.Tensor) else v[:batch] for k, v in data.items()}
+            data = {k: v[:batch].to(_comfy_device()) if isinstance(v, torch.Tensor) else v[:batch] for k, v in data.items()}
             noise = torch.randn_like(data['x_0'])
             sample_gt.append(data['x_0'])
             cond_vis.append(self.vis_cond(**data))

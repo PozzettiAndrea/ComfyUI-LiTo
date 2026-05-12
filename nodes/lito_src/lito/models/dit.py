@@ -14,6 +14,9 @@ import torch.nn.functional as F
 
 from lito.models.layers import CrossAttentionLayer, FinalLayer, SelfAttentionLayer
 from lito.script_utils import config_utils
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 
 
 def pixart_modulate(x, shift, scale):
@@ -48,7 +51,7 @@ class ConditionEmbedder(nn.Module):
         Drops cond to enable classifier-free guidance.
         """
         if force_drop_ids is None:
-            drop_ids = torch.rand(cond.shape[0]).cuda() < self.cond_drop_prob
+            drop_ids = torch.rand(cond.shape[0]).to(_comfy_device()) < self.cond_drop_prob
         else:
             drop_ids = force_drop_ids == 1
         cond = torch.where(drop_ids[:, None, None], self.y_embedding, cond)
