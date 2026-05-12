@@ -82,7 +82,7 @@ def _compose_cond_rgba(image: torch.Tensor, mask: torch.Tensor, device: torch.de
 
     LiTo expects 518x518 RGBA with straight (not premultiplied) alpha in [0, 1].
     """
-    # IMAGE: (B, H, W, C) [0,1]. Take first; force 3-channel — the MASK input
+    # IMAGE: (B, H, W, C) [0,1]. Take first; force 3-channel - the MASK input
     # is the authoritative alpha, so drop any alpha that came in on the IMAGE.
     rgb = image[0, ..., :3]  # (H, W, 3)
     # MASK: (B, H, W) [0,1]. Take first.
@@ -243,7 +243,7 @@ class LiToImageTo3D(io.ComfyNode):
         _say("start", f"device={device}, dtype={precision}, steps={sampling_steps}, "
                      f"method={sampling_method}, cfg={cfg_scale}, seed={seed}")
 
-        # ── load ──────────────────────────────────────────────────────────────
+        # -- load --------------------------------------------------------------
         t0 = time.time()
         _say("load", f"checkpoint={model['checkpoint_path']}, compile={model['compile']}")
         models = _load_and_cache_model(
@@ -256,11 +256,11 @@ class LiToImageTo3D(io.ComfyNode):
         st_model = models["st_model"]
         _say("load", f"ok in {time.time() - t0:.1f}s")
 
-        # ── prep ──────────────────────────────────────────────────────────────
+        # -- prep --------------------------------------------------------------
         torch.manual_seed(seed)
         cond_rgba = _compose_cond_rgba(image, mask, device).to(dtype=dtype)
 
-        # ── sample latent tokens (DiT) ────────────────────────────────────────
+        # -- sample latent tokens (DiT) ----------------------------------------
         # Heun does 2 NFE per outer step but the tqdm in ode_solvers wraps the
         # outer loop, so sampling_steps is the right total.
         _say("sample", f"DiT, {sampling_steps} {sampling_method} steps")
@@ -276,7 +276,7 @@ class LiToImageTo3D(io.ComfyNode):
         t_sample = time.time() - t0
         _say("sample", f"done in {t_sample:.1f}s")
 
-        # ── decode latents to Gaussians ───────────────────────────────────────
+        # -- decode latents to Gaussians ---------------------------------------
         init_coord_src = "voxel_decoder" if st_model.voxel_decoder is not None else "sample_xyz"
         decode_steps = 50  # used only when init_coord_src == "sample_xyz"
         _say("decode", f"Gaussians via {init_coord_src}"
@@ -294,7 +294,7 @@ class LiToImageTo3D(io.ComfyNode):
         num_gauss = gs_dict["xyz_w"].shape[0] if gs_dict["xyz_w"].dim() == 2 else gs_dict["xyz_w"].numel() // 3
         _say("decode", f"done in {t_decode:.1f}s, {num_gauss} Gaussians")
 
-        # ── pack outputs (move to CPU to free VRAM) ───────────────────────────
+        # -- pack outputs (move to CPU to free VRAM) ---------------------------
         gs_output = {
             "xyz_w": gs_dict["xyz_w"].cpu(),
             "rgb_sh": gs_dict["rgb_sh"].cpu(),
