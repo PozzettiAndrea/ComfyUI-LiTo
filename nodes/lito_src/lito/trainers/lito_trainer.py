@@ -66,6 +66,7 @@ from lito.script_utils import config_utils
 from lito.trainers.base import BaseTrainer
 from plibs import gs_utils, lightning_utils, linalg_utils, ppoint, sh_utils, structures, utils
 from plibs.ppoint import PackedPoint
+from contextlib import nullcontext as _nullcontext
 
 if version.parse(torch.__version__) >= version.parse("2.9.0"):
     torch.backends.fp32_precision = "none"
@@ -1356,7 +1357,7 @@ class LightTokenizationTrainer(BaseTrainer):
         print(f"  Finished inference_init_coords_for_decoder, took {ttime: .1f} secs", flush=True)
 
         # Flatten latent to packed format
-        with torch.autocast(device_type=fpoint_latent.device.type, enabled=False):
+        with _nullcontext():
             fpoint_latent_packed = fpoint_latent.reshape(b * num_latent, dim_latent)  # (bl, dl)
 
             # 2. Pre-compute voxelization for localized_voxel self-attention
@@ -1958,7 +1959,7 @@ class LightTokenizationTrainer(BaseTrainer):
             est_normal_w = torch.nn.functional.normalize(est_normal_w_raw, dim=-1)  # (b, q, h, w, 3xyz_w)
 
             # make sure gt points toward -z in camera coordinate
-            with torch.no_grad(), torch.autocast(device_type=normal_w_gt.device.type, enabled=False):
+            with torch.no_grad():
                 b, q, h, w, _ = normal_w_gt.shape
                 bq = b * q
 
@@ -3036,7 +3037,7 @@ class LightTokenizationTrainer(BaseTrainer):
                 pass
 
             # compute metrics like chamfer distance
-            with torch.autocast(device_type="cuda", enabled=False):
+            with _nullcontext():
                 num_chamfer_points = 2048
                 loss_cf_xyz, _ = pytorch3d.loss.chamfer_distance(
                     x=sampled_x_flow_dict["xyz_w"][:, :num_chamfer_points].float(),  # (b, num_flow_points, 3)
@@ -3417,7 +3418,7 @@ class LightTokenizationTrainer(BaseTrainer):
                     )  # (b, num_latent, dim_latent)
 
         # construct gt_occ_grid
-        with torch.no_grad(), torch.autocast(device_type=self.device.type, enabled=False):
+        with torch.no_grad():
             min_xyz_w, max_xyz_w, grid_size = -1.0, 1.0, 64
             cell_width = (max_xyz_w - min_xyz_w) / grid_size
             # randomly select 100000 points
@@ -3735,7 +3736,7 @@ class LightTokenizationTrainer(BaseTrainer):
         for ib in range(len(raw_meshes)):
             raw_mesh = raw_meshes[ib]
             if raw_mesh is not None:
-                with torch.autocast(device_type=self.device.type, enabled=False):
+                with _nullcontext():
                     rdict = raw_mesh.render(
                         camera=cameras[ib].to(device=self.device, dtype=torch.float),
                         return_types=[

@@ -10,6 +10,14 @@ from ..modules import sparse as sp
 from ..modules.sparse.transformer import ModulatedSparseTransformerCrossBlock
 from .sparse_structure_flow import TimestepEmbedder
 from .sparse_elastic_mixin import SparseTransformerElasticMixin
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.disable_weight_init
+    return _OPS
+
 
 
 class SparseResBlock3d(nn.Module):
@@ -36,7 +44,7 @@ class SparseResBlock3d(nn.Module):
         self.conv2 = zero_module(sp.SparseConv3d(self.out_channels, self.out_channels, 3))
         self.emb_layers = nn.Sequential(
             nn.SiLU(),
-            nn.Linear(emb_channels, 2 * self.out_channels, bias=True),
+            _ops().Linear(emb_channels, 2 * self.out_channels, bias=True),
         )
         self.skip_connection = sp.SparseLinear(channels, self.out_channels) if channels != self.out_channels else nn.Identity()
         self.updown = None
@@ -118,7 +126,7 @@ class SLatFlowModel(nn.Module):
         if share_mod:
             self.adaLN_modulation = nn.Sequential(
                 nn.SiLU(),
-                nn.Linear(model_channels, 6 * model_channels, bias=True)
+                _ops().Linear(model_channels, 6 * model_channels, bias=True)
             )
 
         if pe_mode == "ape":

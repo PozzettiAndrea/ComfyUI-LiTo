@@ -14,6 +14,14 @@ import torch.nn.functional as F
 
 from lito.models.layers import CrossAttentionLayer, FinalLayer, SelfAttentionLayer
 from lito.script_utils import config_utils
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.disable_weight_init
+    return _OPS
+
 def _comfy_device():
     import comfy.model_management
     return comfy.model_management.get_torch_device()
@@ -109,7 +117,7 @@ class DiTBlock(nn.Module):
             num_heads=num_heads,
             use_rmsnorm=use_rmsnorm,
         )
-        self.norm1 = nn.LayerNorm(dim_hidden, elementwise_affine=False, eps=1e-6)
+        self.norm1 = _ops().LayerNorm(dim_hidden, elementwise_affine=False, eps=1e-6)
 
         # add conditional tokens with cross attention
         if self.dim_cond_token is not None:
@@ -120,7 +128,7 @@ class DiTBlock(nn.Module):
                 num_heads=num_heads,
                 use_rmsnorm=use_rmsnorm,
             )
-            self.norm2 = nn.LayerNorm(dim_hidden, elementwise_affine=False, eps=1e-6)
+            self.norm2 = _ops().LayerNorm(dim_hidden, elementwise_affine=False, eps=1e-6)
 
         # to be compatible with lower version pytorch
         approx_gelu = lambda: nn.GELU(approximate="tanh")
@@ -223,24 +231,24 @@ class DiffusionTransformer(nn.Module):
         #     self.register_buffer('pos_mtx', init_positional_encoding)
 
         # token projection
-        self.z_proj = nn.Linear(self.dim_latent_in, dim_hidden)
-        self.z_proj_ln = nn.LayerNorm(dim_hidden, eps=1e-6)
+        self.z_proj = _ops().Linear(self.dim_latent_in, dim_hidden)
+        self.z_proj_ln = _ops().LayerNorm(dim_hidden, eps=1e-6)
 
         # positional embedding projection
         if init_pos_emb_dim != dim_hidden:
-            self.pos_proj = nn.Linear(self.init_pos_emb_dim, dim_hidden)
+            self.pos_proj = _ops().Linear(self.init_pos_emb_dim, dim_hidden)
 
         # timestep embedding
         self.time_embedder_config = time_embedder_config
         self.t_embedder = config_utils.instantiate_from_config(self.time_embedder_config)
         self.t_proj = nn.Sequential(
-            nn.Linear(self.t_embedder.dim_out, self.dim_hidden, bias=True),
+            _ops().Linear(self.t_embedder.dim_out, self.dim_hidden, bias=True),
             nn.SiLU(),
-            nn.Linear(self.dim_hidden, self.dim_hidden, bias=True),
+            _ops().Linear(self.dim_hidden, self.dim_hidden, bias=True),
         )
         self.t0_proj = nn.Sequential(
             nn.SiLU(),
-            nn.Linear(self.dim_hidden, 6 * self.dim_hidden, bias=True),
+            _ops().Linear(self.dim_hidden, 6 * self.dim_hidden, bias=True),
         )
 
         if self.dim_cond_token is not None:

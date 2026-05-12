@@ -5,6 +5,14 @@ import torch.nn.functional as F
 from ..modules.norm import GroupNorm32, ChannelLayerNorm32
 from ..modules.spatial import pixel_shuffle_3d
 from ..modules.utils import zero_module, convert_module_to_f16, convert_module_to_f32
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.disable_weight_init
+    return _OPS
+
 
 
 def norm_layer(norm_type: str, *args, **kwargs) -> nn.Module:
@@ -32,9 +40,9 @@ class ResBlock3d(nn.Module):
 
         self.norm1 = norm_layer(norm_type, channels)
         self.norm2 = norm_layer(norm_type, self.out_channels)
-        self.conv1 = nn.Conv3d(channels, self.out_channels, 3, padding=1)
-        self.conv2 = zero_module(nn.Conv3d(self.out_channels, self.out_channels, 3, padding=1))
-        self.skip_connection = nn.Conv3d(channels, self.out_channels, 1) if channels != self.out_channels else nn.Identity()
+        self.conv1 = _ops().Conv3d(channels, self.out_channels, 3, padding=1)
+        self.conv2 = zero_module(_ops().Conv3d(self.out_channels, self.out_channels, 3, padding=1))
+        self.skip_connection = _ops().Conv3d(channels, self.out_channels, 1) if channels != self.out_channels else nn.Identity()
     
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         h = self.norm1(x)
@@ -61,7 +69,7 @@ class DownsampleBlock3d(nn.Module):
         self.out_channels = out_channels
 
         if mode == "conv":
-            self.conv = nn.Conv3d(in_channels, out_channels, 2, stride=2)
+            self.conv = _ops().Conv3d(in_channels, out_channels, 2, stride=2)
         elif mode == "avgpool":
             assert in_channels == out_channels, "Pooling mode requires in_channels to be equal to out_channels"
 
@@ -86,7 +94,7 @@ class UpsampleBlock3d(nn.Module):
         self.out_channels = out_channels
 
         if mode == "conv":
-            self.conv = nn.Conv3d(in_channels, out_channels*8, 3, padding=1)
+            self.conv = _ops().Conv3d(in_channels, out_channels*8, 3, padding=1)
         elif mode == "nearest":
             assert in_channels == out_channels, "Nearest mode requires in_channels to be equal to out_channels"
 
@@ -131,7 +139,7 @@ class SparseStructureEncoder(nn.Module):
         self.use_fp16 = use_fp16
         self.dtype = torch.float16 if use_fp16 else torch.float32
 
-        self.input_layer = nn.Conv3d(in_channels, channels[0], 3, padding=1)
+        self.input_layer = _ops().Conv3d(in_channels, channels[0], 3, padding=1)
 
         self.blocks = nn.ModuleList([])
         for i, ch in enumerate(channels):
@@ -152,7 +160,7 @@ class SparseStructureEncoder(nn.Module):
         self.out_layer = nn.Sequential(
             norm_layer(norm_type, channels[-1]),
             nn.SiLU(),
-            nn.Conv3d(channels[-1], latent_channels*2, 3, padding=1)
+            _ops().Conv3d(channels[-1], latent_channels*2, 3, padding=1)
         )
 
         if use_fp16:
@@ -240,7 +248,7 @@ class SparseStructureDecoder(nn.Module):
         self.use_fp16 = use_fp16
         self.dtype = torch.float16 if use_fp16 else torch.float32
 
-        self.input_layer = nn.Conv3d(latent_channels, channels[0], 3, padding=1)
+        self.input_layer = _ops().Conv3d(latent_channels, channels[0], 3, padding=1)
 
         self.middle_block = nn.Sequential(*[
             ResBlock3d(channels[0], channels[0])
@@ -261,7 +269,7 @@ class SparseStructureDecoder(nn.Module):
         self.out_layer = nn.Sequential(
             norm_layer(norm_type, channels[-1]),
             nn.SiLU(),
-            nn.Conv3d(channels[-1], out_channels, 3, padding=1)
+            _ops().Conv3d(channels[-1], out_channels, 3, padding=1)
         )
 
         if use_fp16:

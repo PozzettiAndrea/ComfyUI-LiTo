@@ -38,6 +38,7 @@ except ImportError:
     RasterizePoints = None
 
 from plibs import linalg_utils, rigid_motion
+from contextlib import nullcontext as _nullcontext
 pr_utils = None
 render = None
 imagesc = None
@@ -5182,7 +5183,7 @@ def get_neighbor_points_with_pulsar(
     else:
         min_depth = max(f_meter.max().item() + 1e-6, t_min)
 
-    with torch.autocast(device_type=xyz_w.device.type, enabled=False):
+    with _nullcontext():
         if isinstance(radius, float):
             vert_rad = torch.ones(bq, n, dtype=torch.float, device=xyz_w.device) * radius  # (bq, n)
         else:
@@ -6103,7 +6104,7 @@ def get_img_feat_with_ray_embedding(
                 )
 
     # run dino (get patch feature)
-    with torch.autocast(device_type=rgb.device.type, dtype=torch.bfloat16, enabled=True):
+    with _nullcontext():
         feature = model(x=rgb, hit=alpha)  # (b, d, hp, wp)
     if debug:
         assert feature.isfinite().all(), f"{feature.shape}, nan {feature.isnan().any()}, inf {feature.isinf().any()}"
@@ -7223,7 +7224,7 @@ def compute_xyz_w_and_select_random_points(
         This function can be memory intensive. If memory is a concern, we can trade compute
         as well by first backprojecting all pixels.
     """
-    with torch.autocast(device_type=z_map.device.type, enabled=False):
+    with _nullcontext():
         b, q, h, w = hit_map.shape
         assert hit_map.dtype == torch.bool, f"{hit_map.dtype=}"
         hit_map = torch.logical_and(

@@ -13,6 +13,14 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from lito.models import nn_utils
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.disable_weight_init
+    return _OPS
+
 
 
 class LinearLayer(nn.Linear):
@@ -145,7 +153,7 @@ class StackedLinearLayers(nn.Module):
                 For example, you can pass `nn.LayerNorm`.
                 If you want to control additional functionality like the eps and elementwise_affine of nn.LayerNorm,
                 you can pass a lambda function:
-                lambda dim: torch.nn.LayerNorm(dim, eps=1e-5, elementwise_affine=False)
+                lambda dim: torch._ops().LayerNorm(dim, eps=1e-5, elementwise_affine=False)
             dropout_prob:
                 Dropout probability added after nonlinearity. If 0, no dropout layer is added.
             output_add_nonlinearity:

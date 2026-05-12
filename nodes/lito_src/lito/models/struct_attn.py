@@ -15,6 +15,7 @@ import flash_attn
 import torch
 
 from plibs.flash_utils import BlockDiagonalSeqLens, create_block_diagonal_attn_bias_from_seq_lens
+from contextlib import nullcontext as _nullcontext
 
 # flash attention currently supports only float16 and bfloat16
 FLASH_ATTN_DTYPE = torch.bfloat16
@@ -58,7 +59,7 @@ def _flash_varlen(
         q, k, v = query, key, value
 
     ori_dtype = v.dtype
-    with torch.autocast(device_type="cuda", enabled=False):
+    with _nullcontext():
         out = flash_attn.flash_attn_varlen_func(
             q=q.to(dtype=FLASH_ATTN_DTYPE).contiguous(),
             k=k.to(dtype=FLASH_ATTN_DTYPE).contiguous(),
@@ -288,7 +289,7 @@ def structural_memory_efficient_attention(
 
     if structural_attn_dict is None:
         if query.is_cuda:
-            with torch.autocast(device_type="cuda", enabled=False):
+            with _nullcontext():
                 ori_dtype = value.dtype
                 out = flash_attn.flash_attn_func(
                     query.to(dtype=FLASH_ATTN_DTYPE).contiguous(),

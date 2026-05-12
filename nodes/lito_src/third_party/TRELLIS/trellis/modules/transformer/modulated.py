@@ -4,6 +4,14 @@ import torch.nn as nn
 from ..attention import MultiHeadAttention
 from ..norm import LayerNorm32
 from .blocks import FeedForwardNet
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.disable_weight_init
+    return _OPS
+
 
 
 class ModulatedTransformerBlock(nn.Module):
@@ -46,7 +54,7 @@ class ModulatedTransformerBlock(nn.Module):
         if not share_mod:
             self.adaLN_modulation = nn.Sequential(
                 nn.SiLU(),
-                nn.Linear(channels, 6 * channels, bias=True)
+                _ops().Linear(channels, 6 * channels, bias=True)
             )
 
     def _forward(self, x: torch.Tensor, mod: torch.Tensor) -> torch.Tensor:
@@ -126,7 +134,7 @@ class ModulatedTransformerCrossBlock(nn.Module):
         if not share_mod:
             self.adaLN_modulation = nn.Sequential(
                 nn.SiLU(),
-                nn.Linear(channels, 6 * channels, bias=True)
+                _ops().Linear(channels, 6 * channels, bias=True)
             )
 
     def _forward(self, x: torch.Tensor, mod: torch.Tensor, context: torch.Tensor):

@@ -52,6 +52,7 @@ from lito.odelibs import ode_solvers
 from lito.script_utils import config_utils, pl_utils
 from lito.trainers import base as base_trainer, lito_trainer
 from plibs import ppoint, rigid_motion, utils
+from contextlib import nullcontext as _nullcontext
 
 
 class LiToDiTTrainer(base_trainer.BaseTrainer):
@@ -720,7 +721,7 @@ class LiToDiTTrainer(base_trainer.BaseTrainer):
             mlx_compute_dtype: Compute dtype string (``"bfloat16"``, ``"float16"``,
                 ``"float32"``, or ``None`` for f32).  When set to a reduced-precision
                 dtype, model weights are cast accordingly so that MLX linear ops
-                run in that precision — analogous to ``torch.autocast``.
+                run in that precision — analogous to ``torch_autocast``.
 
         Returns:
             MLX DiffusionTransformer with the requested weights and dtype.
@@ -783,7 +784,7 @@ class LiToDiTTrainer(base_trainer.BaseTrainer):
             cfg_scale: Classifier-free guidance scale.
             use_ema: Whether to use EMA model weights.
             mlx_compute_dtype: Compute dtype for the MLX forward pass.
-                Use ``"bfloat16"`` (default) to match CUDA ``torch.autocast(bf16)``
+                Use ``"bfloat16"`` (default) to match CUDA ``nullcontext``
                 behaviour, ``"float16"`` for half-precision, or ``None`` / ``"float32"``
                 for full precision.
 
@@ -805,7 +806,7 @@ class LiToDiTTrainer(base_trainer.BaseTrainer):
             flush=True,
         )
         stime = timer()
-        with torch.autocast(device_type=self.device.type, dtype=torch.float16, enabled=True):
+        with _nullcontext():
             cond_tokens = self.get_image_conditioning(
                 straight_rgb=cond_rgba[..., :3],  # (b, q, h, w, 3rgb) [0, 1]
                 alpha=cond_rgba[..., 3:4],  # (b, q, h, w, 1) [0, 1]
@@ -1108,7 +1109,7 @@ class LiToDiTTrainer(base_trainer.BaseTrainer):
         b, q, h, w, _3rgb = straight_rgb.shape
 
         # no need to wrap with torch.no_grad(). we handle it inside
-        # with torch.autocast(device_type=straight_rgb.device.type, dtype=torch.bfloat16, enabled=True):
+        # with _nullcontext():
         # assert not self.patch_encoder.dinov2_model.training
         # for name, param in self.patch_encoder.dinov2_model.named_parameters():
         #     assert not param.requires_grad, f"{name} requires grad"

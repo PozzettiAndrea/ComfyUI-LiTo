@@ -18,6 +18,15 @@ from lito.models.layers import FourierEmbed, PluckerEmbed, PointwiseResnet, RMSN
 from lito.models.point_encoder import ShapeLatent
 from lito.script_utils import config_utils
 from plibs import ppoint
+from contextlib import nullcontext as _nullcontext
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.disable_weight_init
+    return _OPS
+
 
 try:
     from third_party.TRELLIS.trellis.models.structured_latent_vae.base import SparseTransformerBase
@@ -63,8 +72,8 @@ class PointwiseResnetVoxelBlock(torch.nn.Module):
         self.cell_width = cell_width
         self.shift_ratio = shift_ratio
 
-        self.linear_in_coord = torch.nn.Linear(self.dim_coord, self.dim_hidden)
-        self.linear_in_feature = torch.nn.Linear(self.dim_in, self.dim_hidden)
+        self.linear_in_coord = torch._ops().Linear(self.dim_coord, self.dim_hidden)
+        self.linear_in_feature = torch._ops().Linear(self.dim_in, self.dim_hidden)
         blocks = []
         for i in range(num_layers):
             block = PointwiseResnet(
@@ -76,7 +85,7 @@ class PointwiseResnetVoxelBlock(torch.nn.Module):
             )
             blocks.append(block)
         self.blocks = torch.nn.ModuleList(blocks)
-        self.linear_out = torch.nn.Linear(self.dim_hidden, self.dim_out)
+        self.linear_out = torch._ops().Linear(self.dim_hidden, self.dim_out)
         self._init_parameteres()
 
     def _init_parameteres(self):
@@ -467,17 +476,17 @@ class SPointCrossAttentionLayer(torch.nn.Module):
         self.add_bias = add_bias
 
         # linear projection
-        self.linear_q = torch.nn.Linear(
+        self.linear_q = torch._ops().Linear(
             in_features=self.dim_q,
             out_features=self.dim_qkv,
             bias=self.add_bias,
         )
-        self.linear_kv = torch.nn.Linear(
+        self.linear_kv = torch._ops().Linear(
             in_features=self.dim_kv,
             out_features=2 * self.dim_qkv,
             bias=self.add_bias,
         )
-        self.linear_out = torch.nn.Linear(
+        self.linear_out = torch._ops().Linear(
             in_features=self.dim_qkv,
             out_features=self.dim_q,
             bias=self.add_bias,
@@ -487,8 +496,8 @@ class SPointCrossAttentionLayer(torch.nn.Module):
             self.rmsnorm_k = RMSNorm(self.dim_qkv)
 
         # pre layer normalization
-        self.layernorm_q = torch.nn.LayerNorm(self.dim_q)
-        self.layernorm_kv = torch.nn.LayerNorm(self.dim_kv)
+        self.layernorm_q = torch._ops().LayerNorm(self.dim_q)
+        self.layernorm_kv = torch._ops().LayerNorm(self.dim_kv)
 
     def _forward_xformers(
         self,
@@ -860,12 +869,12 @@ class SPointSelfAttentionLayer(torch.nn.Module):
         self.add_bias = add_bias
 
         # linear projection
-        self.linear_qkv = torch.nn.Linear(
+        self.linear_qkv = torch._ops().Linear(
             in_features=self.dim_in,
             out_features=3 * self.dim_qkv,
             bias=self.add_bias,
         )
-        self.linear_out = torch.nn.Linear(
+        self.linear_out = torch._ops().Linear(
             in_features=self.dim_qkv,
             out_features=self.dim_in,
             bias=self.add_bias,
@@ -1161,7 +1170,7 @@ class SPointPerceiverEncoderBlock(torch.nn.Module):
         self.add_kv_linear = add_kv_linear
 
         if self.add_kv_linear:
-            self.kv_linear = torch.nn.Linear(
+            self.kv_linear = torch._ops().Linear(
                 in_features=dim_token,
                 out_features=dim_token,
                 bias=False,  # followed by layernorm
@@ -1169,7 +1178,7 @@ class SPointPerceiverEncoderBlock(torch.nn.Module):
         else:
             self.kv_linear = None
 
-        self.ca_ln = torch.nn.LayerNorm(dim_latent, eps=1e-6)
+        self.ca_ln = torch._ops().LayerNorm(dim_latent, eps=1e-6)
 
         self.ca_layer = SPointCrossAttentionLayer(
             dim_q=dim_latent,
@@ -1208,8 +1217,8 @@ class SPointPerceiverEncoderBlock(torch.nn.Module):
         _ln1_layers = []
         _ln2_layers = []
         for _ in range(num_self_attn):
-            ln1 = torch.nn.LayerNorm(dim_latent, eps=1e-6)
-            ln2 = torch.nn.LayerNorm(dim_latent, eps=1e-6)
+            ln1 = torch._ops().LayerNorm(dim_latent, eps=1e-6)
+            ln2 = torch._ops().LayerNorm(dim_latent, eps=1e-6)
             _ln1_layers.append(ln1)
             _ln2_layers.append(ln2)
 
@@ -1733,7 +1742,7 @@ class SPointEncoder(torch.nn.Module):
             "voxel_avg_coord_avg_feature",
         ]:
             if self.dim_perceiver_kv != self.perceiver_dim:
-                self.perceiver_init_query_linear = torch.nn.Linear(
+                self.perceiver_init_query_linear = torch._ops().Linear(
                     in_features=self.dim_perceiver_kv,
                     out_features=self.perceiver_dim,
                     bias=True,
@@ -1800,7 +1809,7 @@ class SPointEncoder(torch.nn.Module):
                 "voxel_avg_coord_avg_feature",
             ]:
                 if self.dim_perceiver_kv != self.vperceiver_dim:
-                    self.vperceiver_init_query_linear = torch.nn.Linear(
+                    self.vperceiver_init_query_linear = torch._ops().Linear(
                         in_features=self.dim_perceiver_kv,
                         out_features=self.vperceiver_dim,
                         bias=True,
@@ -1815,7 +1824,7 @@ class SPointEncoder(torch.nn.Module):
 
         # output layer
         self.use_fp32_for_final_layer = use_fp32_for_final_layer
-        self.final_layer = torch.nn.Linear(
+        self.final_layer = torch._ops().Linear(
             in_features=self.vperceiver_dim,
             out_features=self.dim_output,
         )
@@ -2217,7 +2226,7 @@ class SPointEncoder(torch.nn.Module):
                         int(init_query_config.get("fps_min_num_points", -1)),
                     )
                     ridxs = torch.randperm(seqlen, device=coord.device)[:num_subset] + current_idx  # (num_subset,)
-                    with torch.autocast(device_type=coord.coord.device.type, enabled=False):
+                    with _nullcontext():
                         _coord, _idx = pytorch3d.ops.sample_farthest_points(
                             points=coord.coord[ridxs].unsqueeze(0).float(),  # (1, num_subset, dn)
                             lengths=None,
@@ -2290,7 +2299,7 @@ class SPointEncoder(torch.nn.Module):
                         int(init_query_config.get("fps_min_num_points", -1)),
                     )
                     ridxs = torch.randperm(seqlen, device=coord.device)[:num_subset] + current_idx  # (num_subset,)
-                    with torch.autocast(device_type=coord.coord.device.type, enabled=False):
+                    with _nullcontext():
                         _coord, _idx = pytorch3d.ops.sample_farthest_points(
                             points=coord.coord[ridxs].unsqueeze(0).float(),  # (1, num_subset, dn)
                             lengths=None,
@@ -2309,7 +2318,7 @@ class SPointEncoder(torch.nn.Module):
 
                 s_coord = coord.coord[current_idx : current_idx + seqlen]  # (n, dn)
                 r_coord = coord.coord[ridxs]  # (num_latent, dn)
-                with torch.autocast(device_type=r_coord.device.type, enabled=False):
+                with _nullcontext():
                     knn_out = pytorch3d.ops.knn_points(
                         p1=s_coord.unsqueeze(0).float(),  # (1, n, dn)
                         p2=r_coord.unsqueeze(0).float(),  # (1, m, dn) query
@@ -2730,7 +2739,7 @@ class SPointEncoder(torch.nn.Module):
         # final layer
         if self.final_layer is not None:
             if self.use_fp32_for_final_layer:
-                with torch.autocast(device_type=vperceiver_latent_tokens.device.type, enabled=False):
+                with _nullcontext():
                     vperceiver_latent_tokens = self.final_layer(
                         vperceiver_latent_tokens.float()
                     )  # (b, num_latent, dim_latent) or (bl, dim_latent)

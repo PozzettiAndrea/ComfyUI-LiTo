@@ -19,6 +19,15 @@ import torch.utils.checkpoint
 
 from lito.models.struct_attn import structural_memory_efficient_attention
 from plibs import ppoint
+from contextlib import nullcontext as _nullcontext
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.disable_weight_init
+    return _OPS
+
 
 
 class OverfitLatent(torch.nn.Module):
@@ -127,12 +136,12 @@ class SelfAttentionLayer(nn.Module):
         self.add_bias = add_bias
 
         # linear projection
-        self.linear_qkv = nn.Linear(
+        self.linear_qkv = _ops().Linear(
             in_features=self.dim_in,
             out_features=3 * self.dim_qkv,
             bias=self.add_bias,
         )
-        self.linear_out = nn.Linear(
+        self.linear_out = _ops().Linear(
             in_features=self.dim_qkv,
             out_features=self.dim_in,
             bias=self.add_bias,
@@ -236,17 +245,17 @@ class CrossAttentionLayer(nn.Module):
         self.packed_kv = packed_kv
 
         # linear projection
-        self.linear_q = nn.Linear(
+        self.linear_q = _ops().Linear(
             in_features=self.dim_q,
             out_features=self.dim_qkv,
             bias=self.add_bias,
         )
-        self.linear_kv = nn.Linear(
+        self.linear_kv = _ops().Linear(
             in_features=self.dim_kv,
             out_features=2 * self.dim_qkv,
             bias=self.add_bias,
         )
-        self.linear_out = nn.Linear(
+        self.linear_out = _ops().Linear(
             in_features=self.dim_qkv,
             out_features=self.dim_q,
             bias=self.add_bias,
@@ -256,8 +265,8 @@ class CrossAttentionLayer(nn.Module):
             self.rmsnorm_k = RMSNorm(self.dim_qkv)
 
         # pre layer normalization
-        self.layernorm_q = nn.LayerNorm(self.dim_q)
-        self.layernorm_kv = nn.LayerNorm(self.dim_kv)
+        self.layernorm_q = _ops().LayerNorm(self.dim_q)
+        self.layernorm_kv = _ops().LayerNorm(self.dim_kv)
 
     def forward(
         self,
@@ -346,8 +355,8 @@ class SelfAttentionBlock(torch.nn.Module):
     ):
         super().__init__()
 
-        self.ln1 = nn.LayerNorm(dim, eps=1e-6)
-        self.ln2 = nn.LayerNorm(dim, eps=1e-6)
+        self.ln1 = _ops().LayerNorm(dim, eps=1e-6)
+        self.ln2 = _ops().LayerNorm(dim, eps=1e-6)
 
         self.sa_layer = SelfAttentionLayer(
             dim_in=dim,
@@ -458,12 +467,12 @@ class PointwiseResnet(torch.nn.Module):
         self.linear_in = self.linear_out = self.ffn_swiglu = None
         if self.activation_fn == "gelu":
             self.nonlinearity = torch.nn.GELU(approximate="tanh")
-            self.linear_in = torch.nn.Linear(self.dim_in, self.dim_hidden, bias=bias)
-            self.linear_out = torch.nn.Linear(self.dim_hidden, self.dim_out, bias=bias)
+            self.linear_in = torch._ops().Linear(self.dim_in, self.dim_hidden, bias=bias)
+            self.linear_out = torch._ops().Linear(self.dim_hidden, self.dim_out, bias=bias)
         elif self.activation_fn == "silu":
             self.nonlinearity = torch.nn.SiLU()
-            self.linear_in = torch.nn.Linear(self.dim_in, self.dim_hidden, bias=bias)
-            self.linear_out = torch.nn.Linear(self.dim_hidden, self.dim_out, bias=bias)
+            self.linear_in = torch._ops().Linear(self.dim_in, self.dim_hidden, bias=bias)
+            self.linear_out = torch._ops().Linear(self.dim_hidden, self.dim_out, bias=bias)
         elif self.activation_fn == "swiglu":
             self.ffn_swiglu = _SwiGLU(
                 in_features=dim_in,
@@ -478,7 +487,7 @@ class PointwiseResnet(torch.nn.Module):
         if self.dim_in == self.dim_out:
             self.skip_linear = None
         else:
-            self.skip_linear = torch.nn.Linear(self.dim_in, self.dim_out, bias=False)
+            self.skip_linear = torch._ops().Linear(self.dim_in, self.dim_out, bias=False)
 
         self._init_parameteres()
 
@@ -568,7 +577,7 @@ class FinalMLP(nn.Module):
         current_dim = self.dim_in
         for i in range(self.num_layers - 1):
             block_dict = dict()
-            block_dict["norm_layer"] = nn.LayerNorm(
+            block_dict["norm_layer"] = _ops().LayerNorm(
                 current_dim,
                 elementwise_affine=(self.dim_cond_feature == 0),
                 eps=eps,
@@ -576,9 +585,9 @@ class FinalMLP(nn.Module):
 
             if self.dim_cond_feature > 0:
                 adaLN_modulation = nn.Sequential(
-                    nn.Linear(self.dim_cond_feature, self.dim_cond_feature, bias=True),
+                    _ops().Linear(self.dim_cond_feature, self.dim_cond_feature, bias=True),
                     nn.SiLU(),
-                    nn.Linear(self.dim_cond_feature, 2 * current_dim, bias=True),
+                    _ops().Linear(self.dim_cond_feature, 2 * current_dim, bias=True),
                 )
             else:
                 adaLN_modulation = None
@@ -670,13 +679,13 @@ class FinalLayer(nn.Module):
         self.dim_input = dim_input
         self.dim_output = dim_output
         self.dim_cond_feature = dim_cond_feature
-        self.norm_final = nn.LayerNorm(dim_input, elementwise_affine=(self.dim_cond_feature == 0), eps=eps)
-        self.linear = nn.Linear(dim_input, dim_output, bias=True)
+        self.norm_final = _ops().LayerNorm(dim_input, elementwise_affine=(self.dim_cond_feature == 0), eps=eps)
+        self.linear = _ops().Linear(dim_input, dim_output, bias=True)
         if self.dim_cond_feature > 0:
             self.adaLN_modulation = nn.Sequential(
-                nn.Linear(dim_cond_feature, dim_cond_feature, bias=True),
+                _ops().Linear(dim_cond_feature, dim_cond_feature, bias=True),
                 nn.SiLU(),
-                nn.Linear(dim_cond_feature, 2 * dim_input, bias=True),
+                _ops().Linear(dim_cond_feature, 2 * dim_input, bias=True),
             )
         else:
             self.adaLN_modulation = None
@@ -706,7 +715,7 @@ class FinalLayer(nn.Module):
         if not self.force_fp32:
             x = self.linear(x)
         else:
-            with torch.autocast(device_type=x.device.type, enabled=False):
+            with _nullcontext():
                 x = self.linear(x.float())
         return x
 
@@ -821,12 +830,12 @@ class SwiGLU(nn.Module):
 
         self.w12: T.Optional[nn.Linear]
         if _pack_weights:
-            self.w12 = nn.Linear(in_features, 2 * hidden_features, bias=bias)
+            self.w12 = _ops().Linear(in_features, 2 * hidden_features, bias=bias)
         else:
             self.w12 = None
-            self.w1 = nn.Linear(in_features, hidden_features, bias=bias)
-            self.w2 = nn.Linear(in_features, hidden_features, bias=bias)
-        self.w3 = nn.Linear(hidden_features, out_features, bias=bias)
+            self.w1 = _ops().Linear(in_features, hidden_features, bias=bias)
+            self.w2 = _ops().Linear(in_features, hidden_features, bias=bias)
+        self.w3 = _ops().Linear(hidden_features, out_features, bias=bias)
 
         self.hidden_features = hidden_features
         self.out_features = out_features
@@ -869,9 +878,9 @@ class SwiGLUFeedForward(nn.Module):
             hidden_dim = int(ffn_dim_multiplier * hidden_dim)
         hidden_dim = multiple_of * ((hidden_dim + multiple_of - 1) // multiple_of)
 
-        self.w1 = torch.nn.Linear(dim, hidden_dim, bias=False)
-        self.w2 = torch.nn.Linear(hidden_dim, dim, bias=False)
-        self.w3 = torch.nn.Linear(dim, hidden_dim, bias=False)
+        self.w1 = torch._ops().Linear(dim, hidden_dim, bias=False)
+        self.w2 = torch._ops().Linear(hidden_dim, dim, bias=False)
+        self.w3 = torch._ops().Linear(dim, hidden_dim, bias=False)
 
     def forward(self, x):
         return self.w2(torch.nn.functional.silu(self.w1(x)) * self.w3(x))
@@ -1187,7 +1196,7 @@ class PosEncLearnableFourier(nn.Module):
         self.include_input = include_input
 
         # Projection matrix on learned lines (used in eq. 2)
-        self.Wr = nn.Linear(self.M, self.F_dim, bias=False)
+        self.Wr = _ops().Linear(self.M, self.F_dim, bias=False)
         # MLP (GeLU(F @ W1 + B1) @ W2 + B2 (eq. 6)
 
         self.init_weights(self.Wr)
@@ -1197,11 +1206,11 @@ class PosEncLearnableFourier(nn.Module):
 
             # for layernorm, see Sec. D
             self.mlp = nn.Sequential(
-                # nn.LayerNorm(2 * self.F_dim, elementwise_affine=False, eps=1e-6),
-                nn.Linear(2 * self.F_dim, self.H_dim, bias=True),
+                # _ops().LayerNorm(2 * self.F_dim, elementwise_affine=False, eps=1e-6),
+                _ops().Linear(2 * self.F_dim, self.H_dim, bias=True),
                 nn.GELU(),
-                # nn.LayerNorm(self.H_dim, elementwise_affine=False, eps=1e-6),
-                nn.Linear(self.H_dim, self.D // self.G),
+                # _ops().LayerNorm(self.H_dim, elementwise_affine=False, eps=1e-6),
+                _ops().Linear(self.H_dim, self.D // self.G),
             )  # 2 for cos and sin
 
             self.mlp.apply(self.init_weights)
@@ -1423,9 +1432,9 @@ class TimeEmbedder(nn.Module):
         )
 
         self.mlp = nn.Sequential(
-            nn.Linear(self.fourier_embedder.dim_out + 1, mlp_dim_feature, bias=True),
+            _ops().Linear(self.fourier_embedder.dim_out + 1, mlp_dim_feature, bias=True),
             nn.SiLU(),
-            nn.Linear(mlp_dim_feature, self.dim_output, bias=True),
+            _ops().Linear(mlp_dim_feature, self.dim_output, bias=True),
         )
 
     def forward(self, t: torch.Tensor, debug: bool = False):

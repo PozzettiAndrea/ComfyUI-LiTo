@@ -7,12 +7,20 @@ import torch
 import torch.nn.functional as F
 
 from lito.models.perceiver_encoder import PerceiverEncoderBlock
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.disable_weight_init
+    return _OPS
+
 
 
 class LayerNorm2d(torch.nn.Module):
     def __init__(self, num_features: int):
         super(LayerNorm2d, self).__init__()
-        self.norm = torch.nn.LayerNorm(num_features)
+        self.norm = torch._ops().LayerNorm(num_features)
 
     def forward(self, x: torch.Tensor):
         # x shape: [batch_size, channels, height, width]
@@ -39,7 +47,7 @@ class ResidualBlock(torch.nn.Module):
         self.activation = activation
 
         # First convolutional layer
-        self.conv1 = torch.nn.Conv2d(
+        self.conv1 = torch._ops().Conv2d(
             in_channels=in_channels,
             out_channels=out_channels,
             kernel_size=kernel_size,
@@ -50,7 +58,7 @@ class ResidualBlock(torch.nn.Module):
         self.ln1 = LayerNorm2d(out_channels)
 
         # Second convolutional layer
-        self.conv2 = torch.nn.Conv2d(
+        self.conv2 = torch._ops().Conv2d(
             out_channels,
             out_channels,
             kernel_size=kernel_size,
@@ -65,7 +73,7 @@ class ResidualBlock(torch.nn.Module):
         # If dimensions change, we need to adjust the shortcut connection
         if stride != 1 or in_channels != out_channels:
             self.shortcut = torch.nn.Sequential(
-                torch.nn.Conv2d(
+                torch._ops().Conv2d(
                     in_channels,
                     out_channels,
                     kernel_size=1,

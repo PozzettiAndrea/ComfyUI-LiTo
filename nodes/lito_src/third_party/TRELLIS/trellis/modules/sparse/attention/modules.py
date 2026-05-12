@@ -7,6 +7,14 @@ from .full_attn import sparse_scaled_dot_product_attention
 from .serialized_attn import SerializeMode, sparse_serialized_scaled_dot_product_self_attention
 from .windowed_attn import sparse_windowed_scaled_dot_product_self_attention
 from ...attention import RotaryPositionEmbedder
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.disable_weight_init
+    return _OPS
+
 
 
 class SparseMultiHeadRMSNorm(nn.Module):
@@ -60,16 +68,16 @@ class SparseMultiHeadAttention(nn.Module):
         self.qk_rms_norm = qk_rms_norm
 
         if self._type == "self":
-            self.to_qkv = nn.Linear(channels, channels * 3, bias=qkv_bias)
+            self.to_qkv = _ops().Linear(channels, channels * 3, bias=qkv_bias)
         else:
-            self.to_q = nn.Linear(channels, channels, bias=qkv_bias)
-            self.to_kv = nn.Linear(self.ctx_channels, channels * 2, bias=qkv_bias)
+            self.to_q = _ops().Linear(channels, channels, bias=qkv_bias)
+            self.to_kv = _ops().Linear(self.ctx_channels, channels * 2, bias=qkv_bias)
         
         if self.qk_rms_norm:
             self.q_rms_norm = SparseMultiHeadRMSNorm(channels // num_heads, num_heads)
             self.k_rms_norm = SparseMultiHeadRMSNorm(channels // num_heads, num_heads)
             
-        self.to_out = nn.Linear(channels, channels)
+        self.to_out = _ops().Linear(channels, channels)
 
         if use_rope:
             self.rope = RotaryPositionEmbedder(channels)

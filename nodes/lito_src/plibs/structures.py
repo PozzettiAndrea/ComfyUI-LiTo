@@ -52,6 +52,7 @@ except ImportError:
     pytorch3d = None
 
 from plibs import gs_utils, linalg_utils, rigid_motion, utils
+from contextlib import nullcontext as _nullcontext
 byte_dict_utils = None
 exr_utils = None
 img_utils = None
@@ -3669,7 +3670,7 @@ class RGBDImage:
             d = arr.size(-1)
             arr = arr.reshape(b * q, h, w, d).permute(0, 3, 1, 2)  # (bq, d, h, w)
             orig_dtype = arr.dtype
-            with torch.autocast(device_type=arr.device.type, enabled=False):
+            with _nullcontext():
                 arr = torch.nn.functional.interpolate(
                     arr.float(),  # (bq, d, h, w)
                     size=(new_height_px, new_width_px),
@@ -3689,7 +3690,7 @@ class RGBDImage:
 
             arr = arr.reshape(b * q, 1, h, w)  # (b, d, h, w)
             orig_dtype = arr.dtype
-            with torch.autocast(device_type=arr.device.type, enabled=False):
+            with _nullcontext():
                 arr = torch.nn.functional.interpolate(
                     arr.float(),  # (b, d, h, w)
                     size=(new_height_px, new_width_px),
@@ -3715,7 +3716,7 @@ class RGBDImage:
                 d = arr.size(-1)
                 arr = arr.reshape(b * q, h, w, d).permute(0, 3, 1, 2)  # (bq, d, h, w)
                 orig_dtype = arr.dtype
-                with torch.autocast(device_type=arr.device.type, enabled=False):
+                with _nullcontext():
                     arr = torch.nn.functional.interpolate(
                         arr.float(),  # (bq, d, h, w)
                         size=(new_height_px, new_width_px),
@@ -9141,7 +9142,7 @@ class RawMesh:
         crop_wh = False
 
         # rasterize
-        with torch.autocast(device_type="cuda", enabled=False):
+        with _nullcontext():
             rast_out, rast_db = dr.rasterize(
                 glctx=glctx,
                 pos=vertex_xyz_c.float().contiguous(),  # (bq, n, 4)
@@ -9401,7 +9402,7 @@ class RawMesh:
         else:
             raise RuntimeError
 
-        with torch.autocast(device_type="cuda", enabled=False):
+        with _nullcontext():
             pixel_uv, pixel_db = dr.interpolate(
                 attr=vertex_uv.reshape(1, n, 2).float().contiguous(),  # (1, n, 2)
                 rast=rast_out,  # (bq, h, w, 4)
@@ -9433,7 +9434,7 @@ class RawMesh:
                 else:
                     break
 
-            with torch.autocast(device_type="cuda", enabled=False):
+            with _nullcontext():
                 interp_out = dr.texture(
                     tex=texture,  # (1, ht, wt, d)
                     uv=pixel_uv.float(),  # (bq, h, w, 2uv)
@@ -9444,7 +9445,7 @@ class RawMesh:
                     max_mip_level=max_mip_level,
                 )  # (bq, h, w, d)
         else:
-            with torch.autocast(device_type="cuda", enabled=False):
+            with _nullcontext():
                 interp_out = dr.texture(
                     tex=texture,
                     uv=pixel_uv.float(),
@@ -9527,7 +9528,7 @@ class RawMesh:
             this assumes invert_z = True
         """
         assert z_ndc.dtype == torch.float or z_ndc.dtype == torch.double
-        with torch.autocast(device_type="cuda", enabled=False):
+        with _nullcontext():
             if t_max is None or t_max >= INF:
                 z_w = (2 * t_min) / (1 - z_ndc)
             else:

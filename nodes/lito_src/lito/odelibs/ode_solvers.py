@@ -9,6 +9,7 @@ import typing as T
 from tqdm import tqdm
 
 import torch
+from contextlib import nullcontext as _nullcontext
 
 
 def odeint(
@@ -152,7 +153,7 @@ def odeint_euler(
 
         dxdt = func(ts[:, i], x)  # (b, *d)
         hi = (ts[:, i + 1] - ts[:, i]).reshape(-1, *([1] * len(d_shape)))  # (b, *d)
-        with torch.autocast(device_type=x.device.type, enabled=False):
+        with _nullcontext():
             x = x + hi.float() * dxdt.float()
 
     return x, xs_intermediate
@@ -207,7 +208,7 @@ def odeint_heun(
         x_new = x + hi.float() * dxdt.float()
         t_new = ts[:, i + 1]
         dxdt_new = func(t_new, x_new)  # (b, *d)
-        with torch.autocast(device_type=x.device.type, enabled=False):
+        with _nullcontext():
             x = x + (hi.float() * 0.5) * (dxdt.float() + dxdt_new.float())
 
     return x, xs_intermediate

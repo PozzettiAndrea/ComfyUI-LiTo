@@ -343,7 +343,7 @@ class BasicTrainer(Trainer):
         Run a training step.
         """
         step_log = {'loss': {}, 'status': {}}
-        amp_context = partial(torch.autocast, device_type='cuda') if self.fp16_mode == 'amp' else nullcontext
+        amp_context = nullcontext if self.fp16_mode == 'amp' else nullcontext
         elastic_controller_context = self.elastic_controller.record if self.elastic_controller_config is not None else nullcontext
 
         # Train

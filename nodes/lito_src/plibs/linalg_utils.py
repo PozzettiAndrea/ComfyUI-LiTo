@@ -85,7 +85,7 @@ def repeat_interleave(input, repeats, dim=None, *, output_size=None):
     Note that even with the higher precision issues can arise. If the batch size is small, consider using a for loop.
     """
     if input.requires_grad:
-        with torch.autocast(device_type=input.device.type, enabled=False):
+        with _nullcontext():
             input = torch.repeat_interleave(input.float(), repeats, dim=dim, output_size=output_size)
     else:
         input = torch.repeat_interleave(input, repeats, dim=dim, output_size=output_size)
@@ -93,6 +93,7 @@ def repeat_interleave(input, repeats, dim=None, *, output_size=None):
 
 
 import torch
+from contextlib import nullcontext as _nullcontext
 
 
 def gumbel_multinomial(
@@ -170,7 +171,7 @@ def _comfy_device():
     if C == 0:
         raise ValueError("`input` must have at least one category.")
 
-    with torch.autocast(device_type=input.device.type, enabled=False):
+    with _nullcontext():
         # make sure we use high precision
         if input.dtype == torch.float64:
             pass
@@ -259,7 +260,7 @@ def disable_tf32_and_autocast(device_type: str = "cuda"):
 
     try:
         # 3. Disable Autocast (nesting PyTorch's built-in context manager)
-        with torch.autocast(device_type=device_type, enabled=False):
+        with _nullcontext():
             yield
 
     finally:
