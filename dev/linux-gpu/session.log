@@ -1,9 +1,9 @@
-[00:00] Crash dump logging enabled: /logs/LiTo-0835/dev/linux-gpu/crash_dump.log
+[00:00] Crash dump logging enabled: /logs/LiTo-1256/dev/linux-gpu/crash_dump.log
 [00:00] 
 [00:00] [1/5] SYNTAX
 [00:00] ----------------------------------------
 [00:00] 
-[DEBUG] server=None, server_url=None, api=None
+[DEBUG] server=None, api=None
 [00:00] Found pyproject.toml (modern format)
 [00:00] Found requirements.txt (legacy format)
 [00:00] Unicode check: OK (all characters cp1252-safe)
@@ -20,748 +20,856 @@ nodes/lito_src/plibs/structures.py:
 [00:00] [2/5] INSTALL
 [00:00] ----------------------------------------
 [00:00] 
-[DEBUG] server=None, server_url=None, api=None
+[DEBUG] server=None, api=None
 [00:00] 
 Setting up ComfyUI...
 [00:00] Creating virtual environment...
-[00:00] Running: uv venv /workspaces/LiTo-0835/.venv --python 3.10
-[00:00] torch_version='2.11.0' -> pinning torch==2.11.0 torchvision==0.26.0 torchaudio==2.11.0
+[00:00] Running: uv venv /workspaces/LiTo-1256/.venv --python 3.13
+[00:00] torch_version='2.10.0' -> pinning torch==2.10.0 torchvision==0.25.0 torchaudio==2.10.0
 [00:00] Cloning ComfyUI (latest)...
-[00:00] Running: git clone --depth 1 https://github.com/comfyanonymous/ComfyUI.git /workspaces/LiTo-0835/ComfyUI
-[00:02] Pinning torch family: torch==2.11.0 torchvision==0.26.0 torchaudio==2.11.0
-[00:02] Running: uv pip install --python /workspaces/LiTo-0835/.venv/bin/python --index-url https://download.pytorch.org/whl/cu128 --extra-index-url https://pypi.org/simple --index-strategy first-index torch==2.11.0 torchvision==0.26.0 torchaudio==2.11.0
-[00:50] Installing ComfyUI requirements...
-[00:50] Running: uv pip install --python /workspaces/LiTo-0835/.venv/bin/python --index-url https://download.pytorch.org/whl/cu128 --extra-index-url https://pypi.org/simple --index-strategy first-index -r /workspaces/LiTo-0835/ComfyUI/requirements.txt
-[00:59] 
+[00:00] Running: git clone --depth 1 https://github.com/comfyanonymous/ComfyUI.git /workspaces/LiTo-1256/ComfyUI
+[00:02] Pinning torch family from https://download.pytorch.org/whl/cu128: torch==2.10.0 torchvision==0.25.0 torchaudio==2.10.0
+[00:02] Running: uv pip install --python /workspaces/LiTo-1256/.venv/bin/python --index-url https://download.pytorch.org/whl/cu128 --extra-index-url https://pypi.org/simple --index-strategy unsafe-best-match torch==2.10.0 torchvision==0.25.0 torchaudio==2.10.0
+[01:14] Installing ComfyUI requirements...
+[01:14] Running: uv pip install --python /workspaces/LiTo-1256/.venv/bin/python --index-url https://download.pytorch.org/whl/cu128 --extra-index-url https://pypi.org/simple --index-strategy unsafe-best-match -r /workspaces/LiTo-1256/ComfyUI/requirements.txt
+[01:25] 
 Installing custom node...
-[00:59] Copying ComfyUI-LiTo to custom_nodes/...
-[00:59] Installing node requirements...
-[00:59] Running: uv pip install --python /workspaces/LiTo-0835/.venv/bin/python --index-url https://download.pytorch.org/whl/cu128 --extra-index-url https://pypi.org/simple --index-strategy first-index -r /workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/requirements.txt
-[01:00] 
+[01:25] Copying ComfyUI-LiTo to custom_nodes/...
+[01:25] Installing node requirements...
+[01:25] Running: uv pip install --python /workspaces/LiTo-1256/.venv/bin/python --index-url https://download.pytorch.org/whl/cu128 --extra-index-url https://pypi.org/simple --index-strategy unsafe-best-match -r /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/requirements.txt
+[01:27] 
 Running install.py...
-[01:00] Running: /workspaces/LiTo-0835/.venv/bin/python /workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/install.py
-[01:00]   
-[01:00]   Installing 1 node dependencies...
-[01:00]     Cloning ComfyUI-GSViewer...
-[01:01]     Installing requirements for ComfyUI-GSViewer...
-[01:01]   
-[01:01]   [requirements] Re-installing main package requirements...
-[01:01]     Installing requirements for ComfyUI-LiTo...
-[01:02]   [comfy-env] Workspace: /workspaces/LiTo-0835/ComfyUI/.ce
-[01:02]   [comfy-env] ComfyUI: /workspaces/LiTo-0835/ComfyUI
-[01:02]   [comfy-env] Found 1 node config(s):
-[01:02]     - lito-nodes <- custom_nodes/ComfyUI-LiTo/nodes/comfy-env.toml (python=host)
-[01:02]   [comfy-env] Bootstrap interpreter has python 3.10 + torch 2.11.0 (cpu). Looking for cuda-only wheels matching cpu/torch2.11/cp310.
-[01:02]   [comfy-env] GPU: Detection: smi
-[01:02]   Driver: 580.159.04
-[01:02]   CUDA: 13.0
-[01:02]   Recommended: CUDA 13.0
-[01:02]   
-[01:02]     GPU 0: NVIDIA GeForce RTX 5060 (sm_120) [Blackwell] 8151MB
-[01:02]   [comfy-env] Comfyui feature -> torch 2.11.0 from https://download.pytorch.org/whl/cu130 (CUDA 13.0 via GPU driver)
-[01:03]   [comfy-env] cuda-wheels: 6 package(s) need a matched (cuda, torch, python) combo: ['pytorch3d', 'gsplat', 'nvdiffrast', 'flash-attn', 'spconv', 'cumm']
-[01:03]   [comfy-env] cuda-wheels tier 1 (bootstrap): probing cu13.0/torch2.11/cp310
-[01:03]   [cuda-wheels] Looking up pytorch3d: cu130 torch2.11 cp310 manylinux linux
-[01:03]   [cuda-wheels]   Found: pytorch3d-0.7.9+cu130torch2.11-cp310-cp310-manylinux_2_35_x86_64.whl
-[01:03]   [cuda-wheels] Looking up gsplat: cu130 torch2.11 cp310 manylinux linux
-[01:03]   [cuda-wheels]   Found: gsplat-1.5.3+cu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[01:03]   [cuda-wheels] Looking up nvdiffrast: cu130 torch2.11 cp310 manylinux linux
-[01:03]   [cuda-wheels]   Found: nvdiffrast-0.4.0+cu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[01:03]   [cuda-wheels] Looking up flash-attn: cu130 torch2.11 cp310 manylinux linux
-[01:03]   [cuda-wheels]   https://pozzettiandrea.github.io/cuda-wheels/v2/flash_attn/: HTTPError: HTTP Error 404: Not Found
-[01:03]   [cuda-wheels]   Found: flash_attn-2.8.3+cu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[01:03]   [cuda-wheels] Looking up spconv: cu130 torch2.11 cp310 manylinux linux
-[01:03]   [cuda-wheels]   Found: spconv-2.3.8+cu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[01:03]   [cuda-wheels] Looking up cumm: cu130 torch2.11 cp310 manylinux linux
-[01:03]   [cuda-wheels]   Found: cumm-0.8.2+cu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[01:03]   [comfy-env] cuda-wheels combo: cu13.0/torch2.11 (bootstrap matches; per-node envs will pin to this)
-[01:03]   [comfy-env] Comfyui feature pin: torch ==2.11.0, torchvision ==0.26.*, torchaudio ==2.11.*
-[01:03]   [comfy-env] Host glibc 2.35 -> comfyui feature system-requirements
-[01:03]   [comfy-env] cuda-wheels combo: per-node cuda features will pin ['torch', 'torchaudio', 'torchvision'] via pypi-options.dependency-overrides (https://download.pytorch.org/whl/cu130)
-[01:03]   [cuda-wheels] Looking up pytorch3d: cu130 torch2.11 cp310 manylinux linux
-[01:03]   [cuda-wheels]   Found: pytorch3d-0.7.9+cu130torch2.11-cp310-cp310-manylinux_2_35_x86_64.whl
-[01:03]   [cuda-wheels] Looking up gsplat: cu130 torch2.11 cp310 manylinux linux
-[01:03]   [cuda-wheels]   Found: gsplat-1.5.3+cu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[01:03]   [cuda-wheels] Looking up nvdiffrast: cu130 torch2.11 cp310 manylinux linux
-[01:04]   [cuda-wheels]   Found: nvdiffrast-0.4.0+cu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[01:04]   [cuda-wheels] Looking up flash-attn: cu130 torch2.11 cp310 manylinux linux
-[01:04]   [cuda-wheels]   https://pozzettiandrea.github.io/cuda-wheels/v2/flash_attn/: HTTPError: HTTP Error 404: Not Found
-[01:04]   [cuda-wheels]   Found: flash_attn-2.8.3+cu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[01:04]   [cuda-wheels] Looking up spconv: cu130 torch2.11 cp310 manylinux linux
-[01:04]   [cuda-wheels]   Found: spconv-2.3.8+cu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[01:04]   [cuda-wheels] Looking up cumm: cu130 torch2.11 cp310 manylinux linux
-[01:04]   [cuda-wheels]   Found: cumm-0.8.2+cu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
-[01:04]   [comfy-env] lito-nodes: cuda-wheels deferred for post-pixi install (pytorch3d, gsplat, nvdiffrast, flash-attn, spconv, cumm)
-[01:04]   [comfy-env] lito-nodes: torch override -> torch==2.11.0, torchvision==0.26.*, torchaudio==2.11.* from https://download.pytorch.org/whl/cu130
-[01:04]   Generated /workspaces/LiTo-0835/ComfyUI/.ce/pixi.toml
-[01:04]   [comfy-env] Installing 1 environment(s):
-[01:04]     - lito-nodes (python=host, 12 pypi deps, 6 cuda wheels)
-[01:04]   [comfy-env] Running `pixi install --all`...
-[01:14]      WARN Skipped running the post-link scripts because `run-post-link-scripts` = `false`
-[01:14]     	- bin/.librsvg-pre-unlink.sh
-[01:14]     To enable them, run:
-[01:14]     	pixi config set --local run-post-link-scripts insecure
-[01:14]     More info:
-[01:14]     	https://pixi.sh/latest/reference/pixi_configuration/#run-post-link-scripts
-[02:16]     The following environments have been installed: default, comfyui, lito-nodes.
-[02:16]   [comfy-env] Note: env `default` is on disk but no node declares it in this run. Leaving as-is. Remove via `pixi clean --environment default` if intended.
-[02:16]   [comfy-env] lito-nodes: installing cuda-wheels with --no-deps (pytorch3d, gsplat, nvdiffrast, flash-attn, spconv, cumm)
-[02:16]     Using Python 3.10.20 environment at: .pixi/envs/lito-nodes
-[02:19]     Resolved 6 packages in 3.03s
-[02:19]     Downloading pytorch3d (63.8MiB)
-[02:19]     Downloading nvdiffrast (18.1MiB)
-[02:19]     Downloading gsplat (18.1MiB)
-[02:19]     Downloading cumm (49.9MiB)
-[02:19]     Downloading spconv (43.6MiB)
-[02:19]     Downloading flash-attn (231.5MiB)
-[02:21]      Downloaded nvdiffrast
-[02:21]      Downloaded gsplat
-[02:23]      Downloaded spconv
-[02:23]      Downloaded cumm
-[02:24]      Downloaded pytorch3d
-[02:26]      Downloaded flash-attn
-[02:26]     Prepared 6 packages in 7.69s
-[02:26]     Installed 6 packages in 68ms
-[02:26]      + cumm==0.8.2+cu130torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/cumm-latest/cumm-0.8.2%2Bcu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
-[02:26]      + flash-attn==2.8.3+cu130torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/flash_attn-latest/flash_attn-2.8.3%2Bcu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
-[02:26]      + gsplat==1.5.3+cu130torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/gsplat-latest/gsplat-1.5.3%2Bcu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
-[02:26]      + nvdiffrast==0.4.0+cu130torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/nvdiffrast-latest/nvdiffrast-0.4.0%2Bcu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
-[02:26]      + pytorch3d==0.7.9+cu130torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/pytorch3d-latest/pytorch3d-0.7.9%2Bcu130torch2.11-cp310-cp310-manylinux_2_35_x86_64.whl)
-[02:26]      + spconv==2.3.8+cu130torch2.11 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/spconv-latest/spconv-2.3.8%2Bcu130torch2.11-cp310-cp310-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
-[02:27]   [comfy-env] Install log: /workspaces/LiTo-0835/ComfyUI/.ce/install.log
-[02:27]   
-[02:27]   Installation complete!
-[02:27] Installing 1 node dependency(ies)...
-[02:27]   ComfyUI-GSViewer from PozzettiAndrea/ComfyUI-GSViewer
-[02:27]   ComfyUI-GSViewer already exists, skipping...
-[02:27] Installing validation endpoint...
-[02:27]   Cloning PozzettiAndrea/ComfyUI-validate-endpoint...
-[02:27] Running: git clone --depth 1 https://github.com/PozzettiAndrea/ComfyUI-validate-endpoint.git /workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-validate-endpoint
-[02:27] CUDA packages installed (no mock): pytorch3d, gsplat, nvdiffrast, flash_attn, spconv, cumm
-[02:27] [INSTALL] PASSED
-[02:27] 
-[02:27] [3/5] REGISTRATION
-[02:27] ----------------------------------------
-[02:27] 
-[DEBUG] server=None, server_url=None, api=None
-[02:27] 
+[01:27] Running: /workspaces/LiTo-1256/.venv/bin/python /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/install.py
+[01:28]   
+[01:28]   Installing 1 node dependencies...
+[01:28]     Cloning ComfyUI-GaussianPack...
+[01:28]     Installing requirements for ComfyUI-GaussianPack...
+[01:28]   
+[01:28]   [requirements] Re-installing main package requirements...
+[01:28]     Installing requirements for ComfyUI-LiTo...
+[01:30]   [comfy-env] Workspace: /workspaces/LiTo-1256/ComfyUI/.ce
+[01:30]   [comfy-env] ComfyUI: /workspaces/LiTo-1256/ComfyUI
+[01:30]   [comfy-env] Found 1 node config(s):
+[01:30]     - lito-nodes <- custom_nodes/ComfyUI-LiTo/nodes/comfy-env.toml (python=host)
+[01:30]   [comfy-env] Bootstrap interpreter has python 3.13 + torch 2.10.0 (cu128). Looking for cuda-only wheels matching cu128/torch2.10/cp313.
+[01:30]   [comfy-env] GPU: Detection: smi
+[01:30]   Driver: 580.159.04
+[01:30]   CUDA: 13.0
+[01:30]   Recommended: CUDA 13.0
+[01:30]   
+[01:30]     GPU 0: NVIDIA GeForce RTX 5060 (sm_120) [Blackwell] 8151MB
+[01:30]   [comfy-env] Comfyui feature -> torch 2.10.0 from https://download.pytorch.org/whl/cu128 (CUDA 12.8 via bootstrap torch)
+[01:30]   [comfy-env] cuda-wheels: 6 package(s) need a matched (cuda, torch, python) combo: ['pytorch3d', 'gsplat', 'nvdiffrast', 'flash-attn', 'spconv', 'cumm']
+[01:30]   [comfy-env] cuda-wheels tier 1 (bootstrap): probing cu12.8/torch2.10/cp313
+[01:30]   [cuda-wheels] Looking up pytorch3d: cu128 torch2.10 cp313 manylinux linux
+[01:31]   [cuda-wheels]   Found: pytorch3d-0.7.9+cu128torch2.10-cp313-cp313-manylinux_2_35_x86_64.whl
+[01:31]   [cuda-wheels] Looking up gsplat: cu128 torch2.10 cp313 manylinux linux
+[01:31]   [cuda-wheels]   Found: gsplat-1.5.3+cu128torch2.10-cp313-cp313-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[01:31]   [cuda-wheels] Looking up nvdiffrast: cu128 torch2.10 cp313 manylinux linux
+[01:31]   [cuda-wheels]   Found: nvdiffrast-0.4.0+cu128torch2.10-cp313-cp313-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[01:31]   [cuda-wheels] Looking up flash-attn: cu128 torch2.10 cp313 manylinux linux
+[01:31]   [cuda-wheels]   https://pozzettiandrea.github.io/cuda-wheels/v2/flash_attn/: HTTPError: HTTP Error 404: Not Found
+[01:31]   [cuda-wheels]   Found: flash_attn-2.8.3+cu128torch2.10-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl
+[01:31]   [cuda-wheels] Looking up spconv: cu128 torch2.10 cp313 manylinux linux
+[01:32]   [cuda-wheels]   Found: spconv-2.3.8+cu128torch2.10-cp313-cp313-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[01:32]   [cuda-wheels] Looking up cumm: cu128 torch2.10 cp313 manylinux linux
+[01:32]   [cuda-wheels]   Found: cumm-0.8.2+cu128torch2.10-cp313-cp313-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[01:32]   [comfy-env] cuda-wheels combo: cu12.8/torch2.10 (bootstrap matches; per-node envs will pin to this)
+[01:32]   [comfy-env] Comfyui feature pin: torch ==2.10.0, torchvision ==0.25.*, torchaudio ==2.10.*
+[01:32]   [comfy-env] Host glibc 2.35 -> comfyui feature system-requirements
+[01:32]   [comfy-env] cuda-wheels combo: per-node cuda features will pin ['torch', 'torchaudio', 'torchvision'] via pypi-options.dependency-overrides (https://download.pytorch.org/whl/cu128)
+[01:32]   [cuda-wheels] Looking up pytorch3d: cu128 torch2.10 cp313 manylinux linux
+[01:32]   [cuda-wheels]   Found: pytorch3d-0.7.9+cu128torch2.10-cp313-cp313-manylinux_2_35_x86_64.whl
+[01:32]   [cuda-wheels] Looking up gsplat: cu128 torch2.10 cp313 manylinux linux
+[01:32]   [cuda-wheels]   Found: gsplat-1.5.3+cu128torch2.10-cp313-cp313-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[01:32]   [cuda-wheels] Looking up nvdiffrast: cu128 torch2.10 cp313 manylinux linux
+[01:32]   [cuda-wheels]   Found: nvdiffrast-0.4.0+cu128torch2.10-cp313-cp313-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[01:32]   [cuda-wheels] Looking up flash-attn: cu128 torch2.10 cp313 manylinux linux
+[01:32]   [cuda-wheels]   https://pozzettiandrea.github.io/cuda-wheels/v2/flash_attn/: HTTPError: HTTP Error 404: Not Found
+[01:32]   [cuda-wheels]   Found: flash_attn-2.8.3+cu128torch2.10-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl
+[01:32]   [cuda-wheels] Looking up spconv: cu128 torch2.10 cp313 manylinux linux
+[01:32]   [cuda-wheels]   Found: spconv-2.3.8+cu128torch2.10-cp313-cp313-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[01:32]   [cuda-wheels] Looking up cumm: cu128 torch2.10 cp313 manylinux linux
+[01:32]   [cuda-wheels]   Found: cumm-0.8.2+cu128torch2.10-cp313-cp313-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl
+[01:32]   [comfy-env] lito-nodes: cuda-wheels deferred for post-pixi install (pytorch3d, gsplat, nvdiffrast, flash-attn, spconv, cumm)
+[01:32]   [comfy-env] lito-nodes: torch override -> torch==2.10.0, torchvision==0.25.*, torchaudio==2.10.* from https://download.pytorch.org/whl/cu128
+[01:32]   Generated /workspaces/LiTo-1256/ComfyUI/.ce/pixi.toml
+[01:32]   [comfy-env] Installing 1 environment(s):
+[01:32]     - lito-nodes (python=host, 12 pypi deps, 6 cuda wheels)
+[01:32]   [comfy-env] Running `pixi install --all`...
+[01:40]      WARN Skipped running the post-link scripts because `run-post-link-scripts` = `false`
+[01:40]     	- bin/.librsvg-pre-unlink.sh
+[01:40]     To enable them, run:
+[01:40]     	pixi config set --local run-post-link-scripts insecure
+[01:40]     More info:
+[01:40]     	https://pixi.sh/latest/reference/pixi_configuration/#run-post-link-scripts
+[03:02]     The following environments have been installed: default, comfyui, lito-nodes.
+[03:02]   [comfy-env] Note: env `default` is on disk but no node declares it in this run. Leaving as-is. Remove via `pixi clean --environment default` if intended.
+[03:02]   [comfy-env] lito-nodes: installing cuda-wheels with --no-deps (pytorch3d, gsplat, nvdiffrast, flash-attn, spconv, cumm)
+[03:02]     Using Python 3.13.13 environment at: .pixi/envs/lito-nodes
+[03:08]     Resolved 6 packages in 5.47s
+[03:08]     Downloading gsplat (29.6MiB)
+[03:08]     Downloading cumm (49.4MiB)
+[03:08]     Downloading spconv (70.7MiB)
+[03:08]     Downloading pytorch3d (75.2MiB)
+[03:08]     Downloading flash-attn (241.9MiB)
+[03:08]     Downloading nvdiffrast (20.3MiB)
+[03:10]      Downloaded nvdiffrast
+[03:11]      Downloaded gsplat
+[03:12]      Downloaded cumm
+[03:13]      Downloaded spconv
+[03:13]      Downloaded pytorch3d
+[03:16]      Downloaded flash-attn
+[03:16]     Prepared 6 packages in 8.72s
+[03:17]     Installed 6 packages in 64ms
+[03:17]      + cumm==0.8.2+cu128torch2.10 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/cumm-latest/cumm-0.8.2%2Bcu128torch2.10-cp313-cp313-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
+[03:17]      + flash-attn==2.8.3+cu128torch2.10 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/flash_attn-latest/flash_attn-2.8.3%2Bcu128torch2.10-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl)
+[03:17]      + gsplat==1.5.3+cu128torch2.10 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/gsplat-latest/gsplat-1.5.3%2Bcu128torch2.10-cp313-cp313-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
+[03:17]      + nvdiffrast==0.4.0+cu128torch2.10 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/nvdiffrast-latest/nvdiffrast-0.4.0%2Bcu128torch2.10-cp313-cp313-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
+[03:17]      + pytorch3d==0.7.9+cu128torch2.10 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/pytorch3d-latest/pytorch3d-0.7.9%2Bcu128torch2.10-cp313-cp313-manylinux_2_35_x86_64.whl)
+[03:17]      + spconv==2.3.8+cu128torch2.10 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/spconv-latest/spconv-2.3.8%2Bcu128torch2.10-cp313-cp313-manylinux_2_34_x86_64.manylinux_2_35_x86_64.whl)
+[03:17]   [comfy-env] Install log: /workspaces/LiTo-1256/ComfyUI/.ce/install.log
+[03:17]   
+[03:17]   Installation complete!
+[03:17] Installing 1 node dependency(ies)...
+[03:17]   ComfyUI-GaussianPack from PozzettiAndrea/ComfyUI-GaussianPack
+[03:17]   ComfyUI-GaussianPack already exists, skipping...
+[03:17] Installing validation endpoint...
+[03:17]   Cloning PozzettiAndrea/ComfyUI-validate-endpoint...
+[03:17] Running: git clone --depth 1 https://x-access-token:***@github.com/PozzettiAndrea/ComfyUI-validate-endpoint.git /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-validate-endpoint
+[03:17] CUDA packages installed (no mock): pytorch3d, gsplat, nvdiffrast, flash_attn, spconv, cumm
+[03:17] [INSTALL] PASSED
+[03:17] 
+[03:17] [3/5] REGISTRATION
+[03:17] ----------------------------------------
+[03:17] 
+[DEBUG] server=None, api=None
+[03:17] 
 Starting ComfyUI server...
-[02:27] Starting ComfyUI server on port 41888...
-[02:27] Starting ComfyUI server on port 41888...
-[02:27] Waiting for server to be ready (timeout: 600s)...
-[02:28]   [ComfyUI] setup plugin alembic.autogenerate.schemas
-[02:28]   [ComfyUI] setup plugin alembic.autogenerate.tables
-[02:28]   [ComfyUI] setup plugin alembic.autogenerate.types
-[02:28]   [ComfyUI] setup plugin alembic.autogenerate.constraints
-[02:28]   [ComfyUI] setup plugin alembic.autogenerate.defaults
-[02:28]   [ComfyUI] setup plugin alembic.autogenerate.comments
-[02:28]   [ComfyUI] [comfy-env] ComfyUI-LiTo: 1 isolation env(s):
-[02:28]   [ComfyUI] [comfy-env]   nodes -> /workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes
-[02:28]   [ComfyUI] [comfy-env] prestartup complete
-[02:28]   [ComfyUI] 
-[02:28]   [ComfyUI] Prestartup times for custom nodes:
-[02:28]   [ComfyUI]    0.1 seconds: /workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo
-[02:28]   [ComfyUI] 
-[02:33]   [ComfyUI] Found comfy_kitchen backend triton: {'available': True, 'disabled': True, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8']}
-[02:33]   [ComfyUI] Found comfy_kitchen backend eager: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_mxfp8', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_mxfp8', 'scaled_mm_nvfp4']}
-[02:33]   [ComfyUI] Found comfy_kitchen backend cuda: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_nvfp4']}
-[02:33]   [ComfyUI] Checkpoint files will always be loaded safely.
-[02:33]   [ComfyUI] Total VRAM 7672 MB, total RAM 23913 MB
-[02:33]   [ComfyUI] pytorch version: 2.11.0+cu130
-[02:33]   [ComfyUI] Set vram state to: NORMAL_VRAM
-[02:33]   [ComfyUI] Device: cuda:0 NVIDIA GeForce RTX 5060 : cudaMallocAsync
-[02:33]   [ComfyUI] Using async weight offloading with 2 streams
-[02:33]   [ComfyUI] Enabled pinned memory 21522.0
-[02:33]   [ComfyUI] Using pytorch attention
-[02:37]   [ComfyUI] aimdo: /project/src-posix/cuda-funchooks.c:52:DEBUG:aimdo_setup_hooks: hooks successfully installed
-[02:37]   [ComfyUI] aimdo: /project/src/control.c:151:INFO:comfy-aimdo inited for GPU: NVIDIA GeForce RTX 5060 (VRAM: 7672 MB)
-[02:37]   [ComfyUI] DynamicVRAM support detected and enabled
-[02:37]   [ComfyUI] Python version: 3.10.20 (main, May  8 2026, 18:32:33) [Clang 22.1.3 ]
-[02:37]   [ComfyUI] ComfyUI version: 0.21.1
-[02:37]   [ComfyUI] comfy-aimdo version: 0.3.0
-[02:37]   [ComfyUI] comfy-kitchen version: 0.2.8
-[02:37]   [ComfyUI] ****** User settings have been changed to be stored on the server instead of browser storage. ******
-[02:37]   [ComfyUI] ****** For multi-user setups add the --multi-user CLI argument to enable multiple user profiles. ******
-[02:37]   [ComfyUI] comfyui-frontend-package version: 1.43.18
-[02:37]   [ComfyUI] comfyui-workflow-templates version: 0.9.77
-[02:37]   [ComfyUI] comfyui-embedded-docs version: 0.5.0
-[02:37]   [ComfyUI] comfy-kitchen version: 0.2.8
-[02:37]   [ComfyUI] comfy-aimdo version: 0.3.0
-[02:37]   [ComfyUI] [Prompt Server] web root: /workspaces/LiTo-0835/.venv/lib/python3.10/site-packages/comfyui_frontend_package/static
-[02:37]   [ComfyUI] Asset seeder disabled
-[02:39]   [ComfyUI] loading...
-[02:39]   [ComfyUI] calling register_nodes
-[02:39]   [ComfyUI] [comfy-env] Version: 0.3.75
-[02:39]   [ComfyUI] [comfy-env] register_nodes: ComfyUI-LiTo
-[02:39]   [ComfyUI] [comfy-env] ComfyUI source dir: /workspaces/LiTo-0835/ComfyUI
-[02:39]   [ComfyUI] [comfy-env] Found 1 isolation env(s)
-[02:39]   [ComfyUI] [comfy-env] Scanning nodes metadata (isolation root)...
-[02:39]   [ComfyUI] [comfy-env] Metadata scan: /root/.pixi/bin/pixi run --as-is --manifest-path /workspaces/LiTo-0835/ComfyUI/.ce/pixi.toml -e lito-nodes python /tmp/comfy_meta_r02vw6k1.py /workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo nodes
-[02:39]   [ComfyUI] [comfy-env] Scan env PATH for nodes:
-[02:39]   [ComfyUI] [comfy-env]   [0] /root/.local/bin
-[02:39]   [ComfyUI] [comfy-env]   [1] /usr/local/nvidia/bin
-[02:39]   [ComfyUI] [comfy-env]   [2] /usr/local/cuda/bin
-[02:39]   [ComfyUI] [comfy-env]   [3] /usr/local/sbin
-[02:39]   [ComfyUI] [comfy-env]   [4] /usr/local/bin
-[02:39]   [ComfyUI] [comfy-env]   [5] /usr/sbin
-[02:39]   [ComfyUI] [comfy-env]   [6] /usr/bin
-[02:39]   [ComfyUI] [comfy-env]   [7] /sbin
-[02:39]   [ComfyUI] [comfy-env]   [8] /bin
-[02:41]   [ComfyUI] [comfy-env] Metadata scan stderr for nodes:
-[02:41]   [ComfyUI] [comfy-env]   [meta-scan] importing nodes from /workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo
-[02:41]   [ComfyUI] [comfy-env]   [meta-scan] import OK
-[02:41]   [ComfyUI] [comfy-env] Scanned nodes: 5 nodes (2.6s)
-[02:41]   [ComfyUI] [comfy-env] Scanned nodes root: 5 nodes (2.6s)
-[02:41]   [ComfyUI] [comfy-env] Imported nodes root: 5 nodes (isolation)
-[02:41]   [ComfyUI] [comfy-env] Registered 5 total nodes
-[02:42]   [ComfyUI] 
-[02:42]   [ComfyUI] Import times for custom nodes:
-[02:42]   [ComfyUI]    0.0 seconds: /workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-validate-endpoint
-[02:42]   [ComfyUI]    0.0 seconds: /workspaces/LiTo-0835/ComfyUI/custom_nodes/websocket_image_save.py
-[02:42]   [ComfyUI]    0.0 seconds: /workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-GSViewer
-[02:42]   [ComfyUI]    2.8 seconds: /workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo
-[02:42]   [ComfyUI] 
-[02:42]   [ComfyUI] Context impl SQLiteImpl.
-[02:42]   [ComfyUI] Will assume non-transactional DDL.
-[02:42]   [ComfyUI] Context impl SQLiteImpl.
-[02:42]   [ComfyUI] Will assume non-transactional DDL.
-[02:42]   [ComfyUI] Running upgrade  -> 0001_assets, Initial assets schema
-[02:42]   [ComfyUI] Revision ID: 0001_assets
-[02:42]   [ComfyUI] Revises: None
-[02:42]   [ComfyUI] Create Date: 2025-12-10 00:00:00
-[02:42]   [ComfyUI] Running upgrade 0001_assets -> 0002_merge_to_asset_references, Merge AssetInfo and AssetCacheState into unified asset_references table.
-[02:42]   [ComfyUI] Running upgrade 0002_merge_to_asset_references -> 0003_add_metadata_job_id, Add system_metadata and job_id columns to asset_references.
-[02:42]   [ComfyUI] Change preview_id FK from assets.id to asset_references.id.
-[02:42]   [ComfyUI] Database upgraded from None to 0003_add_metadata_job_id
-[02:42]   [ComfyUI] Starting server
-[02:42]   [ComfyUI] 
-[02:42]   [ComfyUI] To see the GUI go to: http://127.0.0.1:41888
-[02:42] Server responding, waiting for nodes to load...
-[03:02] Server is ready!
-[03:02] Checking for import errors in server logs...
-[03:02] No import errors detected
-[03:02] Found 726 registered nodes
-[03:02] [REGISTRATION] PASSED
-[03:02] 
-[03:02] [4/5] INSTANTIATION
-[03:02] ----------------------------------------
-[03:02] 
-[DEBUG] server=<comfy_test.comfyui.server.ComfyUIServer object at 0x7e1840a63c40>, server_url=None, api=<comfy_test.comfyui.api.ComfyUIAPI object at 0x7e1840a63b50>
-[03:02] Testing node constructors...
-[03:03] All 5 node(s) instantiated successfully!
-[03:03] [INSTANTIATION] PASSED
-[03:03] 
-[03:03] [5/5] EXECUTION
-[03:03] ----------------------------------------
-[03:03] 
-[DEBUG] server=<comfy_test.comfyui.server.ComfyUIServer object at 0x7e1840a63c40>, server_url=None, api=<comfy_test.comfyui.api.ComfyUIAPI object at 0x7e1840a63b50>
-[03:03] GPU runner - will execute 1 workflow(s)
-[03:03] Running 1 workflow(s) (all with videos)...
-[03:03] Installing screenshot dependencies (playwright, pillow)...
-[03:04]   Packages installed, downloading chromium browser...
-[03:20]   Screenshot dependencies installed successfully
-[03:21] Starting headless browser...
-[03:21]   Installing Vulkan stack (apt)...
-[03:21]   Vulkan install error: [Errno 2] No such file or directory: 'sudo'
-[03:21]   GPU detected (no Vulkan) -- using ANGLE/OpenGL rendering
-[03:21] Capturing execution frames: basic.json
-[03:27]   Frame 1 saved (frame_000.jpg, t=0.0s)
-[03:27]   Validating workflow...
-[03:27]   [ComfyUI] === /validate endpoint called ===
-[03:27]   [ComfyUI] Received JSON with keys: ['prompt']
-[03:27]   Queuing workflow for execution...
-[03:27]   [ComfyUI] Prompt has 7 nodes
-[03:27]   [ComfyUI]   Node 1: LiToLoadModel
-[03:27]   [ComfyUI]     Inputs: {"checkpoint": "lito_dit_rgba (recommended)", "compile": false, "precision": "auto"}
-[03:27]   [ComfyUI]   Node 5: LoadImage
-[03:27]   [ComfyUI]     Inputs: {"image": "apple.png"}
-[03:27]   [ComfyUI]   Node 6: LiToExportPLY
-[03:27]   [ComfyUI]     Inputs: {"filename": "lito_output", "gaussians": ["8", 0]}
-[03:27]   [ComfyUI]   Node 8: LiToImageTo3D
-[03:27]   [ComfyUI]     Inputs: {"sampling_steps": 20, "cfg_scale": 3, "sampling_method": "heun", "seed": 42, "model": ["1", 0], "image": ["5", 0], "mask": ["9", 0]}
-[03:27]   [ComfyUI]   Node 9: InvertMask
-[03:27]   [ComfyUI]     Inputs: {"mask": ["5", 1]}
-[03:27]   [ComfyUI]   Node 17: MaskPreview
-[03:27]   [ComfyUI]     Inputs: {"mask": ["9", 0]}
-[03:27]   [ComfyUI]   Node 29: PreviewGaussians
-[03:27]   [ComfyUI]     Inputs: {"fov_degrees": 50, "image_width": 512, "image_height": 512, "renderer": "spark", "transport_format": "ply", "ply_path": ["6", 0]}
-[03:27]   [ComfyUI] Generated prompt_id: b6a77573-ea0a-4d5b-8fbb-787616047f37
-[03:27]   [ComfyUI] Calling execution.validate_prompt()...
-[03:27]   [ComfyUI] Validation result: valid=True
-[03:27]   [ComfyUI] === Validation PASSED ===
-[03:27]   [ComfyUI] got prompt
-[03:27]   [ComfyUI] [comfy-env] Running LiToLoadModel: checkpoint: 'lito_dit_rgba (recommended)', compile: False, precision: 'auto'
-[03:27]   [ComfyUI] [comfy-env] SubprocessWorker: /workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/bin/python
-[03:27]   [ComfyUI] [VRAM] Before LiToLoadModel: 612 / 7672 MB
-[03:27]   [ComfyUI] [comfy-env] env_vars: {'COMFYUI_BASE': '/workspaces/LiTo-0835/ComfyUI'}
-[03:27]   [ComfyUI] [SubprocessWorker] call_method: nodes.load_model.LiToLoadModel.EXECUTE_NORMALIZED
-[03:27]   [ComfyUI] [ComfyUI-LiTo] python: /workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/bin/python
-[03:27]   [ComfyUI] [SubprocessWorker] acquired lock, ensuring started...
-[03:27]   [ComfyUI] [ComfyUI-LiTo] sys_path sent to worker: ['/workspaces/LiTo-0835/ComfyUI', '/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo', '/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages', '/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo']
-[03:27]   [ComfyUI] [SubprocessWorker] is_pixi=True, python=/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/bin/python
-[03:27]   [ComfyUI] [SubprocessWorker] launching cmd=['/root/.pixi/bin/pixi', 'run', '--as-is', '--manifest-path', '/workspaces/LiTo-0835/ComfyUI/.ce/pixi.toml', '-e', 'lito-nodes', 'python', '/tmp/comfyui_pvenv_cjo8xsil/persistent_worker.py', 'abstract://comfy_worker_ab567ced1d5e']...
-[03:27]   [ComfyUI] [SubprocessWorker] socket_addr=abstract://comfy_worker_ab567ced1d5e (abstract, no filesystem path)
-[03:27]   Node executed (1 total), capturing...
-[03:28]   Frame 2 saved (frame_001.jpg, t=0.6s)
-[03:28]   [capture-node] freeze=2ms shot=144ms unfreeze=5ms saved=True
-[03:31]   [ComfyUI] [SubprocessWorker] worker started/confirmed
-[03:31]   [ComfyUI] [SubprocessWorker] serializing kwargs to shm...
-[03:31]   [ComfyUI] [SubprocessWorker] created 0 shm blocks
-[03:31]   [ComfyUI] [SubprocessWorker] sending request via socket...
-[03:31]   [ComfyUI] [SubprocessWorker] call_id=1 sending call_method
-[03:32]   Frame 3 saved (frame_002.jpg, t=5.0s)
-[03:32]   [capture-periodic] freeze=3ms shot=153ms unfreeze=5ms saved=True
-[03:32]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:33]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:33]   [capture-loop] iter=50 t=6.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.7/23.4GB (20%) swap=1.5/32.0GB (5%) cpu=9% browser_rss=0.87GB
-[03:33]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:33]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:33]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:34]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:34]   Frame 4 saved (frame_003.jpg, t=7.3s)
-[03:34]   [capture-periodic] freeze=2ms shot=130ms unfreeze=5ms saved=True
-[03:34]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:35]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:35]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:36]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:36]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:36]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:37]   Frame 5 saved (frame_004.jpg, t=9.6s)
-[03:37]   [capture-periodic] freeze=2ms shot=124ms unfreeze=1ms saved=True
-[03:37]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:37]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:38]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:38]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:39]   [capture-loop] iter=100 t=11.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=4.8/23.4GB (21%) swap=1.5/32.0GB (5%) cpu=15% browser_rss=0.88GB
-[03:39]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:39]   Frame 6 saved (frame_005.jpg, t=11.9s)
-[03:39]   [capture-periodic] freeze=2ms shot=148ms unfreeze=7ms saved=True
-[03:39]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:39]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:40]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:40]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:41]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:41]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:41]   Frame 7 saved (frame_006.jpg, t=14.2s)
-[03:41]   [capture-periodic] freeze=2ms shot=142ms unfreeze=6ms saved=True
-[03:41]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:42]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:42]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:42]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:43]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:43]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:43]   Frame 8 saved (frame_007.jpg, t=16.5s)
-[03:43]   [capture-periodic] freeze=1ms shot=91ms unfreeze=8ms saved=True
-[03:44]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:44]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:44]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:44]   [capture-loop] iter=150 t=17.5s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=4.9/23.4GB (21%) swap=1.5/32.0GB (5%) cpu=16% browser_rss=0.90GB
-[03:45]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:45]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:45]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:46]   Frame 9 saved (frame_008.jpg, t=18.7s)
-[03:46]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:46]   [capture-periodic] freeze=2ms shot=112ms unfreeze=7ms saved=True
-[03:46]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:46]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:47]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:47]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:47]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:48]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:48]   Frame 10 saved (frame_009.jpg, t=20.9s)
-[03:48]   [capture-periodic] freeze=2ms shot=145ms unfreeze=22ms saved=True
-[03:48]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:48]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:49]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:49]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:50]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:50]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:50]   [capture-loop] iter=200 t=23.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=5.0/23.4GB (21%) swap=1.5/32.0GB (5%) cpu=18% browser_rss=0.91GB
-[03:50]   Frame 11 saved (frame_010.jpg, t=23.1s)
-[03:50]   [capture-periodic] freeze=3ms shot=138ms unfreeze=5ms saved=True
-[03:50]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:51]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:51]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:51]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:52]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:52]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:52]   Frame 12 saved (frame_011.jpg, t=25.4s)
-[03:52]   [capture-periodic] freeze=2ms shot=144ms unfreeze=6ms saved=True
-[03:53]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:53]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:53]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:54]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:54]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:54]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:55]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:55]   Frame 13 saved (frame_012.jpg, t=27.7s)
-[03:55]   [capture-periodic] freeze=2ms shot=145ms unfreeze=2ms saved=True
-[03:55]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:55]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:56]   [capture-loop] iter=250 t=28.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=5.0/23.4GB (21%) swap=1.5/32.0GB (5%) cpu=15% browser_rss=0.91GB
-[03:56]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:56]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:57]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:57]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:57]   Frame 14 saved (frame_013.jpg, t=30.0s)
-[03:57]   [capture-periodic] freeze=2ms shot=153ms unfreeze=9ms saved=True
-[03:57]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:58]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:58]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:58]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:59]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:59]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[03:59]   Frame 15 saved (frame_014.jpg, t=32.3s)
-[03:59]   [capture-periodic] freeze=2ms shot=150ms unfreeze=4ms saved=True
-[03:59]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:00]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:00]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:01]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:01]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:01]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:01]   [capture-loop] iter=300 t=34.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.9/23.4GB (21%) swap=1.5/32.0GB (5%) cpu=16% browser_rss=0.91GB
-[04:02]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:02]   Frame 16 saved (frame_015.jpg, t=34.6s)
-[04:02]   [capture-periodic] freeze=2ms shot=145ms unfreeze=6ms saved=True
-[04:02]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:02]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:03]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:03]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:04]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:04]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:04]   Frame 17 saved (frame_016.jpg, t=36.8s)
-[04:04]   [capture-periodic] freeze=11ms shot=156ms unfreeze=7ms saved=True
-[04:04]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:05]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:05]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:05]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:05]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:06]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:06]   Frame 18 saved (frame_017.jpg, t=39.1s)
-[04:06]   [capture-periodic] freeze=2ms shot=147ms unfreeze=7ms saved=True
-[04:06]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:07]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:07]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:07]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:07]   [capture-loop] iter=350 t=40.5s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=5.0/23.4GB (21%) swap=1.5/32.0GB (5%) cpu=18% browser_rss=0.85GB
-[04:08]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:08]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:08]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:08]   Frame 19 saved (frame_018.jpg, t=41.4s)
-[04:08]   [capture-periodic] freeze=1ms shot=145ms unfreeze=7ms saved=True
-[04:09]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:09]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:09]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:10]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:10]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:11]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:11]   Frame 20 saved (frame_019.jpg, t=43.7s)
-[04:11]   [capture-periodic] freeze=1ms shot=118ms unfreeze=7ms saved=True
-[04:11]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:11]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:12]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:12]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:12]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:13]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:13]   Frame 21 saved (frame_020.jpg, t=46.0s)
-[04:13]   [capture-periodic] freeze=2ms shot=137ms unfreeze=4ms saved=True
-[04:13]   [capture-loop] iter=400 t=46.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=5.0/23.4GB (21%) swap=1.5/32.0GB (5%) cpu=15% browser_rss=0.85GB
-[04:14]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:14]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:14]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:14]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:15]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:15]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:15]   Frame 22 saved (frame_021.jpg, t=48.2s)
-[04:15]   [capture-periodic] freeze=2ms shot=135ms unfreeze=11ms saved=True
-[04:15]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:16]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:16]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:17]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:17]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:17]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:18]   Frame 23 saved (frame_022.jpg, t=50.5s)
-[04:18]   [capture-periodic] freeze=1ms shot=144ms unfreeze=6ms saved=True
-[04:18]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:18]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:18]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:18]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:19]   [capture-loop] iter=450 t=52.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=5.0/23.4GB (21%) swap=1.5/32.0GB (5%) cpu=16% browser_rss=0.85GB
-[04:19]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:19]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:20]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:20]   Frame 24 saved (frame_023.jpg, t=52.7s)
-[04:20]   [capture-periodic] freeze=2ms shot=135ms unfreeze=6ms saved=True
-[04:20]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:20]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:21]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:21]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:21]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:22]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:22]   Frame 25 saved (frame_024.jpg, t=54.9s)
-[04:22]   [capture-periodic] freeze=2ms shot=150ms unfreeze=2ms saved=True
-[04:22]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:23]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:23]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:23]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:24]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:24]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:24]   Frame 26 saved (frame_025.jpg, t=57.2s)
-[04:24]   [capture-periodic] freeze=2ms shot=165ms unfreeze=3ms saved=True
-[04:24]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:25]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:25]   [capture-loop] iter=500 t=58.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=5.0/23.4GB (21%) swap=1.5/32.0GB (5%) cpu=17% browser_rss=0.85GB
-[04:25]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[03:17] Starting ComfyUI server on port 41892...
+[03:17] Starting ComfyUI server on port 41892...
+[03:17] Waiting for server to be ready (timeout: 600s)...
+[03:18]   [ComfyUI] setup plugin alembic.autogenerate.schemas
+[03:18]   [ComfyUI] setup plugin alembic.autogenerate.tables
+[03:18]   [ComfyUI] setup plugin alembic.autogenerate.types
+[03:18]   [ComfyUI] setup plugin alembic.autogenerate.constraints
+[03:18]   [ComfyUI] setup plugin alembic.autogenerate.defaults
+[03:18]   [ComfyUI] setup plugin alembic.autogenerate.comments
+[03:19]   [ComfyUI] [comfy-env] ComfyUI-LiTo: 1 isolation env(s):
+[03:19]   [ComfyUI] [comfy-env]   nodes -> /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes
+[03:19]   [ComfyUI] [comfy-env] prestartup complete
+[03:19]   [ComfyUI] 
+[03:19]   [ComfyUI] Prestartup times for custom nodes:
+[03:19]   [ComfyUI]    0.1 seconds: /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo
+[03:19]   [ComfyUI] 
+[03:24]   [ComfyUI] WARNING: You need pytorch with cu130 or higher to use optimized CUDA operations.
+[03:24]   [ComfyUI] Found comfy_kitchen backend triton: {'available': True, 'disabled': True, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8']}
+[03:24]   [ComfyUI] Found comfy_kitchen backend eager: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_mxfp8', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_mxfp8', 'scaled_mm_nvfp4']}
+[03:24]   [ComfyUI] Found comfy_kitchen backend cuda: {'available': True, 'disabled': True, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8']}
+[03:24]   [ComfyUI] Checkpoint files will always be loaded safely.
+[03:24]   [ComfyUI] Total VRAM 7672 MB, total RAM 23913 MB
+[03:24]   [ComfyUI] pytorch version: 2.10.0+cu128
+[03:24]   [ComfyUI] Set vram state to: NORMAL_VRAM
+[03:24]   [ComfyUI] Device: cuda:0 NVIDIA GeForce RTX 5060 : cudaMallocAsync
+[03:24]   [ComfyUI] Using async weight offloading with 2 streams
+[03:24]   [ComfyUI] Enabled pinned memory 21522.0
+[03:24]   [ComfyUI] working around nvidia conv3d memory bug.
+[03:25]   [ComfyUI] Using pytorch attention
+[03:29]   [ComfyUI] aimdo: /project/src-posix/cuda-funchooks.c:52:DEBUG:aimdo_setup_hooks: hooks successfully installed
+[03:29]   [ComfyUI] aimdo: /project/src/control.c:151:INFO:comfy-aimdo inited for GPU: NVIDIA GeForce RTX 5060 (VRAM: 7672 MB)
+[03:29]   [ComfyUI] DynamicVRAM support detected and enabled
+[03:29]   [ComfyUI] Python version: 3.13.13 (main, May  8 2026, 18:32:55) [Clang 22.1.3 ]
+[03:29]   [ComfyUI] ComfyUI version: 0.21.1
+[03:29]   [ComfyUI] comfy-aimdo version: 0.3.0
+[03:29]   [ComfyUI] comfy-kitchen version: 0.2.8
+[03:29]   [ComfyUI] ****** User settings have been changed to be stored on the server instead of browser storage. ******
+[03:29]   [ComfyUI] ****** For multi-user setups add the --multi-user CLI argument to enable multiple user profiles. ******
+[03:29]   [ComfyUI] comfyui-frontend-package version: 1.43.18
+[03:29]   [ComfyUI] comfyui-workflow-templates version: 0.9.77
+[03:29]   [ComfyUI] comfyui-embedded-docs version: 0.5.0
+[03:29]   [ComfyUI] comfy-kitchen version: 0.2.8
+[03:29]   [ComfyUI] comfy-aimdo version: 0.3.0
+[03:29]   [ComfyUI] [Prompt Server] web root: /workspaces/LiTo-1256/.venv/lib/python3.13/site-packages/comfyui_frontend_package/static
+[03:29]   [ComfyUI] Asset seeder disabled
+[03:30]   [ComfyUI] loading...
+[03:30]   [ComfyUI] calling register_nodes
+[03:30]   [ComfyUI] [comfy-env] Version: 0.3.75
+[03:31]   [ComfyUI] [comfy-env] register_nodes: ComfyUI-LiTo
+[03:31]   [ComfyUI] [comfy-env] ComfyUI source dir: /workspaces/LiTo-1256/ComfyUI
+[03:31]   [ComfyUI] [comfy-env] Found 1 isolation env(s)
+[03:31]   [ComfyUI] [comfy-env] Scanning nodes metadata (isolation root)...
+[03:31]   [ComfyUI] [comfy-env] Metadata scan: /root/.pixi/bin/pixi run --as-is --manifest-path /workspaces/LiTo-1256/ComfyUI/.ce/pixi.toml -e lito-nodes python /tmp/comfy_meta_cd5xxjju.py /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo nodes
+[03:31]   [ComfyUI] [comfy-env] Scan env PATH for nodes:
+[03:31]   [ComfyUI] [comfy-env]   [0] /root/.local/bin
+[03:31]   [ComfyUI] [comfy-env]   [1] /usr/local/nvidia/bin
+[03:31]   [ComfyUI] [comfy-env]   [2] /usr/local/cuda/bin
+[03:31]   [ComfyUI] [comfy-env]   [3] /usr/local/sbin
+[03:31]   [ComfyUI] [comfy-env]   [4] /usr/local/bin
+[03:31]   [ComfyUI] [comfy-env]   [5] /usr/sbin
+[03:31]   [ComfyUI] [comfy-env]   [6] /usr/bin
+[03:31]   [ComfyUI] [comfy-env]   [7] /sbin
+[03:31]   [ComfyUI] [comfy-env]   [8] /bin
+[03:33]   [ComfyUI] [comfy-env] Metadata scan stderr for nodes:
+[03:33]   [ComfyUI] [comfy-env]   [meta-scan] importing nodes from /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo
+[03:33]   [ComfyUI] [comfy-env]   [meta-scan] import OK
+[03:33]   [ComfyUI] [comfy-env] Scanned nodes: 5 nodes (2.7s)
+[03:33]   [ComfyUI] [comfy-env] Scanned nodes root: 5 nodes (2.7s)
+[03:33]   [ComfyUI] [comfy-env] Imported nodes root: 5 nodes (isolation)
+[03:33]   [ComfyUI] [comfy-env] Registered 5 total nodes
+[03:33]   [ComfyUI] 
+[03:33]   [ComfyUI] Import times for custom nodes:
+[03:33]   [ComfyUI]    0.0 seconds: /workspaces/LiTo-1256/ComfyUI/custom_nodes/websocket_image_save.py
+[03:33]   [ComfyUI]    0.0 seconds: /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-validate-endpoint
+[03:33]   [ComfyUI]    0.0 seconds: /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-GaussianPack
+[03:33]   [ComfyUI]    2.9 seconds: /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo
+[03:33]   [ComfyUI] 
+[03:33]   [ComfyUI] Context impl SQLiteImpl.
+[03:33]   [ComfyUI] Will assume non-transactional DDL.
+[03:33]   [ComfyUI] Context impl SQLiteImpl.
+[03:33]   [ComfyUI] Will assume non-transactional DDL.
+[03:33]   [ComfyUI] Running upgrade  -> 0001_assets, Initial assets schema
+[03:33]   [ComfyUI] Revision ID: 0001_assets
+[03:33]   [ComfyUI] Revises: None
+[03:33]   [ComfyUI] Create Date: 2025-12-10 00:00:00
+[03:33]   [ComfyUI] Running upgrade 0001_assets -> 0002_merge_to_asset_references, Merge AssetInfo and AssetCacheState into unified asset_references table.
+[03:33]   [ComfyUI] Running upgrade 0002_merge_to_asset_references -> 0003_add_metadata_job_id, Add system_metadata and job_id columns to asset_references.
+[03:33]   [ComfyUI] Change preview_id FK from assets.id to asset_references.id.
+[03:33]   [ComfyUI] Database upgraded from None to 0003_add_metadata_job_id
+[03:34]   [ComfyUI] Starting server
+[03:34]   [ComfyUI] 
+[03:34]   [ComfyUI] To see the GUI go to: http://127.0.0.1:41892
+[03:34] Server responding, waiting for nodes to load...
+[03:54] Server is ready!
+[03:54] Checking for import errors in server logs...
+[03:54] No import errors detected
+[03:54] Found 726 registered nodes
+[03:54] [REGISTRATION] PASSED
+[03:54] 
+[03:54] [4/5] INSTANTIATION
+[03:54] ----------------------------------------
+[03:54] 
+[DEBUG] server=<comfy_test.comfyui.server.ComfyUIServer object at 0x7e15078889d0>, api=<comfy_test.comfyui.api.ComfyUIAPI object at 0x7e15084f7670>
+[03:54] Testing node constructors...
+[03:55] All 5 node(s) instantiated successfully!
+[03:55] [INSTANTIATION] PASSED
+[03:55] 
+[03:55] [5/5] EXECUTION
+[03:55] ----------------------------------------
+[03:55] 
+[DEBUG] server=<comfy_test.comfyui.server.ComfyUIServer object at 0x7e15078889d0>, api=<comfy_test.comfyui.api.ComfyUIAPI object at 0x7e15084f7670>
+[03:55] GPU runner - will execute 1 workflow(s)
+[03:55] Running 1 workflow(s) (all with videos)...
+[03:55] Installing screenshot dependencies (playwright, pillow)...
+[03:56]   Packages installed, downloading chromium browser...
+[04:14]   Screenshot dependencies installed successfully
+[04:14] Starting headless browser...
+[04:14]   Installing Vulkan stack (apt)...
+[04:14]   Vulkan install error: [Errno 2] No such file or directory: 'sudo'
+[04:14]   GPU detected (no Vulkan) -- using ANGLE/OpenGL rendering
+[04:14] Capturing execution frames: basic.json
+[04:20]   Frame 1 saved (frame_000.jpg, t=0.0s)
+[04:20]   Validating workflow...
+[04:20]   [ComfyUI] === /validate endpoint called ===
+[04:20]   [ComfyUI] Received JSON with keys: ['prompt']
+[04:20]   [ComfyUI] Prompt has 7 nodes
+[04:20]   [ComfyUI]   Node 1: LiToLoadModel
+[04:20]   [ComfyUI]     Inputs: {"checkpoint": "lito_dit_rgba (recommended)", "compile": false, "precision": "auto"}
+[04:20]   [ComfyUI]   Node 5: LoadImage
+[04:20]   Queuing workflow for execution...
+[04:20]   [ComfyUI]     Inputs: {"image": "apple.png"}
+[04:20]   [ComfyUI]   Node 6: LiToExportPLY
+[04:20]   [ComfyUI]     Inputs: {"filename": "lito_output", "gaussians": ["8", 0]}
+[04:20]   [ComfyUI]   Node 8: LiToImageTo3D
+[04:20]   [ComfyUI]     Inputs: {"sampling_steps": 20, "cfg_scale": 3, "sampling_method": "heun", "seed": 42, "model": ["1", 0], "image": ["5", 0], "mask": ["9", 0]}
+[04:20]   [ComfyUI]   Node 9: InvertMask
+[04:20]   [ComfyUI]     Inputs: {"mask": ["5", 1]}
+[04:20]   [ComfyUI]   Node 17: MaskPreview
+[04:20]   [ComfyUI]     Inputs: {"mask": ["9", 0]}
+[04:20]   [ComfyUI]   Node 29: PreviewGaussians
+[04:20]   [ComfyUI]     Inputs: {"fov_degrees": 50, "image_width": 512, "image_height": 512, "renderer": "spark", "transport_format": "ply", "ply_path": ["6", 0]}
+[04:20]   [ComfyUI] Generated prompt_id: 69548a32-2ccd-4300-8d09-efb45f9da785
+[04:20]   [ComfyUI] Calling execution.validate_prompt()...
+[04:20]   [ComfyUI] Validation result: valid=True
+[04:20]   [ComfyUI] === Validation PASSED ===
+[04:20]   [ComfyUI] got prompt
+[04:20]   [ComfyUI] [comfy-env] Running LiToLoadModel: checkpoint: 'lito_dit_rgba (recommended)', compile: False, precision: 'auto'
+[04:20]   [ComfyUI] [comfy-env] SubprocessWorker: /workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/bin/python
+[04:20]   [ComfyUI] [VRAM] Before LiToLoadModel: 612 / 7672 MB
+[04:20]   [ComfyUI] [comfy-env] env_vars: {'COMFYUI_BASE': '/workspaces/LiTo-1256/ComfyUI'}
+[04:20]   [ComfyUI] [SubprocessWorker] call_method: nodes.load_model.LiToLoadModel.EXECUTE_NORMALIZED
+[04:20]   [ComfyUI] [ComfyUI-LiTo] python: /workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/bin/python
+[04:20]   [ComfyUI] [SubprocessWorker] acquired lock, ensuring started...
+[04:20]   [ComfyUI] [ComfyUI-LiTo] sys_path sent to worker: ['/workspaces/LiTo-1256/ComfyUI', '/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo', '/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages', '/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo']
+[04:20]   [ComfyUI] [SubprocessWorker] is_pixi=True, python=/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/bin/python
+[04:20]   [ComfyUI] [SubprocessWorker] launching cmd=['/root/.pixi/bin/pixi', 'run', '--as-is', '--manifest-path', '/workspaces/LiTo-1256/ComfyUI/.ce/pixi.toml', '-e', 'lito-nodes', 'python', '/tmp/comfyui_pvenv_abl0f2uv/persistent_worker.py', 'abstract://comfy_worker_bb35f1d358df']...
+[04:20]   [ComfyUI] [SubprocessWorker] socket_addr=abstract://comfy_worker_bb35f1d358df (abstract, no filesystem path)
+[04:20]   Node executed (1 total), capturing...
+[04:21]   Frame 2 saved (frame_001.jpg, t=0.5s)
+[04:21]   [capture-node] freeze=3ms shot=130ms unfreeze=6ms saved=True
+[04:24]   [ComfyUI] [worker:ComfyUI-LiTo] WARNING: WARNING: You need pytorch with cu130 or higher to use optimized CUDA operations.
+[04:24]   [ComfyUI] [SubprocessWorker] worker started/confirmed
+[04:24]   [ComfyUI] [SubprocessWorker] serializing kwargs to shm...
+[04:24]   [ComfyUI] [SubprocessWorker] created 0 shm blocks
+[04:24]   [ComfyUI] [SubprocessWorker] sending request via socket...
+[04:24]   [ComfyUI] [SubprocessWorker] call_id=1 sending call_method
+[04:25]   Frame 3 saved (frame_002.jpg, t=5.0s)
+[04:25]   [capture-periodic] freeze=2ms shot=141ms unfreeze=3ms saved=True
+[04:26]   [capture-loop] iter=50 t=6.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.3/23.4GB (18%) swap=2.1/32.0GB (6%) cpu=8% browser_rss=0.87GB
 [04:26]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:26]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:26]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:27]   Frame 27 saved (frame_026.jpg, t=59.5s)
-[04:27]   [capture-periodic] freeze=1ms shot=122ms unfreeze=9ms saved=True
 [04:27]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
 [04:27]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:27]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:28]   Frame 4 saved (frame_003.jpg, t=7.3s)
+[04:28]   [capture-periodic] freeze=2ms shot=162ms unfreeze=4ms saved=True
 [04:28]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:28]   [ComfyUI] [worker:ComfyUI-LiTo]
-[04:28]   [ComfyUI] === WATCHDOG TICK 1 ===
-[04:28]   [ComfyUI] [worker:ComfyUI-LiTo] Thread 0x00007ee1d1764640 (most recent call first):
-[04:28]   [ComfyUI]   File "/tmp/comfyui_pvenv_cjo8xsil/persistent_worker.py", line 106 in _vram_poller
-[04:28]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/threading.py", line 953 in run
-[04:28]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/threading.py", line 1016 in _bootstrap_inner
-[04:28]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/threading.py", line 973 in _bootstrap
-[04:28]   [ComfyUI] 
-[04:28]   [ComfyUI] Current thread 0x00007ee1d1f65640 (most recent call first):
-[04:28]   [ComfyUI]   File "/tmp/comfyui_pvenv_cjo8xsil/persistent_worker.py", line 52 in _watchdog
-[04:28]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/threading.py", line 953 in run
-[04:28]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/threading.py", line 1016 in _bootstrap_inner
-[04:28]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/threading.py", line 973 in _bootstrap
-[04:28]   [ComfyUI] 
-[04:28]   [ComfyUI] Thread 0x00007ee1d253b740 (most recent call first):
-[04:28]   [ComfyUI]   File "/tmp/comfyui_pvenv_cjo8xsil/persistent_worker.py", line 1094 in _recvall
-[04:28]   [ComfyUI]   File "/tmp/comfyui_pvenv_cjo8xsil/persistent_worker.py", line 1081 in recv
-[04:28]   [ComfyUI]   File "/tmp/comfyui_pvenv_cjo8xsil/persistent_worker.py", line 1429 in _call_parent
-[04:28]   [ComfyUI]   File "/tmp/comfyui_pvenv_cjo8xsil/persistent_worker.py", line 1571 in _progress_hook
-[04:28]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/comfy/utils.py", line 1266 in update_absolute
-[04:28]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/load_model.py", line 143 in on_chunk
-[04:28]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/load_model.py", line 150 in _get_or_download_checkpoint
-[04:28]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/load_model.py", line 95 in execute
-[04:28]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 124 in decorate_context
-[04:28]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/comfy_api/latest/_io.py", line 1833 in EXECUTE_NORMALIZED
-[04:28]   [ComfyUI]   File "/tmp/comfyui_pvenv_cjo8xsil/persistent_worker.py", line 1762 in main
-[04:28]   [ComfyUI]   File "/tmp/comfyui_pvenv_cjo8xsil/persistent_worker.py", line 1807 in <module>
-[04:28]   [ComfyUI] 
 [04:28]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:28]   [ComfyUI] [worker:ComfyUI-LiTo] === END ===
-[04:28]   [ComfyUI] 
 [04:28]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:29]   Frame 28 saved (frame_027.jpg, t=61.8s)
-[04:29]   [capture-periodic] freeze=2ms shot=137ms unfreeze=7ms saved=True
-[04:29]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
 [04:29]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
 [04:29]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
 [04:30]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
 [04:30]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:30]   [capture-loop] iter=550 t=63.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.9/23.4GB (21%) swap=1.5/32.0GB (5%) cpu=18% browser_rss=0.84GB
+[04:30]   Frame 5 saved (frame_004.jpg, t=9.6s)
+[04:30]   [capture-periodic] freeze=7ms shot=141ms unfreeze=2ms saved=True
+[04:30]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
 [04:31]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
 [04:31]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:31]   Frame 29 saved (frame_028.jpg, t=64.1s)
-[04:31]   [capture-periodic] freeze=2ms shot=137ms unfreeze=7ms saved=True
 [04:31]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
 [04:32]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:32]   [capture-loop] iter=100 t=11.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=4.3/23.4GB (18%) swap=2.1/32.0GB (6%) cpu=15% browser_rss=0.88GB
 [04:32]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:32]   Frame 6 saved (frame_005.jpg, t=11.9s)
+[04:32]   [capture-periodic] freeze=2ms shot=157ms unfreeze=4ms saved=True
 [04:33]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
 [04:33]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:33]   Frame 30 saved (frame_029.jpg, t=66.4s)
-[04:33]   [capture-periodic] freeze=2ms shot=147ms unfreeze=6ms saved=True
+[04:33]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
 [04:34]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:34]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:34]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:34]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:34]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
-[04:35]   [ComfyUI] [SubprocessWorker] got response: ok
-[04:35]   [ComfyUI] [comfy-env] LiToLoadModel done (67.42s): result: NodeOutput
-[04:35]   [ComfyUI] [VRAM] After LiToLoadModel: 729 / 7672 MB
-[04:35]   [ComfyUI] [comfy-env] Running LiToImageTo3D: sampling_steps: 20, cfg_scale: 3.0, sampling_method: 'heun', seed: 42, model: dict, image: torch.float32 [1,518,518,3] cpu, mask: torch.float32 [1,518,518] cpu
-[04:35]   [ComfyUI] [VRAM] Before LiToImageTo3D: 729 / 7672 MB
-[04:35]   [ComfyUI] [SubprocessWorker] call_method: nodes.inference.LiToImageTo3D.EXECUTE_NORMALIZED
-[04:35]   [ComfyUI] [SubprocessWorker] acquired lock, ensuring started...
-[04:35]   [ComfyUI] [ComfyUI-LiTo] Health check: ping (timeout=5.0s)...
-[04:35]   [ComfyUI] [ComfyUI-LiTo] Health check: ok
-[04:35]   [ComfyUI] [SubprocessWorker] worker started/confirmed
-[04:35]   [ComfyUI] [comfy-env] PRE-SERIALIZE 'image' shape: torch.Size([1, 518, 518, 3])
-[04:35]   [ComfyUI] [comfy-env] PRE-SERIALIZE 'mask' shape: torch.Size([1, 518, 518])
-[04:35]   [ComfyUI] [SubprocessWorker] serializing kwargs to shm...
-[04:35]   [ComfyUI] [SubprocessWorker] created 0 shm blocks
-[04:35]   [ComfyUI] [SubprocessWorker] sending request via socket...
-[04:35]   [ComfyUI] [SubprocessWorker] call_id=2 sending call_method
-[04:35]   [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'parent_pid', 'fd', 'storage_size']
-[04:35]   [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[1, 518, 518, 3]
-[04:35]   [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([1, 518, 518, 3])
-[04:35]   [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'parent_pid', 'fd', 'storage_size']
-[04:35]   [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[1, 518, 518]
-[04:35]   [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([1, 518, 518])
-[04:35]   [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] start: device=cuda:0, dtype=bf16, steps=20, method=heun, cfg=3.0, seed=42
-[04:35]   [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] load: checkpoint=/workspaces/LiTo-0835/ComfyUI/models/lito/lito_dit_rgba.ckpt, compile=False
-[04:35]   [ComfyUI] [worker:ComfyUI-LiTo] loading model from /workspaces/LiTo-0835/ComfyUI/models/lito/lito_dit_rgba.ckpt
-[04:36]   Frame 31 saved (frame_030.jpg, t=68.7s)
-[04:36]   [capture-periodic] freeze=2ms shot=145ms unfreeze=5ms saved=True
-[04:36]   [capture-loop] iter=600 t=69.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=7.2/23.4GB (31%) swap=1.5/32.0GB (5%) cpu=15% browser_rss=0.84GB
-[04:40]   [ComfyUI] [worker:ComfyUI-LiTo] GPU Name: NVIDIA GeForce RTX 5060
-[04:40]   [ComfyUI] [worker:ComfyUI-LiTo] Compute Capability: 12.0
-[04:42]   [capture-loop] iter=650 t=74.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=11.3/23.4GB (48%) swap=1.6/32.0GB (5%) cpu=13% browser_rss=0.84GB
-[04:43]   [ComfyUI] [worker:ComfyUI-LiTo] [SPARSE] Backend: spconv, Attention: flash_attn
-[04:43]   [ComfyUI] [worker:ComfyUI-LiTo] [SPARSE][CONV] spconv algo: auto
-[04:43]   [ComfyUI] [worker:ComfyUI-LiTo] [ATTENTION] Using backend: flash_attn
-[04:43]   [ComfyUI] [worker:ComfyUI-LiTo] [SPARSE] Backend: spconv, Attention: flash_attn
-[04:43]   [ComfyUI] [worker:ComfyUI-LiTo] [SPARSE][CONV] spconv algo: auto
-[04:43]   [ComfyUI] [worker:ComfyUI-LiTo] [ATTENTION] Using backend: flash_attn
-[04:44]   [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +312MB (now 312MB) reserved=320MB peak=312MB
-[04:45]   [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +1626MB (now 1938MB) reserved=1952MB peak=1938MB
-[04:46]   [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +1571MB (now 3509MB) reserved=3520MB peak=3509MB
-[04:47]   [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +1618MB (now 5128MB) reserved=5152MB peak=5128MB
-[04:47]   [capture-loop] iter=700 t=80.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.9/23.4GB (60%) swap=1.7/32.0GB (6%) cpu=14% browser_rss=0.78GB
-[04:48]   [ComfyUI] [SubprocessWorker] got response: error
-[04:48]   [ComfyUI] !!! Exception during processing !!! Allocation on device 0 would exceed allowed memory. (out of memory)
-[04:48]   [ComfyUI] Currently allocated     : 6.59 GiB
-[04:48]   [ComfyUI] Requested               : 13.50 MiB
-[04:48]   [ComfyUI] Device limit            : 7.49 GiB
-[04:48]   [ComfyUI] Free (according to CUDA): 121.44 MiB
-[04:48]   [ComfyUI] PyTorch limit (set by user-supplied memory fraction)
-[04:48]   [ComfyUI]                         : 17179869184.00 GiB
-[04:48]   [ComfyUI] 
-[04:48]   [ComfyUI] Worker traceback:
-[04:48]   [ComfyUI] Traceback (most recent call last):
-[04:48]   [ComfyUI]   File "/tmp/comfyui_pvenv_cjo8xsil/persistent_worker.py", line 1762, in main
-[04:48]   [ComfyUI]     result = method(**inputs)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/comfy_api/latest/_io.py", line 1833, in EXECUTE_NORMALIZED
-[04:48]   [ComfyUI]     to_return = cls.execute(*args, **kwargs)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
-[04:48]   [ComfyUI]     return func(*args, **kwargs)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 254, in execute
-[04:48]   [ComfyUI]     models = _load_and_cache_model(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 148, in _load_and_cache_model
-[04:48]   [ComfyUI]     mdict = load_model(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/lito_src/lito/eval_scripts/st_model_utils.py", line 145, in load_model
-[04:48]   [ComfyUI]     model: lito_dit_trainer.LiToDiTTrainer = lito_dit_trainer.LiToDiTTrainer.load_from_checkpoint(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/pytorch/utilities/model_helpers.py", line 130, in wrapper
-[04:48]   [ComfyUI]     return self.method(cls_type, *args, **kwargs)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/pytorch/core/module.py", line 1797, in load_from_checkpoint
-[04:48]   [ComfyUI]     loaded = _load_from_checkpoint(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/pytorch/core/saving.py", line 65, in _load_from_checkpoint
-[04:48]   [ComfyUI]     checkpoint = pl_load(checkpoint_path, map_location=map_location, weights_only=weights_only)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/fabric/utilities/cloud_io.py", line 73, in _load
-[04:48]   [ComfyUI]     return torch.load(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 1570, in load
-[04:48]   [ComfyUI]     return _load(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 2190, in _load
-[04:48]   [ComfyUI]     result = unpickler.load()
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/_weights_only_unpickler.py", line 541, in load
-[04:48]   [ComfyUI]     self.append(self.persistent_load(pid))
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 2154, in persistent_load
-[04:48]   [ComfyUI]     typed_storage = load_tensor(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 2116, in load_tensor
-[04:48]   [ComfyUI]     wrap_storage = restore_location(storage, location)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 1920, in restore_location
-[04:48]   [ComfyUI]     return default_restore_location(storage, str(map_location))
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 734, in default_restore_location
-[04:48]   [ComfyUI]     result = fn(storage, location)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 668, in _deserialize
-[04:48]   [ComfyUI]     return obj.to(device=device)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/storage.py", line 289, in to
-[04:48]   [ComfyUI]     return _to(self, device, non_blocking)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/_utils.py", line 106, in _to
-[04:48]   [ComfyUI]     untyped_storage = torch.UntypedStorage(self.size(), device=device)
-[04:48]   [ComfyUI] torch.OutOfMemoryError: Allocation on device 0 would exceed allowed memory. (out of memory)
-[04:48]   [ComfyUI] Currently allocated     : 6.59 GiB
-[04:48]   [ComfyUI] Requested               : 13.50 MiB
-[04:48]   [ComfyUI] Device limit            : 7.49 GiB
-[04:48]   [ComfyUI] Free (according to CUDA): 121.44 MiB
-[04:48]   [ComfyUI] PyTorch limit (set by user-supplied memory fraction)
-[04:48]   [ComfyUI]                         : 17179869184.00 GiB
-[04:48]   [ComfyUI] 
-[04:48]   [ComfyUI] Traceback (most recent call last):
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/execution.py", line 535, in execute
-[04:48]   [ComfyUI]     output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/execution.py", line 335, in get_output_data
-[04:48]   [ComfyUI]     return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/execution.py", line 309, in _async_map_node_over_list
-[04:48]   [ComfyUI]     await process_inputs(input_dict, i)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/execution.py", line 297, in process_inputs
-[04:48]   [ComfyUI]     result = f(**inputs)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/.venv/lib/python3.10/site-packages/comfy_env/isolation/metadata.py", line 536, in proxy
-[04:48]   [ComfyUI]     result = worker.call_method(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/.venv/lib/python3.10/site-packages/comfy_env/isolation/workers/subprocess.py", line 674, in call_method
-[04:48]   [ComfyUI]     raise WorkerError(
-[04:48]   [ComfyUI] comfy_env.isolation.workers.base.WorkerError: Allocation on device 0 would exceed allowed memory. (out of memory)
-[04:48]   [ComfyUI] Currently allocated     : 6.59 GiB
-[04:48]   [ComfyUI] Requested               : 13.50 MiB
-[04:48]   [ComfyUI] Device limit            : 7.49 GiB
-[04:48]   [ComfyUI] Free (according to CUDA): 121.44 MiB
-[04:48]   [ComfyUI] PyTorch limit (set by user-supplied memory fraction)
-[04:48]   [ComfyUI]                         : 17179869184.00 GiB
-[04:48]   [ComfyUI] 
-[04:48]   [ComfyUI] Worker traceback:
-[04:48]   [ComfyUI] Traceback (most recent call last):
-[04:48]   [ComfyUI]   File "/tmp/comfyui_pvenv_cjo8xsil/persistent_worker.py", line 1762, in main
-[04:48]   [ComfyUI]     result = method(**inputs)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/comfy_api/latest/_io.py", line 1833, in EXECUTE_NORMALIZED
-[04:48]   Execution complete (t=80.9s)
-[04:48]   [ComfyUI]     to_return = cls.execute(*args, **kwargs)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
-[04:48]   Execution error: {'prompt_id': 'efae8c12-8435-48c0-b55d-48196fff48e3', 'node_id': '8', 'node_type': 'LiToImageTo3D', 'executed': ['17', '1', '9', '5'], 'exception_message': 'Allocation on device 0 would exceed allowed memory. (out of memory)\nCurrently allocated     : 6.59 GiB\nRequested               : 13.50 MiB\nDevice limit            : 7.49 GiB\nFree (according to CUDA): 121.44 MiB\nPyTorch limit (set by user-supplied memory fraction)\n                        : 17179869184.00 GiB\n\nWorker traceback:\nTraceback (most recent call last):\n  File "/tmp/comfyui_pvenv_cjo8xsil/persistent_worker.py", line 1762, in main\n    result = method(**inputs)\n  File "/workspaces/LiTo-0835/ComfyUI/comfy_api/latest/_io.py", line 1833, in EXECUTE_NORMALIZED\n    to_return = cls.execute(*args, **kwargs)\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context\n    return func(*args, **kwargs)\n  File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 254, in execute\n    models = _load_and_cache_model(\n  File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 148, in _load_and_cache_model\n    mdict = load_model(\n  File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/lito_src/lito/eval_scripts/st_model_utils.py", line 145, in load_model\n    model: lito_dit_trainer.LiToDiTTrainer = lito_dit_trainer.LiToDiTTrainer.load_from_checkpoint(\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/pytorch/utilities/model_helpers.py", line 130, in wrapper\n    return self.method(cls_type, *args, **kwargs)\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/pytorch/core/module.py", line 1797, in load_from_checkpoint\n    loaded = _load_from_checkpoint(\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/pytorch/core/saving.py", line 65, in _load_from_checkpoint\n    checkpoint = pl_load(checkpoint_path, map_location=map_location, weights_only=weights_only)\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/fabric/utilities/cloud_io.py", line 73, in _load\n    return torch.load(\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 1570, in load\n    return _load(\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 2190, in _load\n    result = unpickler.load()\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/_weights_only_unpickler.py", line 541, in load\n    self.append(self.persistent_load(pid))\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 2154, in persistent_load\n    typed_storage = load_tensor(\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 2116, in load_tensor\n    wrap_storage = restore_location(storage, location)\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 1920, in restore_location\n    return default_restore_location(storage, str(map_location))\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 734, in default_restore_location\n    result = fn(storage, location)\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 668, in _deserialize\n    return obj.to(device=device)\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/storage.py", line 289, in to\n    return _to(self, device, non_blocking)\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/_utils.py", line 106, in _to\n    untyped_storage = torch.UntypedStorage(self.size(), device=device)\ntorch.OutOfMemoryError: Allocation on device 0 would exceed allowed memory. (out of memory)\nCurrently allocated     : 6.59 GiB\nRequested               : 13.50 MiB\nDevice limit            : 7.49 GiB\nFree (according to CUDA): 121.44 MiB\nPyTorch limit (set by user-supplied memory fraction)\n                        : 17179869184.00 GiB\n\n', 'exception_type': 'comfy_env.isolation.workers.base.WorkerError', 'traceback': ['  File "/workspaces/LiTo-0835/ComfyUI/execution.py", line 535, in execute\n    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n', '  File "/workspaces/LiTo-0835/ComfyUI/execution.py", line 335, in get_output_data\n    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n', '  File "/workspaces/LiTo-0835/ComfyUI/execution.py", line 309, in _async_map_node_over_list\n    await process_inputs(input_dict, i)\n', '  File "/workspaces/LiTo-0835/ComfyUI/execution.py", line 297, in process_inputs\n    result = f(**inputs)\n', '  File "/workspaces/LiTo-0835/.venv/lib/python3.10/site-packages/comfy_env/isolation/metadata.py", line 536, in proxy\n    result = worker.call_method(\n', '  File "/workspaces/LiTo-0835/.venv/lib/python3.10/site-packages/comfy_env/isolation/workers/subprocess.py", line 674, in call_method\n    raise WorkerError(\n'], 'current_inputs': {'sampling_steps': [20], 'cfg_scale': [3], 'sampling_method': ['heun'], 'seed': [42], 'model': ["{'checkpoint_path': '/workspaces/LiTo-0835/ComfyUI/models/lito/lito_dit_rgba.ckpt', 'compile': False, 'precision': 'bf16'}"], 'image': ['tensor([[[[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         ...,\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]]]])'], 'mask': ['tensor([[[0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         ...,\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.]]])']}, 'current_outputs': ['17', '6', '1', '29', '8', '9', '5'], 'timestamp': 1778834439404}
-[04:48]   [ComfyUI]     return func(*args, **kwargs)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 254, in execute
-[04:48]   [ComfyUI]     models = _load_and_cache_model(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 148, in _load_and_cache_model
-[04:48]   [ComfyUI]     mdict = load_model(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/lito_src/lito/eval_scripts/st_model_utils.py", line 145, in load_model
-[04:48]   [ComfyUI]     model: lito_dit_trainer.LiToDiTTrainer = lito_dit_trainer.LiToDiTTrainer.load_from_checkpoint(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/pytorch/utilities/model_helpers.py", line 130, in wrapper
-[04:48]   [ComfyUI]     return self.method(cls_type, *args, **kwargs)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/pytorch/core/module.py", line 1797, in load_from_checkpoint
-[04:48]   [ComfyUI]     loaded = _load_from_checkpoint(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/pytorch/core/saving.py", line 65, in _load_from_checkpoint
-[04:48]   [ComfyUI]     checkpoint = pl_load(checkpoint_path, map_location=map_location, weights_only=weights_only)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/fabric/utilities/cloud_io.py", line 73, in _load
-[04:48]   [ComfyUI]     return torch.load(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 1570, in load
-[04:48]   [ComfyUI]     return _load(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 2190, in _load
-[04:48]   [ComfyUI]     result = unpickler.load()
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/_weights_only_unpickler.py", line 541, in load
-[04:48]   [ComfyUI]     self.append(self.persistent_load(pid))
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 2154, in persistent_load
-[04:48]   [ComfyUI]     typed_storage = load_tensor(
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 2116, in load_tensor
-[04:48]   [ComfyUI]     wrap_storage = restore_location(storage, location)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 1920, in restore_location
-[04:48]   [ComfyUI]     return default_restore_location(storage, str(map_location))
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 734, in default_restore_location
-[04:48]   [ComfyUI]     result = fn(storage, location)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 668, in _deserialize
-[04:48]   [ComfyUI]     return obj.to(device=device)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/storage.py", line 289, in to
-[04:48]   [ComfyUI]     return _to(self, device, non_blocking)
-[04:48]   [ComfyUI]   File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/_utils.py", line 106, in _to
-[04:48]   [ComfyUI]     untyped_storage = torch.UntypedStorage(self.size(), device=device)
-[04:48]   [ComfyUI] torch.OutOfMemoryError: Allocation on device 0 would exceed allowed memory. (out of memory)
-[04:48]   [ComfyUI] Currently allocated     : 6.59 GiB
-[04:48]   [ComfyUI] Requested               : 13.50 MiB
-[04:48]   [ComfyUI] Device limit            : 7.49 GiB
-[04:48]   [ComfyUI] Free (according to CUDA): 121.44 MiB
-[04:48]   [ComfyUI] PyTorch limit (set by user-supplied memory fraction)
-[04:48]   [ComfyUI]                         : 17179869184.00 GiB
-[04:48]   [ComfyUI] 
-[04:48]   [ComfyUI] 
-[04:48]   [ComfyUI] Prompt executed in 80.65 seconds
-[04:48] Results saved to /logs/LiTo-0835/dev/linux-gpu/results.json
-[04:48] Model report: 1 files, 6.9 GB -> /logs/LiTo-0835/dev/linux-gpu/models.json
-[04:48] Saved: /logs/LiTo-0835/dev/linux-gpu/index.html
-[04:48] 
+[04:34]   Frame 7 saved (frame_006.jpg, t=14.2s)
+[04:34]   [capture-periodic] freeze=2ms shot=147ms unfreeze=5ms saved=True
+[04:35]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:35]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:35]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:35]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:36]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:36]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:37]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:37]   Frame 8 saved (frame_007.jpg, t=16.5s)
+[04:37]   [capture-periodic] freeze=2ms shot=143ms unfreeze=9ms saved=True
+[04:37]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:38]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:38]   [capture-loop] iter=150 t=17.5s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.4/23.4GB (19%) swap=2.1/32.0GB (6%) cpu=14% browser_rss=0.90GB
+[04:38]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:38]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:39]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:39]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:39]   Frame 9 saved (frame_008.jpg, t=18.8s)
+[04:39]   [capture-periodic] freeze=2ms shot=135ms unfreeze=5ms saved=True
+[04:40]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:40]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:40]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:41]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:41]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:41]   Frame 10 saved (frame_009.jpg, t=21.0s)
+[04:41]   [capture-periodic] freeze=1ms shot=135ms unfreeze=7ms saved=True
+[04:41]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:42]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:42]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:42]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:43]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:43]   [capture-loop] iter=200 t=23.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.4/23.4GB (19%) swap=2.1/32.0GB (6%) cpu=12% browser_rss=0.91GB
+[04:43]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:44]   Frame 11 saved (frame_010.jpg, t=23.3s)
+[04:44]   [capture-periodic] freeze=6ms shot=129ms unfreeze=7ms saved=True
+[04:44]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:44]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:44]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:44]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:45]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:46]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:46]   Frame 12 saved (frame_011.jpg, t=25.5s)
+[04:46]   [capture-periodic] freeze=1ms shot=133ms unfreeze=6ms saved=True
+[04:46]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:46]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:47]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:47]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:48]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:48]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:48]   Frame 13 saved (frame_012.jpg, t=27.8s)
+[04:48]   [capture-periodic] freeze=1ms shot=141ms unfreeze=6ms saved=True
+[04:48]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:48]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:49]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:49]   [capture-loop] iter=250 t=28.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.4/23.4GB (19%) swap=2.1/32.0GB (6%) cpu=17% browser_rss=0.90GB
+[04:49]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:50]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:50]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:50]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:50]   Frame 14 saved (frame_013.jpg, t=30.1s)
+[04:50]   [capture-periodic] freeze=2ms shot=137ms unfreeze=2ms saved=True
+[04:51]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:51]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:52]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:52]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:52]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:53]   Frame 15 saved (frame_014.jpg, t=32.3s)
+[04:53]   [capture-periodic] freeze=2ms shot=116ms unfreeze=5ms saved=True
+[04:53]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:53]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:54]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:54]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:54]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:54]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:55]   [capture-loop] iter=300 t=34.5s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.3/23.4GB (18%) swap=2.1/32.0GB (6%) cpu=14% browser_rss=0.81GB
+[04:55]   Frame 16 saved (frame_015.jpg, t=34.5s)
+[04:55]   [capture-periodic] freeze=2ms shot=136ms unfreeze=6ms saved=True
+[04:55]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:56]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:56]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:56]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:56]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:57]   Frame 17 saved (frame_016.jpg, t=36.8s)
+[04:57]   [capture-periodic] freeze=2ms shot=131ms unfreeze=4ms saved=True
+[04:57]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:58]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:58]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:58]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:59]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:59]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[04:59]   Frame 18 saved (frame_017.jpg, t=39.1s)
+[04:59]   [capture-periodic] freeze=2ms shot=140ms unfreeze=6ms saved=True
+[05:00]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:00]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:00]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:00]   [capture-loop] iter=350 t=40.3s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.3/23.4GB (18%) swap=2.1/32.0GB (6%) cpu=15% browser_rss=0.82GB
+[05:01]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:01]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:01]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:02]   Frame 19 saved (frame_018.jpg, t=41.4s)
+[05:02]   [capture-periodic] freeze=2ms shot=88ms unfreeze=1ms saved=True
+[05:02]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:02]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:02]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:03]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:03]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:04]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:04]   Frame 20 saved (frame_019.jpg, t=43.5s)
+[05:04]   [capture-periodic] freeze=2ms shot=158ms unfreeze=19ms saved=True
+[05:04]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:04]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:05]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:05]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:05]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:06]   Frame 21 saved (frame_020.jpg, t=45.9s)
+[05:06]   [capture-periodic] freeze=2ms shot=152ms unfreeze=19ms saved=True
+[05:06]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:06]   [capture-loop] iter=400 t=46.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=4.3/23.4GB (18%) swap=2.1/32.0GB (6%) cpu=16% browser_rss=0.82GB
+[05:07]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:07]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:07]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:08]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:08]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:08]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:08]   Frame 22 saved (frame_021.jpg, t=48.2s)
+[05:08]   [capture-periodic] freeze=2ms shot=139ms unfreeze=7ms saved=True
+[05:09]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:09]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:10]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:10]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:10]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:11]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:11]   Frame 23 saved (frame_022.jpg, t=50.5s)
+[05:11]   [capture-periodic] freeze=2ms shot=119ms unfreeze=5ms saved=True
+[05:11]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:12]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:12]   [capture-loop] iter=450 t=51.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.3/23.4GB (19%) swap=2.1/32.0GB (6%) cpu=16% browser_rss=0.83GB
+[05:12]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:12]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:13]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:13]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:13]   Frame 24 saved (frame_023.jpg, t=52.8s)
+[05:13]   [capture-periodic] freeze=2ms shot=145ms unfreeze=4ms saved=True
+[05:14]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:14]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:14]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:14]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:15]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:15]   Frame 25 saved (frame_024.jpg, t=55.0s)
+[05:15]   [capture-periodic] freeze=1ms shot=140ms unfreeze=3ms saved=True
+[05:16]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:16]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:16]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:17]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:17]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:18]   Frame 26 saved (frame_025.jpg, t=57.4s)
+[05:18]   [capture-periodic] freeze=2ms shot=143ms unfreeze=4ms saved=True
+[05:18]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:18]   [capture-loop] iter=500 t=57.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.3/23.4GB (18%) swap=2.1/32.0GB (6%) cpu=15% browser_rss=0.82GB
+[05:18]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:18]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:18]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:19]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:20]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:20]   Frame 27 saved (frame_026.jpg, t=59.6s)
+[05:20]   [capture-periodic] freeze=2ms shot=142ms unfreeze=5ms saved=True
+[05:20]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:20]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:21]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:21]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:21]   [ComfyUI] [worker:ComfyUI-LiTo]
+[05:21]   [ComfyUI] === WATCHDOG TICK 1 ===
+[05:21]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:21]   [ComfyUI] [worker:ComfyUI-LiTo] Thread 0x00007b39890f4640 (most recent call first):
+[05:21]   [ComfyUI]   File "/tmp/comfyui_pvenv_abl0f2uv/persistent_worker.py", line 106 in _vram_poller
+[05:21]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/threading.py", line 995 in run
+[05:21]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/threading.py", line 1044 in _bootstrap_inner
+[05:21]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/threading.py", line 1015 in _bootstrap
+[05:22]   [ComfyUI] 
+[05:22]   [ComfyUI] Current thread 0x00007b39898f9640 (most recent call first):
+[05:22]   [ComfyUI]   File "/tmp/comfyui_pvenv_abl0f2uv/persistent_worker.py", line 52 in _watchdog
+[05:22]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/threading.py", line 995 in run
+[05:22]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/threading.py", line 1044 in _bootstrap_inner
+[05:22]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/threading.py", line 1015 in _bootstrap
+[05:22]   [ComfyUI] 
+[05:22]   [ComfyUI] Thread 0x00007b3989f16740 (most recent call first):
+[05:22]   [ComfyUI]   File "/tmp/comfyui_pvenv_abl0f2uv/persistent_worker.py", line 1094 in _recvall
+[05:22]   [ComfyUI]   File "/tmp/comfyui_pvenv_abl0f2uv/persistent_worker.py", line 1081 in recv
+[05:22]   [ComfyUI]   File "/tmp/comfyui_pvenv_abl0f2uv/persistent_worker.py", line 1429 in _call_parent
+[05:22]   [ComfyUI]   File "/tmp/comfyui_pvenv_abl0f2uv/persistent_worker.py", line 1571 in _progress_hook
+[05:22]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/comfy/utils.py", line 1266 in update_absolute
+[05:22]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/load_model.py", line 143 in on_chunk
+[05:22]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/load_model.py", line 150 in _get_or_download_checkpoint
+[05:22]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/load_model.py", line 95 in execute
+[05:22]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/utils/_contextlib.py", line 124 in decorate_context
+[05:22]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/comfy_api/latest/_io.py", line 1833 in EXECUTE_NORMALIZED
+[05:22]   [ComfyUI]   File "/tmp/comfyui_pvenv_abl0f2uv/persistent_worker.py", line 1762 in main
+[05:22]   [ComfyUI]   File "/tmp/comfyui_pvenv_abl0f2uv/persistent_worker.py", line 1807 in <module>
+[05:22]   [ComfyUI] 
+[05:22]   [ComfyUI] [worker:ComfyUI-LiTo] === END ===
+[05:22]   [ComfyUI] 
+[05:22]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:22]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:22]   Frame 28 saved (frame_027.jpg, t=61.9s)
+[05:22]   [capture-periodic] freeze=7ms shot=137ms unfreeze=5ms saved=True
+[05:23]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:23]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:23]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:23]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:24]   [capture-loop] iter=550 t=63.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.3/23.4GB (19%) swap=2.1/32.0GB (6%) cpu=14% browser_rss=0.82GB
+[05:24]   Frame 29 saved (frame_028.jpg, t=64.2s)
+[05:24]   [capture-periodic] freeze=2ms shot=144ms unfreeze=4ms saved=True
+[05:25]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:25]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:25]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:26]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:26]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:27]   Frame 30 saved (frame_029.jpg, t=66.5s)
+[05:27]   [capture-periodic] freeze=1ms shot=143ms unfreeze=5ms saved=True
+[05:27]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:27]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:27]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:27]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:28]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:29]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:29]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:29]   Frame 31 saved (frame_030.jpg, t=68.8s)
+[05:29]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:29]   [capture-periodic] freeze=1ms shot=142ms unfreeze=2ms saved=True
+[05:29]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:30]   [capture-loop] iter=600 t=69.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.3/23.4GB (19%) swap=2.1/32.0GB (6%) cpu=15% browser_rss=0.82GB
+[05:30]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:30]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:31]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:31]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:31]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:32]   Frame 32 saved (frame_031.jpg, t=71.3s)
+[05:32]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:32]   [capture-periodic] freeze=2ms shot=194ms unfreeze=2ms saved=True
+[05:33]   [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+[05:33]   [ComfyUI] [SubprocessWorker] got response: ok
+[05:33]   [ComfyUI] [comfy-env] LiToLoadModel done (72.54s): result: NodeOutput
+[05:33]   [ComfyUI] [VRAM] After LiToLoadModel: 729 / 7672 MB
+[05:33]   [ComfyUI] [comfy-env] Running LiToImageTo3D: sampling_steps: 20, cfg_scale: 3.0, sampling_method: 'heun', seed: 42, model: dict, image: torch.float32 [1,518,518,3] cpu, mask: torch.float32 [1,518,518] cpu
+[05:33]   [ComfyUI] [VRAM] Before LiToImageTo3D: 729 / 7672 MB
+[05:33]   [ComfyUI] [SubprocessWorker] call_method: nodes.inference.LiToImageTo3D.EXECUTE_NORMALIZED
+[05:33]   [ComfyUI] [SubprocessWorker] acquired lock, ensuring started...
+[05:33]   [ComfyUI] [ComfyUI-LiTo] Health check: ping (timeout=5.0s)...
+[05:33]   [ComfyUI] [ComfyUI-LiTo] Health check: ok
+[05:33]   [ComfyUI] [SubprocessWorker] worker started/confirmed
+[05:33]   [ComfyUI] [comfy-env] PRE-SERIALIZE 'image' shape: torch.Size([1, 518, 518, 3])
+[05:33]   [ComfyUI] [comfy-env] PRE-SERIALIZE 'mask' shape: torch.Size([1, 518, 518])
+[05:33]   [ComfyUI] [SubprocessWorker] serializing kwargs to shm...
+[05:33]   [ComfyUI] [SubprocessWorker] created 0 shm blocks
+[05:33]   [ComfyUI] [SubprocessWorker] sending request via socket...
+[05:33]   [ComfyUI] [SubprocessWorker] call_id=2 sending call_method
+[05:33]   [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'parent_pid', 'fd', 'storage_size']
+[05:33]   [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[1, 518, 518, 3]
+[05:33]   [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([1, 518, 518, 3])
+[05:33]   [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'parent_pid', 'fd', 'storage_size']
+[05:33]   [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[1, 518, 518]
+[05:33]   [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([1, 518, 518])
+[05:33]   [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] start: device=cuda:0, dtype=bf16, steps=20, method=heun, cfg=3.0, seed=42
+[05:34]   [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] load: checkpoint=/workspaces/LiTo-1256/ComfyUI/models/lito/lito_dit_rgba.ckpt, compile=False
+[05:35]   Frame 33 saved (frame_032.jpg, t=74.7s)
+[05:35]   [capture-periodic] freeze=2ms shot=128ms unfreeze=20ms saved=True
+[05:36]   [capture-loop] iter=650 t=76.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.0/23.4GB (17%) swap=2.1/32.0GB (6%) cpu=10% browser_rss=0.82GB
+[05:37]   Frame 34 saved (frame_033.jpg, t=76.9s)
+[05:37]   [capture-periodic] freeze=2ms shot=139ms unfreeze=4ms saved=True
+[05:42]   [capture-loop] iter=700 t=82.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=4.0/23.4GB (17%) swap=2.1/32.0GB (6%) cpu=6% browser_rss=0.79GB
+[05:44]   [ComfyUI] [worker:ComfyUI-LiTo] loading model from /workspaces/LiTo-1256/ComfyUI/models/lito/lito_dit_rgba.ckpt
+[05:48]   [capture-loop] iter=750 t=87.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=10.3/23.4GB (44%) swap=2.1/32.0GB (6%) cpu=14% browser_rss=0.79GB
+[05:49]   [ComfyUI] [worker:ComfyUI-LiTo] GPU Name: NVIDIA GeForce RTX 5060
+[05:49]   [ComfyUI] [worker:ComfyUI-LiTo] Compute Capability: 12.0
+[05:49]   [ComfyUI] /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/lito_src/plibs/rigid_motion.py:1138: SyntaxWarning: invalid escape sequence '\O'
+[05:49]   [ComfyUI]   Solid angle is of form d \Omega = sin(\theta) d\theta d\phi.
+[05:49]   [ComfyUI] /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/lito_src/lito/odelibs/ode_solvers.py:121: SyntaxWarning: invalid escape sequence '\i'
+[05:49]   [ComfyUI]   We approximate x_final = \int_{ts[0]}^{ts[-1]} func(t, x) dt
+[05:49]   [ComfyUI] /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/lito_src/lito/odelibs/ode_solvers.py:175: SyntaxWarning: invalid escape sequence '\i'
+[05:49]   [ComfyUI]   We approximate x_final = \int_{ts[0]}^{ts[-1]} func(t, x) dt
+[05:51]   [ComfyUI] [worker:ComfyUI-LiTo] [SPARSE] Backend: spconv, Attention: flash_attn
+[05:51]   [ComfyUI] [worker:ComfyUI-LiTo] [SPARSE][CONV] spconv algo: auto
+[05:51]   [ComfyUI] [worker:ComfyUI-LiTo] [ATTENTION] Using backend: flash_attn
+[05:51]   [ComfyUI] [worker:ComfyUI-LiTo] [SPARSE] Backend: spconv, Attention: flash_attn
+[05:51]   [ComfyUI] [worker:ComfyUI-LiTo] [SPARSE][CONV] spconv algo: auto
+[05:51]   [ComfyUI] [worker:ComfyUI-LiTo] [ATTENTION] Using backend: flash_attn
+[05:51]   [ComfyUI] /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/lito_src/plibs/gs_utils.py:929: SyntaxWarning: invalid escape sequence '\s'
+[05:51]   [ComfyUI]   "expectation": expected z-depth.  z_out = (\sum_i wi zi) / (\sum_i wi)
+[05:51]   [ComfyUI] /workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/lito_src/plibs/structures.py:10734: SyntaxWarning: invalid escape sequence '\i'
+[05:51]   [ComfyUI]   'wrgb': the correction is 3 scalars \in [0, 1] that multiply to RGB channels separately
+[05:52]   [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +231MB (now 231MB) reserved=256MB peak=231MB
+[05:53]   [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +1158MB (now 1390MB) reserved=1408MB peak=1390MB
+[05:53]   [capture-loop] iter=800 t=93.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=11.7/23.4GB (50%) swap=2.2/32.0GB (7%) cpu=13% browser_rss=0.79GB
+[05:54]   [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +878MB (now 2268MB) reserved=2272MB peak=2268MB
+[05:55]   [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +888MB (now 3156MB) reserved=3168MB peak=3156MB
+[05:56]   [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +892MB (now 4048MB) reserved=4064MB peak=4048MB
+[05:57]   [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +917MB (now 4966MB) reserved=4992MB peak=4966MB
+[05:58]   [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +849MB (now 5816MB) reserved=5824MB peak=5816MB
+[05:59]   [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +839MB (now 6655MB) reserved=6688MB peak=6655MB
+[05:59]   [ComfyUI] [SubprocessWorker] got response: error
+[05:59]   [ComfyUI] !!! Exception during processing !!! Allocation on device 0 would exceed allowed memory. (out of memory)
+[05:59]   [ComfyUI] Currently allocated     : 6.59 GiB
+[05:59]   [ComfyUI] Requested               : 13.50 MiB
+[05:59]   [ComfyUI] Device limit            : 7.49 GiB
+[05:59]   [ComfyUI] Free (according to CUDA): 121.44 MiB
+[05:59]   [ComfyUI] PyTorch limit (set by user-supplied memory fraction)
+[05:59]   [ComfyUI]                         : 17179869184.00 GiB
+[05:59]   [ComfyUI] 
+[05:59]   [ComfyUI] Worker traceback:
+[05:59]   [ComfyUI] Traceback (most recent call last):
+[05:59]   [ComfyUI]   File "/tmp/comfyui_pvenv_abl0f2uv/persistent_worker.py", line 1762, in main
+[05:59]   [ComfyUI]     result = method(**inputs)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/comfy_api/latest/_io.py", line 1833, in EXECUTE_NORMALIZED
+[05:59]   [ComfyUI]     to_return = cls.execute(*args, **kwargs)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+[05:59]   [ComfyUI]     return func(*args, **kwargs)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 288, in execute
+[05:59]   [ComfyUI]     models = _load_and_cache_model(
+[05:59]   [ComfyUI]         model["checkpoint_path"],
+[05:59]   [ComfyUI]     ...<2 lines>...
+[05:59]   [ComfyUI]         dtype,
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 172, in _load_and_cache_model
+[05:59]   [ComfyUI]     mdict = load_model(
+[05:59]   [ComfyUI]         checkpoint_url=checkpoint_path,
+[05:59]   [ComfyUI]     ...<4 lines>...
+[05:59]   [ComfyUI]         load_params=True,
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/lito_src/lito/eval_scripts/st_model_utils.py", line 145, in load_model
+[05:59]   [ComfyUI]     model: lito_dit_trainer.LiToDiTTrainer = lito_dit_trainer.LiToDiTTrainer.load_from_checkpoint(
+[05:59]   [ComfyUI]                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+[05:59]   [ComfyUI]         checkpoint_path=checkpoint_filename,
+[05:59]   [ComfyUI]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[05:59]   [ComfyUI]     ...<2 lines>...
+[05:59]   [ComfyUI]         **ori_config["plm_config"]["params"],
+[05:59]   [ComfyUI]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]     ^
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/utilities/model_helpers.py", line 130, in wrapper
+[05:59]   [ComfyUI]     return self.method(cls_type, *args, **kwargs)
+[05:59]   [capture-loop] iter=850 t=98.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.1/23.4GB (56%) swap=2.2/32.0GB (7%) cpu=16% browser_rss=0.79GB
+[05:59]   [ComfyUI]            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/core/module.py", line 1797, in load_from_checkpoint
+[05:59]   [ComfyUI]     loaded = _load_from_checkpoint(
+[05:59]   [ComfyUI]         cls,
+[05:59]   [ComfyUI]     ...<5 lines>...
+[05:59]   [ComfyUI]         **kwargs,
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/core/saving.py", line 65, in _load_from_checkpoint
+[05:59]   [ComfyUI]     checkpoint = pl_load(checkpoint_path, map_location=map_location, weights_only=weights_only)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/fabric/utilities/cloud_io.py", line 73, in _load
+[05:59]   [ComfyUI]     return torch.load(
+[05:59]   [ComfyUI]            ~~~~~~~~~~^
+[05:59]   [ComfyUI]         f,
+[05:59]   [ComfyUI]         ^^
+[05:59]   [ComfyUI]         map_location=map_location,  # type: ignore[arg-type]
+[05:59]   [ComfyUI]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[05:59]   [ComfyUI]         weights_only=weights_only,
+[05:59]   [ComfyUI]         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]     ^
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 1540, in load
+[05:59]   [ComfyUI]     return _load(
+[05:59]   [ComfyUI]         opened_zipfile,
+[05:59]   [ComfyUI]     ...<3 lines>...
+[05:59]   [ComfyUI]         **pickle_load_args,
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 2143, in _load
+[05:59]   [ComfyUI]     result = unpickler.load()
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/_weights_only_unpickler.py", line 539, in load
+[05:59]   [ComfyUI]     self.append(self.persistent_load(pid))
+[05:59]   [ComfyUI]                 ~~~~~~~~~~~~~~~~~~~~^^^^^
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 2107, in persistent_load
+[05:59]   [ComfyUI]     typed_storage = load_tensor(
+[05:59]   [ComfyUI]         dtype, nbytes, key, _maybe_decode_ascii(location)
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 2073, in load_tensor
+[05:59]   [ComfyUI]     wrap_storage = restore_location(storage, location)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 1884, in restore_location
+[05:59]   [ComfyUI]     return default_restore_location(storage, str(map_location))
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 707, in default_restore_location
+[05:59]   [ComfyUI]     result = fn(storage, location)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 641, in _deserialize
+[05:59]   [ComfyUI]     return obj.to(device=device)
+[05:59]   [ComfyUI]            ~~~~~~^^^^^^^^^^^^^^^
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/storage.py", line 289, in to
+[05:59]   [ComfyUI]     return _to(self, device, non_blocking)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/_utils.py", line 102, in _to
+[05:59]   [ComfyUI]     untyped_storage = torch.UntypedStorage(self.size(), device=device)
+[05:59]   [ComfyUI] torch.OutOfMemoryError: Allocation on device 0 would exceed allowed memory. (out of memory)
+[05:59]   [ComfyUI] Currently allocated     : 6.59 GiB
+[05:59]   [ComfyUI] Requested               : 13.50 MiB
+[05:59]   [ComfyUI] Device limit            : 7.49 GiB
+[05:59]   [ComfyUI] Free (according to CUDA): 121.44 MiB
+[05:59]   [ComfyUI] PyTorch limit (set by user-supplied memory fraction)
+[05:59]   [ComfyUI]                         : 17179869184.00 GiB
+[05:59]   [ComfyUI] 
+[05:59]   [ComfyUI] Traceback (most recent call last):
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/execution.py", line 535, in execute
+[05:59]   [ComfyUI]     output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)
+[05:59]   [ComfyUI]                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/execution.py", line 335, in get_output_data
+[05:59]   [ComfyUI]     return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)
+[05:59]   [ComfyUI]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/execution.py", line 309, in _async_map_node_over_list
+[05:59]   [ComfyUI]     await process_inputs(input_dict, i)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/execution.py", line 297, in process_inputs
+[05:59]   [ComfyUI]     result = f(**inputs)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/.venv/lib/python3.13/site-packages/comfy_env/isolation/metadata.py", line 536, in proxy
+[05:59]   [ComfyUI]     result = worker.call_method(
+[05:59]   [ComfyUI]         module_name=mod,
+[05:59]   [ComfyUI]     ...<4 lines>...
+[05:59]   [ComfyUI]         timeout=600.0,
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/.venv/lib/python3.13/site-packages/comfy_env/isolation/workers/subprocess.py", line 674, in call_method
+[05:59]   [ComfyUI]     raise WorkerError(
+[05:59]   [ComfyUI]     ...<2 lines>...
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI] comfy_env.isolation.workers.base.WorkerError: Allocation on device 0 would exceed allowed memory. (out of memory)
+[05:59]   [ComfyUI] Currently allocated     : 6.59 GiB
+[05:59]   [ComfyUI] Requested               : 13.50 MiB
+[05:59]   [ComfyUI] Device limit            : 7.49 GiB
+[05:59]   [ComfyUI] Free (according to CUDA): 121.44 MiB
+[05:59]   [ComfyUI] PyTorch limit (set by user-supplied memory fraction)
+[05:59]   [ComfyUI]                         : 17179869184.00 GiB
+[05:59]   [ComfyUI] 
+[05:59]   [ComfyUI] Worker traceback:
+[05:59]   [ComfyUI] Traceback (most recent call last):
+[05:59]   [ComfyUI]   File "/tmp/comfyui_pvenv_abl0f2uv/persistent_worker.py", line 1762, in main
+[05:59]   [ComfyUI]     result = method(**inputs)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/comfy_api/latest/_io.py", line 1833, in EXECUTE_NORMALIZED
+[05:59]   [ComfyUI]     to_return = cls.execute(*args, **kwargs)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+[05:59]   [ComfyUI]     return func(*args, **kwargs)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 288, in execute
+[05:59]   [ComfyUI]     models = _load_and_cache_model(
+[05:59]   [ComfyUI]         model["checkpoint_path"],
+[05:59]   [ComfyUI]     ...<2 lines>...
+[05:59]   [ComfyUI]         dtype,
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 172, in _load_and_cache_model
+[05:59]   [ComfyUI]     mdict = load_model(
+[05:59]   [ComfyUI]         checkpoint_url=checkpoint_path,
+[05:59]   [ComfyUI]     ...<4 lines>...
+[05:59]   [ComfyUI]         load_params=True,
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/lito_src/lito/eval_scripts/st_model_utils.py", line 145, in load_model
+[05:59]   [ComfyUI]     model: lito_dit_trainer.LiToDiTTrainer = lito_dit_trainer.LiToDiTTrainer.load_from_checkpoint(
+[05:59]   [ComfyUI]                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+[05:59]   [ComfyUI]         checkpoint_path=checkpoint_filename,
+[05:59]   Execution complete (t=99.0s)
+[05:59]   [ComfyUI]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[05:59]   Execution error: {'prompt_id': '6f1c3739-ee40-4c11-a91e-47327d337141', 'node_id': '8', 'node_type': 'LiToImageTo3D', 'executed': ['5', '9', '17', '1'], 'exception_message': 'Allocation on device 0 would exceed allowed memory. (out of memory)\nCurrently allocated     : 6.59 GiB\nRequested               : 13.50 MiB\nDevice limit            : 7.49 GiB\nFree (according to CUDA): 121.44 MiB\nPyTorch limit (set by user-supplied memory fraction)\n                        : 17179869184.00 GiB\n\nWorker traceback:\nTraceback (most recent call last):\n  File "/tmp/comfyui_pvenv_abl0f2uv/persistent_worker.py", line 1762, in main\n    result = method(**inputs)\n  File "/workspaces/LiTo-1256/ComfyUI/comfy_api/latest/_io.py", line 1833, in EXECUTE_NORMALIZED\n    to_return = cls.execute(*args, **kwargs)\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context\n    return func(*args, **kwargs)\n  File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 288, in execute\n    models = _load_and_cache_model(\n        model["checkpoint_path"],\n    ...<2 lines>...\n        dtype,\n    )\n  File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 172, in _load_and_cache_model\n    mdict = load_model(\n        checkpoint_url=checkpoint_path,\n    ...<4 lines>...\n        load_params=True,\n    )\n  File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/lito_src/lito/eval_scripts/st_model_utils.py", line 145, in load_model\n    model: lito_dit_trainer.LiToDiTTrainer = lito_dit_trainer.LiToDiTTrainer.load_from_checkpoint(\n                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        checkpoint_path=checkpoint_filename,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<2 lines>...\n        **ori_config["plm_config"]["params"],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/utilities/model_helpers.py", line 130, in wrapper\n    return self.method(cls_type, *args, **kwargs)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/core/module.py", line 1797, in load_from_checkpoint\n    loaded = _load_from_checkpoint(\n        cls,\n    ...<5 lines>...\n        **kwargs,\n    )\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/core/saving.py", line 65, in _load_from_checkpoint\n    checkpoint = pl_load(checkpoint_path, map_location=map_location, weights_only=weights_only)\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/fabric/utilities/cloud_io.py", line 73, in _load\n    return torch.load(\n           ~~~~~~~~~~^\n        f,\n        ^^\n        map_location=map_location,  # type: ignore[arg-type]\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        weights_only=weights_only,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 1540, in load\n    return _load(\n        opened_zipfile,\n    ...<3 lines>...\n        **pickle_load_args,\n    )\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 2143, in _load\n    result = unpickler.load()\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/_weights_only_unpickler.py", line 539, in load\n    self.append(self.persistent_load(pid))\n                ~~~~~~~~~~~~~~~~~~~~^^^^^\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 2107, in persistent_load\n    typed_storage = load_tensor(\n        dtype, nbytes, key, _maybe_decode_ascii(location)\n    )\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 2073, in load_tensor\n    wrap_storage = restore_location(storage, location)\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 1884, in restore_location\n    return default_restore_location(storage, str(map_location))\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 707, in default_restore_location\n    result = fn(storage, location)\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 641, in _deserialize\n    return obj.to(device=device)\n           ~~~~~~^^^^^^^^^^^^^^^\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/storage.py", line 289, in to\n    return _to(self, device, non_blocking)\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/_utils.py", line 102, in _to\n    untyped_storage = torch.UntypedStorage(self.size(), device=device)\ntorch.OutOfMemoryError: Allocation on device 0 would exceed allowed memory. (out of memory)\nCurrently allocated     : 6.59 GiB\nRequested               : 13.50 MiB\nDevice limit            : 7.49 GiB\nFree (according to CUDA): 121.44 MiB\nPyTorch limit (set by user-supplied memory fraction)\n                        : 17179869184.00 GiB\n\n', 'exception_type': 'comfy_env.isolation.workers.base.WorkerError', 'traceback': ['  File "/workspaces/LiTo-1256/ComfyUI/execution.py", line 535, in execute\n    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "/workspaces/LiTo-1256/ComfyUI/execution.py", line 335, in get_output_data\n    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "/workspaces/LiTo-1256/ComfyUI/execution.py", line 309, in _async_map_node_over_list\n    await process_inputs(input_dict, i)\n', '  File "/workspaces/LiTo-1256/ComfyUI/execution.py", line 297, in process_inputs\n    result = f(**inputs)\n', '  File "/workspaces/LiTo-1256/.venv/lib/python3.13/site-packages/comfy_env/isolation/metadata.py", line 536, in proxy\n    result = worker.call_method(\n        module_name=mod,\n    ...<4 lines>...\n        timeout=600.0,\n    )\n', '  File "/workspaces/LiTo-1256/.venv/lib/python3.13/site-packages/comfy_env/isolation/workers/subprocess.py", line 674, in call_method\n    raise WorkerError(\n    ...<2 lines>...\n    )\n'], 'current_inputs': {'sampling_steps': [20], 'cfg_scale': [3], 'sampling_method': ['heun'], 'seed': [42], 'model': ["{'checkpoint_path': '/workspaces/LiTo-1256/ComfyUI/models/lito/lito_dit_rgba.ckpt', 'compile': False, 'precision': 'bf16'}"], 'image': ['tensor([[[[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         ...,\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]]]])'], 'mask': ['tensor([[[0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         ...,\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.]]])']}, 'current_outputs': ['29', '5', '17', '1', '8', '9', '6'], 'timestamp': 1778850174950}
+[05:59]   [ComfyUI]     ...<2 lines>...
+[05:59]   [ComfyUI]         **ori_config["plm_config"]["params"],
+[05:59]   [ComfyUI]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]     ^
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/utilities/model_helpers.py", line 130, in wrapper
+[05:59]   [ComfyUI]     return self.method(cls_type, *args, **kwargs)
+[05:59]   [ComfyUI]            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/core/module.py", line 1797, in load_from_checkpoint
+[05:59]   [ComfyUI]     loaded = _load_from_checkpoint(
+[05:59]   [ComfyUI]         cls,
+[05:59]   [ComfyUI]     ...<5 lines>...
+[05:59]   [ComfyUI]         **kwargs,
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/core/saving.py", line 65, in _load_from_checkpoint
+[05:59]   [ComfyUI]     checkpoint = pl_load(checkpoint_path, map_location=map_location, weights_only=weights_only)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/fabric/utilities/cloud_io.py", line 73, in _load
+[05:59]   [ComfyUI]     return torch.load(
+[05:59]   [ComfyUI]            ~~~~~~~~~~^
+[05:59]   [ComfyUI]         f,
+[05:59]   [ComfyUI]         ^^
+[05:59]   [ComfyUI]         map_location=map_location,  # type: ignore[arg-type]
+[05:59]   [ComfyUI]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[05:59]   [ComfyUI]         weights_only=weights_only,
+[05:59]   [ComfyUI]         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]     ^
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 1540, in load
+[05:59]   [ComfyUI]     return _load(
+[05:59]   [ComfyUI]         opened_zipfile,
+[05:59]   [ComfyUI]     ...<3 lines>...
+[05:59]   [ComfyUI]         **pickle_load_args,
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 2143, in _load
+[05:59]   [ComfyUI]     result = unpickler.load()
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/_weights_only_unpickler.py", line 539, in load
+[05:59]   [ComfyUI]     self.append(self.persistent_load(pid))
+[05:59]   [ComfyUI]                 ~~~~~~~~~~~~~~~~~~~~^^^^^
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 2107, in persistent_load
+[05:59]   [ComfyUI]     typed_storage = load_tensor(
+[05:59]   [ComfyUI]         dtype, nbytes, key, _maybe_decode_ascii(location)
+[05:59]   [ComfyUI]     )
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 2073, in load_tensor
+[05:59]   [ComfyUI]     wrap_storage = restore_location(storage, location)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 1884, in restore_location
+[05:59]   [ComfyUI]     return default_restore_location(storage, str(map_location))
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 707, in default_restore_location
+[05:59]   [ComfyUI]     result = fn(storage, location)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 641, in _deserialize
+[05:59]   [ComfyUI]     return obj.to(device=device)
+[05:59]   [ComfyUI]            ~~~~~~^^^^^^^^^^^^^^^
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/storage.py", line 289, in to
+[05:59]   [ComfyUI]     return _to(self, device, non_blocking)
+[05:59]   [ComfyUI]   File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/_utils.py", line 102, in _to
+[05:59]   [ComfyUI]     untyped_storage = torch.UntypedStorage(self.size(), device=device)
+[05:59]   [ComfyUI] torch.OutOfMemoryError: Allocation on device 0 would exceed allowed memory. (out of memory)
+[05:59]   [ComfyUI] Currently allocated     : 6.59 GiB
+[05:59]   [ComfyUI] Requested               : 13.50 MiB
+[05:59]   [ComfyUI] Device limit            : 7.49 GiB
+[05:59]   [ComfyUI] Free (according to CUDA): 121.44 MiB
+[05:59]   [ComfyUI] PyTorch limit (set by user-supplied memory fraction)
+[05:59]   [ComfyUI]                         : 17179869184.00 GiB
+[05:59]   [ComfyUI] 
+[05:59]   [ComfyUI] 
+[05:59]   [ComfyUI] Prompt executed in 98.46 seconds
+[05:59] Results saved to /logs/LiTo-1256/dev/linux-gpu/results.json
+[05:59] Model report: 1 files, 6.9 GB -> /logs/LiTo-1256/dev/linux-gpu/models.json
+[05:59] Saved: /logs/LiTo-1256/dev/linux-gpu/index.html
+[05:59] 
 linux: FAILED
-[04:48] Error: Workflow execution failed (1 error(s))
-[04:48] Details: basic.json: Workflow execution failed: {'prompt_id': 'efae8c12-8435-48c0-b55d-48196fff48e3', 'node_id': '8', 'node_type': 'LiToImageTo3D', 'executed': ['17', '1', '9', '5'], 'exception_message': 'Allocation on device 0 would exceed allowed memory. (out of memory)\nCurrently allocated     : 6.59 GiB\nRequested               : 13.50 MiB\nDevice limit            : 7.49 GiB\nFree (according to CUDA): 121.44 MiB\nPyTorch limit (set by user-supplied memory fraction)\n                        : 17179869184.00 GiB\n\nWorker traceback:\nTraceback (most recent call last):\n  File "/tmp/comfyui_pvenv_cjo8xsil/persistent_worker.py", line 1762, in main\n    result = method(**inputs)\n  File "/workspaces/LiTo-0835/ComfyUI/comfy_api/latest/_io.py", line 1833, in EXECUTE_NORMALIZED\n    to_return = cls.execute(*args, **kwargs)\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context\n    return func(*args, **kwargs)\n  File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 254, in execute\n    models = _load_and_cache_model(\n  File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 148, in _load_and_cache_model\n    mdict = load_model(\n  File "/workspaces/LiTo-0835/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/lito_src/lito/eval_scripts/st_model_utils.py", line 145, in load_model\n    model: lito_dit_trainer.LiToDiTTrainer = lito_dit_trainer.LiToDiTTrainer.load_from_checkpoint(\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/pytorch/utilities/model_helpers.py", line 130, in wrapper\n    return self.method(cls_type, *args, **kwargs)\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/pytorch/core/module.py", line 1797, in load_from_checkpoint\n    loaded = _load_from_checkpoint(\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/pytorch/core/saving.py", line 65, in _load_from_checkpoint\n    checkpoint = pl_load(checkpoint_path, map_location=map_location, weights_only=weights_only)\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/lightning/fabric/utilities/cloud_io.py", line 73, in _load\n    return torch.load(\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 1570, in load\n    return _load(\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 2190, in _load\n    result = unpickler.load()\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/_weights_only_unpickler.py", line 541, in load\n    self.append(self.persistent_load(pid))\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 2154, in persistent_load\n    typed_storage = load_tensor(\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 2116, in load_tensor\n    wrap_storage = restore_location(storage, location)\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 1920, in restore_location\n    return default_restore_location(storage, str(map_location))\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 734, in default_restore_location\n    result = fn(storage, location)\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/serialization.py", line 668, in _deserialize\n    return obj.to(device=device)\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/storage.py", line 289, in to\n    return _to(self, device, non_blocking)\n  File "/workspaces/LiTo-0835/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.10/site-packages/torch/_utils.py", line 106, in _to\n    untyped_storage = torch.UntypedStorage(self.size(), device=device)\ntorch.OutOfMemoryError: Allocation on device 0 would exceed allowed memory. (out of memory)\nCurrently allocated     : 6.59 GiB\nRequested               : 13.50 MiB\nDevice limit            : 7.49 GiB\nFree (according to CUDA): 121.44 MiB\nPyTorch limit (set by user-supplied memory fraction)\n                        : 17179869184.00 GiB\n\n', 'exception_type': 'comfy_env.isolation.workers.base.WorkerError', 'traceback': ['  File "/workspaces/LiTo-0835/ComfyUI/execution.py", line 535, in execute\n    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n', '  File "/workspaces/LiTo-0835/ComfyUI/execution.py", line 335, in get_output_data\n    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n', '  File "/workspaces/LiTo-0835/ComfyUI/execution.py", line 309, in _async_map_node_over_list\n    await process_inputs(input_dict, i)\n', '  File "/workspaces/LiTo-0835/ComfyUI/execution.py", line 297, in process_inputs\n    result = f(**inputs)\n', '  File "/workspaces/LiTo-0835/.venv/lib/python3.10/site-packages/comfy_env/isolation/metadata.py", line 536, in proxy\n    result = worker.call_method(\n', '  File "/workspaces/LiTo-0835/.venv/lib/python3.10/site-packages/comfy_env/isolation/workers/subprocess.py", line 674, in call_method\n    raise WorkerError(\n'], 'current_inputs': {'sampling_steps': [20], 'cfg_scale': [3], 'sampling_method': ['heun'], 'seed': [42], 'model': ["{'checkpoint_path': '/workspaces/LiTo-0835/ComfyUI/models/lito/lito_dit_rgba.ckpt', 'compile': False, 'precision': 'bf16'}"], 'image': ['tensor([[[[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         ...,\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]]]])'], 'mask': ['tensor([[[0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         ...,\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.]]])']}, 'current_outputs': ['17', '6', '1', '29', '8', '9', '5'], 'timestamp': 1778834439404}
+[05:59] Error: Workflow execution failed (1 error(s))
+[05:59] Details: basic.json: Workflow execution failed: {'prompt_id': '6f1c3739-ee40-4c11-a91e-47327d337141', 'node_id': '8', 'node_type': 'LiToImageTo3D', 'executed': ['5', '9', '17', '1'], 'exception_message': 'Allocation on device 0 would exceed allowed memory. (out of memory)\nCurrently allocated     : 6.59 GiB\nRequested               : 13.50 MiB\nDevice limit            : 7.49 GiB\nFree (according to CUDA): 121.44 MiB\nPyTorch limit (set by user-supplied memory fraction)\n                        : 17179869184.00 GiB\n\nWorker traceback:\nTraceback (most recent call last):\n  File "/tmp/comfyui_pvenv_abl0f2uv/persistent_worker.py", line 1762, in main\n    result = method(**inputs)\n  File "/workspaces/LiTo-1256/ComfyUI/comfy_api/latest/_io.py", line 1833, in EXECUTE_NORMALIZED\n    to_return = cls.execute(*args, **kwargs)\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context\n    return func(*args, **kwargs)\n  File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 288, in execute\n    models = _load_and_cache_model(\n        model["checkpoint_path"],\n    ...<2 lines>...\n        dtype,\n    )\n  File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py", line 172, in _load_and_cache_model\n    mdict = load_model(\n        checkpoint_url=checkpoint_path,\n    ...<4 lines>...\n        load_params=True,\n    )\n  File "/workspaces/LiTo-1256/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/lito_src/lito/eval_scripts/st_model_utils.py", line 145, in load_model\n    model: lito_dit_trainer.LiToDiTTrainer = lito_dit_trainer.LiToDiTTrainer.load_from_checkpoint(\n                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        checkpoint_path=checkpoint_filename,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<2 lines>...\n        **ori_config["plm_config"]["params"],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/utilities/model_helpers.py", line 130, in wrapper\n    return self.method(cls_type, *args, **kwargs)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/core/module.py", line 1797, in load_from_checkpoint\n    loaded = _load_from_checkpoint(\n        cls,\n    ...<5 lines>...\n        **kwargs,\n    )\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/core/saving.py", line 65, in _load_from_checkpoint\n    checkpoint = pl_load(checkpoint_path, map_location=map_location, weights_only=weights_only)\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/fabric/utilities/cloud_io.py", line 73, in _load\n    return torch.load(\n           ~~~~~~~~~~^\n        f,\n        ^^\n        map_location=map_location,  # type: ignore[arg-type]\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        weights_only=weights_only,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 1540, in load\n    return _load(\n        opened_zipfile,\n    ...<3 lines>...\n        **pickle_load_args,\n    )\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 2143, in _load\n    result = unpickler.load()\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/_weights_only_unpickler.py", line 539, in load\n    self.append(self.persistent_load(pid))\n                ~~~~~~~~~~~~~~~~~~~~^^^^^\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 2107, in persistent_load\n    typed_storage = load_tensor(\n        dtype, nbytes, key, _maybe_decode_ascii(location)\n    )\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 2073, in load_tensor\n    wrap_storage = restore_location(storage, location)\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 1884, in restore_location\n    return default_restore_location(storage, str(map_location))\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 707, in default_restore_location\n    result = fn(storage, location)\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py", line 641, in _deserialize\n    return obj.to(device=device)\n           ~~~~~~^^^^^^^^^^^^^^^\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/storage.py", line 289, in to\n    return _to(self, device, non_blocking)\n  File "/workspaces/LiTo-1256/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/_utils.py", line 102, in _to\n    untyped_storage = torch.UntypedStorage(self.size(), device=device)\ntorch.OutOfMemoryError: Allocation on device 0 would exceed allowed memory. (out of memory)\nCurrently allocated     : 6.59 GiB\nRequested               : 13.50 MiB\nDevice limit            : 7.49 GiB\nFree (according to CUDA): 121.44 MiB\nPyTorch limit (set by user-supplied memory fraction)\n                        : 17179869184.00 GiB\n\n', 'exception_type': 'comfy_env.isolation.workers.base.WorkerError', 'traceback': ['  File "/workspaces/LiTo-1256/ComfyUI/execution.py", line 535, in execute\n    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "/workspaces/LiTo-1256/ComfyUI/execution.py", line 335, in get_output_data\n    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "/workspaces/LiTo-1256/ComfyUI/execution.py", line 309, in _async_map_node_over_list\n    await process_inputs(input_dict, i)\n', '  File "/workspaces/LiTo-1256/ComfyUI/execution.py", line 297, in process_inputs\n    result = f(**inputs)\n', '  File "/workspaces/LiTo-1256/.venv/lib/python3.13/site-packages/comfy_env/isolation/metadata.py", line 536, in proxy\n    result = worker.call_method(\n        module_name=mod,\n    ...<4 lines>...\n        timeout=600.0,\n    )\n', '  File "/workspaces/LiTo-1256/.venv/lib/python3.13/site-packages/comfy_env/isolation/workers/subprocess.py", line 674, in call_method\n    raise WorkerError(\n    ...<2 lines>...\n    )\n'], 'current_inputs': {'sampling_steps': [20], 'cfg_scale': [3], 'sampling_method': ['heun'], 'seed': [42], 'model': ["{'checkpoint_path': '/workspaces/LiTo-1256/ComfyUI/models/lito/lito_dit_rgba.ckpt', 'compile': False, 'precision': 'bf16'}"], 'image': ['tensor([[[[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         ...,\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]]]])'], 'mask': ['tensor([[[0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         ...,\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.]]])']}, 'current_outputs': ['29', '5', '17', '1', '8', '9', '6'], 'timestamp': 1778850174950}
 
 Details:
 Workflow: /node/ComfyUI-LiTo/workflows/basic.json
 Node error: LiToImageTo3D
-[04:48] Stopping ComfyUI server...
+[05:59] Stopping ComfyUI server...
