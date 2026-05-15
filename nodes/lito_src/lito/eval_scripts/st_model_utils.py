@@ -130,26 +130,35 @@ def load_model(
 
     model = None
     if load_params:
-        if ori_config["plm_config"]["target"] == "lito.trainers.lito_trainer.LightTokenizationTrainer":
+        # Lightning's `load_from_checkpoint` is gone — BaseTrainer is now a
+        # plain nn.Module. Construct the trainer with the params from
+        # `ori_config["plm_config"]["params"]` (same kwargs we used to pass
+        # to load_from_checkpoint), then load weights manually from the
+        # Lightning .ckpt's `state_dict` key. We use strict=False because
+        # checkpoints include lpips weights we may not have installed.
+        target = ori_config["plm_config"]["target"]
+        params = ori_config["plm_config"]["params"]
+        if target == "lito.trainers.lito_trainer.LightTokenizationTrainer":
             from lito.trainers import lito_trainer
-
-            model: lito_trainer.LightTokenizationTrainer = lito_trainer.LightTokenizationTrainer.load_from_checkpoint(
-                checkpoint_path=checkpoint_filename,
-                map_location=device,
-                strict=False,  # we might not have lpips
-                **ori_config["plm_config"]["params"],
-            )
-        elif ori_config["plm_config"]["target"] == "lito.trainers.lito_dit_trainer.LiToDiTTrainer":
+            model = lito_trainer.LightTokenizationTrainer(**params)
+        elif target == "lito.trainers.lito_dit_trainer.LiToDiTTrainer":
             from lito.trainers import lito_dit_trainer
-
-            model: lito_dit_trainer.LiToDiTTrainer = lito_dit_trainer.LiToDiTTrainer.load_from_checkpoint(
-                checkpoint_path=checkpoint_filename,
-                map_location=device,
-                strict=False,  # we might not have lpips
-                **ori_config["plm_config"]["params"],
-            )
+            model = lito_dit_trainer.LiToDiTTrainer(**params)
         else:
-            raise NotImplementedError(ori_config["plm_config"]["target"])
+            raise NotImplementedError(target)
+
+        state_dict = checkpoint.get("state_dict", checkpoint)
+        missing, unexpected = model.load_state_dict(state_dict, strict=False)
+        if missing or unexpected:
+            print(f"load_state_dict: {len(missing)} missing, {len(unexpected)} unexpected", flush=True)
+
+        # Preserve what BaseTrainer.on_load_checkpoint used to do:
+        # stash the config blob on the model for downstream consumers.
+        try:
+            model.config = checkpoint.get("config")
+        except Exception:
+            pass
+
         model.to(device=device, dtype=dtype)
         if eval:
             model.eval()

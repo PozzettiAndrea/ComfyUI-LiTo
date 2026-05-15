@@ -49,7 +49,11 @@ except:
 from lito.models.dino import SpatialDinov2
 from lito.models.ema import ModelEmaV2
 from lito.odelibs import ode_solvers
-from lito.script_utils import config_utils, pl_utils
+from lito.script_utils import config_utils
+# pl_utils import removed — Lightning training-side utilities. The one
+# reference (pl_utils.plot_lr_schedule, in configure_optimizers) is in a
+# training-only method we never call from inference.
+pl_utils = None  # type: ignore
 from lito.trainers import base as base_trainer, lito_trainer
 from plibs import ppoint, rigid_motion, utils
 from contextlib import nullcontext as _nullcontext

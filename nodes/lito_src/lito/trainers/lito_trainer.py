@@ -64,7 +64,10 @@ from lito.models.spoint_encoder import SPointEncoder
 from lito.odelibs import ode_solvers
 from lito.script_utils import config_utils
 from lito.trainers.base import BaseTrainer
-from plibs import gs_utils, lightning_utils, linalg_utils, ppoint, sh_utils, structures, utils
+from plibs import gs_utils, linalg_utils, ppoint, sh_utils, structures, utils
+# lightning_utils removed — only used by `local_rank_first` (distributed
+# training helper). Two call sites in this file are already commented out.
+lightning_utils = None  # type: ignore
 from plibs.ppoint import PackedPoint
 from contextlib import nullcontext as _nullcontext
 
