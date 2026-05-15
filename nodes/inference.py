@@ -148,16 +148,23 @@ def _get_dtype(precision: str) -> torch.dtype:
     }[precision]
 
 
+def _module_size_bytes(model: torch.nn.Module) -> int:
+    """Sum of all parameters + buffers in bytes. Used to ask Comfy's memory
+    manager for the right amount of VRAM ahead of inference."""
+    return sum(p.numel() * p.element_size() for p in model.parameters()) + \
+           sum(b.numel() * b.element_size() for b in model.buffers())
+
+
 def _load_and_cache_model(checkpoint_path: str, compile: bool, device: torch.device, dtype: torch.dtype):
     """Load model from checkpoint, cache for reuse.
 
-    Wraps the loaded module in a `ModelPatcher` so ComfyUI's memory manager
-    is aware of our ~3 GB of GPU residency and can evict it to make room
-    for downstream nodes (and evict competing models to make room for us).
-
-    Note: `st_model` (the tokenizer/decoder) is a submodule of `model`
-    (`model.pretrained_tokenizer`), so we wrap them as a single patcher —
-    they share the same physical weights on GPU.
+    We deliberately do NOT wrap in `comfy.model_patcher.ModelPatcher`:
+    LiToDiTTrainer is a pytorch-lightning `LightningModule`, which
+    defines `device` as a read-only @property — ModelPatcher's
+    `self.model.device = ...` (model_patcher.py:936) raises AttributeError.
+    Instead we record the module size and let `execute()` call
+    `mm.free_memory(...)` to ask Comfy to evict competing models before
+    we run.
     """
     cache_key = (checkpoint_path, compile, dtype)
     if cache_key in _model_cache:
@@ -166,8 +173,6 @@ def _load_and_cache_model(checkpoint_path: str, compile: bool, device: torch.dev
 
     log.info("Loading model from %s...", checkpoint_path)
     from lito.eval_scripts.st_model_utils import load_model
-    import comfy.model_management as mm
-    from comfy.model_patcher import ModelPatcher
 
     mdict = load_model(
         checkpoint_url=checkpoint_path,
@@ -187,19 +192,12 @@ def _load_and_cache_model(checkpoint_path: str, compile: bool, device: torch.dev
         model = torch.compile(model)
 
     st_model = model.pretrained_tokenizer
+    size_bytes = _module_size_bytes(model)
 
-    patcher = ModelPatcher(
-        model,
-        load_device=device,
-        offload_device=mm.unet_offload_device(),
-    )
-
-    result = {"model": model, "st_model": st_model, "patcher": patcher}
+    result = {"model": model, "st_model": st_model, "size_bytes": size_bytes}
     _model_cache[cache_key] = result
-    log.info(
-        "Model loaded successfully (size %.2f GB on %s, offload device %s)",
-        patcher.model_size() / (1024 ** 3), device, mm.unet_offload_device(),
-    )
+    log.info("Model loaded successfully (size %.2f GB on %s)",
+             size_bytes / (1024 ** 3), device)
     return result
 
 
@@ -293,14 +291,12 @@ class LiToImageTo3D(io.ComfyNode):
         )
         dit_model = models["model"]
         st_model = models["st_model"]
-        patcher = models["patcher"]
-        # Hand ourselves to Comfy's memory manager. It will evict competing
-        # workflow models to make room, and on subsequent runs this is a
-        # no-op if the model is still resident.
-        mm.load_models_gpu(
-            [patcher],
-            memory_required=int(patcher.model_size() * 1.3),
-        )
+        size_bytes = models["size_bytes"]
+        # Ask Comfy to evict competing workflow models so we have room.
+        # We don't register OURSELVES with Comfy (LightningModule + Comfy's
+        # ModelPatcher are incompatible — see _load_and_cache_model). The
+        # 1.3x headroom covers activations during the DiT forward.
+        mm.free_memory(int(size_bytes * 1.3), device)
         _say("load", f"ok in {time.time() - t0:.1f}s, peak VRAM {_peak_vram_gb():.2f} GB")
 
         # -- prep --------------------------------------------------------------
