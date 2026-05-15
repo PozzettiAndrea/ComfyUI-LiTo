@@ -7,9 +7,12 @@ from typing import Any
 
 import torch
 import torch.nn.functional as F
-import comfy.model_management as mm
-import comfy.utils
 from comfy_api.latest import io
+
+# `comfy.model_management` and `comfy.utils` are imported lazily inside the
+# methods that use them. See the same lazy-import idiom in lito_src/plibs/.
+# Top-level `import comfy.model_management` triggers its CUDA probe at module
+# load and crashes on CPU-only torch (e.g. the Windows mock-CUDA CI runner).
 
 log = logging.getLogger("comfyui-lito")
 
@@ -34,6 +37,7 @@ def _progress_through_tqdm(total: int, label: str):
     except Exception:
         _ode_mod = None
 
+    import comfy.utils
     pbar = comfy.utils.ProgressBar(total)
     orig_tqdm = _tqdm_mod.tqdm
     orig_ode_tqdm = getattr(_ode_mod, "tqdm", None) if _ode_mod is not None else None
@@ -235,6 +239,7 @@ class LiToImageTo3D(io.ComfyNode):
         sampling_method: str = "heun",
         seed: int = 0,
     ):
+        import comfy.model_management as mm
         device = mm.get_torch_device()
         precision = model["precision"]
         dtype = _get_dtype(precision)
