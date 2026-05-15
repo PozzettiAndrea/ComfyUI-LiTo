@@ -7,14 +7,12 @@
 [Console-error] Failed to load resource: the server responded with a status of 404 (Not Found)
 [Console-error] Failed to load resource: the server responded with a status of 404 (Not Found)
 [Console-error] Failed to load resource: the server responded with a status of 404 (Not Found)
-[Console-log] [TurntableGSViewer] Loading extension...
+[Console-error] [vite:preloadError] {url: null, fileType: unknown, chunkName: null, message: Failed to resolve module specifier "three". Relati…ences must start with either "/", "./", or "../".}
+[Console-log] [GSViewer] Loading extension...
 [Console-log] [VTK Bundle] GLTFImporter included in bundle
+[Console-warning] THREE.WARNING: Multiple instances of Three.js being imported.
+[Console-error] [vite:preloadError] {url: null, fileType: unknown, chunkName: null, message: Failed to resolve module specifier "three". Relati…ences must start with either "/", "./", or "../".}
 [Console-warning] [MaskEditor] ComfyApp.open_maskeditor is deprecated. Plugins should migrate to using the command system or direct node context menu integration.
-[Console-log] [TurntableGSViewer] Registering Preview Gaussians node
-[Console-log] [GaussianViewer] Initialized successfully
-[Console-log] [GaussianViewer] Ready - waiting for LOAD_MESH message
-[Console-warning] [.WebGL-0x15dc0a230600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Console-warning] [.WebGL-0x15dc0a230600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Console-warning] [.WebGL-0x15dc0a230600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Console-warning] [.WebGL-0x15dc0a230600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[Console-log] [GSViewer] Registering Preview Gaussians node
+[Console-log] [GaussianViewer] Ready — waiting for LOAD_MESH_DATA
 [Console-log] [comfy-test] graphToPrompt: 7 nodes, missing class_type: [], sample: {"inputs":{"checkpoint":"lito_dit_rgba (recommended)","compile":false,"precision":"auto"},"class_type":"LiToLoadModel","_meta":{"title":"(Down)Load LiTo Model"}}
