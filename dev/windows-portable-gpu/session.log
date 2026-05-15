@@ -1,4 +1,4 @@
-[00:00] Crash dump logging enabled: C:\logs\LiTo-0011\dev\windows-portable-gpu\crash_dump.log
+[00:00] Crash dump logging enabled: C:\logs\LiTo-0852\dev\windows-portable-gpu\crash_dump.log
 [00:00] 
 [00:00] [1/5] SYNTAX
 [00:00] ----------------------------------------
@@ -24,350 +24,299 @@ nodes\lito_src\lito\eval_scripts\st_model_utils.py:
 [00:01] 
 Setting up ComfyUI...
 [00:01] Fetching latest release version...
-[00:02] Latest version: v0.21.0
-[00:02] Downloading portable ComfyUI from https://github.com/comfyanonymous/ComfyUI/releases/download/v0.21.0/ComfyUI_windows_portable_nvidia.7z...
-[00:12]   Downloaded: 10%
-[00:19]   Downloaded: 20%
-[00:26]   Downloaded: 30%
-[00:32]   Downloaded: 40%
-[00:39]   Downloaded: 50%
-[00:45]   Downloaded: 60%
-[00:51]   Downloaded: 70%
-[00:57]   Downloaded: 80%
-[01:04]   Downloaded: 90%
-[01:11]   Downloaded: 100%
-[01:11] Downloaded to C:\Users\ContainerAdministrator\.comfy-test\cache\portable\ComfyUI_portable_v0.21.0.7z
-[01:11] Extracting to cache: C:\Users\ContainerAdministrator\.comfy-test\cache\portable\ComfyUI_portable_v0.21.0
-[01:11] Extracting ComfyUI_portable_v0.21.0.7z...
-[01:11] Using 7z: C:\Program Files\7-Zip\7z.exe
-[02:45] Extracted to C:\Users\ContainerAdministrator\.comfy-test\cache\portable\ComfyUI_portable_v0.21.0
-[02:45] Copying from cache to: C:\workspaces\LiTo-0011\portable-comfyui
-[03:00] Installing uv into embedded Python...
-[03:00] Running: C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\python_embeded\python.exe -m pip install uv
-[03:06] Installing ComfyUI requirements...
-[03:06] Running: C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\python_embeded\python.exe -m uv pip install -r C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\requirements.txt
-[03:08] 
+[00:01] Latest version: v0.21.1
+[00:01] Downloading portable ComfyUI from https://github.com/comfyanonymous/ComfyUI/releases/download/v0.21.1/ComfyUI_windows_portable_nvidia.7z...
+[00:05]   Downloaded: 10%
+[00:08]   Downloaded: 20%
+[00:12]   Downloaded: 30%
+[00:15]   Downloaded: 40%
+[00:18]   Downloaded: 50%
+[00:21]   Downloaded: 60%
+[00:26]   Downloaded: 70%
+[00:29]   Downloaded: 80%
+[00:32]   Downloaded: 90%
+[00:35]   Downloaded: 100%
+[00:35] Downloaded to C:\Users\ContainerAdministrator\.comfy-test\cache\portable\ComfyUI_portable_v0.21.1.7z
+[00:35] Extracting to cache: C:\Users\ContainerAdministrator\.comfy-test\cache\portable\ComfyUI_portable_v0.21.1
+[00:35] Extracting ComfyUI_portable_v0.21.1.7z...
+[00:35] Using 7z: C:\Program Files\7-Zip\7z.exe
+[02:09] Extracted to C:\Users\ContainerAdministrator\.comfy-test\cache\portable\ComfyUI_portable_v0.21.1
+[02:09] Copying from cache to: C:\workspaces\LiTo-0852\portable-comfyui
+[02:25] Installing uv into embedded Python...
+[02:25] Running: C:\workspaces\LiTo-0852\portable-comfyui\ComfyUI_windows_portable\python_embeded\python.exe -m pip install uv
+[02:30] Installing ComfyUI requirements...
+[02:30] Running: C:\workspaces\LiTo-0852\portable-comfyui\ComfyUI_windows_portable\python_embeded\python.exe -m uv pip install -r C:\workspaces\LiTo-0852\portable-comfyui\ComfyUI_windows_portable\ComfyUI\requirements.txt
+[02:32] 
 Installing custom node...
-[03:08] Copying ComfyUI-LiTo to custom_nodes/...
-[03:08] Installing node requirements...
-[03:08] Running: C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\python_embeded\python.exe -m pip install -r C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\requirements.txt
-[03:13] 
+[02:32] Copying ComfyUI-LiTo to custom_nodes/...
+[02:32] Installing node requirements...
+[02:32] Running: C:\workspaces\LiTo-0852\portable-comfyui\ComfyUI_windows_portable\python_embeded\python.exe -m pip install -r C:\workspaces\LiTo-0852\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\requirements.txt
+[02:37] 
 Running install.py...
-[03:13] Running: C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\python_embeded\python.exe C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\install.py
-[03:14]   [comfy-env] Enabled Windows long path support
-[03:14]   
-[03:14]   Installing 1 node dependencies...
-[03:14]     Cloning ComfyUI-TurntableGSViewer...
-[03:15]     Installing requirements for ComfyUI-TurntableGSViewer...
-[03:15]   
-[03:15]   [requirements] Re-installing main package requirements...
-[03:15]     Installing requirements for ComfyUI-LiTo...
-[03:19]   [comfy-env] Workspace: C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\.ce
-[03:19]   [comfy-env] ComfyUI: C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI
-[03:19]   [comfy-env] Found 1 node config(s):
-[03:19]     - lito-nodes <- custom_nodes\ComfyUI-LiTo\nodes\comfy-env.toml (python=host)
-[03:20]   [comfy-env] Bootstrap interpreter has python 3.13 + torch 2.11.0 (cu130). Looking for cuda-only wheels matching cu130/torch2.11/cp313.
-[03:45]   [comfy-env] GPU: Detection: torch
-[03:45]   Recommended: CUDA 13.0
-[03:45]   
-[03:45]     GPU 0: NVIDIA GeForce RTX 3060 (sm_86) [Ampere] 12287MB
-[03:45]   [comfy-env] Comfyui feature -> torch 2.11.0 from https://download.pytorch.org/whl/cu130 (CUDA 13.0 via bootstrap torch)
-[03:45]   [comfy-env] cuda-wheels: 6 package(s) need a matched (cuda, torch, python) combo: ['pytorch3d', 'gsplat', 'nvdiffrast', 'flash-attn', 'spconv', 'cumm']
-[03:45]   [comfy-env] cuda-wheels tier 1 (bootstrap): probing cu13.0/torch2.11/cp313
-[03:45]   [cuda-wheels] Looking up pytorch3d: cu130 torch2.11 cp313 win_amd64
-[03:45]   [cuda-wheels]   Found: pytorch3d-0.7.9+cu130torch2.11-cp313-cp313-win_amd64.whl
-[03:45]   [cuda-wheels] Looking up gsplat: cu130 torch2.11 cp313 win_amd64
-[03:46]   [cuda-wheels]   Found: gsplat-1.5.3+cu130torch2.11-cp313-cp313-win_amd64.whl
-[03:46]   [cuda-wheels] Looking up nvdiffrast: cu130 torch2.11 cp313 win_amd64
-[03:46]   [cuda-wheels]   Found: nvdiffrast-0.4.0+cu130torch2.11-cp313-cp313-win_amd64.whl
-[03:46]   [cuda-wheels] Looking up flash-attn: cu130 torch2.11 cp313 win_amd64
-[03:47]   [cuda-wheels]   https://pozzettiandrea.github.io/cuda-wheels/v2/flash_attn/: HTTPError: HTTP Error 404: Not Found
-[03:47]   [cuda-wheels]   Found: flash_attn-2.8.3+cu130torch2.11-cp313-cp313-win_amd64.whl
-[03:47]   [cuda-wheels] Looking up spconv: cu130 torch2.11 cp313 win_amd64
-[03:47]   [cuda-wheels]   No matching wheel found (tried 1 index URL(s))
-[03:47]   [comfy-env] cuda-wheels tier 1 incomplete: `spconv` not built for cu13.0+torch2.11; falling back
-[03:47]   [comfy-env] cuda-wheels tier 2 (fallback): probing cu12.8/torch2.8/cp313
-[03:47]   [cuda-wheels] Looking up pytorch3d: cu128 torch2.8 cp313 win_amd64
-[03:47]   [cuda-wheels]   Found: pytorch3d-0.7.9+cu128torch2.8-cp313-cp313-win_amd64.whl
-[03:47]   [cuda-wheels] Looking up gsplat: cu128 torch2.8 cp313 win_amd64
-[03:48]   [cuda-wheels]   Found: gsplat-1.5.3+cu128torch2.8-cp313-cp313-win_amd64.whl
-[03:48]   [cuda-wheels] Looking up nvdiffrast: cu128 torch2.8 cp313 win_amd64
-[03:48]   [cuda-wheels]   Found: nvdiffrast-0.4.0+cu128torch2.8-cp313-cp313-win_amd64.whl
-[03:48]   [cuda-wheels] Looking up flash-attn: cu128 torch2.8 cp313 win_amd64
-[03:49]   [cuda-wheels]   https://pozzettiandrea.github.io/cuda-wheels/v2/flash_attn/: HTTPError: HTTP Error 404: Not Found
-[03:49]   [cuda-wheels]   Found: flash_attn-2.8.3+cu128torch2.8-cp313-cp313-win_amd64.whl
-[03:49]   [cuda-wheels] Looking up spconv: cu128 torch2.8 cp313 win_amd64
-[03:49]   [cuda-wheels]   Found: spconv-2.3.8+cu128torch2.8-cp313-cp313-win_amd64.whl
-[03:49]   [cuda-wheels] Looking up cumm: cu128 torch2.8 cp313 win_amd64
-[03:50]   [cuda-wheels]   Found: cumm-0.8.2+cu128torch2.8-cp313-cp313-win_amd64.whl
-[03:50]   [comfy-env] cuda-wheels combo: cu12.8/torch2.8 (fallback; per-node cuda envs will override torch to this combo while comfyui keeps bootstrap torch)
-[03:50]   [comfy-env] Comfyui feature pin: torch ==2.11.0, torchvision ==0.26.*, torchaudio ==2.11.*
-[03:50]   [comfy-env] cuda-wheels combo: per-node cuda features will pin ['torch', 'torchaudio', 'torchvision'] via pypi-options.dependency-overrides (https://download.pytorch.org/whl/cu128)
-[03:50]   [cuda-wheels] Looking up pytorch3d: cu128 torch2.8 cp313 win_amd64
-[03:50]   [cuda-wheels]   Found: pytorch3d-0.7.9+cu128torch2.8-cp313-cp313-win_amd64.whl
-[03:50]   [cuda-wheels] Looking up gsplat: cu128 torch2.8 cp313 win_amd64
-[03:50]   [cuda-wheels]   Found: gsplat-1.5.3+cu128torch2.8-cp313-cp313-win_amd64.whl
-[03:50]   [cuda-wheels] Looking up nvdiffrast: cu128 torch2.8 cp313 win_amd64
-[03:51]   [cuda-wheels]   Found: nvdiffrast-0.4.0+cu128torch2.8-cp313-cp313-win_amd64.whl
-[03:51]   [cuda-wheels] Looking up flash-attn: cu128 torch2.8 cp313 win_amd64
-[03:51]   [cuda-wheels]   https://pozzettiandrea.github.io/cuda-wheels/v2/flash_attn/: HTTPError: HTTP Error 404: Not Found
-[03:51]   [cuda-wheels]   Found: flash_attn-2.8.3+cu128torch2.8-cp313-cp313-win_amd64.whl
-[03:51]   [cuda-wheels] Looking up spconv: cu128 torch2.8 cp313 win_amd64
-[03:52]   [cuda-wheels]   Found: spconv-2.3.8+cu128torch2.8-cp313-cp313-win_amd64.whl
-[03:52]   [cuda-wheels] Looking up cumm: cu128 torch2.8 cp313 win_amd64
-[03:52]   [cuda-wheels]   Found: cumm-0.8.2+cu128torch2.8-cp313-cp313-win_amd64.whl
-[03:52]   [comfy-env] lito-nodes: cuda-wheels deferred for post-pixi install (pytorch3d, gsplat, nvdiffrast, flash-attn, spconv, cumm)
-[03:52]   [comfy-env] lito-nodes: torch override -> torch==2.8.*, torchvision==0.23.*, torchaudio==2.8.* from https://download.pytorch.org/whl/cu128
-[03:52]   Generated C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\.ce\pixi.toml
-[03:52]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.10-windows-x86_64-none\Lib\platform.py for conda-forge compat
-[03:52]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.10.20-windows-x86_64-none\Lib\platform.py for conda-forge compat
-[03:52]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\platform.py for conda-forge compat
-[03:52]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\platform.py for conda-forge compat
-[03:52]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\platform.py for conda-forge compat
-[03:52]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\platform.py for conda-forge compat
-[03:52]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.13-windows-x86_64-none\Lib\platform.py for conda-forge compat
-[03:52]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.13.13-windows-x86_64-none\Lib\platform.py for conda-forge compat
-[03:52]   [comfy-env] Installing 1 environment(s):
-[03:52]     - lito-nodes (python=host, 12 pypi deps, 6 cuda wheels)
-[03:52]   [comfy-env] Running `pixi install --all`...
-[04:22]      WARN Skipped running the post-link scripts because `run-post-link-scripts` = `false`
-[04:22]     	- Scripts/.librsvg-pre-unlink.bat
-[04:22]     To enable them, run:
-[04:22]     	pixi config set --local run-post-link-scripts insecure
-[04:22]     More info:
-[04:22]     	https://pixi.sh/latest/reference/pixi_configuration/#run-post-link-scripts
-[06:04]     The following environments have been installed: default, comfyui, lito-nodes.
-[06:04]   [comfy-env] Note: env `default` is on disk but no node declares it in this run. Leaving as-is. Remove via `pixi clean --environment default` if intended.
-[06:04]   [comfy-env] lito-nodes: installing cuda-wheels with --no-deps (pytorch3d, gsplat, nvdiffrast, flash-attn, spconv, cumm)
-[06:05]     Using Python 3.13.13 environment at: .pixi\envs\lito-nodes
-[06:08]     Resolved 6 packages in 3.73s
-[06:08]     Downloading cumm (5.3MiB)
-[06:08]     Downloading flash-attn (239.2MiB)
-[06:08]     Downloading gsplat (29.4MiB)
-[06:08]     Downloading pytorch3d (18.0MiB)
-[06:08]     Downloading spconv (69.3MiB)
-[06:08]     Downloading nvdiffrast (4.4MiB)
-[06:09]      Downloaded nvdiffrast
-[06:10]      Downloaded cumm
-[06:10]      Downloaded pytorch3d
-[06:12]      Downloaded gsplat
-[06:12]      Downloaded spconv
-[06:17]      Downloaded flash-attn
-[06:17]     Prepared 6 packages in 8.63s
-[06:18]     Installed 6 packages in 662ms
-[06:18]      + cumm==0.8.2+cu128torch2.8 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/cumm-latest/cumm-0.8.2%2Bcu128torch2.8-cp313-cp313-win_amd64.whl)
-[06:18]      + flash-attn==2.8.3+cu128torch2.8 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/flash_attn-latest/flash_attn-2.8.3%2Bcu128torch2.8-cp313-cp313-win_amd64.whl)
-[06:18]      + gsplat==1.5.3+cu128torch2.8 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/gsplat-latest/gsplat-1.5.3%2Bcu128torch2.8-cp313-cp313-win_amd64.whl)
-[06:18]      + nvdiffrast==0.4.0+cu128torch2.8 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/nvdiffrast-latest/nvdiffrast-0.4.0%2Bcu128torch2.8-cp313-cp313-win_amd64.whl)
-[06:18]      + pytorch3d==0.7.9+cu128torch2.8 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/pytorch3d-latest/pytorch3d-0.7.9%2Bcu128torch2.8-cp313-cp313-win_amd64.whl)
-[06:18]      + spconv==2.3.8+cu128torch2.8 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/spconv-latest/spconv-2.3.8%2Bcu128torch2.8-cp313-cp313-win_amd64.whl)
-[06:18]   [comfy-env] Install log: C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\.ce\install.log
-[06:18]   
-[06:18]   Installation complete!
-[06:19] Installing 1 node dependency(ies)...
-[06:19]   ComfyUI-TurntableGSViewer from PozzettiAndrea/ComfyUI-TurntableGSViewer
-[06:19]   ComfyUI-TurntableGSViewer already exists, skipping...
-[06:19] Installing validation endpoint...
-[06:19]   Cloning PozzettiAndrea/ComfyUI-validate-endpoint...
-[06:19] Running: git clone --depth 1 https://github.com/PozzettiAndrea/ComfyUI-validate-endpoint.git C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-validate-endpoint
-[06:20] CUDA packages installed (no mock): pytorch3d, gsplat, nvdiffrast, flash_attn, spconv, cumm
-[06:20] [INSTALL] PASSED
-[06:20] 
-[06:20] [3/5] REGISTRATION
-[06:20] ----------------------------------------
-[06:20] 
+[02:37] Running: C:\workspaces\LiTo-0852\portable-comfyui\ComfyUI_windows_portable\python_embeded\python.exe C:\workspaces\LiTo-0852\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\install.py
+[02:38]   [comfy-env] Enabled Windows long path support
+[02:38]   
+[02:38]   Installing 1 node dependencies...
+[02:38]     Cloning ComfyUI-GSViewer...
+[02:39]     Installing requirements for ComfyUI-GSViewer...
+[02:39]   
+[02:39]   [requirements] Re-installing main package requirements...
+[02:39]     Installing requirements for ComfyUI-LiTo...
+[02:41]   [comfy-env] Workspace: C:\workspaces\LiTo-0852\portable-comfyui\ComfyUI_windows_portable\ComfyUI\.ce
+[02:41]   [comfy-env] ComfyUI: C:\workspaces\LiTo-0852\portable-comfyui\ComfyUI_windows_portable\ComfyUI
+[02:41]   [comfy-env] Found 1 node config(s):
+[02:41]     - lito-nodes <- custom_nodes\ComfyUI-LiTo\nodes\comfy-env.toml (python=host)
+[02:41]   [comfy-env] Bootstrap interpreter has python 3.13 + torch 2.11.0 (cu130). Looking for cuda-only wheels matching cu130/torch2.11/cp313.
+[03:07]   [comfy-env] GPU: Detection: torch
+[03:07]   Recommended: CUDA 13.0
+[03:07]   
+[03:07]     GPU 0: NVIDIA GeForce RTX 3060 (sm_86) [Ampere] 12287MB
+[03:07]   [comfy-env] Comfyui feature -> torch 2.11.0 from https://download.pytorch.org/whl/cu130 (CUDA 13.0 via bootstrap torch)
+[03:07]   [comfy-env] cuda-wheels: 6 package(s) need a matched (cuda, torch, python) combo: ['pytorch3d', 'gsplat', 'nvdiffrast', 'flash-attn', 'spconv', 'cumm']
+[03:07]   [comfy-env] cuda-wheels tier 1 (bootstrap): probing cu13.0/torch2.11/cp313
+[03:07]   [cuda-wheels] Looking up pytorch3d: cu130 torch2.11 cp313 win_amd64
+[03:07]   [cuda-wheels]   Found: pytorch3d-0.7.9+cu130torch2.11-cp313-cp313-win_amd64.whl
+[03:07]   [cuda-wheels] Looking up gsplat: cu130 torch2.11 cp313 win_amd64
+[03:08]   [cuda-wheels]   Found: gsplat-1.5.3+cu130torch2.11-cp313-cp313-win_amd64.whl
+[03:08]   [cuda-wheels] Looking up nvdiffrast: cu130 torch2.11 cp313 win_amd64
+[03:08]   [cuda-wheels]   Found: nvdiffrast-0.4.0+cu130torch2.11-cp313-cp313-win_amd64.whl
+[03:08]   [cuda-wheels] Looking up flash-attn: cu130 torch2.11 cp313 win_amd64
+[03:09]   [cuda-wheels]   https://pozzettiandrea.github.io/cuda-wheels/v2/flash_attn/: HTTPError: HTTP Error 404: Not Found
+[03:09]   [cuda-wheels]   Found: flash_attn-2.8.3+cu130torch2.11-cp313-cp313-win_amd64.whl
+[03:09]   [cuda-wheels] Looking up spconv: cu130 torch2.11 cp313 win_amd64
+[03:09]   [cuda-wheels]   No matching wheel found (tried 1 index URL(s))
+[03:09]   [comfy-env] cuda-wheels tier 1 incomplete: `spconv` not built for cu13.0+torch2.11; falling back
+[03:09]   [comfy-env] cuda-wheels tier 2 (fallback): probing cu12.8/torch2.8/cp313
+[03:09]   [cuda-wheels] Looking up pytorch3d: cu128 torch2.8 cp313 win_amd64
+[03:09]   [cuda-wheels]   Found: pytorch3d-0.7.9+cu128torch2.8-cp313-cp313-win_amd64.whl
+[03:09]   [cuda-wheels] Looking up gsplat: cu128 torch2.8 cp313 win_amd64
+[03:10]   [cuda-wheels]   Found: gsplat-1.5.3+cu128torch2.8-cp313-cp313-win_amd64.whl
+[03:10]   [cuda-wheels] Looking up nvdiffrast: cu128 torch2.8 cp313 win_amd64
+[03:10]   [cuda-wheels]   Found: nvdiffrast-0.4.0+cu128torch2.8-cp313-cp313-win_amd64.whl
+[03:10]   [cuda-wheels] Looking up flash-attn: cu128 torch2.8 cp313 win_amd64
+[03:11]   [cuda-wheels]   https://pozzettiandrea.github.io/cuda-wheels/v2/flash_attn/: HTTPError: HTTP Error 404: Not Found
+[03:11]   [cuda-wheels]   Found: flash_attn-2.8.3+cu128torch2.8-cp313-cp313-win_amd64.whl
+[03:11]   [cuda-wheels] Looking up spconv: cu128 torch2.8 cp313 win_amd64
+[03:11]   [cuda-wheels]   Found: spconv-2.3.8+cu128torch2.8-cp313-cp313-win_amd64.whl
+[03:11]   [cuda-wheels] Looking up cumm: cu128 torch2.8 cp313 win_amd64
+[03:11]   [cuda-wheels]   Found: cumm-0.8.2+cu128torch2.8-cp313-cp313-win_amd64.whl
+[03:11]   [comfy-env] cuda-wheels combo: cu12.8/torch2.8 (fallback; per-node cuda envs will override torch to this combo while comfyui keeps bootstrap torch)
+[03:11]   [comfy-env] Comfyui feature pin: torch ==2.11.0, torchvision ==0.26.*, torchaudio ==2.11.*
+[03:11]   [comfy-env] cuda-wheels combo: per-node cuda features will pin ['torch', 'torchaudio', 'torchvision'] via pypi-options.dependency-overrides (https://download.pytorch.org/whl/cu128)
+[03:11]   [cuda-wheels] Looking up pytorch3d: cu128 torch2.8 cp313 win_amd64
+[03:12]   [cuda-wheels]   Found: pytorch3d-0.7.9+cu128torch2.8-cp313-cp313-win_amd64.whl
+[03:12]   [cuda-wheels] Looking up gsplat: cu128 torch2.8 cp313 win_amd64
+[03:12]   [cuda-wheels]   Found: gsplat-1.5.3+cu128torch2.8-cp313-cp313-win_amd64.whl
+[03:12]   [cuda-wheels] Looking up nvdiffrast: cu128 torch2.8 cp313 win_amd64
+[03:12]   [cuda-wheels]   Found: nvdiffrast-0.4.0+cu128torch2.8-cp313-cp313-win_amd64.whl
+[03:12]   [cuda-wheels] Looking up flash-attn: cu128 torch2.8 cp313 win_amd64
+[03:13]   [cuda-wheels]   https://pozzettiandrea.github.io/cuda-wheels/v2/flash_attn/: HTTPError: HTTP Error 404: Not Found
+[03:13]   [cuda-wheels]   Found: flash_attn-2.8.3+cu128torch2.8-cp313-cp313-win_amd64.whl
+[03:13]   [cuda-wheels] Looking up spconv: cu128 torch2.8 cp313 win_amd64
+[03:13]   [cuda-wheels]   Found: spconv-2.3.8+cu128torch2.8-cp313-cp313-win_amd64.whl
+[03:13]   [cuda-wheels] Looking up cumm: cu128 torch2.8 cp313 win_amd64
+[03:14]   [cuda-wheels]   Found: cumm-0.8.2+cu128torch2.8-cp313-cp313-win_amd64.whl
+[03:14]   [comfy-env] lito-nodes: cuda-wheels deferred for post-pixi install (pytorch3d, gsplat, nvdiffrast, flash-attn, spconv, cumm)
+[03:14]   [comfy-env] lito-nodes: torch override -> torch==2.8.*, torchvision==0.23.*, torchaudio==2.8.* from https://download.pytorch.org/whl/cu128
+[03:14]   Generated C:\workspaces\LiTo-0852\portable-comfyui\ComfyUI_windows_portable\ComfyUI\.ce\pixi.toml
+[03:14]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.10-windows-x86_64-none\Lib\platform.py for conda-forge compat
+[03:14]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.10.20-windows-x86_64-none\Lib\platform.py for conda-forge compat
+[03:14]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\platform.py for conda-forge compat
+[03:14]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.11.15-windows-x86_64-none\Lib\platform.py for conda-forge compat
+[03:14]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\platform.py for conda-forge compat
+[03:14]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.12.13-windows-x86_64-none\Lib\platform.py for conda-forge compat
+[03:14]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.13-windows-x86_64-none\Lib\platform.py for conda-forge compat
+[03:14]   [comfy-env] Patched C:\Users\ContainerAdministrator\AppData\Roaming\uv\python\cpython-3.13.13-windows-x86_64-none\Lib\platform.py for conda-forge compat
+[03:14]   [comfy-env] Installing 1 environment(s):
+[03:14]     - lito-nodes (python=host, 12 pypi deps, 6 cuda wheels)
+[03:14]   [comfy-env] Running `pixi install --all`...
+[03:40]      WARN Skipped running the post-link scripts because `run-post-link-scripts` = `false`
+[03:40]     	- Scripts/.librsvg-pre-unlink.bat
+[03:40]     To enable them, run:
+[03:40]     	pixi config set --local run-post-link-scripts insecure
+[03:40]     More info:
+[03:40]     	https://pixi.sh/latest/reference/pixi_configuration/#run-post-link-scripts
+[05:13]     The following environments have been installed: default, comfyui, lito-nodes.
+[05:14]   [comfy-env] Note: env `default` is on disk but no node declares it in this run. Leaving as-is. Remove via `pixi clean --environment default` if intended.
+[05:14]   [comfy-env] lito-nodes: installing cuda-wheels with --no-deps (pytorch3d, gsplat, nvdiffrast, flash-attn, spconv, cumm)
+[05:14]     Using Python 3.13.13 environment at: .pixi\envs\lito-nodes
+[05:17]     Resolved 6 packages in 3.16s
+[05:17]     Downloading flash-attn (239.2MiB)
+[05:17]     Downloading spconv (69.3MiB)
+[05:17]     Downloading gsplat (29.4MiB)
+[05:17]     Downloading pytorch3d (18.0MiB)
+[05:17]     Downloading nvdiffrast (4.4MiB)
+[05:17]     Downloading cumm (5.3MiB)
+[05:18]      Downloaded nvdiffrast
+[05:19]      Downloaded pytorch3d
+[05:20]      Downloaded cumm
+[05:20]      Downloaded spconv
+[05:20]      Downloaded gsplat
+[05:25]      Downloaded flash-attn
+[05:25]     Prepared 6 packages in 7.77s
+[05:25]     Installed 6 packages in 606ms
+[05:25]      + cumm==0.8.2+cu128torch2.8 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/cumm-latest/cumm-0.8.2%2Bcu128torch2.8-cp313-cp313-win_amd64.whl)
+[05:25]      + flash-attn==2.8.3+cu128torch2.8 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/flash_attn-latest/flash_attn-2.8.3%2Bcu128torch2.8-cp313-cp313-win_amd64.whl)
+[05:25]      + gsplat==1.5.3+cu128torch2.8 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/gsplat-latest/gsplat-1.5.3%2Bcu128torch2.8-cp313-cp313-win_amd64.whl)
+[05:25]      + nvdiffrast==0.4.0+cu128torch2.8 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/nvdiffrast-latest/nvdiffrast-0.4.0%2Bcu128torch2.8-cp313-cp313-win_amd64.whl)
+[05:25]      + pytorch3d==0.7.9+cu128torch2.8 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/pytorch3d-latest/pytorch3d-0.7.9%2Bcu128torch2.8-cp313-cp313-win_amd64.whl)
+[05:25]      + spconv==2.3.8+cu128torch2.8 (from https://github.com/PozzettiAndrea/cuda-wheels/releases/download/spconv-latest/spconv-2.3.8%2Bcu128torch2.8-cp313-cp313-win_amd64.whl)
+[05:26]   [comfy-env] Install log: C:\workspaces\LiTo-0852\portable-comfyui\ComfyUI_windows_portable\ComfyUI\.ce\install.log
+[05:26]   
+[05:26]   Installation complete!
+[05:27] Installing 1 node dependency(ies)...
+[05:27]   ComfyUI-GSViewer from PozzettiAndrea/ComfyUI-GSViewer
+[05:27]   ComfyUI-GSViewer already exists, skipping...
+[05:27] Installing validation endpoint...
+[05:27]   Cloning PozzettiAndrea/ComfyUI-validate-endpoint...
+[05:27] Running: git clone --depth 1 https://github.com/PozzettiAndrea/ComfyUI-validate-endpoint.git C:\workspaces\LiTo-0852\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-validate-endpoint
+[05:28] CUDA packages installed (no mock): pytorch3d, gsplat, nvdiffrast, flash_attn, spconv, cumm
+[05:28] [INSTALL] PASSED
+[05:28] 
+[05:28] [3/5] REGISTRATION
+[05:28] ----------------------------------------
+[05:28] 
 [DEBUG] server=None, server_url=None, api=None
-[06:20] 
+[05:28] 
 Starting ComfyUI server...
-[06:20] Starting ComfyUI server on port 41890...
-[06:20] Starting ComfyUI server on port 41890...
-[06:20] Waiting for server to be ready (timeout: 600s)...
-[06:21]   [ComfyUI] setup plugin alembic.autogenerate.schemas
-[06:21]   [ComfyUI] setup plugin alembic.autogenerate.tables
-[06:21]   [ComfyUI] setup plugin alembic.autogenerate.types
-[06:21]   [ComfyUI] setup plugin alembic.autogenerate.constraints
-[06:21]   [ComfyUI] setup plugin alembic.autogenerate.defaults
-[06:21]   [ComfyUI] setup plugin alembic.autogenerate.comments
-[06:22]   [ComfyUI] [comfy-env] ComfyUI-LiTo: 1 isolation env(s):
-[06:22]   [ComfyUI] [comfy-env]   nodes -> C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes
-[06:22]   [ComfyUI] [comfy-env] prestartup complete
-[06:22]   [ComfyUI] 
-[06:22]   [ComfyUI] Prestartup times for custom nodes:
-[06:22]   [ComfyUI]    0.4 seconds: C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo
-[06:22]   [ComfyUI] 
-[06:25]   [ComfyUI] Found comfy_kitchen backend cuda: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_nvfp4']}
-[06:25]   [ComfyUI] Found comfy_kitchen backend eager: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_mxfp8', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_mxfp8', 'scaled_mm_nvfp4']}
-[06:25]   [ComfyUI] Found comfy_kitchen backend triton: {'available': False, 'disabled': True, 'unavailable_reason': "ImportError: No module named 'triton'", 'capabilities': []}
-[06:25]   [ComfyUI] Checkpoint files will always be loaded safely.
-[06:26]   [ComfyUI] Total VRAM 12287 MB, total RAM 32648 MB
-[06:26]   [ComfyUI] pytorch version: 2.11.0+cu130
-[06:26]   [ComfyUI] Set vram state to: NORMAL_VRAM
-[06:26]   [ComfyUI] Device: cuda:0 NVIDIA GeForce RTX 3060 : cudaMallocAsync
-[06:26]   [ComfyUI] Using async weight offloading with 2 streams
-[06:26]   [ComfyUI] Enabled pinned memory 13059.0
-[06:26]   [ComfyUI] Using pytorch attention
-[06:35]   [ComfyUI] aimdo: src-win/cuda-detour.c:38:INFO:aimdo_setup_hooks: installing 6 hooks
-[06:35]   [ComfyUI] aimdo: src-win/cuda-detour.c:28:DEBUG:install_hook_entries: hooks successfully installed
-[06:35]   [ComfyUI] aimdo: src-win/shmem-detect.c:80:INFO:comfy-aimdo WDDM adapter match: NVIDIA GeForce RTX 3060 runtime_luid=00000000:0000b45b dxgi_luid=00000000:0000b45b
-[06:35]   [ComfyUI] aimdo: src/control.c:152:INFO:comfy-aimdo inited for GPU: NVIDIA GeForce RTX 3060 (VRAM: 12287 MB)
-[06:35]   [ComfyUI] DynamicVRAM support detected and enabled
-[06:35]   [ComfyUI] Python version: 3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]
-[06:35]   [ComfyUI] ComfyUI version: 0.21.0
-[06:35]   [ComfyUI] comfy-aimdo version: 0.3.0
-[06:35]   [ComfyUI] comfy-kitchen version: 0.2.8
-[06:35]   [ComfyUI] ****** User settings have been changed to be stored on the server instead of browser storage. ******
-[06:35]   [ComfyUI] ****** For multi-user setups add the --multi-user CLI argument to enable multiple user profiles. ******
-[06:35]   [ComfyUI] ComfyUI frontend version: 1.43.18
-[06:35]   [ComfyUI] [Prompt Server] web root: C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\python_embeded\Lib\site-packages\comfyui_frontend_package\static
-[06:35]   [ComfyUI] Asset seeder disabled
-[06:38]   [ComfyUI] loading...
-[06:38]   [ComfyUI] calling register_nodes
-[06:38]   [ComfyUI] [comfy-env] Version: 0.3.75
-[06:39]   [ComfyUI] [comfy-env] register_nodes: ComfyUI-LiTo
-[06:39]   [ComfyUI] [comfy-env] ComfyUI source dir: C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI
-[06:39]   [ComfyUI] [comfy-env] Found 1 isolation env(s)
-[06:39]   [ComfyUI] [comfy-env] Scanning nodes metadata (isolation root)...
-[06:39]   [ComfyUI] [comfy-env] lito-nodes: Library/bin has 431 DLLs
-[06:39]   [ComfyUI] [comfy-env] Metadata scan: C:\Users\ContainerAdministrator\.pixi\bin\pixi.exe run --as-is --manifest-path C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\.ce\pixi.toml -e lito-nodes python C:\Users\ContainerAdministrator\AppData\Local\Temp\comfy_meta_rhldc528.py C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo nodes
-[06:39]   [ComfyUI] [comfy-env] Scan env PATH for nodes:
-[06:39]   [ComfyUI] [comfy-env]   [0] C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\.ce\.pixi\envs\lito-nodes
-[06:39]   [ComfyUI] [comfy-env]   [1] C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\.ce\.pixi\envs\lito-nodes\Library\bin
-[06:39]   [ComfyUI] [comfy-env]   [2] C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\.ce\.pixi\envs\lito-nodes\Scripts
-[06:39]   [ComfyUI] [comfy-env]   [3] C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\.ce\.pixi\envs\lito-nodes\Lib\site-packages\bpy
-[06:39]   [ComfyUI] [comfy-env]   [4] C:\Windows\System32
-[06:39]   [ComfyUI] [comfy-env]   [5] C:\Windows
-[06:39]   [ComfyUI] [comfy-env]   [6] C:\Windows\System32\Wbem
-[07:59]   [ComfyUI] [comfy-env] Metadata scan stderr for nodes:
-[07:59]   [ComfyUI] [comfy-env]   [meta-scan] importing nodes from C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo
-[07:59]   [ComfyUI] [comfy-env]   WARNING:root:WARNING: You need pytorch with cu130 or higher to use optimized CUDA operations.
-[07:59]   [ComfyUI] [comfy-env]   [meta-scan] import OK
-[07:59]   [ComfyUI] [comfy-env] Scanned nodes: 5 nodes (80.4s)
-[07:59]   [ComfyUI] [comfy-env] Scanned nodes root: 5 nodes (80.5s)
-[07:59]   [ComfyUI] [comfy-env] Imported nodes root: 5 nodes (isolation)
-[07:59]   [ComfyUI] [comfy-env] Registered 5 total nodes
-[07:59]   [ComfyUI] 
-[07:59]   [ComfyUI] Import times for custom nodes:
-[07:59]   [ComfyUI]    0.0 seconds: C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\websocket_image_save.py
-[07:59]   [ComfyUI]    0.0 seconds: C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-validate-endpoint
-[07:59]   [ComfyUI]    0.0 seconds: C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-TurntableGSViewer
-[07:59]   [ComfyUI]   81.2 seconds: C:\workspaces\LiTo-0011\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo
-[07:59]   [ComfyUI] 
-[07:59]   [ComfyUI] Context impl SQLiteImpl.
-[07:59]   [ComfyUI] Will assume non-transactional DDL.
-[07:59]   [ComfyUI] Context impl SQLiteImpl.
-[07:59]   [ComfyUI] Will assume non-transactional DDL.
-[07:59]   [ComfyUI] Running upgrade  -> 0001_assets, Initial assets schema
-[07:59]   [ComfyUI] Revision ID: 0001_assets
-[07:59]   [ComfyUI] Revises: None
-[07:59]   [ComfyUI] Create Date: 2025-12-10 00:00:00
-[07:59]   [ComfyUI] Running upgrade 0001_assets -> 0002_merge_to_asset_references, Merge AssetInfo and AssetCacheState into unified asset_references table.
-[08:00]   [ComfyUI] Running upgrade 0002_merge_to_asset_references -> 0003_add_metadata_job_id, Add system_metadata and job_id columns to asset_references.
-[08:00]   [ComfyUI] Change preview_id FK from assets.id to asset_references.id.
-[08:00]   [ComfyUI] Database upgraded from None to 0003_add_metadata_job_id
-[08:00]   [ComfyUI] Starting server
-[08:00]   [ComfyUI] 
-[08:00]   [ComfyUI] To see the GUI go to: http://127.0.0.1:41890
-[08:00] Server responding, waiting for nodes to load...
-[08:20] Server is ready!
-[08:20] Checking for import errors in server logs...
-[08:20] No import errors detected
-[08:20] Found 711 registered nodes
-[08:20] [REGISTRATION] PASSED
-[08:20] 
-[08:20] [4/5] INSTANTIATION
-[08:20] ----------------------------------------
-[08:20] 
-[DEBUG] server=<comfy_test.comfyui.server.ComfyUIServer object at 0x000001FA5D9657F0>, server_url=None, api=<comfy_test.comfyui.api.ComfyUIAPI object at 0x000001FA5D966120>
-[08:20] Testing node constructors...
-[08:21] All 5 node(s) instantiated successfully!
-[08:21] [INSTANTIATION] PASSED
-[08:21] 
-[08:21] [5/5] EXECUTION
-[08:21] ----------------------------------------
-[08:21] 
-[DEBUG] server=<comfy_test.comfyui.server.ComfyUIServer object at 0x000001FA5D9657F0>, server_url=None, api=<comfy_test.comfyui.api.ComfyUIAPI object at 0x000001FA5D966120>
-[08:21] GPU runner - will execute 1 workflow(s)
-[08:21] Running 1 workflow(s) (all with videos)...
-[08:21] Installing screenshot dependencies (playwright, pillow)...
-[08:23]   Packages installed, downloading chromium browser...
-[08:41]   Screenshot dependencies installed successfully
-[08:41] Starting headless browser...
-[08:42]   Downloading Mesa llvmpipe for Windows...
-[08:42]   Mesa download error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>
-[08:42]   Mesa unavailable -- falling back to SwiftShader
-[08:47] Capturing execution frames: basic.json
-[08:55]   Frame 1 saved (frame_000.jpg, t=0.0s)
-[08:55]   Validating workflow...
-[08:55]   [ComfyUI] === /validate endpoint called ===
-[08:55]   [ComfyUI] Received JSON with keys: ['prompt']
-[08:55]   Warning: 1 node(s) have validation errors (will fail after screenshots)
-[08:55]   [ComfyUI] Prompt has 7 nodes
-[08:55]   Queuing workflow for execution...
-[08:55]   [ComfyUI]   Node 1: LiToLoadModel
-[08:55]   [ComfyUI]     Inputs: {"checkpoint": "lito_dit_rgba (recommended)", "compile": false, "precision": "auto"}
-[08:55]   [ComfyUI]   Node 5: LoadImage
-[08:55]   [ComfyUI]     Inputs: {"image": "apple.png"}
-[08:55]   [ComfyUI]   Node 6: LiToExportPLY
-[08:55]   [ComfyUI]     Inputs: {"filename": "lito_output", "gaussians": ["8", 0]}
-[08:55]   [ComfyUI]   Node 8: LiToImageTo3D
-[08:55]   [ComfyUI]     Inputs: {"sampling_steps": 20, "cfg_scale": 3, "sampling_method": "heun", "seed": 42, "model": ["1", 0], "image": ["5", 0], "mask": ["9", 0]}
-[08:55]   [ComfyUI]   Node 9: InvertMask
-[08:55]   [ComfyUI]     Inputs: {"mask": ["5", 1]}
-[08:55]   [ComfyUI]   Node 17: MaskPreview
-[08:55]   [ComfyUI]     Inputs: {"mask": ["9", 0]}
-[08:55]   [ComfyUI]   Node 27: PreviewGaussians
-[08:55]   [ComfyUI]     Inputs: {"fov_degrees": 512, "image_width": 512, "image_height": "{\"v\":1,\"pos\":[0.35532688579342964,3.4202540140738975,1.7336131604031435],\"target\":[0.0006612539291381836,-0.002025216817855835,-0.007065
-[08:55]   [ComfyUI] Generated prompt_id: d0d46da5-8437-4944-8ddd-d656c5423550
-[08:55]   [ComfyUI] Calling execution.validate_prompt()...
-[08:55]   [ComfyUI] Failed to validate prompt for output 27:
-[08:55]   [ComfyUI] * (prompt):
-[08:55]   [ComfyUI]   - Failed to convert an input value to a INT value: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
-[08:55]   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
-[08:55]   [ComfyUI] * PreviewGaussians 27:
-[08:55]   [ComfyUI]   - Failed to convert an input value to a INT value: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
-[08:55]   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
-[08:55]   [ComfyUI] Output will be ignored
-[08:55]   [ComfyUI] Validation result: valid=True
-[08:55]   [ComfyUI]   Node errors: {"27": {"errors": [{"type": "invalid_input_type", "message": "Failed to convert an input value to a INT value", "details": "image_height, {\"v\":1,\"pos\":[0.35532688579342964,3.4202540140738975,1.7336131604031435],\"target\":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],\"fov\":50,\"scale\":20,\"opacity\":1}, invalid literal for int() with base 10: '{\"v\":1,\"pos\":[0.35532688579342964,3.4202540140738975,1.7336131604031435],\"target\":[0.0006612539291381836,-0.00202521681
-[08:55]   [ComfyUI] === Validation PASSED ===
-[08:55]   [ComfyUI] got prompt
-[08:55]   [ComfyUI] Failed to validate prompt for output 27:
-[08:55]   [ComfyUI] * (prompt):
-[08:55]   [ComfyUI]   - Failed to convert an input value to a INT value: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
-[08:55]   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
-[08:55]   [ComfyUI] * PreviewGaussians 27:
-[08:55]   [ComfyUI]   - Failed to convert an input value to a INT value: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
-[08:55]   [ComfyUI]   - Value 512.0 bigger than max of 170.0: fov_degrees
-[08:55]   [ComfyUI] Output will be ignored
-[08:55]   [ComfyUI] Prompt executed in 0.06 seconds
-[08:55]   Node executed (1 total), capturing...
-[08:55]   Frame 2 saved (frame_001.jpg, t=0.6s)
-[08:55]   [capture-node] freeze=5ms shot=117ms unfreeze=5ms saved=True
-[08:55]   Execution complete (t=0.9s)
-[08:55]   [3d-wait] Phase 1: Waiting for 'Loading 3D Model' text to disappear...
-[08:55]   [3d-wait] Phase 1 done in 0.0s
-[08:55]   [3d-wait] Phase 2: iframes=1
-[08:55]   [3d-wait] iframe viewer_ready=False (matched 0 console logs)
-[08:55]   [3d-wait] Waiting for 'Loaded successfully' console message (timeout=60s)...
-[09:55]   [3d-wait] iframe wait exception: Timeout 60000ms exceeded while waiting for event "console"
-=========================== logs ===========================
-waiting for event "console"
-============================================================
-[09:55]   [3d-wait] Total 3D wait: 60.1s
-[09:55]   Captured 2 unique frames over 60.93s
-[09:56]   [debug] iframes: 1
-[09:56]   [debug]   iframe[0]: src=http://127.0.0.1:41890/extensions/ComfyUI-TurntableGSViewer/viewer_gaussian.html, canvas=486x440, rafFrozen=True
-[09:56]   [timing] trigger_3d_previews: 0.0s
-[09:58]   Saved high-quality screenshot: basic_executed.png
-[09:58]   [timing] final_screenshot: 0.4s
-[09:58] Results saved to C:\logs\LiTo-0011\dev\windows-portable-gpu\results.json
-[09:58] Model report: 8 files, 18.7 MB -> C:\logs\LiTo-0011\dev\windows-portable-gpu\models.json
-[09:58] Saved: C:\logs\LiTo-0011\dev\windows-portable-gpu\index.html
-[09:58] 
+[05:28] Starting ComfyUI server on port 41893...
+[05:28] Starting ComfyUI server on port 41893...
+[05:28] Server stdout/stderr -> C:\workspaces\LiTo-0852\server.log
+[05:28] Waiting for server to be ready (timeout: 600s)...
+[05:28]   [ComfyUI:stdout] reader thread died: AttributeError("'NoneType' object has no attribute 'readline'")
+[05:28]   [ComfyUI:stderr] reader thread died: AttributeError("'NoneType' object has no attribute 'readline'")
+[07:14] Server responding, waiting for nodes to load...
+[07:34] Server is ready!
+[07:34] Checking for import errors in server logs...
+[07:34] No import errors detected
+[07:34] Found 721 registered nodes
+[07:34] [REGISTRATION] PASSED
+[07:34] 
+[07:34] [4/5] INSTANTIATION
+[07:34] ----------------------------------------
+[07:34] 
+[DEBUG] server=<comfy_test.comfyui.server.ComfyUIServer object at 0x0000017161FC5940>, server_url=None, api=<comfy_test.comfyui.api.ComfyUIAPI object at 0x0000017161FC63C0>
+[07:34] Testing node constructors...
+[07:35] All 5 node(s) instantiated successfully!
+[07:35] [INSTANTIATION] PASSED
+[07:35] 
+[07:35] [5/5] EXECUTION
+[07:35] ----------------------------------------
+[07:35] 
+[DEBUG] server=<comfy_test.comfyui.server.ComfyUIServer object at 0x0000017161FC5940>, server_url=None, api=<comfy_test.comfyui.api.ComfyUIAPI object at 0x0000017161FC63C0>
+[07:35] GPU runner - will execute 1 workflow(s)
+[07:35] Running 1 workflow(s) (all with videos)...
+[07:35] Installing screenshot dependencies (playwright, pillow)...
+[07:37]   Packages installed, downloading chromium browser...
+[07:55]   Screenshot dependencies installed successfully
+[07:55] Starting headless browser...
+[07:56]   Downloading Mesa llvmpipe for Windows...
+[07:56]   Mesa download error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>
+[07:56]   Mesa unavailable -- falling back to SwiftShader
+[08:01] Capturing execution frames: basic.json
+[08:09]   Frame 1 saved (frame_000.jpg, t=0.0s)
+[08:09]   Validating workflow...
+[08:09]   Queuing workflow for execution...
+[08:09]   Node executed (1 total), capturing...
+[08:09]   Frame 2 saved (frame_001.jpg, t=0.7s)
+[08:09]   [capture-node] freeze=5ms shot=123ms unfreeze=6ms saved=True
+[08:14]   Frame 3 saved (frame_002.jpg, t=5.0s)
+[08:14]   [capture-periodic] freeze=4ms shot=119ms unfreeze=5ms saved=True
+[08:16]   [capture-loop] iter=50 t=6.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=9.5/31.9GB (30%) swap=0.0/5.0GB (1%) cpu=7% browser_rss=0.71GB
+[08:21]   [capture-loop] iter=100 t=12.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=10.5/31.9GB (33%) swap=0.0/5.0GB (1%) cpu=4% browser_rss=0.71GB
+[08:27]   [capture-loop] iter=150 t=18.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=10.0/31.9GB (31%) swap=0.0/5.0GB (1%) cpu=4% browser_rss=0.71GB
+[08:33]   [capture-loop] iter=200 t=24.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=9.0/31.9GB (28%) swap=0.0/5.0GB (1%) cpu=8% browser_rss=0.66GB
+[08:36]   Frame 4 saved (frame_003.jpg, t=26.8s)
+[08:36]   [capture-periodic] freeze=5ms shot=138ms unfreeze=5ms saved=True
+[08:38]   Frame 5 saved (frame_004.jpg, t=29.0s)
+[08:38]   [capture-periodic] freeze=6ms shot=133ms unfreeze=5ms saved=True
+[08:40]   [capture-loop] iter=250 t=31.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=9.7/31.9GB (30%) swap=0.0/5.0GB (1%) cpu=22% browser_rss=0.67GB
+[08:40]   Frame 6 saved (frame_005.jpg, t=31.2s)
+[08:40]   [capture-periodic] freeze=5ms shot=149ms unfreeze=5ms saved=True
+[08:42]   Frame 7 saved (frame_006.jpg, t=33.5s)
+[08:42]   [capture-periodic] freeze=4ms shot=147ms unfreeze=5ms saved=True
+[08:45]   Frame 8 saved (frame_007.jpg, t=35.7s)
+[08:45]   [capture-periodic] freeze=4ms shot=137ms unfreeze=5ms saved=True
+[08:46]   [capture-loop] iter=300 t=37.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=6 ram=10.2/31.9GB (32%) swap=0.0/5.0GB (1%) cpu=22% browser_rss=0.68GB
+[08:47]   Frame 9 saved (frame_008.jpg, t=37.9s)
+[08:47]   [capture-periodic] freeze=5ms shot=157ms unfreeze=5ms saved=True
+[08:49]   Frame 10 saved (frame_009.jpg, t=40.1s)
+[08:49]   [capture-periodic] freeze=6ms shot=142ms unfreeze=7ms saved=True
+[08:51]   Frame 11 saved (frame_010.jpg, t=42.4s)
+[08:51]   [capture-periodic] freeze=5ms shot=139ms unfreeze=6ms saved=True
+[08:53]   [capture-loop] iter=350 t=44.3s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=10.4/31.9GB (33%) swap=0.0/5.0GB (1%) cpu=22% browser_rss=0.68GB
+[08:54]   Frame 12 saved (frame_011.jpg, t=44.6s)
+[08:54]   [capture-periodic] freeze=5ms shot=153ms unfreeze=6ms saved=True
+[08:56]   Frame 13 saved (frame_012.jpg, t=46.9s)
+[08:56]   [capture-periodic] freeze=5ms shot=140ms unfreeze=5ms saved=True
+[08:58]   Frame 14 saved (frame_013.jpg, t=49.1s)
+[08:58]   [capture-periodic] freeze=5ms shot=146ms unfreeze=5ms saved=True
+[09:00]   [capture-loop] iter=400 t=50.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=11 ram=10.6/31.9GB (33%) swap=0.0/5.0GB (1%) cpu=22% browser_rss=0.68GB
+[09:00]   Frame 15 saved (frame_014.jpg, t=51.3s)
+[09:00]   [capture-periodic] freeze=5ms shot=130ms unfreeze=6ms saved=True
+[09:02]   Frame 16 saved (frame_015.jpg, t=53.6s)
+[09:02]   [capture-periodic] freeze=5ms shot=143ms unfreeze=5ms saved=True
+[09:05]   Frame 17 saved (frame_016.jpg, t=55.8s)
+[09:05]   [capture-periodic] freeze=5ms shot=132ms unfreeze=5ms saved=True
+[09:06]   [capture-loop] iter=450 t=57.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=10.6/31.9GB (33%) swap=0.0/5.0GB (1%) cpu=21% browser_rss=0.66GB
+[09:07]   Frame 18 saved (frame_017.jpg, t=58.0s)
+[09:07]   [capture-periodic] freeze=5ms shot=136ms unfreeze=7ms saved=True
+[09:09]   Frame 19 saved (frame_018.jpg, t=60.2s)
+[09:09]   [capture-periodic] freeze=4ms shot=129ms unfreeze=16ms saved=True
+[09:11]   Frame 20 saved (frame_019.jpg, t=62.5s)
+[09:11]   [capture-periodic] freeze=10ms shot=156ms unfreeze=7ms saved=True
+[09:13]   [capture-loop] iter=500 t=63.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=10.5/31.9GB (33%) swap=0.0/5.0GB (1%) cpu=21% browser_rss=0.66GB
+[09:14]   Frame 21 saved (frame_020.jpg, t=64.8s)
+[09:14]   [capture-periodic] freeze=4ms shot=134ms unfreeze=6ms saved=True
+[09:16]   Frame 22 saved (frame_021.jpg, t=67.0s)
+[09:16]   [capture-periodic] freeze=4ms shot=135ms unfreeze=5ms saved=True
+[09:18]   Frame 23 saved (frame_022.jpg, t=69.3s)
+[09:18]   [capture-periodic] freeze=5ms shot=138ms unfreeze=6ms saved=True
+[09:19]   [capture-loop] iter=550 t=70.5s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=10.4/31.9GB (33%) swap=0.0/5.0GB (1%) cpu=21% browser_rss=0.66GB
+[09:20]   Frame 24 saved (frame_023.jpg, t=71.5s)
+[09:20]   [capture-periodic] freeze=6ms shot=140ms unfreeze=6ms saved=True
+[09:23]   Frame 25 saved (frame_024.jpg, t=73.7s)
+[09:23]   [capture-periodic] freeze=4ms shot=139ms unfreeze=10ms saved=True
+[09:25]   Frame 26 saved (frame_025.jpg, t=76.0s)
+[09:25]   [capture-periodic] freeze=6ms shot=128ms unfreeze=7ms saved=True
+[09:26]   [capture-loop] iter=600 t=77.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=10.4/31.9GB (33%) swap=0.0/5.0GB (1%) cpu=22% browser_rss=0.66GB
+[09:27]   Frame 27 saved (frame_026.jpg, t=78.2s)
+[09:27]   [capture-periodic] freeze=5ms shot=139ms unfreeze=7ms saved=True
+[09:29]   Frame 28 saved (frame_027.jpg, t=80.4s)
+[09:29]   [capture-periodic] freeze=4ms shot=135ms unfreeze=7ms saved=True
+[09:32]   Frame 29 saved (frame_028.jpg, t=82.7s)
+[09:32]   [capture-periodic] freeze=5ms shot=124ms unfreeze=9ms saved=True
+[09:32]   [capture-loop] iter=650 t=83.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=10 ram=10.2/31.9GB (32%) swap=0.0/5.0GB (1%) cpu=21% browser_rss=0.65GB
+[09:34]   Frame 30 saved (frame_029.jpg, t=85.0s)
+[09:34]   [capture-periodic] freeze=4ms shot=134ms unfreeze=10ms saved=True
+[09:36]   Frame 31 saved (frame_030.jpg, t=87.3s)
+[09:36]   [capture-periodic] freeze=4ms shot=121ms unfreeze=5ms saved=True
+[09:38]   [capture-loop] iter=700 t=89.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=12.8/31.9GB (40%) swap=0.4/5.0GB (7%) cpu=14% browser_rss=0.66GB
+[09:44]   [capture-loop] iter=750 t=95.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=15.5/31.9GB (49%) swap=0.3/5.0GB (7%) cpu=4% browser_rss=0.64GB
+[09:50]   [capture-loop] iter=800 t=101.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=15.4/31.9GB (48%) swap=0.3/5.0GB (7%) cpu=4% browser_rss=0.63GB
+[09:56]   [capture-loop] iter=850 t=107.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=15.3/31.9GB (48%) swap=0.3/5.0GB (7%) cpu=4% browser_rss=0.64GB
+[10:02]   [capture-loop] iter=900 t=113.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=15.3/31.9GB (48%) swap=0.3/5.0GB (7%) cpu=4% browser_rss=0.64GB
+[10:08]   [capture-loop] iter=950 t=119.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=15.2/31.9GB (48%) swap=0.3/5.0GB (7%) cpu=4% browser_rss=0.64GB
+[10:13]   [capture-loop] iter=1000 t=124.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=6 ram=16.3/31.9GB (51%) swap=0.3/5.0GB (7%) cpu=7% browser_rss=0.64GB
+[10:20]   [capture-loop] iter=1050 t=131.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=16.5/31.9GB (52%) swap=0.3/5.0GB (7%) cpu=27% browser_rss=0.64GB
+[10:26]   [capture-loop] iter=1100 t=137.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=16.8/31.9GB (53%) swap=0.3/5.0GB (7%) cpu=13% browser_rss=0.64GB
+[10:32]   [capture-loop] iter=1150 t=143.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=16.8/31.9GB (53%) swap=0.3/5.0GB (7%) cpu=12% browser_rss=0.64GB
+[10:38]   [capture-loop] iter=1200 t=149.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=21.3/31.9GB (67%) swap=0.3/5.0GB (7%) cpu=29% browser_rss=0.64GB
+[10:44]   [capture-loop] iter=1250 t=155.5s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=21.5/31.9GB (68%) swap=0.3/5.0GB (7%) cpu=4% browser_rss=0.64GB
+[10:50]   [capture-loop] iter=1300 t=161.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=21.0/31.9GB (66%) swap=0.3/5.0GB (7%) cpu=4% browser_rss=0.64GB
+[10:57]   [capture-loop] iter=1350 t=167.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=21.7/31.9GB (68%) swap=0.3/5.0GB (7%) cpu=12% browser_rss=0.64GB
+[11:02]   [capture-loop] iter=1400 t=173.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=23.3/31.9GB (73%) swap=0.3/5.0GB (7%) cpu=10% browser_rss=0.64GB
+[11:08]   Execution complete (t=179.7s)
+[11:08]   Execution error: {'prompt_id': '184409cf-278b-41ff-bd25-5c3bf2349543', 'node_id': '8', 'node_type': 'LiToImageTo3D', 'executed': ['5', '17', '1', '9'], 'exception_message': 'Allocation on device \n\nWorker traceback:\nTraceback (most recent call last):\n  File "C:\\Users\\ContainerAdministrator\\AppData\\Local\\Temp\\comfyui_pvenv_y75uqqkx\\persistent_worker.py", line 1762, in main\n    result = method(**inputs)\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\comfy_api\\latest\\_io.py", line 1833, in EXECUTE_NORMALIZED\n    to_return = cls.execute(*args, **kwargs)\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\utils\\_contextlib.py", line 120, in decorate_context\n    return func(*args, **kwargs)\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo\\nodes\\inference.py", line 249, in execute\n    models = _load_and_cache_model(\n        model["checkpoint_path"],\n    ...<2 lines>...\n        dtype,\n    )\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo\\nodes\\inference.py", line 144, in _load_and_cache_model\n    mdict = load_model(\n        checkpoint_url=checkpoint_path,\n    ...<4 lines>...\n        load_params=True,\n    )\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo\\nodes\\lito_src\\lito\\eval_scripts\\st_model_utils.py", line 145, in load_model\n    model: lito_dit_trainer.LiToDiTTrainer = lito_dit_trainer.LiToDiTTrainer.load_from_checkpoint(\n                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        checkpoint_path=checkpoint_filename,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<2 lines>...\n        **ori_config["plm_config"]["params"],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\pytorch\\utilities\\model_helpers.py", line 130, in wrapper\n    return self.method(cls_type, *args, **kwargs)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\pytorch\\core\\module.py", line 1797, in load_from_checkpoint\n    loaded = _load_from_checkpoint(\n        cls,\n    ...<5 lines>...\n        **kwargs,\n    )\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\pytorch\\core\\saving.py", line 101, in _load_from_checkpoint\n    return model.to(device)\n           ~~~~~~~~^^^^^^^^\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\fabric\\utilities\\device_dtype_mixin.py", line 59, in to\n    return super().to(*args, **kwargs)\n           ~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\ContainerAdministrator\\AppData\\Local\\Temp\\comfyui_pvenv_y75uqqkx\\persistent_worker.py", line 1341, in _hooked_to\n    result = _orig_module_to(self, *args, **kwargs)\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 1369, in to\n    return self._apply(convert)\n           ~~~~~~~~~~~^^^^^^^^^\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 928, in _apply\n    module._apply(fn)\n    ~~~~~~~~~~~~~^^^^\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 928, in _apply\n    module._apply(fn)\n    ~~~~~~~~~~~~~^^^^\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 928, in _apply\n    module._apply(fn)\n    ~~~~~~~~~~~~~^^^^\n  [Previous line repeated 2 more times]\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 955, in _apply\n    param_applied = fn(param)\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 1355, in convert\n    return t.to(\n           ~~~~^\n        device,\n        ^^^^^^^\n        dtype if t.is_floating_point() or t.is_complex() else None,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        non_blocking,\n        ^^^^^^^^^^^^^\n    )\n    ^\ntorch.OutOfMemoryError: Allocation on device \n\n', 'exception_type': 'comfy_env.isolation.workers.base.WorkerError', 'traceback': ['  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 535, in execute\n    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 335, in get_output_data\n    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 309, in _async_map_node_over_list\n    await process_inputs(input_dict, i)\n', '  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 297, in process_inputs\n    result = f(**inputs)\n', '  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\python_embeded\\Lib\\site-packages\\comfy_env\\isolation\\metadata.py", line 536, in proxy\n    result = worker.call_method(\n        module_name=mod,\n    ...<4 lines>...\n        timeout=600.0,\n    )\n', '  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\python_embeded\\Lib\\site-packages\\comfy_env\\isolation\\workers\\subprocess.py", line 674, in call_method\n    raise WorkerError(\n    ...<2 lines>...\n    )\n'], 'current_inputs': {'sampling_steps': [20], 'cfg_scale': [3], 'sampling_method': ['heun'], 'seed': [42], 'model': ["{'checkpoint_path': 'C:\\\\workspaces\\\\LiTo-0852\\\\portable-comfyui\\\\ComfyUI_windows_portable\\\\ComfyUI\\\\models\\\\lito\\\\lito_dit_rgba.ckpt', 'compile': False, 'precision': 'bf16'}"], 'image': ['tensor([[[[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         ...,\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]]]])'], 'mask': ['tensor([[[0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         ...,\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.]]])']}, 'current_outputs': ['17', '1', '8', '6', '5', '29', '9'], 'timestamp': 1778828628669}
+[11:09] Results saved to C:\logs\LiTo-0852\dev\windows-portable-gpu\results.json
+[11:09] Model report: 9 files, 6.9 GB -> C:\logs\LiTo-0852\dev\windows-portable-gpu\models.json
+[11:09] Saved: C:\logs\LiTo-0852\dev\windows-portable-gpu\index.html
+[11:09] 
 windows_portable: FAILED
-[09:58] Error: Workflow execution failed (1 error(s))
-[09:58] Details: basic.json: 1 node(s) had validation errors and were silently skipped: node 27: image_height, {"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}, invalid literal for int() with base 10: '{"v":1,"pos":[0.35532688579342964,3.4202540140738975,1.7336131604031435],"target":[0.0006612539291381836,-0.002025216817855835,-0.007065623998641968],"fov":50,"scale":20,"opacity":1}'
+[11:09] Error: Workflow execution failed (1 error(s))
+[11:09] Details: basic.json: Workflow execution failed: {'prompt_id': '184409cf-278b-41ff-bd25-5c3bf2349543', 'node_id': '8', 'node_type': 'LiToImageTo3D', 'executed': ['5', '17', '1', '9'], 'exception_message': 'Allocation on device \n\nWorker traceback:\nTraceback (most recent call last):\n  File "C:\\Users\\ContainerAdministrator\\AppData\\Local\\Temp\\comfyui_pvenv_y75uqqkx\\persistent_worker.py", line 1762, in main\n    result = method(**inputs)\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\comfy_api\\latest\\_io.py", line 1833, in EXECUTE_NORMALIZED\n    to_return = cls.execute(*args, **kwargs)\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\utils\\_contextlib.py", line 120, in decorate_context\n    return func(*args, **kwargs)\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo\\nodes\\inference.py", line 249, in execute\n    models = _load_and_cache_model(\n        model["checkpoint_path"],\n    ...<2 lines>...\n        dtype,\n    )\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo\\nodes\\inference.py", line 144, in _load_and_cache_model\n    mdict = load_model(\n        checkpoint_url=checkpoint_path,\n    ...<4 lines>...\n        load_params=True,\n    )\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo\\nodes\\lito_src\\lito\\eval_scripts\\st_model_utils.py", line 145, in load_model\n    model: lito_dit_trainer.LiToDiTTrainer = lito_dit_trainer.LiToDiTTrainer.load_from_checkpoint(\n                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        checkpoint_path=checkpoint_filename,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<2 lines>...\n        **ori_config["plm_config"]["params"],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\pytorch\\utilities\\model_helpers.py", line 130, in wrapper\n    return self.method(cls_type, *args, **kwargs)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\pytorch\\core\\module.py", line 1797, in load_from_checkpoint\n    loaded = _load_from_checkpoint(\n        cls,\n    ...<5 lines>...\n        **kwargs,\n    )\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\pytorch\\core\\saving.py", line 101, in _load_from_checkpoint\n    return model.to(device)\n           ~~~~~~~~^^^^^^^^\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\fabric\\utilities\\device_dtype_mixin.py", line 59, in to\n    return super().to(*args, **kwargs)\n           ~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\ContainerAdministrator\\AppData\\Local\\Temp\\comfyui_pvenv_y75uqqkx\\persistent_worker.py", line 1341, in _hooked_to\n    result = _orig_module_to(self, *args, **kwargs)\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 1369, in to\n    return self._apply(convert)\n           ~~~~~~~~~~~^^^^^^^^^\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 928, in _apply\n    module._apply(fn)\n    ~~~~~~~~~~~~~^^^^\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 928, in _apply\n    module._apply(fn)\n    ~~~~~~~~~~~~~^^^^\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 928, in _apply\n    module._apply(fn)\n    ~~~~~~~~~~~~~^^^^\n  [Previous line repeated 2 more times]\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 955, in _apply\n    param_applied = fn(param)\n  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 1355, in convert\n    return t.to(\n           ~~~~^\n        device,\n        ^^^^^^^\n        dtype if t.is_floating_point() or t.is_complex() else None,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        non_blocking,\n        ^^^^^^^^^^^^^\n    )\n    ^\ntorch.OutOfMemoryError: Allocation on device \n\n', 'exception_type': 'comfy_env.isolation.workers.base.WorkerError', 'traceback': ['  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 535, in execute\n    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 335, in get_output_data\n    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 309, in _async_map_node_over_list\n    await process_inputs(input_dict, i)\n', '  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 297, in process_inputs\n    result = f(**inputs)\n', '  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\python_embeded\\Lib\\site-packages\\comfy_env\\isolation\\metadata.py", line 536, in proxy\n    result = worker.call_method(\n        module_name=mod,\n    ...<4 lines>...\n        timeout=600.0,\n    )\n', '  File "C:\\workspaces\\LiTo-0852\\portable-comfyui\\ComfyUI_windows_portable\\python_embeded\\Lib\\site-packages\\comfy_env\\isolation\\workers\\subprocess.py", line 674, in call_method\n    raise WorkerError(\n    ...<2 lines>...\n    )\n'], 'current_inputs': {'sampling_steps': [20], 'cfg_scale': [3], 'sampling_method': ['heun'], 'seed': [42], 'model': ["{'checkpoint_path': 'C:\\\\workspaces\\\\LiTo-0852\\\\portable-comfyui\\\\ComfyUI_windows_portable\\\\ComfyUI\\\\models\\\\lito\\\\lito_dit_rgba.ckpt', 'compile': False, 'precision': 'bf16'}"], 'image': ['tensor([[[[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         ...,\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]]]])'], 'mask': ['tensor([[[0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         ...,\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.]]])']}, 'current_outputs': ['17', '1', '8', '6', '5', '29', '9'], 'timestamp': 1778828628669}
 
 Details:
 Workflow: C:\ComfyUI-LiTo\workflows\basic.json
-[09:58] Stopping ComfyUI server...
+Node error: LiToImageTo3D
+[11:09] Stopping ComfyUI server...
