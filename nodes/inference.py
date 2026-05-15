@@ -26,6 +26,19 @@ def _say(stage: str, msg: str) -> None:
     log.info(line)
 
 
+def _peak_vram_gb() -> float:
+    """Return CUDA peak allocation since the last reset, in GiB. 0.0 on
+    non-CUDA devices so the log line stays printable."""
+    if torch.cuda.is_available():
+        return torch.cuda.max_memory_allocated() / (1024 ** 3)
+    return 0.0
+
+
+def _reset_peak_vram() -> None:
+    if torch.cuda.is_available():
+        torch.cuda.reset_peak_memory_stats()
+
+
 @contextlib.contextmanager
 def _progress_through_tqdm(total: int, label: str):
     """Patch tqdm.tqdm so each iteration also bumps a comfy ProgressBar (which
@@ -136,7 +149,16 @@ def _get_dtype(precision: str) -> torch.dtype:
 
 
 def _load_and_cache_model(checkpoint_path: str, compile: bool, device: torch.device, dtype: torch.dtype):
-    """Load model from checkpoint, cache for reuse."""
+    """Load model from checkpoint, cache for reuse.
+
+    Wraps the loaded module in a `ModelPatcher` so ComfyUI's memory manager
+    is aware of our ~3 GB of GPU residency and can evict it to make room
+    for downstream nodes (and evict competing models to make room for us).
+
+    Note: `st_model` (the tokenizer/decoder) is a submodule of `model`
+    (`model.pretrained_tokenizer`), so we wrap them as a single patcher —
+    they share the same physical weights on GPU.
+    """
     cache_key = (checkpoint_path, compile, dtype)
     if cache_key in _model_cache:
         log.info("Using cached model")
@@ -144,6 +166,8 @@ def _load_and_cache_model(checkpoint_path: str, compile: bool, device: torch.dev
 
     log.info("Loading model from %s...", checkpoint_path)
     from lito.eval_scripts.st_model_utils import load_model
+    import comfy.model_management as mm
+    from comfy.model_patcher import ModelPatcher
 
     mdict = load_model(
         checkpoint_url=checkpoint_path,
@@ -164,9 +188,18 @@ def _load_and_cache_model(checkpoint_path: str, compile: bool, device: torch.dev
 
     st_model = model.pretrained_tokenizer
 
-    result = {"model": model, "st_model": st_model}
+    patcher = ModelPatcher(
+        model,
+        load_device=device,
+        offload_device=mm.unet_offload_device(),
+    )
+
+    result = {"model": model, "st_model": st_model, "patcher": patcher}
     _model_cache[cache_key] = result
-    log.info("Model loaded successfully")
+    log.info(
+        "Model loaded successfully (size %.2f GB on %s, offload device %s)",
+        patcher.model_size() / (1024 ** 3), device, mm.unet_offload_device(),
+    )
     return result
 
 
@@ -249,6 +282,7 @@ class LiToImageTo3D(io.ComfyNode):
                      f"method={sampling_method}, cfg={cfg_scale}, seed={seed}")
 
         # -- load --------------------------------------------------------------
+        _reset_peak_vram()
         t0 = time.time()
         _say("load", f"checkpoint={model['checkpoint_path']}, compile={model['compile']}")
         models = _load_and_cache_model(
@@ -259,7 +293,15 @@ class LiToImageTo3D(io.ComfyNode):
         )
         dit_model = models["model"]
         st_model = models["st_model"]
-        _say("load", f"ok in {time.time() - t0:.1f}s")
+        patcher = models["patcher"]
+        # Hand ourselves to Comfy's memory manager. It will evict competing
+        # workflow models to make room, and on subsequent runs this is a
+        # no-op if the model is still resident.
+        mm.load_models_gpu(
+            [patcher],
+            memory_required=int(patcher.model_size() * 1.3),
+        )
+        _say("load", f"ok in {time.time() - t0:.1f}s, peak VRAM {_peak_vram_gb():.2f} GB")
 
         # -- prep --------------------------------------------------------------
         torch.manual_seed(seed)
@@ -268,6 +310,7 @@ class LiToImageTo3D(io.ComfyNode):
         # -- sample latent tokens (DiT) ----------------------------------------
         # Heun does 2 NFE per outer step but the tqdm in ode_solvers wraps the
         # outer loop, so sampling_steps is the right total.
+        _reset_peak_vram()
         _say("sample", f"DiT, {sampling_steps} {sampling_method} steps")
         t0 = time.time()
         with _progress_through_tqdm(sampling_steps, label="sample"):
@@ -279,11 +322,17 @@ class LiToImageTo3D(io.ComfyNode):
                 use_ema=True,
             )
         t_sample = time.time() - t0
-        _say("sample", f"done in {t_sample:.1f}s")
+        _say("sample", f"done in {t_sample:.1f}s, peak VRAM {_peak_vram_gb():.2f} GB")
+
+        # Drop DiT activations + fragmentation before the (memory-hungry)
+        # decoder pass. Without this, allocator holds onto blocks even
+        # after Python refs go away, inflating peak for the decode stage.
+        mm.soft_empty_cache()
 
         # -- decode latents to Gaussians ---------------------------------------
         init_coord_src = "voxel_decoder" if st_model.voxel_decoder is not None else "sample_xyz"
         decode_steps = 50  # used only when init_coord_src == "sample_xyz"
+        _reset_peak_vram()
         _say("decode", f"Gaussians via {init_coord_src}"
                        + (f" ({decode_steps} init steps)" if init_coord_src == "sample_xyz" else ""))
         t0 = time.time()
@@ -297,7 +346,8 @@ class LiToImageTo3D(io.ComfyNode):
         gs_dict = gs_dicts[0]
         t_decode = time.time() - t0
         num_gauss = gs_dict["xyz_w"].shape[0] if gs_dict["xyz_w"].dim() == 2 else gs_dict["xyz_w"].numel() // 3
-        _say("decode", f"done in {t_decode:.1f}s, {num_gauss} Gaussians")
+        _say("decode", f"done in {t_decode:.1f}s, {num_gauss} Gaussians, "
+                       f"peak VRAM {_peak_vram_gb():.2f} GB")
 
         # -- pack outputs (move to CPU to free VRAM) ---------------------------
         gs_output = {
@@ -307,6 +357,9 @@ class LiToImageTo3D(io.ComfyNode):
             "quaternion": gs_dict["quaternion"].cpu(),
             "opacity": gs_dict["opacity"].cpu(),
         }
+        # Final cache flush so VRAM reported to user / downstream nodes
+        # reflects only the resident model, not lingering decode tensors.
+        mm.soft_empty_cache()
         _say("done", f"total {time.time() - t_total:.1f}s "
                     f"(load + sample {t_sample:.1f}s + decode {t_decode:.1f}s)")
         return io.NodeOutput(gs_output)
