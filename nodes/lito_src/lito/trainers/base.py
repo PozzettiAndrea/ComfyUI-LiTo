@@ -22,3 +22,9 @@ class BaseTrainer(nn.Module):
         for p in self.parameters():
             p.requires_grad_(False)
         self.eval()
+
+    def save_hyperparameters(self, *args, **kwargs) -> None:
+        """No-op stand-in for Lightning's save_hyperparameters(). The two
+        trainer __init__s call this; nothing in the inference codebase
+        reads `self.hparams` back, so we don't store anything."""
+        pass
