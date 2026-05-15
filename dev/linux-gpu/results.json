@@ -1,40 +1,40 @@
 {
-  "timestamp": "2026-05-15T07:02:44.059147+00:00",
+  "timestamp": "2026-05-15T07:07:47.057067+00:00",
   "platform": "linux",
   "hardware": {
     "os": "Linux-6.8.0-107-generic-x86_64-with-glibc2.35",
-    "cpu": "AMD Ryzen 5 3600 6-Core Processor",
-    "gpu": "NVIDIA GeForce RTX 5060"
+    "cpu": "Intel(R) Xeon(R) CPU E5-2697 v4 @ 2.30GHz",
+    "gpu": "NVIDIA GeForce RTX 3090"
   },
   "commit_hash": "af505df8b9186bae14e599748d3d2928384e23aa",
   "run_url": "https://github.com/PozzettiAndrea/comfy-gpu-ci/actions/runs/25904718553",
-  "success": false,
+  "success": true,
   "summary": {
     "total": 1,
-    "passed": 0,
-    "failed": 1
+    "passed": 1,
+    "failed": 0
   },
   "workflows": [
     {
       "name": "basic",
-      "status": "fail",
-      "duration_seconds": 94.83,
-      "error": "Workflow execution failed: {'prompt_id': '85ad0df8-e2f0-4234-838f-16d9e9fc031b', 'node_id': '8', 'node_type': 'LiToImageTo3D', 'executed': ['5', '1', '9', '17'], 'exception_message': 'Allocation on device 0 would exceed allowed memory. (out of memory)\\nCurrently allocated     : 6.59 GiB\\nRequested               : 13.50 MiB\\nDevice limit            : 7.49 GiB\\nFree (according to CUDA): 121.44 MiB\\nPyTorch limit (set by user-supplied memory fraction)\\n                        : 17179869184.00 GiB\\n\\nWorker traceback:\\nTraceback (most recent call last):\\n  File \"/tmp/comfyui_pvenv_1cdh5bcr/persistent_worker.py\", line 1762, in main\\n    result = method(**inputs)\\n  File \"/workspaces/LiTo-0657/ComfyUI/comfy_api/latest/_io.py\", line 1833, in EXECUTE_NORMALIZED\\n    to_return = cls.execute(*args, **kwargs)\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\\n    return func(*args, **kwargs)\\n  File \"/workspaces/LiTo-0657/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py\", line 249, in execute\\n    models = _load_and_cache_model(\\n        model[\"checkpoint_path\"],\\n    ...<2 lines>...\\n        dtype,\\n    )\\n  File \"/workspaces/LiTo-0657/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/inference.py\", line 144, in _load_and_cache_model\\n    mdict = load_model(\\n        checkpoint_url=checkpoint_path,\\n    ...<4 lines>...\\n        load_params=True,\\n    )\\n  File \"/workspaces/LiTo-0657/ComfyUI/custom_nodes/ComfyUI-LiTo/nodes/lito_src/lito/eval_scripts/st_model_utils.py\", line 145, in load_model\\n    model: lito_dit_trainer.LiToDiTTrainer = lito_dit_trainer.LiToDiTTrainer.load_from_checkpoint(\\n                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\\n        checkpoint_path=checkpoint_filename,\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    ...<2 lines>...\\n        **ori_config[\"plm_config\"][\"params\"],\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/utilities/model_helpers.py\", line 130, in wrapper\\n    return self.method(cls_type, *args, **kwargs)\\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/core/module.py\", line 1797, in load_from_checkpoint\\n    loaded = _load_from_checkpoint(\\n        cls,\\n    ...<5 lines>...\\n        **kwargs,\\n    )\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/pytorch/core/saving.py\", line 65, in _load_from_checkpoint\\n    checkpoint = pl_load(checkpoint_path, map_location=map_location, weights_only=weights_only)\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/lightning/fabric/utilities/cloud_io.py\", line 73, in _load\\n    return torch.load(\\n           ~~~~~~~~~~^\\n        f,\\n        ^^\\n        map_location=map_location,  # type: ignore[arg-type]\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n        weights_only=weights_only,\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^\\n    )\\n    ^\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py\", line 1570, in load\\n    return _load(\\n        opened_zipfile,\\n    ...<3 lines>...\\n        **pickle_load_args,\\n    )\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py\", line 2190, in _load\\n    result = unpickler.load()\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/_weights_only_unpickler.py\", line 541, in load\\n    self.append(self.persistent_load(pid))\\n                ~~~~~~~~~~~~~~~~~~~~^^^^^\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py\", line 2154, in persistent_load\\n    typed_storage = load_tensor(\\n        dtype, nbytes, key, _maybe_decode_ascii(location)\\n    )\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py\", line 2116, in load_tensor\\n    wrap_storage = restore_location(storage, location)\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py\", line 1920, in restore_location\\n    return default_restore_location(storage, str(map_location))\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py\", line 734, in default_restore_location\\n    result = fn(storage, location)\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/serialization.py\", line 668, in _deserialize\\n    return obj.to(device=device)\\n           ~~~~~~^^^^^^^^^^^^^^^\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/storage.py\", line 289, in to\\n    return _to(self, device, non_blocking)\\n  File \"/workspaces/LiTo-0657/ComfyUI/.ce/.pixi/envs/lito-nodes/lib/python3.13/site-packages/torch/_utils.py\", line 106, in _to\\n    untyped_storage = torch.UntypedStorage(self.size(), device=device)\\ntorch.OutOfMemoryError: Allocation on device 0 would exceed allowed memory. (out of memory)\\nCurrently allocated     : 6.59 GiB\\nRequested               : 13.50 MiB\\nDevice limit            : 7.49 GiB\\nFree (according to CUDA): 121.44 MiB\\nPyTorch limit (set by user-supplied memory fraction)\\n                        : 17179869184.00 GiB\\n\\n', 'exception_type': 'comfy_env.isolation.workers.base.WorkerError', 'traceback': ['  File \"/workspaces/LiTo-0657/ComfyUI/execution.py\", line 535, in execute\\n    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\\n                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n', '  File \"/workspaces/LiTo-0657/ComfyUI/execution.py\", line 335, in get_output_data\\n    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n', '  File \"/workspaces/LiTo-0657/ComfyUI/execution.py\", line 309, in _async_map_node_over_list\\n    await process_inputs(input_dict, i)\\n', '  File \"/workspaces/LiTo-0657/ComfyUI/execution.py\", line 297, in process_inputs\\n    result = f(**inputs)\\n', '  File \"/workspaces/LiTo-0657/.venv/lib/python3.13/site-packages/comfy_env/isolation/metadata.py\", line 536, in proxy\\n    result = worker.call_method(\\n        module_name=mod,\\n    ...<4 lines>...\\n        timeout=600.0,\\n    )\\n', '  File \"/workspaces/LiTo-0657/.venv/lib/python3.13/site-packages/comfy_env/isolation/workers/subprocess.py\", line 674, in call_method\\n    raise WorkerError(\\n    ...<2 lines>...\\n    )\\n'], 'current_inputs': {'sampling_steps': [20], 'cfg_scale': [3], 'sampling_method': ['heun'], 'seed': [42], 'model': [\"{'checkpoint_path': '/workspaces/LiTo-0657/ComfyUI/models/lito/lito_dit_rgba.ckpt', 'compile': False, 'precision': 'bf16'}\"], 'image': ['tensor([[[[0., 0., 0.],\\n          [0., 0., 0.],\\n          [0., 0., 0.],\\n          ...,\\n          [0., 0., 0.],\\n          [0., 0., 0.],\\n          [0., 0., 0.]],\\n\\n         [[0., 0., 0.],\\n          [0., 0., 0.],\\n          [0., 0., 0.],\\n          ...,\\n          [0., 0., 0.],\\n          [0., 0., 0.],\\n          [0., 0., 0.]],\\n\\n         [[0., 0., 0.],\\n          [0., 0., 0.],\\n          [0., 0., 0.],\\n          ...,\\n          [0., 0., 0.],\\n          [0., 0., 0.],\\n          [0., 0., 0.]],\\n\\n         ...,\\n\\n         [[0., 0., 0.],\\n          [0., 0., 0.],\\n          [0., 0., 0.],\\n          ...,\\n          [0., 0., 0.],\\n          [0., 0., 0.],\\n          [0., 0., 0.]],\\n\\n         [[0., 0., 0.],\\n          [0., 0., 0.],\\n          [0., 0., 0.],\\n          ...,\\n          [0., 0., 0.],\\n          [0., 0., 0.],\\n          [0., 0., 0.]],\\n\\n         [[0., 0., 0.],\\n          [0., 0., 0.],\\n          [0., 0., 0.],\\n          ...,\\n          [0., 0., 0.],\\n          [0., 0., 0.],\\n          [0., 0., 0.]]]])'], 'mask': ['tensor([[[0., 0., 0.,  ..., 0., 0., 0.],\\n         [0., 0., 0.,  ..., 0., 0., 0.],\\n         [0., 0., 0.,  ..., 0., 0., 0.],\\n         ...,\\n         [0., 0., 0.,  ..., 0., 0., 0.],\\n         [0., 0., 0.,  ..., 0., 0., 0.],\\n         [0., 0., 0.,  ..., 0., 0., 0.]]])']}, 'current_outputs': ['5', '29', '9', '8', '1', '17', '6'], 'timestamp': 1778828563523}\n\nDetails:\nWorkflow: /node/ComfyUI-LiTo/workflows/basic.json\nNode error: LiToImageTo3D",
+      "status": "pass",
+      "duration_seconds": 589.61,
+      "error": null,
       "hardware": {
         "os": "Linux-6.8.0-107-generic-x86_64-with-glibc2.35",
-        "cpu": "AMD Ryzen 5 3600 6-Core Processor",
-        "gpu": "NVIDIA GeForce RTX 5060"
+        "cpu": "Intel(R) Xeon(R) CPU E5-2697 v4 @ 2.30GHz",
+        "gpu": "NVIDIA GeForce RTX 3090"
       },
       "resources": {
         "ram": {
-          "peak": 11.79,
-          "avg": 3.51
+          "peak": 7.34,
+          "avg": 3.13
         },
-        "total_ram_gb": 23.4,
-        "samples": 92,
+        "total_ram_gb": 31.2,
+        "samples": 539,
         "vram": {
-          "peak": 6.44,
-          "avg": 0.48
+          "peak": 14.3,
+          "avg": 5.97
         }
       }
     }
