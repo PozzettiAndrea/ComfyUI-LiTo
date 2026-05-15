@@ -22,25 +22,16 @@ av = "*"
 c-compiler = "*"
 
 [pypi-dependencies]
-# timm in pypi (not conda) to keep conda's torch family out of the solve
 timm = ">=0.9.16"
 lightning = ">=2.0.0"
 rembg = { version = "*", extras = ["cpu"] }
-# lpips: required by LightTokenizationTrainer.__init__ even when loading
-# checkpoints with strict=False (constructs lpips.LPIPS(net="vgg") in __init__)
 lpips = { git = "https://github.com/richzhang/PerceptualSimilarity.git" }
 psutil = "*"
 comfy-aimdo = "*"
-# hf_transfer: Rust-backed parallel HTTP Range downloader. Despite the name,
-# works against arbitrary URLs (no HF allowlist). Used by the loader node to
-# pull the 7.37 GB Apple CDN checkpoint in 30-60s instead of ~5 min.
 hf_transfer = "*"
 tqdm = "*"
-# utils3d: required by TRELLIS's representations.gaussian module, which
-# representations/__init__.py and structured_latent_vae/decoder_gs.py both pull
-# in eagerly even on the inference path. Pinned to the same commit Apple uses
-# in their pyproject's [trellis] extra.
 utils3d = { git = "https://github.com/EasternJournalist/utils3d.git", rev = "9a4eb15e4021b67b12c460c7057d642626897ec8" }
 pccm = ">=0.4.16"
 ccimport = ">=0.4.4"
 einops = "*"
+transformers = "*"
