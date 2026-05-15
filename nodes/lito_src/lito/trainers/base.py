@@ -28,3 +28,28 @@ class BaseTrainer(nn.Module):
         trainer __init__s call this; nothing in the inference codebase
         reads `self.hparams` back, so we don't store anything."""
         pass
+
+    @property
+    def device(self) -> torch.device:
+        """Read-write `device` replacing Lightning's read-only @property.
+
+        Reader: prefer the override Comfy's ModelPatcher stashed via the
+        setter; fall back to the device of the first parameter (Lightning's
+        original behavior). The fallback matters for callsites like
+        lito_trainer.py: `self.voxel_ss_pipeline.device != self.device`.
+
+        Writer: comfy.model_patcher.ModelPatcher writes self.model.device
+        in load() / unpatch_model() (model_patcher.py:936, :990). Stash
+        the value so Comfy and downstream code see the same thing.
+        """
+        v = self.__dict__.get("_lito_device_override")
+        if v is not None:
+            return v if isinstance(v, torch.device) else torch.device(v)
+        try:
+            return next(self.parameters()).device
+        except StopIteration:
+            return torch.device("cpu")
+
+    @device.setter
+    def device(self, value) -> None:
+        self.__dict__["_lito_device_override"] = value
