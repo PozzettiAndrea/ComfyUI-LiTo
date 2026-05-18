@@ -1,35 +1,35 @@
 {
-  "timestamp": "2026-05-12T22:19:12.045497+00:00",
+  "timestamp": "2026-05-18T16:48:55.236330+00:00",
   "platform": "windows",
   "hardware": {
-    "os": "Windows-11-10.0.26200-SP0",
+    "os": "Windows-11-10.0.26100-SP0",
     "cpu": "Intel64 Family 6 Model 79 Stepping 1, GenuineIntel"
   },
-  "commit_hash": "f8f98446ebe5c74736e95d7816f0139ab82d5a60",
-  "run_url": "https://github.com/PozzettiAndrea/comfy-gpu-ci/actions/runs/25765225103",
-  "success": false,
+  "commit_hash": "1028d2fe95580f8f1792d7fe6b5a27af5d9045ba",
+  "run_url": "https://github.com/PozzettiAndrea/comfy-gpu-ci/actions/runs/26042412285",
+  "success": true,
   "summary": {
     "total": 1,
-    "passed": 0,
-    "failed": 1
+    "passed": 1,
+    "failed": 0
   },
   "workflows": [
     {
       "name": "basic",
-      "status": "fail",
-      "duration_seconds": 71.03,
-      "error": "1 node(s) had validation errors and were silently skipped: node 27: fov_degrees\n\nDetails:\nWorkflow: C:\\ComfyUI-LiTo\\workflows\\basic.json",
+      "status": "pass",
+      "duration_seconds": 391.65,
+      "error": null,
       "hardware": {
-        "os": "Windows-11-10.0.26200-SP0",
+        "os": "Windows-11-10.0.26100-SP0",
         "cpu": "Intel64 Family 6 Model 79 Stepping 1, GenuineIntel"
       },
       "resources": {
         "ram": {
-          "peak": 0.94,
-          "avg": 0.94
+          "peak": 20.13,
+          "avg": 6.5
         },
         "total_ram_gb": 31.9,
-        "samples": 71
+        "samples": 383
       }
     }
   ]

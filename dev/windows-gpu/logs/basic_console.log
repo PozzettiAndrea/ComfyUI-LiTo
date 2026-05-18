@@ -7,14 +7,78 @@
 [Console-error] Failed to load resource: the server responded with a status of 404 (Not Found)
 [Console-error] Failed to load resource: the server responded with a status of 404 (Not Found)
 [Console-error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[Console-error] [vite:preloadError] {url: null, fileType: unknown, chunkName: null, message: Failed to resolve module specifier "three". Relati…ences must start with either "/", "./", or "../".}
+[Console-error] [vite:preloadError] {url: null, fileType: unknown, chunkName: null, message: Failed to resolve module specifier "playcanvas". R…ences must start with either "/", "./", or "../".}
+[Console-error] [vite:preloadError] {url: null, fileType: unknown, chunkName: null, message: Failed to resolve module specifier "three". Relati…ences must start with either "/", "./", or "../".}
+[Console-error] [vite:preloadError] {url: null, fileType: unknown, chunkName: null, message: Failed to resolve module specifier "playcanvas". R…ences must start with either "/", "./", or "../".}
+[Console-warning] THREE.WARNING: Multiple instances of Three.js being imported.
+[Console-error] [vite:preloadError] {url: null, fileType: unknown, chunkName: null, message: Failed to resolve module specifier "playcanvas". R…ences must start with either "/", "./", or "../".}
+[Console-error] [vite:preloadError] {url: null, fileType: unknown, chunkName: null, message: Failed to resolve module specifier "three". Relati…ences must start with either "/", "./", or "../".}
+[Console-log] [GaussianPack] Loading extension...
 [Console-log] [VTK Bundle] GLTFImporter included in bundle
-[Console-log] [TurntableGSViewer] Loading extension...
 [Console-warning] [MaskEditor] ComfyApp.open_maskeditor is deprecated. Plugins should migrate to using the command system or direct node context menu integration.
-[Console-log] [TurntableGSViewer] Registering Preview Gaussians node
-[Console-log] [GaussianViewer] Initialized successfully
-[Console-log] [GaussianViewer] Ready - waiting for LOAD_MESH message
-[Console-warning] [.WebGL-0x80409c08e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Console-warning] [.WebGL-0x80409c08e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Console-warning] [.WebGL-0x80409c08e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Console-warning] [.WebGL-0x80409c08e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[Console-log] [GaussianPack] Registering Preview Gaussians node
+[Console-log] [GaussianViewer] Ready — waiting for LOAD_MESH_DATA
 [Console-log] [comfy-test] graphToPrompt: 7 nodes, missing class_type: [], sample: {"inputs":{"checkpoint":"lito_dit_rgba (recommended)","compile":false,"precision":"auto"},"class_type":"LiToLoadModel","_meta":{"title":"(Down)Load LiTo Model"}}
+[Console-log] [GaussianPack] onExecuted called with: {ply_file: Array(1), filename: Array(1), ply_type: Array(1), ply_subfolder: Array(1), file_size_mb: Array(1)}
+[Console-log] [GaussianPack] Resized node to: 512 x 572 (aspect ratio: 1.00 )
+[Console-log] [GaussianPack] fetch start: /view?filename=lito_output.ply&type=output&subfolder=
+[Console-log] [GaussianPack] fetch response 200; content-length=234018299
+[Console-log] [GaussianPack] download 0%  0.7/223.2 MB
+[Console-log] [GaussianPack] download 5%  11.2/223.2 MB
+[Console-log] [GaussianPack] download 10%  23.1/223.2 MB
+[Console-log] [GaussianPack] download 15%  33.7/223.2 MB
+[Console-log] [GaussianPack] download 20%  45.0/223.2 MB
+[Console-log] [GaussianPack] download 25%  55.9/223.2 MB
+[Console-log] [GaussianPack] download 30%  67.3/223.2 MB
+[Console-log] [GaussianPack] download 35%  79.1/223.2 MB
+[Console-log] [GaussianPack] download 40%  89.5/223.2 MB
+[Console-log] [GaussianPack] download 45%  102.0/223.2 MB
+[Console-log] [GaussianPack] download 50%  112.0/223.2 MB
+[Console-log] [GaussianPack] download 55%  123.5/223.2 MB
+[Console-log] [GaussianPack] download 60%  134.0/223.2 MB
+[Console-log] [GaussianPack] download 65%  145.3/223.2 MB
+[Console-log] [GaussianPack] download 70%  157.0/223.2 MB
+[Console-log] [GaussianPack] download 75%  167.7/223.2 MB
+[Console-log] [GaussianPack] download 80%  180.0/223.2 MB
+[Console-log] [GaussianPack] download 85%  190.0/223.2 MB
+[Console-log] [GaussianPack] download 90%  200.9/223.2 MB
+[Console-log] [GaussianPack] download 95%  212.6/223.2 MB
+[Console-log] [GaussianPack] download 100%  223.2/223.2 MB
+[Console-log] [GaussianPack] fetch done: 234018299 bytes in 886 ms (251.9 MB/s)
+[Console-log] [GaussianPack] posting LOAD_MESH_DATA to iframe, renderer: spark filename: lito_output.ply
+[Console-log] [GaussianViewer] Received LOAD_MESH_DATA, size: 234018299 renderer: spark
+[Console-log] [GaussianViewer] ensureRenderer('spark') starting...
+[Console-log] [Spark] init: canvas client=486x223 dpr=1.00
+[Console-warning] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[Console-log] [Spark] first frame rendered.
+[Console-log] [GaussianViewer] Adapter ready: spark
+[Console-log] [GaussianViewer] Loading splat (234,018,299 bytes) via spark...
+[Console-log] [Spark] new SplatMesh url=lito_output.ply
+[Console-warning] [.WebGL-0x75c4001aa000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Console-log] [Spark] parse 0%
+[Console-log] [Spark] parse 0%
+[Console-log] [Spark] parse 0%
+[Console-log] [Spark] parse 1%
+[Console-log] [Spark] parse 1%
+[Console-log] [Spark] parse 10%
+[Console-log] [Spark] parse 11%
+[Console-log] [Spark] parse 20%
+[Console-log] [Spark] parse 21%
+[Console-log] [Spark] parse 30%
+[Console-log] [Spark] parse 40%
+[Console-log] [Spark] parse 50%
+[Console-log] [Spark] parse 60%
+[Console-log] [Spark] parse 61%
+[Console-log] [Spark] parse 71%
+[Console-log] [Spark] parse 81%
+[Console-log] [Spark] parse 91%
+[Console-log] [Spark] parse 100%
+[Console-log] [Spark] loaded 943616 splats in 1503 ms
+[Console-log] [GaussianViewer] adapter.loadSplat resolved in 1504 ms
+[Console-log] [GaussianViewer] frameOnBounds: bounds center=(-0.005, -0.006, -0.001) size=(1.819, 1.846, 1.999)
+[Console-log] [GaussianViewer] Framed: cam=(-0.00, -0.01, -2.47) target=(-0.00, -0.01, -0.00) maxExtent=2.00 radius=2.46 fov=50
+[Console-log] [GaussianViewer] Loaded successfully
+[Console-warning] [.WebGL-0x75c4001aa000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Console-warning] [.WebGL-0x75c4001aa000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Console-warning] [.WebGL-0x75c4001aa000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
