@@ -3,98 +3,168 @@ Capturing execution frames: basic.json
   Validating workflow...
   Queuing workflow for execution...
   Node executed (1 total), capturing...
-  Frame 2 saved (frame_001.jpg, t=0.6s)
-  [capture-node] freeze=5ms shot=110ms unfreeze=6ms saved=True
-  Frame 3 saved (frame_002.jpg, t=5.1s)
-  [capture-periodic] freeze=4ms shot=108ms unfreeze=5ms saved=True
-  [capture-loop] iter=50 t=6.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=9.1/31.9GB (28%) swap=0.4/5.0GB (8%) cpu=5% browser_rss=0.71GB
-  [capture-loop] iter=100 t=12.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=9.1/31.9GB (28%) swap=0.4/5.0GB (8%) cpu=4% browser_rss=0.71GB
-  [capture-loop] iter=150 t=18.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=9.6/31.9GB (30%) swap=0.4/5.0GB (8%) cpu=4% browser_rss=0.71GB
-  [capture-loop] iter=200 t=24.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=8.2/31.9GB (26%) swap=0.4/5.0GB (8%) cpu=4% browser_rss=0.66GB
-  Frame 4 saved (frame_003.jpg, t=29.1s)
-  [capture-periodic] freeze=5ms shot=146ms unfreeze=5ms saved=True
-  [capture-loop] iter=250 t=30.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=6 ram=8.8/31.9GB (28%) swap=0.4/5.0GB (8%) cpu=14% browser_rss=0.67GB
-  Frame 5 saved (frame_004.jpg, t=31.4s)
-  [capture-periodic] freeze=5ms shot=143ms unfreeze=6ms saved=True
-  Frame 6 saved (frame_005.jpg, t=33.6s)
-  [capture-periodic] freeze=5ms shot=138ms unfreeze=6ms saved=True
-  Frame 7 saved (frame_006.jpg, t=35.9s)
-  [capture-periodic] freeze=8ms shot=129ms unfreeze=7ms saved=True
-  [capture-loop] iter=300 t=37.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=9.4/31.9GB (30%) swap=0.4/5.0GB (8%) cpu=22% browser_rss=0.67GB
-  Frame 8 saved (frame_007.jpg, t=38.1s)
-  [capture-periodic] freeze=5ms shot=144ms unfreeze=5ms saved=True
-  Frame 9 saved (frame_008.jpg, t=40.4s)
-  [capture-periodic] freeze=4ms shot=158ms unfreeze=6ms saved=True
-  Frame 10 saved (frame_009.jpg, t=42.7s)
-  [capture-periodic] freeze=4ms shot=148ms unfreeze=5ms saved=True
-  [capture-loop] iter=350 t=44.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=9.7/31.9GB (30%) swap=0.4/5.0GB (8%) cpu=22% browser_rss=0.67GB
-  Frame 11 saved (frame_010.jpg, t=45.0s)
-  [capture-periodic] freeze=5ms shot=134ms unfreeze=7ms saved=True
-  Frame 12 saved (frame_011.jpg, t=47.2s)
-  [capture-periodic] freeze=9ms shot=141ms unfreeze=6ms saved=True
-  Frame 13 saved (frame_012.jpg, t=49.4s)
-  [capture-periodic] freeze=5ms shot=139ms unfreeze=7ms saved=True
-  [capture-loop] iter=400 t=50.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=9.8/31.9GB (31%) swap=0.4/5.0GB (8%) cpu=22% browser_rss=0.68GB
-  Frame 14 saved (frame_013.jpg, t=51.7s)
-  [capture-periodic] freeze=4ms shot=141ms unfreeze=5ms saved=True
-  Frame 15 saved (frame_014.jpg, t=53.9s)
-  [capture-periodic] freeze=4ms shot=137ms unfreeze=7ms saved=True
-  Frame 16 saved (frame_015.jpg, t=56.2s)
-  [capture-periodic] freeze=5ms shot=137ms unfreeze=6ms saved=True
-  [capture-loop] iter=450 t=57.3s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=6 ram=9.8/31.9GB (31%) swap=0.4/5.0GB (8%) cpu=22% browser_rss=0.67GB
-  Frame 17 saved (frame_016.jpg, t=58.4s)
-  [capture-periodic] freeze=5ms shot=138ms unfreeze=8ms saved=True
-  Frame 18 saved (frame_017.jpg, t=60.7s)
-  [capture-periodic] freeze=4ms shot=148ms unfreeze=6ms saved=True
-  Frame 19 saved (frame_018.jpg, t=63.0s)
-  [capture-periodic] freeze=5ms shot=145ms unfreeze=5ms saved=True
-  [capture-loop] iter=500 t=64.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=9.8/31.9GB (31%) swap=0.4/5.0GB (8%) cpu=21% browser_rss=0.66GB
-  Frame 20 saved (frame_019.jpg, t=65.2s)
-  [capture-periodic] freeze=5ms shot=138ms unfreeze=5ms saved=True
-  Frame 21 saved (frame_020.jpg, t=67.5s)
-  [capture-periodic] freeze=5ms shot=142ms unfreeze=8ms saved=True
-  Frame 22 saved (frame_021.jpg, t=69.7s)
-  [capture-periodic] freeze=4ms shot=145ms unfreeze=5ms saved=True
-  [capture-loop] iter=550 t=70.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=9.8/31.9GB (31%) swap=0.4/5.0GB (8%) cpu=21% browser_rss=0.66GB
-  Frame 23 saved (frame_022.jpg, t=71.9s)
-  [capture-periodic] freeze=5ms shot=140ms unfreeze=5ms saved=True
-  Frame 24 saved (frame_023.jpg, t=74.2s)
-  [capture-periodic] freeze=4ms shot=140ms unfreeze=7ms saved=True
-  Frame 25 saved (frame_024.jpg, t=76.4s)
-  [capture-periodic] freeze=5ms shot=138ms unfreeze=5ms saved=True
-  [capture-loop] iter=600 t=77.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=9.7/31.9GB (30%) swap=0.4/5.0GB (8%) cpu=21% browser_rss=0.66GB
-  Frame 26 saved (frame_025.jpg, t=78.7s)
-  [capture-periodic] freeze=5ms shot=144ms unfreeze=5ms saved=True
-  Frame 27 saved (frame_026.jpg, t=81.0s)
-  [capture-periodic] freeze=6ms shot=131ms unfreeze=6ms saved=True
-  Frame 28 saved (frame_027.jpg, t=83.2s)
-  [capture-periodic] freeze=5ms shot=138ms unfreeze=7ms saved=True
-  [capture-loop] iter=650 t=83.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=8 ram=9.6/31.9GB (30%) swap=0.4/5.0GB (8%) cpu=22% browser_rss=0.66GB
-  Frame 29 saved (frame_028.jpg, t=85.5s)
-  [capture-periodic] freeze=5ms shot=138ms unfreeze=9ms saved=True
-  Frame 30 saved (frame_029.jpg, t=87.7s)
-  [capture-periodic] freeze=8ms shot=141ms unfreeze=7ms saved=True
-  Frame 31 saved (frame_030.jpg, t=90.0s)
-  [capture-periodic] freeze=4ms shot=114ms unfreeze=7ms saved=True
-  [capture-loop] iter=700 t=90.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=9.8/31.9GB (31%) swap=0.4/5.0GB (8%) cpu=21% browser_rss=0.66GB
-  [capture-loop] iter=750 t=96.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=15.3/31.9GB (48%) swap=0.4/5.0GB (8%) cpu=6% browser_rss=0.66GB
-  [capture-loop] iter=800 t=102.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=15.2/31.9GB (48%) swap=0.4/5.0GB (8%) cpu=4% browser_rss=0.66GB
-  [capture-loop] iter=850 t=108.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=15.2/31.9GB (48%) swap=0.4/5.0GB (8%) cpu=4% browser_rss=0.66GB
-  [capture-loop] iter=900 t=113.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=15.1/31.9GB (47%) swap=0.4/5.0GB (8%) cpu=4% browser_rss=0.66GB
-  [capture-loop] iter=950 t=119.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=15.0/31.9GB (47%) swap=0.4/5.0GB (8%) cpu=4% browser_rss=0.65GB
-  [capture-loop] iter=1000 t=125.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=14.9/31.9GB (47%) swap=0.4/5.0GB (8%) cpu=4% browser_rss=0.65GB
-  [capture-loop] iter=1050 t=131.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=16.0/31.9GB (50%) swap=0.4/5.0GB (8%) cpu=25% browser_rss=0.65GB
-  [capture-loop] iter=1100 t=137.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=16.5/31.9GB (52%) swap=0.4/5.0GB (8%) cpu=13% browser_rss=0.66GB
-  [capture-loop] iter=1150 t=144.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=16.6/31.9GB (52%) swap=0.4/5.0GB (8%) cpu=14% browser_rss=0.65GB
-  [capture-loop] iter=1200 t=150.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=6 ram=17.6/31.9GB (55%) swap=0.4/5.0GB (8%) cpu=14% browser_rss=0.65GB
-  [capture-loop] iter=1250 t=156.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=21.5/31.9GB (67%) swap=0.4/5.0GB (8%) cpu=24% browser_rss=0.65GB
-  [capture-loop] iter=1300 t=162.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=20.8/31.9GB (65%) swap=0.4/5.0GB (8%) cpu=4% browser_rss=0.65GB
-  [capture-loop] iter=1350 t=168.3s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=21.3/31.9GB (67%) swap=0.4/5.0GB (8%) cpu=7% browser_rss=0.65GB
-  [capture-loop] iter=1400 t=174.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=21.5/31.9GB (67%) swap=0.7/6.0GB (12%) cpu=14% browser_rss=0.65GB
-  [capture-loop] iter=1450 t=180.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=25.4/31.9GB (80%) swap=0.7/8.0GB (9%) cpu=14% browser_rss=0.65GB
-  Execution complete (t=182.6s)
-  Execution error: {'prompt_id': '32ddc462-3117-495d-8f54-35575eb26ca2', 'node_id': '8', 'node_type': 'LiToImageTo3D', 'executed': ['9', '17', '5', '1'], 'exception_message': 'Allocation on device \n\nWorker traceback:\nTraceback (most recent call last):\n  File "C:\\Users\\ContainerAdministrator\\AppData\\Local\\Temp\\comfyui_pvenv_p1k71876\\persistent_worker.py", line 1762, in main\n    result = method(**inputs)\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\comfy_api\\latest\\_io.py", line 1833, in EXECUTE_NORMALIZED\n    to_return = cls.execute(*args, **kwargs)\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\utils\\_contextlib.py", line 120, in decorate_context\n    return func(*args, **kwargs)\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo\\nodes\\inference.py", line 254, in execute\n    models = _load_and_cache_model(\n        model["checkpoint_path"],\n    ...<2 lines>...\n        dtype,\n    )\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo\\nodes\\inference.py", line 148, in _load_and_cache_model\n    mdict = load_model(\n        checkpoint_url=checkpoint_path,\n    ...<4 lines>...\n        load_params=True,\n    )\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo\\nodes\\lito_src\\lito\\eval_scripts\\st_model_utils.py", line 145, in load_model\n    model: lito_dit_trainer.LiToDiTTrainer = lito_dit_trainer.LiToDiTTrainer.load_from_checkpoint(\n                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        checkpoint_path=checkpoint_filename,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<2 lines>...\n        **ori_config["plm_config"]["params"],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\pytorch\\utilities\\model_helpers.py", line 130, in wrapper\n    return self.method(cls_type, *args, **kwargs)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\pytorch\\core\\module.py", line 1797, in load_from_checkpoint\n    loaded = _load_from_checkpoint(\n        cls,\n    ...<5 lines>...\n        **kwargs,\n    )\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\pytorch\\core\\saving.py", line 101, in _load_from_checkpoint\n    return model.to(device)\n           ~~~~~~~~^^^^^^^^\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\fabric\\utilities\\device_dtype_mixin.py", line 59, in to\n    return super().to(*args, **kwargs)\n           ~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\ContainerAdministrator\\AppData\\Local\\Temp\\comfyui_pvenv_p1k71876\\persistent_worker.py", line 1341, in _hooked_to\n    result = _orig_module_to(self, *args, **kwargs)\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 1369, in to\n    return self._apply(convert)\n           ~~~~~~~~~~~^^^^^^^^^\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 928, in _apply\n    module._apply(fn)\n    ~~~~~~~~~~~~~^^^^\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 928, in _apply\n    module._apply(fn)\n    ~~~~~~~~~~~~~^^^^\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 928, in _apply\n    module._apply(fn)\n    ~~~~~~~~~~~~~^^^^\n  [Previous line repeated 2 more times]\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 955, in _apply\n    param_applied = fn(param)\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 1355, in convert\n    return t.to(\n           ~~~~^\n        device,\n        ^^^^^^^\n        dtype if t.is_floating_point() or t.is_complex() else None,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        non_blocking,\n        ^^^^^^^^^^^^^\n    )\n    ^\ntorch.OutOfMemoryError: Allocation on device \n\n', 'exception_type': 'comfy_env.isolation.workers.base.WorkerError', 'traceback': ['  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 535, in execute\n    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 335, in get_output_data\n    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 309, in _async_map_node_over_list\n    await process_inputs(input_dict, i)\n', '  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 297, in process_inputs\n    result = f(**inputs)\n', '  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\python_embeded\\Lib\\site-packages\\comfy_env\\isolation\\metadata.py", line 536, in proxy\n    result = worker.call_method(\n        module_name=mod,\n    ...<4 lines>...\n        timeout=600.0,\n    )\n', '  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\python_embeded\\Lib\\site-packages\\comfy_env\\isolation\\workers\\subprocess.py", line 674, in call_method\n    raise WorkerError(\n    ...<2 lines>...\n    )\n'], 'current_inputs': {'sampling_steps': [20], 'cfg_scale': [3], 'sampling_method': ['heun'], 'seed': [42], 'model': ["{'checkpoint_path': 'C:\\\\workspaces\\\\LiTo-1027\\\\portable-comfyui\\\\ComfyUI_windows_portable\\\\ComfyUI\\\\models\\\\lito\\\\lito_dit_rgba.ckpt', 'compile': False, 'precision': 'bf16'}"], 'image': ['tensor([[[[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         ...,\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]]]])'], 'mask': ['tensor([[[0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         ...,\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.]]])']}, 'current_outputs': ['9', '1', '8', '5', '6', '29', '17'], 'timestamp': 1778834331582}
-    Status: FAILED
-    Error: Workflow execution failed: {'prompt_id': '32ddc462-3117-495d-8f54-35575eb26ca2', 'node_id': '8', 'node_type': 'LiToImageTo3D', 'executed': ['9', '17', '5', '1'], 'exception_message': 'Allocation on device \n\nWorker traceback:\nTraceback (most recent call last):\n  File "C:\\Users\\ContainerAdministrator\\AppData\\Local\\Temp\\comfyui_pvenv_p1k71876\\persistent_worker.py", line 1762, in main\n    result = method(**inputs)\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\comfy_api\\latest\\_io.py", line 1833, in EXECUTE_NORMALIZED\n    to_return = cls.execute(*args, **kwargs)\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\utils\\_contextlib.py", line 120, in decorate_context\n    return func(*args, **kwargs)\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo\\nodes\\inference.py", line 254, in execute\n    models = _load_and_cache_model(\n        model["checkpoint_path"],\n    ...<2 lines>...\n        dtype,\n    )\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo\\nodes\\inference.py", line 148, in _load_and_cache_model\n    mdict = load_model(\n        checkpoint_url=checkpoint_path,\n    ...<4 lines>...\n        load_params=True,\n    )\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo\\nodes\\lito_src\\lito\\eval_scripts\\st_model_utils.py", line 145, in load_model\n    model: lito_dit_trainer.LiToDiTTrainer = lito_dit_trainer.LiToDiTTrainer.load_from_checkpoint(\n                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        checkpoint_path=checkpoint_filename,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<2 lines>...\n        **ori_config["plm_config"]["params"],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\pytorch\\utilities\\model_helpers.py", line 130, in wrapper\n    return self.method(cls_type, *args, **kwargs)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\pytorch\\core\\module.py", line 1797, in load_from_checkpoint\n    loaded = _load_from_checkpoint(\n        cls,\n    ...<5 lines>...\n        **kwargs,\n    )\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\pytorch\\core\\saving.py", line 101, in _load_from_checkpoint\n    return model.to(device)\n           ~~~~~~~~^^^^^^^^\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\lightning\\fabric\\utilities\\device_dtype_mixin.py", line 59, in to\n    return super().to(*args, **kwargs)\n           ~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\ContainerAdministrator\\AppData\\Local\\Temp\\comfyui_pvenv_p1k71876\\persistent_worker.py", line 1341, in _hooked_to\n    result = _orig_module_to(self, *args, **kwargs)\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 1369, in to\n    return self._apply(convert)\n           ~~~~~~~~~~~^^^^^^^^^\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 928, in _apply\n    module._apply(fn)\n    ~~~~~~~~~~~~~^^^^\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 928, in _apply\n    module._apply(fn)\n    ~~~~~~~~~~~~~^^^^\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 928, in _apply\n    module._apply(fn)\n    ~~~~~~~~~~~~~^^^^\n  [Previous line repeated 2 more times]\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 955, in _apply\n    param_applied = fn(param)\n  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\.ce\\.pixi\\envs\\lito-nodes\\Lib\\site-packages\\torch\\nn\\modules\\module.py", line 1355, in convert\n    return t.to(\n           ~~~~^\n        device,\n        ^^^^^^^\n        dtype if t.is_floating_point() or t.is_complex() else None,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        non_blocking,\n        ^^^^^^^^^^^^^\n    )\n    ^\ntorch.OutOfMemoryError: Allocation on device \n\n', 'exception_type': 'comfy_env.isolation.workers.base.WorkerError', 'traceback': ['  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 535, in execute\n    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 335, in get_output_data\n    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n', '  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 309, in _async_map_node_over_list\n    await process_inputs(input_dict, i)\n', '  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\execution.py", line 297, in process_inputs\n    result = f(**inputs)\n', '  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\python_embeded\\Lib\\site-packages\\comfy_env\\isolation\\metadata.py", line 536, in proxy\n    result = worker.call_method(\n        module_name=mod,\n    ...<4 lines>...\n        timeout=600.0,\n    )\n', '  File "C:\\workspaces\\LiTo-1027\\portable-comfyui\\ComfyUI_windows_portable\\python_embeded\\Lib\\site-packages\\comfy_env\\isolation\\workers\\subprocess.py", line 674, in call_method\n    raise WorkerError(\n    ...<2 lines>...\n    )\n'], 'current_inputs': {'sampling_steps': [20], 'cfg_scale': [3], 'sampling_method': ['heun'], 'seed': [42], 'model': ["{'checkpoint_path': 'C:\\\\workspaces\\\\LiTo-1027\\\\portable-comfyui\\\\ComfyUI_windows_portable\\\\ComfyUI\\\\models\\\\lito\\\\lito_dit_rgba.ckpt', 'compile': False, 'precision': 'bf16'}"], 'image': ['tensor([[[[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         ...,\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]],\n\n         [[0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.],\n          ...,\n          [0., 0., 0.],\n          [0., 0., 0.],\n          [0., 0., 0.]]]])'], 'mask': ['tensor([[[0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         ...,\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.],\n         [0., 0., 0.,  ..., 0., 0., 0.]]])']}, 'current_outputs': ['9', '1', '8', '5', '6', '29', '17'], 'timestamp': 1778834331582}
-    Details: Workflow: C:\ComfyUI-LiTo\workflows\basic.json
-Node error: LiToImageTo3D
+  Frame 2 saved (frame_001.jpg, t=0.4s)
+  [capture-node] freeze=3ms shot=68ms unfreeze=3ms saved=True
+  Frame 3 saved (frame_002.jpg, t=4.7s)
+  [capture-periodic] freeze=2ms shot=66ms unfreeze=2ms saved=True
+  [capture-loop] iter=50 t=6.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.9/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=16% browser_rss=0.71GB
+  [capture-loop] iter=100 t=11.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=9.5/31.9GB (30%) swap=0.0/5.0GB (0%) cpu=20% browser_rss=0.71GB
+  Frame 4 saved (frame_003.jpg, t=13.2s)
+  [capture-periodic] freeze=2ms shot=63ms unfreeze=2ms saved=True
+  Frame 5 saved (frame_004.jpg, t=15.4s)
+  [capture-periodic] freeze=3ms shot=86ms unfreeze=3ms saved=True
+  [capture-loop] iter=150 t=17.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.0/31.9GB (31%) swap=0.0/5.0GB (0%) cpu=29% browser_rss=0.72GB
+  Frame 6 saved (frame_005.jpg, t=17.6s)
+  [capture-periodic] freeze=3ms shot=88ms unfreeze=4ms saved=True
+  Frame 7 saved (frame_006.jpg, t=19.8s)
+  [capture-periodic] freeze=3ms shot=92ms unfreeze=4ms saved=True
+  Frame 8 saved (frame_007.jpg, t=22.0s)
+  [capture-periodic] freeze=3ms shot=85ms unfreeze=3ms saved=True
+  [capture-loop] iter=200 t=23.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.6/31.9GB (33%) swap=0.0/5.0GB (0%) cpu=30% browser_rss=0.74GB
+  Frame 9 saved (frame_008.jpg, t=24.2s)
+  [capture-periodic] freeze=3ms shot=90ms unfreeze=3ms saved=True
+  Frame 10 saved (frame_009.jpg, t=26.4s)
+  [capture-periodic] freeze=3ms shot=71ms unfreeze=5ms saved=True
+  Frame 11 saved (frame_010.jpg, t=28.5s)
+  [capture-periodic] freeze=3ms shot=87ms unfreeze=3ms saved=True
+  [capture-loop] iter=250 t=29.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.8/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=30% browser_rss=0.67GB
+  Frame 12 saved (frame_011.jpg, t=30.8s)
+  [capture-periodic] freeze=2ms shot=68ms unfreeze=3ms saved=True
+  Frame 13 saved (frame_012.jpg, t=32.9s)
+  [capture-periodic] freeze=2ms shot=77ms unfreeze=2ms saved=True
+  [capture-loop] iter=300 t=34.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.8/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=27% browser_rss=0.67GB
+  Frame 14 saved (frame_013.jpg, t=35.1s)
+  [capture-periodic] freeze=2ms shot=76ms unfreeze=4ms saved=True
+  Frame 15 saved (frame_014.jpg, t=37.3s)
+  [capture-periodic] freeze=2ms shot=70ms unfreeze=6ms saved=True
+  Frame 16 saved (frame_015.jpg, t=39.5s)
+  [capture-periodic] freeze=3ms shot=83ms unfreeze=4ms saved=True
+  [capture-loop] iter=350 t=40.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=10.7/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=32% browser_rss=0.68GB
+  Frame 17 saved (frame_016.jpg, t=41.6s)
+  [capture-periodic] freeze=3ms shot=82ms unfreeze=4ms saved=True
+  Frame 18 saved (frame_017.jpg, t=43.8s)
+  [capture-periodic] freeze=3ms shot=83ms unfreeze=5ms saved=True
+  Frame 19 saved (frame_018.jpg, t=46.0s)
+  [capture-periodic] freeze=3ms shot=100ms unfreeze=3ms saved=True
+  [capture-loop] iter=400 t=46.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=10.9/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=29% browser_rss=0.68GB
+  Frame 20 saved (frame_019.jpg, t=48.2s)
+  [capture-periodic] freeze=3ms shot=89ms unfreeze=3ms saved=True
+  Frame 21 saved (frame_020.jpg, t=50.4s)
+  [capture-periodic] freeze=3ms shot=88ms unfreeze=3ms saved=True
+  [capture-loop] iter=450 t=52.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=10.7/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=31% browser_rss=0.68GB
+  Frame 22 saved (frame_021.jpg, t=52.6s)
+  [capture-periodic] freeze=3ms shot=84ms unfreeze=4ms saved=True
+  Frame 23 saved (frame_022.jpg, t=54.8s)
+  [capture-periodic] freeze=3ms shot=87ms unfreeze=3ms saved=True
+  Frame 24 saved (frame_023.jpg, t=57.0s)
+  [capture-periodic] freeze=2ms shot=73ms unfreeze=4ms saved=True
+  [capture-loop] iter=500 t=58.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.7/31.9GB (33%) swap=0.0/5.0GB (0%) cpu=29% browser_rss=0.66GB
+  Frame 25 saved (frame_024.jpg, t=59.1s)
+  [capture-periodic] freeze=3ms shot=84ms unfreeze=3ms saved=True
+  Frame 26 saved (frame_025.jpg, t=61.3s)
+  [capture-periodic] freeze=3ms shot=94ms unfreeze=4ms saved=True
+  Frame 27 saved (frame_026.jpg, t=63.5s)
+  [capture-periodic] freeze=2ms shot=90ms unfreeze=3ms saved=True
+  [capture-loop] iter=550 t=63.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=10.7/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=28% browser_rss=0.66GB
+  Frame 28 saved (frame_027.jpg, t=65.7s)
+  [capture-periodic] freeze=3ms shot=87ms unfreeze=3ms saved=True
+  Frame 29 saved (frame_028.jpg, t=67.9s)
+  [capture-periodic] freeze=3ms shot=93ms unfreeze=3ms saved=True
+  [capture-loop] iter=600 t=69.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=10.7/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=32% browser_rss=0.66GB
+  Frame 30 saved (frame_029.jpg, t=70.2s)
+  [capture-periodic] freeze=2ms shot=79ms unfreeze=3ms saved=True
+  Frame 31 saved (frame_030.jpg, t=72.3s)
+  [capture-periodic] freeze=3ms shot=86ms unfreeze=4ms saved=True
+  Frame 32 saved (frame_031.jpg, t=74.5s)
+  [capture-periodic] freeze=3ms shot=88ms unfreeze=3ms saved=True
+  [capture-loop] iter=650 t=75.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=10.7/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=29% browser_rss=0.66GB
+  Frame 33 saved (frame_032.jpg, t=76.7s)
+  [capture-periodic] freeze=2ms shot=78ms unfreeze=3ms saved=True
+  Frame 34 saved (frame_033.jpg, t=78.9s)
+  [capture-periodic] freeze=4ms shot=85ms unfreeze=5ms saved=True
+  [capture-loop] iter=700 t=81.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.5/31.9GB (33%) swap=0.0/5.0GB (0%) cpu=30% browser_rss=0.66GB
+  Frame 35 saved (frame_034.jpg, t=81.1s)
+  [capture-periodic] freeze=2ms shot=64ms unfreeze=2ms saved=True
+  [capture-loop] iter=750 t=86.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.4/31.9GB (32%) swap=0.0/5.0GB (0%) cpu=22% browser_rss=0.65GB
+  [capture-loop] iter=800 t=92.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=16.8/31.9GB (52%) swap=0.0/5.0GB (0%) cpu=26% browser_rss=0.65GB
+  [capture-loop] iter=850 t=98.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=17.2/31.9GB (54%) swap=0.0/5.0GB (0%) cpu=19% browser_rss=0.65GB
+  [capture-loop] iter=900 t=103.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=18.0/31.9GB (56%) swap=0.0/5.0GB (0%) cpu=34% browser_rss=0.65GB
+  [capture-loop] iter=950 t=109.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=18.0/31.9GB (56%) swap=0.0/5.0GB (0%) cpu=18% browser_rss=0.65GB
+  [capture-loop] iter=1000 t=114.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=18.0/31.9GB (56%) swap=0.0/5.0GB (0%) cpu=21% browser_rss=0.65GB
+  [capture-loop] iter=1050 t=120.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=22.2/31.9GB (70%) swap=0.0/5.0GB (0%) cpu=34% browser_rss=0.61GB
+  [capture-loop] iter=1100 t=126.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=22.4/31.9GB (70%) swap=0.0/5.0GB (0%) cpu=24% browser_rss=0.61GB
+  [capture-loop] iter=1150 t=132.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=23.3/31.9GB (73%) swap=0.0/5.0GB (0%) cpu=19% browser_rss=0.61GB
+  [capture-loop] iter=1200 t=137.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=17.1/31.9GB (54%) swap=0.0/5.0GB (0%) cpu=54% browser_rss=0.59GB
+  Frame 36 saved (frame_035.jpg, t=143.3s)
+  [capture-periodic] freeze=2ms shot=63ms unfreeze=2ms saved=True
+  [capture-loop] iter=1250 t=143.5s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=14.0/31.9GB (44%) swap=0.0/5.0GB (0%) cpu=10% browser_rss=0.60GB
+  Frame 37 saved (frame_036.jpg, t=147.6s)
+  [capture-periodic] freeze=2ms shot=71ms unfreeze=2ms saved=True
+  [capture-loop] iter=1300 t=149.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.9/31.9GB (44%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
+  Frame 38 saved (frame_037.jpg, t=151.9s)
+  [capture-periodic] freeze=2ms shot=69ms unfreeze=2ms saved=True
+  Frame 39 saved (frame_038.jpg, t=154.1s)
+  [capture-periodic] freeze=2ms shot=60ms unfreeze=3ms saved=True
+  [capture-loop] iter=1350 t=154.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=13.8/31.9GB (43%) swap=0.0/5.0GB (0%) cpu=5% browser_rss=0.60GB
+  Frame 40 saved (frame_039.jpg, t=158.3s)
+  [capture-periodic] freeze=2ms shot=69ms unfreeze=2ms saved=True
+  [capture-loop] iter=1400 t=160.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.7/31.9GB (43%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
+  Frame 41 saved (frame_040.jpg, t=162.6s)
+  [capture-periodic] freeze=2ms shot=59ms unfreeze=2ms saved=True
+  [capture-loop] iter=1450 t=166.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.7/31.9GB (43%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.59GB
+  Frame 42 saved (frame_041.jpg, t=166.9s)
+  [capture-periodic] freeze=2ms shot=73ms unfreeze=2ms saved=True
+  Frame 43 saved (frame_042.jpg, t=171.2s)
+  [capture-periodic] freeze=2ms shot=64ms unfreeze=2ms saved=True
+  [capture-loop] iter=1500 t=171.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.7/31.9GB (43%) swap=0.0/5.0GB (0%) cpu=3% browser_rss=0.60GB
+  Frame 44 saved (frame_043.jpg, t=173.4s)
+  [capture-periodic] freeze=2ms shot=57ms unfreeze=2ms saved=True
+  [capture-loop] iter=1550 t=177.3s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=13.6/31.9GB (43%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
+  Frame 45 saved (frame_044.jpg, t=177.7s)
+  [capture-periodic] freeze=2ms shot=63ms unfreeze=2ms saved=True
+  Frame 46 saved (frame_045.jpg, t=182.0s)
+  [capture-periodic] freeze=2ms shot=61ms unfreeze=2ms saved=True
+  [capture-loop] iter=1600 t=183.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=13.6/31.9GB (43%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
+  Frame 47 saved (frame_046.jpg, t=186.2s)
+  [capture-periodic] freeze=2ms shot=64ms unfreeze=2ms saved=True
+  [capture-loop] iter=1650 t=188.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.6/31.9GB (43%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
+  Frame 48 saved (frame_047.jpg, t=190.5s)
+  [capture-periodic] freeze=2ms shot=59ms unfreeze=2ms saved=True
+  [capture-loop] iter=1700 t=194.3s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.6/31.9GB (42%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
+  Frame 49 saved (frame_048.jpg, t=194.8s)
+  [capture-periodic] freeze=2ms shot=73ms unfreeze=2ms saved=True
+  Frame 50 saved (frame_049.jpg, t=197.0s)
+  [capture-periodic] freeze=2ms shot=72ms unfreeze=2ms saved=True
+  [capture-loop] iter=1750 t=199.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.6/31.9GB (42%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
+  Frame 51 saved (frame_050.jpg, t=201.2s)
+  [capture-periodic] freeze=2ms shot=67ms unfreeze=2ms saved=True
+  [capture-loop] iter=1800 t=205.5s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.5/31.9GB (42%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
+  Frame 52 saved (frame_051.jpg, t=205.5s)
+  [capture-periodic] freeze=2ms shot=68ms unfreeze=2ms saved=True
+  Frame 53 saved (frame_052.jpg, t=210.0s)
+  [capture-periodic] freeze=2ms shot=62ms unfreeze=2ms saved=True
+  [capture-loop] iter=1850 t=211.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.5/31.9GB (42%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
+  Frame 54 saved (frame_053.jpg, t=214.3s)
+  [capture-periodic] freeze=3ms shot=83ms unfreeze=4ms saved=True
+  [capture-loop] iter=1900 t=217.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=16.4/31.9GB (51%) swap=0.0/5.0GB (0%) cpu=14% browser_rss=0.60GB
+  Node executed (2 total), capturing...
+  Frame 55 saved (frame_054.jpg, t=219.2s)
+  [capture-node] freeze=9ms shot=69ms unfreeze=0ms saved=True
+  Execution complete (t=219.2s)
+  [3d-wait] Phase 1: Waiting for 'Loading 3D Model' text to disappear...
+  [3d-wait] Phase 1 done in 0.0s
+  [3d-wait] Phase 2: iframes=1
+  [3d-wait] iframe viewer_ready=False (matched 0 console logs)
+  [3d-wait] Waiting for 'Loaded successfully' console message (timeout=60s)...
+  [3d-wait] Got 'Loaded successfully' after 1.2s
+  [3d-wait] Unfrozen in 0.012s, rendering for 5s...
+  [3d-wait] JS halted via CDP after 5.3s
+  [3d-wait] Re-frozen in 20.6s
+  [3d-wait] Total 3D wait: 21.9s
+  Captured 55 unique frames over 241.19s
+  [debug] iframes: 1
+  [debug]   iframe[0]: src=http://127.0.0.1:41886/extensions/ComfyUI-GaussianPack/viewer_gaussian.html?v=17, canvas=486x223, rafFrozen=True
+  [timing] trigger_3d_previews: 0.0s
+  Saved high-quality screenshot: basic_executed.png
+  [timing] final_screenshot: 0.2s
+    Captured 56 video frames
