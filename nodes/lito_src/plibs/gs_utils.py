@@ -27,6 +27,7 @@ except ImportError:
     pytorch3d = None
 
 from plibs import linalg_utils, rigid_motion, sh_utils
+from contextlib import nullcontext as _nullcontext
 
 try:
     from diff_gaussian_rasterization import GaussianRasterizationSettings, GaussianRasterizer
@@ -762,7 +763,7 @@ def render_3dgs(
     tanfovx = math.tan(gs_camera.FoVx * 0.5)
     tanfovy = math.tan(gs_camera.FoVy * 0.5)
     assert bg_color.is_cuda
-    with torch.autocast(device_type=pc.xyz_w.device.type, enabled=False):
+    with _nullcontext():
         if mip_kernel_size > 0:
             if mip_subpixel_offset is None:
                 mip_subpixel_offset = torch.zeros(
@@ -850,7 +851,7 @@ def render_3dgs(
         colors_precomp = override_color
 
     # Rasterize visible Gaussians to image, obtain their radii (on screen).
-    with torch.autocast(device_type=means3D.device.type, enabled=False):
+    with _nullcontext():
         rendered_image, radii = rasterizer(
             means3D=means3D.float(),  # (n, 3)  float32
             means2D=means2D.float(),  # (n, 3)  float32
@@ -971,7 +972,7 @@ def render_3dgs_gsplat(
     rendered_feature = None
     rendered_depth = None
     rendered_alpha = None
-    with torch.autocast(device_type=xyz_w.device.type, enabled=False):
+    with _nullcontext():
         H_w2c = rigid_motion.inv_homogeneous_tensors(H_c2w.float())  # (4, 4)
         if rgb_sh is not None:
             if sh_degree == 0:

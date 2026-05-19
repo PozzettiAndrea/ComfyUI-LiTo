@@ -5,7 +5,7 @@
 import math
 import typing as T
 
-from timm.models.vision_transformer import Mlp
+from lito.models._comfy_mlp import Mlp
 
 from lito.models.layers import SwiGLU as _SwiGLU
 
@@ -14,6 +14,14 @@ from torch import nn
 
 from lito.models.layers import CrossAttentionLayer, SelfAttentionLayer, WriteBackLayer
 from plibs import ppoint
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.manual_cast
+    return _OPS
+
 
 
 class PerceiverEncoderBlock(torch.nn.Module):
@@ -52,7 +60,7 @@ class PerceiverEncoderBlock(torch.nn.Module):
             assert self.layer_idx is not None
 
         if self.add_kv_linear:
-            self.kv_linear = torch.nn.Linear(
+            self.kv_linear = _ops().Linear(
                 in_features=dim_token,
                 out_features=dim_token,
                 bias=False,  # followed by layernorm
@@ -60,7 +68,7 @@ class PerceiverEncoderBlock(torch.nn.Module):
         else:
             self.kv_linear = None
 
-        self.ca_ln = nn.LayerNorm(dim_latent, eps=1e-6)
+        self.ca_ln = _ops().LayerNorm(dim_latent, eps=1e-6)
 
         self.ca_layer = CrossAttentionLayer(
             dim_q=dim_latent,
@@ -99,8 +107,8 @@ class PerceiverEncoderBlock(torch.nn.Module):
         _ln1_layers = []
         _ln2_layers = []
         for _ in range(num_self_attn):
-            ln1 = nn.LayerNorm(dim_latent, eps=1e-6)
-            ln2 = nn.LayerNorm(dim_latent, eps=1e-6)
+            ln1 = _ops().LayerNorm(dim_latent, eps=1e-6)
+            ln2 = _ops().LayerNorm(dim_latent, eps=1e-6)
             _ln1_layers.append(ln1)
             _ln2_layers.append(ln2)
 

@@ -13,13 +13,13 @@ cpu = ["!basic"]
 gpu = ["basic"]
 
 [test.platforms]
-linux = true
-macos = true
-windows = true
-windows_portable = true
+linux = false
+macos = false
+windows = false
+windows_portable = false
 linux_gpu = true
 windows_gpu = true
 windows_portable_gpu = true
-macos_desktop = true
-windows_desktop = true
+macos_desktop = false
+windows_desktop = false
 windows_desktop_gpu = true

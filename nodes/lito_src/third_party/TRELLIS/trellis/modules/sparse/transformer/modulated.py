@@ -5,6 +5,14 @@ from ..basic import SparseTensor
 from ..attention import SparseMultiHeadAttention, SerializeMode
 from ...norm import LayerNorm32
 from .blocks import SparseFeedForwardNet
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.manual_cast
+    return _OPS
+
 
 
 class ModulatedSparseTransformerBlock(nn.Module):
@@ -51,7 +59,7 @@ class ModulatedSparseTransformerBlock(nn.Module):
         if not share_mod:
             self.adaLN_modulation = nn.Sequential(
                 nn.SiLU(),
-                nn.Linear(channels, 6 * channels, bias=True)
+                _ops().Linear(channels, 6 * channels, bias=True)
             )
 
     def _forward(self, x: SparseTensor, mod: torch.Tensor) -> SparseTensor:
@@ -136,7 +144,7 @@ class ModulatedSparseTransformerCrossBlock(nn.Module):
         if not share_mod:
             self.adaLN_modulation = nn.Sequential(
                 nn.SiLU(),
-                nn.Linear(channels, 6 * channels, bias=True)
+                _ops().Linear(channels, 6 * channels, bias=True)
             )
 
     def _forward(self, x: SparseTensor, mod: torch.Tensor, context: torch.Tensor) -> SparseTensor:

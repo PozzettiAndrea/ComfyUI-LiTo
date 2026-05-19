@@ -22,12 +22,15 @@ import torch
 
 from plibs.linalg_utils import repeat_interleave
 from plibs.flash_utils import create_block_diagonal_attn_bias_from_seq_lens
+from contextlib import nullcontext as _nullcontext
 
 if torch.cuda.is_available():
-    device = torch.device("cuda")
-    prop = torch.cuda.get_device_properties(device)
-    print(f"GPU Name: {prop.name}")
-    print(f"Compute Capability: {prop.major}.{prop.minor}")
+    import comfy.model_management as _comfy_mm
+    device = _comfy_mm.get_torch_device()
+    if device.type == "cuda":
+        prop = torch.cuda.get_device_properties(device)
+        print(f"GPU Name: {prop.name}")
+        print(f"Compute Capability: {prop.major}.{prop.minor}")
 
 # flash_attn supports Ampere+ (sm_80) which covers our entire target hardware
 # matrix. The legacy "xformers" backend in this file is no longer reachable.
@@ -879,7 +882,7 @@ class PackedPoint:
         kidxs = []  # index in packed
         key_current_idx = 0
         query_current_idx = 0
-        with torch.autocast(device_type=coord_query.device.type, enabled=False):
+        with _nullcontext():
             for ib in range(b):
                 knn_out = pytorch3d.ops.knn_points(
                     p1=coord_key.coord[key_current_idx : key_current_idx + coord_key.seq_lens[ib]]
@@ -1456,7 +1459,7 @@ class PackedPoint:
         kidxs = []  # index in packed
         current_idx = 0
         current_total_k = 0
-        with torch.autocast(device_type=self.coord.device.type, enabled=False):
+        with _nullcontext():
             for ib in range(b):
                 _coord = self.coord[current_idx : current_idx + self.seq_lens[ib]]  # (ni, dn)
 
@@ -1917,7 +1920,7 @@ def voxel_windowed_self_softmax_attention(
     packed_key = packed_key[forward_idxs]  # (n1 + n2 + ... + nb, h, d)
     packed_value = packed_value[forward_idxs]  # (n1 + n2 + ... + nb, h, d)
 
-    with torch.autocast(device_type=packed_value.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(attn_biases)):
             attn_bias = attn_biases[chunk_idx]
@@ -2012,7 +2015,7 @@ def voxel_windowed_self_softmax_attention_flash_stacked(
     # run attention
     # sort feature
     packed_qkv = packed_qkv[forward_idxs]  # (n1 + n2 + ... + nb, 3qkv, h, d)
-    with torch.autocast(device_type=packed_qkv.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(cu_seq_lens)):
             out = flash_attn.flash_attn_varlen_qkvpacked_func(
@@ -2109,7 +2112,7 @@ def voxel_windowed_self_softmax_attention_flash(
     packed_query = packed_query[forward_idxs]  # (n1 + n2 + ... + nb, h, d)
     packed_key = packed_key[forward_idxs]  # (n1 + n2 + ... + nb, h, d)
     packed_value = packed_value[forward_idxs]  # (n1 + n2 + ... + nb, h, d)
-    with torch.autocast(device_type=packed_value.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(cu_seq_lens)):
             out = flash_attn.flash_attn_varlen_func(
@@ -2198,7 +2201,7 @@ def cross_softmax_attention_with_packed_kv(
 
     # run xformer attention
     # we do not need to sort, since packed point are sorted by bidx already
-    with torch.autocast(device_type=packed_value.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(attn_biases)):
             _query = query[chunk_idx * chunk_size : (chunk_idx + 1) * chunk_size].reshape(
@@ -2291,7 +2294,7 @@ def cross_softmax_attention_with_packed_qkv(
 
     # run xformer attention
     # we do not need to sort, since packed point are sorted by bidx already
-    with torch.autocast(device_type=packed_value.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(attn_biases)):
             _query = packed_query[q_chunk_start_idxs[chunk_idx] : q_chunk_start_idxs[chunk_idx + 1]].unsqueeze(
@@ -2378,7 +2381,7 @@ def cross_softmax_attention_with_packed_qkv_flash_stacked(
 
     # run attention
     # we do not need to sort, since packed point are sorted by bidx already
-    with torch.autocast(device_type=packed_kv.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(q_cu_seq_lens)):
             _query = packed_query[q_chunk_start_idxs[chunk_idx] : q_chunk_start_idxs[chunk_idx + 1]]  # (cm, h, d)
@@ -2465,7 +2468,7 @@ def cross_softmax_attention_with_packed_qkv_flash(
 
     # run attention
     # we do not need to sort, since packed point are sorted by bidx already
-    with torch.autocast(device_type=packed_value.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(q_cu_seq_lens)):
             _query = packed_query[q_chunk_start_idxs[chunk_idx] : q_chunk_start_idxs[chunk_idx + 1]]  # (cm, h, d)
@@ -2537,7 +2540,7 @@ def self_softmax_attention_with_packed_qkv_flash_stacked(
     ).int()  # (b+1,) int32
 
     # run
-    with torch.autocast(device_type=packed_qkv.device.type, enabled=False):
+    with _nullcontext():
         out = flash_attn.flash_attn_varlen_qkvpacked_func(
             packed_qkv,  # (bm, 3qkv, h, d)
             cu_seqlens,  # (b + 1,)
@@ -2604,7 +2607,7 @@ def self_softmax_attention_with_packed_qkv_flash(
     max_seq_len = seq_lens.max().item()
 
     # run
-    with torch.autocast(device_type=packed_query.device.type, enabled=False):
+    with _nullcontext():
         out = flash_attn.flash_attn_varlen_func(
             q=packed_query,  # (bm, h, d)
             k=packed_key,  # (bm, h, d)
@@ -2692,7 +2695,7 @@ def localized_knn_cross_softmax_attention_with_packed_qkv(
 
     # run xformer attention
     # we do not need to sort, since packed point are sorted by bidx already
-    with torch.autocast(device_type=packed_value.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(attn_biases)):
             _query = packed_query[q_chunk_start_idxs[chunk_idx] : q_chunk_start_idxs[chunk_idx + 1]].unsqueeze(
@@ -2804,7 +2807,7 @@ def localized_knn_cross_softmax_attention_with_packed_qkv_flash_stacked(
     packed_kv = packed_kv[forward_idxs]  # (bn, 2kv, h, d)
 
     # run attention
-    with torch.autocast(device_type=packed_kv.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(q_cu_seq_lens)):
             _query = packed_query[q_chunk_start_idxs[chunk_idx] : q_chunk_start_idxs[chunk_idx + 1]]  # (cm, h, d)
@@ -2904,7 +2907,7 @@ def localized_knn_cross_softmax_attention_with_packed_qkv_flash(
     packed_value = packed_value[forward_idxs]  # (bn, 2kv, h, d)
 
     # run attention
-    with torch.autocast(device_type=packed_value.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(q_cu_seq_lens)):
             _query = packed_query[q_chunk_start_idxs[chunk_idx] : q_chunk_start_idxs[chunk_idx + 1]]  # (cm, h, d)
@@ -3022,7 +3025,7 @@ def voxel_windowed_cross_softmax_attention_with_packed_qkv(
 
     # run xformer attention
     # we do not need to sort, since packed point are sorted by bidx already
-    with torch.autocast(device_type=packed_value.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(attn_biases)):
             _query = packed_query[q_chunk_start_idxs[chunk_idx] : q_chunk_start_idxs[chunk_idx + 1]].unsqueeze(
@@ -3137,7 +3140,7 @@ def voxel_windowed_cross_softmax_attention_with_packed_qkv_flash_stacked(
     packed_kv = packed_kv[forward_idxs_key]  # (bn, h, d)
 
     # run attention
-    with torch.autocast(device_type=packed_kv.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(q_cu_seq_lens)):
             _query = packed_query[q_chunk_start_idxs[chunk_idx] : q_chunk_start_idxs[chunk_idx + 1]]  # (cm, h, d)
@@ -3254,7 +3257,7 @@ def voxel_windowed_cross_softmax_attention_with_packed_qkv_flash(
     packed_value = packed_value[forward_idxs_key]  # (bn, h, d)
 
     # run attention
-    with torch.autocast(device_type=packed_value.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(q_cu_seq_lens)):
             _query = packed_query[q_chunk_start_idxs[chunk_idx] : q_chunk_start_idxs[chunk_idx + 1]]  # (cm, h, d)
@@ -3356,7 +3359,7 @@ def localized_knn_self_softmax_attention_packed(
 
     # run xformer attention
     # we do not need to sort, since packed point are sorted by bidx already
-    with torch.autocast(device_type=packed_value.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(attn_biases)):
             _query = packed_query[chunk_start_idxs[chunk_idx] : chunk_start_idxs[chunk_idx + 1]].unsqueeze(
@@ -3443,7 +3446,7 @@ def localized_knn_self_softmax_attention_packed_flash_stacked(
     packed_qkv = packed_qkv[forward_idxs]  # (bn, 3qkv, h, d)
 
     # run flash attention
-    with torch.autocast(device_type=packed_qkv.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(cu_seq_lens)):
             out = flash_attn.flash_attn_varlen_qkvpacked_func(
@@ -3527,7 +3530,7 @@ def localized_knn_self_softmax_attention_packed_flash(
     packed_value = packed_value[forward_idxs]  # (bn, h, d)
 
     # run flash attention
-    with torch.autocast(device_type=packed_value.device.type, enabled=False):
+    with _nullcontext():
         outs = []
         for chunk_idx in range(len(cu_seq_lens)):
             out = flash_attn.flash_attn_varlen_func(
@@ -3603,7 +3606,7 @@ def knn_avg_downsampling(
     assert valid_mask.all(), "currently only implement the simplest case"
     ridxs = torch.randperm(feature.shape[1])[:k]  # (k,)
     ref_coord = coord[:, ridxs]  # (b, k, dn)
-    with torch.autocast(device_type=coord.device.type, enabled=False):
+    with _nullcontext():
         knn_out = pytorch3d.ops.knn_points(
             p1=coord.float(),  # (b, n, dn)
             p2=ref_coord.float(),  # (b, k, dn)
@@ -3666,7 +3669,7 @@ def index_ranges(tensor, ranges, dim=0):
 
 
 def pixart_modulate(x, shift, scale, coord, debug_name=None):
-    with torch.autocast(device_type=x.device.type, enabled=False):
+    with _nullcontext():
         x = x.float()
         shift = shift.float()
         scale = scale.float()
@@ -3715,7 +3718,7 @@ def pixart_modulate(x, shift, scale, coord, debug_name=None):
 
 
 def packed_multiply(x, scale, coord, debug_name=None):
-    with torch.autocast(device_type=x.device.type, enabled=False):
+    with _nullcontext():
         x = x.float()
         scale = scale.float()
 

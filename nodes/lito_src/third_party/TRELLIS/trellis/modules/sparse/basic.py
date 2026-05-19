@@ -1,6 +1,9 @@
 from typing import *
 import torch
 import torch.nn as nn
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 from . import BACKEND, DEBUG
 SparseTensorData = None # Lazy import
 
@@ -210,8 +213,8 @@ class SparseTensor:
         return self.replace(new_feats, new_coords)
     
     def cuda(self) -> 'SparseTensor':
-        new_feats = self.feats.cuda()
-        new_coords = self.coords.cuda()
+        new_feats = self.feats.to(_comfy_device())
+        new_coords = self.coords.to(_comfy_device())
         return self.replace(new_feats, new_coords)
 
     def half(self) -> 'SparseTensor':

@@ -49,9 +49,14 @@ except:
 from lito.models.dino import SpatialDinov2
 from lito.models.ema import ModelEmaV2
 from lito.odelibs import ode_solvers
-from lito.script_utils import config_utils, pl_utils
+from lito.script_utils import config_utils
+# pl_utils import removed — Lightning training-side utilities. The one
+# reference (pl_utils.plot_lr_schedule, in configure_optimizers) is in a
+# training-only method we never call from inference.
+pl_utils = None  # type: ignore
 from lito.trainers import base as base_trainer, lito_trainer
 from plibs import ppoint, rigid_motion, utils
+from contextlib import nullcontext as _nullcontext
 
 
 class LiToDiTTrainer(base_trainer.BaseTrainer):
@@ -300,68 +305,6 @@ class LiToDiTTrainer(base_trainer.BaseTrainer):
 
     def unnormalize_latents(self, normalized_latentss: torch.Tensor):
         return normalized_latentss * self.latent_std + self.latent_mean
-
-    def compute_velocity_loss(
-        self,
-        x: torch.Tensor,
-        cond_tokens: torch.Tensor = None,
-    ) -> T.Dict[str, T.Any]:
-        """
-        Randomly sample t, compute xt and ut_gt, estimate ut, then compute loss
-
-        Args:
-            x:
-                (b, m, d)
-            cond_tokens:
-                (b, num_cond_tokens, dim_cond_token) or None
-
-        Returns:
-            loss:
-                (,) mse loss on the velocity
-            est_ut:
-                (b, m, d) estimated velocity
-            t:
-                (b,) sampled t [0, 1]
-        """
-
-        b, m, d = x.shape
-        device = x.device
-
-        # construct decoder input and gt decoder output
-        # sample t
-        t_flow = torch.rand(b, device=device) * (1 - 2 * self.t_eps) + self.t_eps  # (b,)
-
-        # sample noise (we choose to use standard gaussian)
-        x0 = torch.randn_like(x)  # (b, num_flow_points, d)
-        xt, ut_gt = self.path.compute_xt_ut(t=t_flow, x0=x0, x1=x)  # (b, num_flow_points, d)
-
-        if self.debug:
-            assert t_flow.isfinite().all(), f"nan: {t_flow.isnan().any()}, inf: {t_flow.isinf().any()}"
-            assert xt.isfinite().all(), f"nan: {xt.isnan().any()}, inf: {xt.isinf().any()}"
-            assert ut_gt.isfinite().all(), f"nan: {ut_gt.isnan().any()}, inf: {ut_gt.isinf().any()}"
-
-        # estimate velocity
-        est_ut = self.estimate_velocity(
-            t=t_flow,  # (b,)
-            x=xt,  # (b, num_flow_points, d)
-            cond_tokens=cond_tokens,  # (b, num_cond_tokens, dim_cond_token)
-            cond_use_grad_checkpointing=self.optim_config["dit_cond_use_grad_checkpointing"],
-        )  # (b, m, d)
-
-        if self.debug:
-            assert est_ut.isfinite().all(), f"nan: {est_ut.isnan().any()}, inf: {est_ut.isinf().any()}"
-
-        # compute velocity loss for xyz_w
-        loss = F.mse_loss(input=est_ut, target=ut_gt, reduction="mean")  # (,)
-
-        if self.debug:
-            assert loss.isfinite().all(), f"nan: {loss.isnan().any()}, inf: {loss.isinf().any()}"
-
-        return dict(
-            loss=loss,  # (,)
-            est_ut=est_ut,  # (b, m, d)
-            t=t_flow,  # (b,)
-        )
 
     def estimate_velocity(
         self,
@@ -636,7 +579,6 @@ class LiToDiTTrainer(base_trainer.BaseTrainer):
             raise NotImplementedError(self.patch_encoder_name)
 
     @torch.no_grad()
-    @torch.compile
     def inference_sample_latent(
         self,
         cond_rgba: torch.Tensor,  # (b, q, h, w, 4rgba) [0, 1] rgb is straight
@@ -720,7 +662,7 @@ class LiToDiTTrainer(base_trainer.BaseTrainer):
             mlx_compute_dtype: Compute dtype string (``"bfloat16"``, ``"float16"``,
                 ``"float32"``, or ``None`` for f32).  When set to a reduced-precision
                 dtype, model weights are cast accordingly so that MLX linear ops
-                run in that precision — analogous to ``torch.autocast``.
+                run in that precision — analogous to ``torch_autocast``.
 
         Returns:
             MLX DiffusionTransformer with the requested weights and dtype.
@@ -783,7 +725,7 @@ class LiToDiTTrainer(base_trainer.BaseTrainer):
             cfg_scale: Classifier-free guidance scale.
             use_ema: Whether to use EMA model weights.
             mlx_compute_dtype: Compute dtype for the MLX forward pass.
-                Use ``"bfloat16"`` (default) to match CUDA ``torch.autocast(bf16)``
+                Use ``"bfloat16"`` (default) to match CUDA ``nullcontext``
                 behaviour, ``"float16"`` for half-precision, or ``None`` / ``"float32"``
                 for full precision.
 
@@ -805,7 +747,7 @@ class LiToDiTTrainer(base_trainer.BaseTrainer):
             flush=True,
         )
         stime = timer()
-        with torch.autocast(device_type=self.device.type, dtype=torch.float16, enabled=True):
+        with _nullcontext():
             cond_tokens = self.get_image_conditioning(
                 straight_rgb=cond_rgba[..., :3],  # (b, q, h, w, 3rgb) [0, 1]
                 alpha=cond_rgba[..., 3:4],  # (b, q, h, w, 1) [0, 1]
@@ -932,19 +874,6 @@ class LiToDiTTrainer(base_trainer.BaseTrainer):
             unnormalized_latent=sampled_x_torch,  # (b, nl, dl)
         )
 
-    def on_train_epoch_start(self) -> None:
-        gc.collect()
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
-
-        # reset dataset
-        # print(f'(rank {self.global_rank}) reset dataset', flush=True)
-        try:
-            dset = self.trainer.train_dataloader.dataset
-            dset.reset()
-        except Exception:
-            pass
-
     # def on_after_backward(self):
     #     print(f'finding unused parameters..', flush=True)
     #     unused_params = []
@@ -953,33 +882,6 @@ class LiToDiTTrainer(base_trainer.BaseTrainer):
     #             unused_params.append(name)
     #     if unused_params:
     #         print(f"Unused parameters after backward pass: {unused_params}")
-
-    def on_train_batch_end(
-        self,
-        outputs: T.Union[torch.Tensor, T.Mapping[str, T.Any], None],
-        batch: T.Any,
-        batch_idx: int,
-    ):
-        # get batch size
-        if isinstance(batch, dict):
-            batch_size = batch["point_xyz_w"].shape[0]
-        elif isinstance(batch, (list, tuple)):
-            batch_size = len(batch)
-        else:
-            raise NotImplementedError
-
-        # log learning rate
-        optimizer = self.optimizers()
-        self.log(
-            "hparams/lr",
-            optimizer.param_groups[0]["lr"],
-            on_epoch=False,
-            on_step=True,
-            logger=True,
-            prog_bar=True,
-            rank_zero_only=True,
-            batch_size=batch_size,
-        )
 
     def compute_img_conditioning(
         self,
@@ -1108,7 +1010,7 @@ class LiToDiTTrainer(base_trainer.BaseTrainer):
         b, q, h, w, _3rgb = straight_rgb.shape
 
         # no need to wrap with torch.no_grad(). we handle it inside
-        # with torch.autocast(device_type=straight_rgb.device.type, dtype=torch.bfloat16, enabled=True):
+        # with _nullcontext():
         # assert not self.patch_encoder.dinov2_model.training
         # for name, param in self.patch_encoder.dinov2_model.named_parameters():
         #     assert not param.requires_grad, f"{name} requires grad"
@@ -1126,446 +1028,3 @@ class LiToDiTTrainer(base_trainer.BaseTrainer):
 
         return cond_feature  # (b, num_tokens, d)
 
-    def _collate_batch(self, batch: T.Dict[str, T.Any]):
-        # on the fly rendering the raw mesh to get rgbd images
-        if isinstance(batch, dict):
-            pass
-        elif isinstance(batch, list):
-            if batch[0].get("dset_type", None) in [
-                "img_cond_ldm",
-                "lito_img_cond_ldm",
-                "lito_img_cond_ldm_with_rgbd_cond_or_sphere",
-            ]:
-                batch = default_collate(batch)
-            else:
-                raise NotImplementedError
-        else:
-            raise NotImplementedError(batch["dset_type"])
-        return batch
-
-    def _step(
-        self,
-        batch: T.Dict[str, T.Any],
-        batch_idx: int,
-    ):
-        """
-        Args:
-            batch:
-                a dict, containing:
-
-                point_xyz_w:
-                    (b, n, 3) the point xyz in the n-coordinate
-                point_rgb:
-                    (b, n, 3) or -1, the point rgb [0, 1]
-                point_normal_w:
-                    (b, n, 3) or -1, the point normal in the n-coordinate
-                point_alpha:
-                    (b, n, 1) or -1, [0, 1]
-
-                rgbd_dict_cond:
-                    H_c2w:
-                        (b, q, 4, 4)
-                    intrinsic:
-                        (b, q, 3, 3)
-                    rgb:
-                        (b, q, h, w, 3rgb) [0, 1], straight
-                    alpha:
-                        (b, q, h, w, 1) [0, 1]
-
-            batch_idx:
-
-        Returns:
-
-        """
-        # get tokenizer latent
-        unnormalized_latent = self.get_tokenizer_unnormalized_latent(
-            xyz_w=batch["point_xyz_w"],  # (b, n, 3xyz_w)
-            rgb=batch["point_rgb"],  # (b, n, 3rgb) [0, 1]
-            normal_w=batch.get("point_normal_w", None),
-            ray_origin_direction_w=batch.get("point_ray_origin_direction_w", None),  # (b, n, 6_origin_w_dir_w)
-            alpha=batch.get("point_alpha", None),  # (b, n, 1)  [0, 1]
-            num_points=self.optim_config["num_tokenizer_points"],
-        )  # (b, nl, dl)  unnormalized
-        assert self.num_latent == unnormalized_latent.size(1)
-
-        # get image conditioning
-        cond_tokens = self.get_image_conditioning(
-            straight_rgb=batch["rgbd_dict_cond"]["rgb"][:, : self.num_cond_views],  # (b, q, h, w, 3rgb) [0, 1]
-            alpha=batch["rgbd_dict_cond"]["alpha"][:, : self.num_cond_views],  # (b, q, h, w, 1) [0, 1]
-        )  # (b, num_cond_tokens, d)
-
-        # compute velocity loss
-        out_dict = self.compute_velocity_loss(
-            x=self.normalize_latent(latents=unnormalized_latent),  # (b, nl, dl) normalized
-            cond_tokens=cond_tokens,  # (b, num_cond_tokens, d)
-        )
-        loss = out_dict["loss"]  # (,)
-
-        if self.debug:
-            assert loss.isfinite().all(), f"nan: {loss.isnan().any()}, inf: {loss.isinf().any()}"
-
-        return dict(
-            loss=loss,  # (,)
-            # unnormalized_latent=unnormalized_latent,  # (b, nl, dl)  unnormalized
-            cond_tokens=cond_tokens,  # (b, num_cond_tokens, d)
-        )
-
-    def training_step(
-        self,
-        batch: T.Dict[str, T.Any],
-        batch_idx: int,
-    ):
-        # run collate function
-        batch = self._collate_batch(batch)
-
-        out_dict = self._step(
-            batch=batch,
-            batch_idx=batch_idx,
-        )
-        loss = out_dict["loss"]  # (,)
-
-        self.log(
-            name=self.optim_config["monitor_loss_name"],
-            value=loss,
-            on_step=True,
-            on_epoch=True,
-            prog_bar=True,
-            logger=True,
-            batch_size=out_dict["cond_tokens"].shape[0],
-            sync_dist=True,
-        )
-        return loss
-
-    @torch.no_grad()
-    def validation_step(
-        self,
-        batch: T.Dict[str, T.Any],
-        batch_idx: int,
-    ):
-        # print(f"({self.global_rank}) validation_step:  self.device: {self.device}")
-        # for name, param in self.named_parameters():
-        #     if param is not None and isinstance(param, torch.Tensor):
-        #         if param.device != self.device:
-        #             print(f"({self.global_rank}) name: {name}, device: {param.device}")
-
-        # run collate function
-        batch = self._collate_batch(batch)
-
-        out_dict = self._step(
-            batch=batch,
-            batch_idx=batch_idx,
-        )
-        loss = out_dict["loss"]  # (,)
-        cond_tokens = out_dict["cond_tokens"]  # (b, num_cond_tokens, d)
-        b = cond_tokens.size(0)
-
-        self.log(
-            name=f"valid/{self.optim_config['monitor_loss_name']}",
-            value=loss,
-            on_step=True,
-            on_epoch=True,
-            prog_bar=True,
-            logger=True,
-            batch_size=b,
-            sync_dist=True,
-        )
-
-        # sample shape latent
-        sampled_x = self.sampling(
-            use_ema=self.eval_ema,
-            cfg_scale=self.cfg_scale,
-            num_steps=self.optim_config["stg_sampling_steps"],
-            x0=torch.randn(b, self.num_latent, self.dim_latent, device=self.device),  # (b, num_latent, dim_latent)
-            cond_tokens=cond_tokens,  # (b, num_cond_tokens, dim_cond_token)
-            method=self.optim_config["stg_sampling_method"],
-        )  # (b, num_latent, dim_latent)
-
-        # map back to the original scale
-        sampled_x = self.unnormalize_latents(sampled_x)  # (b, nl, dl)
-
-        # get gaussian
-        gs_dicts = self.pretrained_tokenizer.inference_estimate_gaussians(
-            fpoint_latent=sampled_x,  # (b, nl, dl)
-            init_coord_src=self.optim_config["st_init_coord_src"],  # "sample_xyz"
-            init_coord=None,
-            latent_coord=None,
-            num_points_for_sample_xyz=self.optim_config["st_num_sample_points_for_occ"],
-            method_for_sample_xyz=self.optim_config["st_sampling_method"],
-            steps_for_sample_xyz=self.optim_config["st_sampling_steps"],
-        )
-
-        # render
-        rgbd_dict_cond = batch["rgbd_dict_cond"]
-        render_dict = self.pretrained_tokenizer.render_gaussians(
-            gs_dicts=gs_dicts,
-            H_c2w=rgbd_dict_cond["H_c2w"],  # (b, q, 4, 4)
-            intrinsic=rgbd_dict_cond["intrinsic"],  # (b, q, 3, 3)
-            width_px=rgbd_dict_cond["rgb"].size(-2),
-            height_px=rgbd_dict_cond["rgb"].size(-3),
-        )
-        est_rgb = render_dict["premultiplied_rgb"]  # (b, q, h, w, 3rgb) [0, 1]  premultiplied, black bg
-        rgb_gt = rgbd_dict_cond["rgb"] * rgbd_dict_cond["alpha"]  # (b, q, h, w, 3rgb) [0, 1]  premultiplied, black bg
-
-        rgb_gt_all_gather = self.gather_images_from_all_global_ranks(
-            images=rgb_gt,
-            new_width_px=self.optim_config["fid_width_px"],
-            new_height_px=self.optim_config["fid_height_px"],
-        )  # (b * world_size, q, h, w, 3rgb) uint8, premultiplied, black bg
-        rgb_est_all_gather = self.gather_images_from_all_global_ranks(
-            images=est_rgb,
-            new_width_px=self.optim_config["fid_width_px"],
-            new_height_px=self.optim_config["fid_height_px"],
-        )  # (b * world_size, q, h, w, 3rgb) uint8, premultiplied, black bg
-
-        if self.global_rank == 0:
-            assert rgb_gt_all_gather is not None
-            assert rgb_est_all_gather is not None
-            self.validation_rgb_gt.append(rgb_gt_all_gather.detach().cpu())  # (b * world_size, q, h, w, 3), uint8
-            self.validation_rgb_est.append(rgb_est_all_gather.detach().cpu())  # (b * world_size, q, h, w, 3), uint8
-
-        return loss
-
-    @torch.no_grad()
-    def predict_step(
-        self,
-        batch: T.Dict[str, T.Any],
-        batch_idx: int,
-        dataloader_idx: int = 0,
-    ):
-        """a dummy predict step"""
-        pass
-
-    @torch.no_grad()
-    def on_validation_epoch_end(self):
-        # print(f"({self.global_rank}) on_validation_epoch_end:  self.device: {self.device}")
-        # for name, param in self.named_parameters():
-        #     if param is not None and isinstance(param, torch.Tensor):
-        #         if param.device != self.device:
-        #             print(f"({self.global_rank}) name: {name}, device: {param.device}")
-
-        if self.global_rank == 0:
-            rgb_gt = torch.cat(self.validation_rgb_gt, dim=0)  # [(b, q, h, w, 3)] -> (n x b, q, h, w, 3) uint8
-            rgb_est = torch.cat(self.validation_rgb_est, dim=0)  # (n x b, q, h, w, 3) uint8
-
-            assert rgb_gt.shape == rgb_est.shape, f"{rgb_gt.shape=}, {rgb_est.shape=}"
-            b, q, h, w, _3 = rgb_gt.shape
-
-            # compute fid
-            mdict = self.compute_gen_metrics_given_imgs(
-                rgb_gt=rgb_gt.reshape(-1, h, w, 3),  # (bq, h, w, 3) uint8
-                rgb_est=rgb_est.reshape(-1, h, w, 3),  # (bq, h, w, 3) uint8
-            )
-
-            # log
-            for tmp_name, tmp_val in [
-                ["fid", mdict["fid"]],
-                ["kid", mdict["kid"]],
-            ]:
-                self.log(
-                    f"valid/{tmp_name}",
-                    tmp_val,
-                    on_epoch=True,
-                    on_step=False,
-                    logger=True,
-                    prog_bar=True,
-                    rank_zero_only=True,
-                    batch_size=1,
-                    sync_dist=False,
-                )
-
-            num_samples_to_plot = 8
-            num_views_to_plot = 4
-            rgb_gt_vis = rgb_gt[:num_samples_to_plot, :num_views_to_plot]  # (b', q', h, w, 3) uint8
-            rgb_est_vis = rgb_est[:num_samples_to_plot, :num_views_to_plot]  # (b', q', h, w, 3) uint8
-
-            try:
-                tensorboard_logger: SummaryWriter = self.loggers[0].experiment
-
-                _b, _q, _h, _w, _d = rgb_est_vis.shape
-
-                img_vis = torch.cat(
-                    [
-                        rgb_est_vis.reshape(_b * _q, _h, _w, _d),
-                        rgb_gt_vis.reshape(_b * _q, _h, _w, _d),
-                    ],
-                    dim=-2,
-                )  # (b' * q', h, w*2, d), uint8
-
-                tensorboard_logger.add_images(
-                    tag=f"validation/gs_render_{self.global_rank}",
-                    img_tensor=img_vis,
-                    dataformats="NHWC",
-                    global_step=self.trainer.global_step,
-                )
-
-            except Exception:
-                pass
-
-        # clean up data for the current validation
-        self.validation_rgb_gt = []
-        self.validation_rgb_est = []
-
-    @torch.no_grad()
-    def gather_images_from_all_global_ranks(
-        self,
-        images: torch.Tensor,  # (b, q, h, w, 3rgb) [0, 1] or (b, h, w, 3rgb) [0, 1]
-        new_width_px: int,
-        new_height_px: int,
-    ):
-        """
-        Gatheer images from all ranks
-        Args:
-            images:
-                (b, q, h, w, 3rgb), same shape across all ranks
-            new_width_px:
-                int, the resolution we will resize the image to
-            new_height_px:
-                int, the resolution we will resize the image to
-        Returns:
-             (only on rank 0): Tensor of shape
-                (b * world_size, q, h, w, 3rgb)  uint8
-                (b * world_size, h, w, 3rgb)  uint8
-        """
-
-        *b_shape, h, w, _3rgb = images.shape
-        b = math.prod(b_shape)
-
-        if h != new_height_px or w != new_width_px:
-            images = torch.nn.functional.interpolate(
-                input=images.reshape(b, h, w, 3).permute(0, 3, 1, 2),  # (b, 3, h, w) [0, 1]
-                size=(new_height_px, new_width_px),
-                mode="bilinear",
-                align_corners=False,
-            )
-            assert images.shape == (b, 3, new_height_px, new_width_px)
-            images = images.permute(0, 2, 3, 1).reshape(
-                *b_shape, new_height_px, new_width_px, 3
-            )  # (b, q, h, w, 3) [0, 1]
-
-        # convert to uint8 to save memory
-        local_uint8 = (images.clamp(min=0, max=1) * 255).to(torch.uint8)  # (b, q, h, w, 3rgb) uint8
-
-        local_uint8: torch.Tensor = local_uint8.to(
-            device=self.device,
-            non_blocking=True,
-        ).contiguous()  # (b, q, h, w, 3rgb) uint8
-
-        if not dist.is_initialized():
-            return local_uint8  # (b, q, h, w, 3rgb) uint8
-
-        # get world size
-        world_size = dist.get_world_size()
-
-        # Prepare receive buffers
-        gather_list = (
-            [torch.empty_like(local_uint8) for _ in range(world_size)] if self.global_rank == 0 else None
-        )  # (world_size,) list.  each is (b, q, h, w, 3rgb)
-
-        # gather from
-        dist.gather(local_uint8, gather_list=gather_list, dst=0)
-
-        if self.global_rank == 0:
-            return torch.cat(gather_list, dim=0)  # (b * world_size, q, h, w, 3rgb) uint8
-        else:
-            return None
-
-    def compute_gen_metrics_given_imgs(
-        self,
-        *,
-        rgb_gt: torch.Tensor,  # (b, h, w, 3) uint8, premultiplied, black bg
-        rgb_est: torch.Tensor,  # (b, h, w, 3) uint8, premultiplied, black bg
-    ):
-        assert self.global_rank == 0, f"{self.global_rank=}"
-
-        assert (rgb_gt.ndim == 4) and (rgb_gt.shape[3] == 3), f"{rgb_gt.shape=}"
-        b, h, w, _3 = rgb_gt.shape
-        assert rgb_est.shape[1:] == (h, w, 3), f"{rgb_est.shape=}"
-
-        assert rgb_gt.dtype == torch.uint8, f"{rgb_gt.dtype=}"
-        assert rgb_est.dtype == torch.uint8, f"{rgb_est.dtype=}"
-        rgb_gt_np = rgb_gt.cpu().numpy()
-        rgb_est_np = rgb_est.cpu().numpy()
-
-        repo_root = pathlib.Path(__file__).parent.parent
-        run_dir = repo_root / f"step_{self.global_step}"
-        if run_dir.exists():
-            shutil.rmtree(run_dir)
-        root_gt = run_dir / "gt"
-        root_est = run_dir / "est"
-        root_gt.mkdir(parents=True, exist_ok=True)
-        root_est.mkdir(parents=True, exist_ok=True)
-
-        for tmp_i, tmp_img in enumerate(rgb_gt_np):
-            PIL.Image.fromarray(tmp_img).save(root_gt / f"rank_{self.local_rank}_i_{tmp_i}.png")
-
-        for tmp_i, tmp_img in enumerate(rgb_est_np):
-            PIL.Image.fromarray(tmp_img).save(root_est / f"rank_{self.local_rank}_i_{tmp_i}.png")
-
-        n_gt = len(list(root_gt.glob("*.png")))
-        n_est = len(list(root_est.glob("*.png")))
-
-        metric_fid = fid.compute_fid(
-            fdir1=str(root_gt),
-            fdir2=str(root_est),
-            num_workers=0,  # NOTE: important! avoids spawning multiprocessing dataloaders when computing FID
-            batch_size=32,
-            verbose=True,
-        )  # float
-        metric_kid = fid.compute_kid(
-            fdir1=str(root_gt),
-            fdir2=str(root_est),
-            num_workers=0,  # NOTE: important! avoids spawning multiprocessing dataloaders when computing FID
-            batch_size=32,
-            verbose=True,
-        )  # float
-
-        if run_dir.exists():
-            shutil.rmtree(run_dir)
-
-        return dict(
-            fid=metric_fid,  # float
-            kid=metric_kid,  # float
-            n_gt=n_gt,  # int
-            n_est=n_est,  # int
-        )
-
-    def on_before_backward(self, loss: torch.Tensor) -> None:
-        if self.velocity_estimator_ema:
-            self.velocity_estimator_ema.update(self.velocity_estimator)
-
-    def configure_optimizers(self):
-        """construct optimizer"""
-
-        lr = self.optim_config["lr"]
-        optimizer = torch.optim.AdamW(
-            self.parameters(),
-            lr=lr,
-            weight_decay=self.optim_config["weight_decay"],
-            betas=(self.optim_config["beta1"], self.optim_config["beta2"]),
-        )
-        if self.optim_config["lr_scheduler_config"] is None:
-            return optimizer
-
-        scheduler = config_utils.instantiate_from_config(
-            config=self.optim_config["lr_scheduler_config"],
-            optimizer=optimizer,
-            last_epoch=self.trainer.global_step - 1,  # total number of batches
-        )
-
-        # plot lr schedule in command line
-        if self.trainer.local_rank == 0 and self.optim_config["plot_lr"]:
-            print("plotting learning rate:", flush=True)
-            pl_utils.plot_lr_schedule(
-                optimizer=optimizer,
-                scheduler=scheduler,
-                num_iters=int(1e6),
-            )
-
-        return {
-            "optimizer": optimizer,
-            "lr_scheduler": {
-                "scheduler": scheduler,
-                "interval": "step",
-                "frequency": 1,
-            },
-        }

@@ -1,3 +1,8 @@
+> [!WARNING]
+> Warning, uses experimental package `comfy-env` to attempt a one click isolated install. Will download and use pixi package manager.
+
+WORK IN PROGRESS
+
 # ComfyUI-LiTo
 
 ComfyUI wrapper for [LiTo](https://apple.github.io/ml-lito/) (Surface Light Field Tokenization), Apple Research's image-to-3D Gaussian Splat generator from ICLR 2026.

@@ -13,6 +13,14 @@ from torch import nn
 from lito.models import perceiver_encoder, pointnet_utils
 from lito.models.layers import FourierEmbed
 from plibs.flash_utils import create_block_diagonal_attn_bias_from_seq_lens
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.manual_cast
+    return _OPS
+
 
 
 class ShapeLatent(torch.nn.Module):
@@ -182,7 +190,7 @@ class PointEncoder(torch.nn.Module):
 
         # output layer
         if self.dim_perceiver != self.dim_latent:
-            self.final_layer = torch.nn.Linear(
+            self.final_layer = _ops().Linear(
                 in_features=self.dim_perceiver,
                 out_features=self.dim_latent,
             )

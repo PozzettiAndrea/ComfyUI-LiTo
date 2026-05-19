@@ -6,7 +6,8 @@
 import typing as T
 
 import einops
-from timm.models.vision_transformer import DropPath, Mlp
+from timm.models.vision_transformer import DropPath
+from lito.models._comfy_mlp import Mlp
 
 import torch
 from torch import nn
@@ -14,6 +15,17 @@ import torch.nn.functional as F
 
 from lito.models.layers import CrossAttentionLayer, FinalLayer, SelfAttentionLayer
 from lito.script_utils import config_utils
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.manual_cast
+    return _OPS
+
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
 
 
 def pixart_modulate(x, shift, scale):
@@ -48,7 +60,7 @@ class ConditionEmbedder(nn.Module):
         Drops cond to enable classifier-free guidance.
         """
         if force_drop_ids is None:
-            drop_ids = torch.rand(cond.shape[0]).cuda() < self.cond_drop_prob
+            drop_ids = torch.rand(cond.shape[0]).to(_comfy_device()) < self.cond_drop_prob
         else:
             drop_ids = force_drop_ids == 1
         cond = torch.where(drop_ids[:, None, None], self.y_embedding, cond)
@@ -64,22 +76,15 @@ class ConditionEmbedder(nn.Module):
         return cond
 
 
-class Linear(nn.Linear):
-    def reset_parameters(self) -> None:
-        torch.nn.init.xavier_uniform_(self.weight)
-        if self.bias is not None:
-            torch.nn.init.constant_(self.bias, 0)
-
-
 class SwiGLUFeedForward(nn.Module):
     def __init__(self, dim, hidden_dim, multiple_of=256):
         super().__init__()
         hidden_dim = int(2 * hidden_dim / 3)
         hidden_dim = multiple_of * ((hidden_dim + multiple_of - 1) // multiple_of)
 
-        self.w1 = Linear(dim, hidden_dim, bias=False)
-        self.w2 = Linear(hidden_dim, dim, bias=True)
-        self.w3 = Linear(dim, hidden_dim, bias=False)
+        self.w1 = _ops().Linear(dim, hidden_dim, bias=False)
+        self.w2 = _ops().Linear(hidden_dim, dim, bias=True)
+        self.w3 = _ops().Linear(dim, hidden_dim, bias=False)
 
     def forward(self, x):
         return self.w2(F.silu(self.w1(x)) * self.w3(x))
@@ -106,7 +111,7 @@ class DiTBlock(nn.Module):
             num_heads=num_heads,
             use_rmsnorm=use_rmsnorm,
         )
-        self.norm1 = nn.LayerNorm(dim_hidden, elementwise_affine=False, eps=1e-6)
+        self.norm1 = _ops().LayerNorm(dim_hidden, elementwise_affine=False, eps=1e-6)
 
         # add conditional tokens with cross attention
         if self.dim_cond_token is not None:
@@ -117,7 +122,7 @@ class DiTBlock(nn.Module):
                 num_heads=num_heads,
                 use_rmsnorm=use_rmsnorm,
             )
-            self.norm2 = nn.LayerNorm(dim_hidden, elementwise_affine=False, eps=1e-6)
+            self.norm2 = _ops().LayerNorm(dim_hidden, elementwise_affine=False, eps=1e-6)
 
         # to be compatible with lower version pytorch
         approx_gelu = lambda: nn.GELU(approximate="tanh")
@@ -220,24 +225,24 @@ class DiffusionTransformer(nn.Module):
         #     self.register_buffer('pos_mtx', init_positional_encoding)
 
         # token projection
-        self.z_proj = nn.Linear(self.dim_latent_in, dim_hidden)
-        self.z_proj_ln = nn.LayerNorm(dim_hidden, eps=1e-6)
+        self.z_proj = _ops().Linear(self.dim_latent_in, dim_hidden)
+        self.z_proj_ln = _ops().LayerNorm(dim_hidden, eps=1e-6)
 
         # positional embedding projection
         if init_pos_emb_dim != dim_hidden:
-            self.pos_proj = nn.Linear(self.init_pos_emb_dim, dim_hidden)
+            self.pos_proj = _ops().Linear(self.init_pos_emb_dim, dim_hidden)
 
         # timestep embedding
         self.time_embedder_config = time_embedder_config
         self.t_embedder = config_utils.instantiate_from_config(self.time_embedder_config)
         self.t_proj = nn.Sequential(
-            nn.Linear(self.t_embedder.dim_out, self.dim_hidden, bias=True),
+            _ops().Linear(self.t_embedder.dim_out, self.dim_hidden, bias=True),
             nn.SiLU(),
-            nn.Linear(self.dim_hidden, self.dim_hidden, bias=True),
+            _ops().Linear(self.dim_hidden, self.dim_hidden, bias=True),
         )
         self.t0_proj = nn.Sequential(
             nn.SiLU(),
-            nn.Linear(self.dim_hidden, 6 * self.dim_hidden, bias=True),
+            _ops().Linear(self.dim_hidden, 6 * self.dim_hidden, bias=True),
         )
 
         if self.dim_cond_token is not None:

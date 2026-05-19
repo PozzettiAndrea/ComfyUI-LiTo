@@ -20,8 +20,8 @@ def matmul(x: torch.Tensor, y: torch.Tensor) -> torch.Tensor:
     Pytorch's matmul and bmm use a large amount of memory in backward.
     For example:
     ```
-    x = torch.randn(1, 4096, 4096).cuda()
-    y = torch.randn(192, 4096, 1).cuda()
+    x = torch.randn(1, 4096, 4096).to(_comfy_device())
+    y = torch.randn(192, 4096, 1).to(_comfy_device())
     x.requires_grad = True
     with profile(
         activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA],
@@ -85,7 +85,7 @@ def repeat_interleave(input, repeats, dim=None, *, output_size=None):
     Note that even with the higher precision issues can arise. If the batch size is small, consider using a for loop.
     """
     if input.requires_grad:
-        with torch.autocast(device_type=input.device.type, enabled=False):
+        with _nullcontext():
             input = torch.repeat_interleave(input.float(), repeats, dim=dim, output_size=output_size)
     else:
         input = torch.repeat_interleave(input, repeats, dim=dim, output_size=output_size)
@@ -93,6 +93,7 @@ def repeat_interleave(input, repeats, dim=None, *, output_size=None):
 
 
 import torch
+from contextlib import nullcontext as _nullcontext
 
 
 def gumbel_multinomial(
@@ -108,6 +109,9 @@ def gumbel_multinomial(
     Gumbel noise per category and taking the `topk` of `log(weights) + gumbel`.
     For `replacement=False`, this matches the distribution of repeatedly drawing
     from a categorical distribution proportional to the weights, removing the
+def _comfy_device():
+    import comfy.model_management
+    return comfy.model_management.get_torch_device()
     chosen item, renormalizing, and repeating.
 
     This function is intended as a drop-in alternative to `torch.multinomial`
@@ -167,7 +171,7 @@ def gumbel_multinomial(
     if C == 0:
         raise ValueError("`input` must have at least one category.")
 
-    with torch.autocast(device_type=input.device.type, enabled=False):
+    with _nullcontext():
         # make sure we use high precision
         if input.dtype == torch.float64:
             pass
@@ -256,7 +260,7 @@ def disable_tf32_and_autocast(device_type: str = "cuda"):
 
     try:
         # 3. Disable Autocast (nesting PyTorch's built-in context manager)
-        with torch.autocast(device_type=device_type, enabled=False):
+        with _nullcontext():
             yield
 
     finally:

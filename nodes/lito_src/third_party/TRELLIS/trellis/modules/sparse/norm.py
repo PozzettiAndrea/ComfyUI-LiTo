@@ -3,6 +3,15 @@ import torch.nn as nn
 from . import SparseTensor
 from . import DEBUG
 
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.manual_cast
+    return _OPS
+
+
 __all__ = [
     'SparseGroupNorm',
     'SparseLayerNorm',
@@ -11,9 +20,9 @@ __all__ = [
 ]
 
 
-class SparseGroupNorm(nn.GroupNorm):
+class SparseGroupNorm(_ops().GroupNorm):
     def __init__(self, num_groups, num_channels, eps=1e-5, affine=True):
-        super(SparseGroupNorm, self).__init__(num_groups, num_channels, eps, affine)
+        super().__init__(num_groups, num_channels, eps, affine)
 
     def forward(self, input: SparseTensor) -> SparseTensor:
         nfeats = torch.zeros_like(input.feats)
@@ -28,9 +37,9 @@ class SparseGroupNorm(nn.GroupNorm):
         return input.replace(nfeats)
 
 
-class SparseLayerNorm(nn.LayerNorm):
+class SparseLayerNorm(_ops().LayerNorm):
     def __init__(self, normalized_shape, eps=1e-5, elementwise_affine=True):
-        super(SparseLayerNorm, self).__init__(normalized_shape, eps, elementwise_affine)
+        super().__init__(normalized_shape, eps, elementwise_affine)
 
     def forward(self, input: SparseTensor) -> SparseTensor:
         nfeats = torch.zeros_like(input.feats)

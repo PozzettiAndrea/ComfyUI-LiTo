@@ -3,6 +3,14 @@ import torch
 import torch.nn as nn
 from ..attention import MultiHeadAttention
 from ..norm import LayerNorm32
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.manual_cast
+    return _OPS
+
 
 
 class AbsolutePositionEmbedder(nn.Module):
@@ -50,9 +58,9 @@ class FeedForwardNet(nn.Module):
     def __init__(self, channels: int, mlp_ratio: float = 4.0):
         super().__init__()
         self.mlp = nn.Sequential(
-            nn.Linear(channels, int(channels * mlp_ratio)),
+            _ops().Linear(channels, int(channels * mlp_ratio)),
             nn.GELU(approximate="tanh"),
-            nn.Linear(int(channels * mlp_ratio), channels),
+            _ops().Linear(int(channels * mlp_ratio), channels),
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:

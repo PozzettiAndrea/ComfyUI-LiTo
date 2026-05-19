@@ -9,6 +9,15 @@ import typing as T
 import pytorch3d
 import pytorch3d.ops
 import torch
+from contextlib import nullcontext as _nullcontext
+_OPS = None
+def _ops():
+    global _OPS
+    if _OPS is None:
+        import comfy.ops
+        _OPS = comfy.ops.manual_cast
+    return _OPS
+
 
 
 def voxel_downsampling(
@@ -383,7 +392,7 @@ def compute_knn(
     assert ref.size(1) >= k, f"{ref.shape}"
     if query.is_cuda:
         with torch.profiler.record_function("knn with pytorch3d"):
-            with torch.autocast(device_type=query.device.type, enabled=False):
+            with _nullcontext():
                 out = pytorch3d.ops.knn_points(
                     p1=query.float(),  # (b, m, 3)
                     p2=ref.float(),  # (b, n, 3),
@@ -432,7 +441,7 @@ def compute_ball_query(
     assert ref.size(1) >= k, f"{ref.shape}"
     if query.is_cuda:
         with torch.profiler.record_function("ball query with pytorch3d"):
-            with torch.autocast(device_type=query.device.type, enabled=False):
+            with _nullcontext():
                 out = pytorch3d.ops.ball_query(
                     p1=query.float(),  # (b, m, 3)
                     p2=ref.float(),  # (b, n, 3),
@@ -776,10 +785,10 @@ class PointNetLayer(torch.nn.Module):
         self.mlp_bns = torch.nn.ModuleList()
         last_channel = self.in_channel
         for out_channel in mlp:
-            self.mlp_convs.append(torch.nn.Conv2d(in_channels=last_channel, out_channels=out_channel, kernel_size=1))
+            self.mlp_convs.append(_ops().Conv2d(in_channels=last_channel, out_channels=out_channel, kernel_size=1))
 
             if self.norm_type == "layernorm":
-                norm = torch.nn.LayerNorm(normalized_shape=out_channel)
+                norm = _ops().LayerNorm(normalized_shape=out_channel)
             elif self.norm_type == "batchnorm":
                 norm = torch.nn.BatchNorm2d(num_features=out_channel)
             elif self.norm_type == "none":
@@ -935,7 +944,7 @@ class PointNet(torch.nn.Module):
             self.layers.append(layer)
 
         # final linear layer
-        self.final_linear = torch.nn.Linear(current_dim, self.out_channel)
+        self.final_linear = _ops().Linear(current_dim, self.out_channel)
 
     def forward(
         self,
@@ -1035,10 +1044,10 @@ class VNetLayer(torch.nn.Module):
         self.mlp_bns = torch.nn.ModuleList()
         last_channel = self.in_channel
         for out_channel in mlp:
-            self.mlp_linears.append(torch.nn.Linear(in_features=last_channel, out_features=out_channel))
+            self.mlp_linears.append(_ops().Linear(in_features=last_channel, out_features=out_channel))
 
             if self.norm_type == "layernorm":
-                norm = torch.nn.LayerNorm(normalized_shape=out_channel)
+                norm = _ops().LayerNorm(normalized_shape=out_channel)
             elif self.norm_type == "batchnorm":
                 # note that it is different -- original pointnet uses batchnorm2d,
                 # which compute statistics among selected neighbor-only (b, m, k).
@@ -1223,7 +1232,7 @@ class VNet(torch.nn.Module):
             self.layers.append(layer)
 
         # final linear layer
-        self.final_linear = torch.nn.Linear(current_dim, self.out_channel)
+        self.final_linear = _ops().Linear(current_dim, self.out_channel)
 
     def forward(
         self,

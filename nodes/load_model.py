@@ -7,9 +7,13 @@ import time
 from pathlib import Path
 
 import torch
-import comfy.model_management as mm
-import comfy.utils
 from comfy_api.latest import io
+
+# `comfy.model_management` and `comfy.utils` are imported lazily inside the
+# methods that use them — see same pattern in lito_src/plibs/linalg_utils.py.
+# Top-level import would trigger comfy.model_management's module-load CUDA
+# probe, which crashes on CPU-only environments (e.g. the Windows mock-CUDA
+# CI runner).
 
 log = logging.getLogger("comfyui-lito")
 
@@ -75,6 +79,7 @@ class LiToLoadModel(io.ComfyNode):
 
         # Resolve precision
         if precision == "auto":
+            import comfy.model_management as mm
             device = mm.get_torch_device()
             if mm.should_use_bf16(device):
                 precision = "bf16"
@@ -126,6 +131,7 @@ class LiToLoadModel(io.ComfyNode):
         if partial.exists():
             partial.unlink()  # hf_transfer doesn't resume; start clean
 
+        import comfy.utils
         pbar = comfy.utils.ProgressBar(total_size)
         done = 0
         lock = threading.Lock()
