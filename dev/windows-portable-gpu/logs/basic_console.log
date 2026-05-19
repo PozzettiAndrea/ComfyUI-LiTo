@@ -23,50 +23,47 @@
 [Console-log] [GaussianPack] onExecuted called with: {ply_file: Array(1), filename: Array(1), ply_type: Array(1), ply_subfolder: Array(1), file_size_mb: Array(1)}
 [Console-log] [GaussianPack] Resized node to: 512 x 572 (aspect ratio: 1.00 )
 [Console-log] [GaussianPack] fetch start: /view?filename=lito_output.ply&type=output&subfolder=
-[Console-log] [GaussianPack] fetch response 200; content-length=232573947
-[Console-log] [GaussianPack] download 0%  0.3/221.8 MB
-[Console-log] [GaussianPack] download 5%  11.4/221.8 MB
-[Console-log] [GaussianPack] download 10%  23.2/221.8 MB
-[Console-log] [GaussianPack] download 15%  33.9/221.8 MB
-[Console-log] [GaussianPack] download 20%  44.4/221.8 MB
-[Console-log] [GaussianPack] download 25%  55.8/221.8 MB
-[Console-log] [GaussianPack] download 30%  67.1/221.8 MB
-[Console-log] [GaussianPack] download 35%  78.0/221.8 MB
-[Console-log] [GaussianPack] download 40%  89.1/221.8 MB
-[Console-log] [GaussianPack] download 45%  100.0/221.8 MB
-[Console-log] [GaussianPack] download 50%  111.4/221.8 MB
-[Console-log] [GaussianPack] download 55%  122.0/221.8 MB
-[Console-log] [GaussianPack] download 60%  134.0/221.8 MB
-[Console-log] [GaussianPack] download 65%  145.5/221.8 MB
-[Console-log] [GaussianPack] download 70%  155.4/221.8 MB
-[Console-log] [GaussianPack] download 75%  167.4/221.8 MB
-[Console-log] [GaussianPack] download 80%  178.0/221.8 MB
-[Console-log] [GaussianPack] download 85%  188.6/221.8 MB
-[Console-log] [GaussianPack] download 90%  200.0/221.8 MB
-[Console-log] [GaussianPack] download 95%  210.9/221.8 MB
-[Console-log] [GaussianPack] download 100%  221.8/221.8 MB
-[Console-log] [GaussianPack] fetch done: 232573947 bytes in 618 ms (359.2 MB/s)
+[Console-log] [GaussianPack] fetch response 200; content-length=232970747
+[Console-log] [GaussianPack] download 0%  2.0/222.2 MB
+[Console-log] [GaussianPack] download 5%  12.0/222.2 MB
+[Console-log] [GaussianPack] download 10%  22.7/222.2 MB
+[Console-log] [GaussianPack] download 15%  34.0/222.2 MB
+[Console-log] [GaussianPack] download 20%  44.5/222.2 MB
+[Console-log] [GaussianPack] download 25%  56.0/222.2 MB
+[Console-log] [GaussianPack] download 30%  67.2/222.2 MB
+[Console-log] [GaussianPack] download 35%  77.9/222.2 MB
+[Console-log] [GaussianPack] download 40%  89.8/222.2 MB
+[Console-log] [GaussianPack] download 45%  100.0/222.2 MB
+[Console-log] [GaussianPack] download 50%  111.5/222.2 MB
+[Console-log] [GaussianPack] download 55%  123.0/222.2 MB
+[Console-log] [GaussianPack] download 60%  133.4/222.2 MB
+[Console-log] [GaussianPack] download 65%  144.5/222.2 MB
+[Console-log] [GaussianPack] download 70%  155.7/222.2 MB
+[Console-log] [GaussianPack] download 75%  166.7/222.2 MB
+[Console-log] [GaussianPack] download 80%  178.0/222.2 MB
+[Console-log] [GaussianPack] download 85%  189.0/222.2 MB
+[Console-log] [GaussianPack] download 90%  200.0/222.2 MB
+[Console-log] [GaussianPack] download 95%  211.4/222.2 MB
+[Console-log] [GaussianPack] download 100%  222.2/222.2 MB
+[Console-log] [GaussianPack] fetch done: 232970747 bytes in 844 ms (263.2 MB/s)
 [Console-log] [GaussianPack] posting LOAD_MESH_DATA to iframe, renderer: spark filename: lito_output.ply
-[Console-log] [GaussianViewer] Received LOAD_MESH_DATA, size: 232573947 renderer: spark
+[Console-log] [GaussianViewer] Received LOAD_MESH_DATA, size: 232970747 renderer: spark
 [Console-log] [GaussianViewer] ensureRenderer('spark') starting...
 [Console-log] [Spark] init: canvas client=486x223 dpr=1.00
 [Console-warning] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
 [Console-log] [Spark] first frame rendered.
 [Console-log] [GaussianViewer] Adapter ready: spark
-[Console-log] [GaussianViewer] Loading splat (232,573,947 bytes) via spark...
+[Console-log] [GaussianViewer] Loading splat (232,970,747 bytes) via spark...
 [Console-log] [Spark] new SplatMesh url=lito_output.ply
-[Console-warning] [.WebGL-0x757c001b5000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Console-warning] [.WebGL-0x23ac0523ee00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
 [Console-log] [Spark] parse 0%
 [Console-log] [Spark] parse 0%
-[Console-log] [Spark] parse 0%
-[Console-log] [Spark] parse 0%
-[Console-log] [Spark] parse 0%
-[Console-log] [Spark] parse 1%
 [Console-log] [Spark] parse 1%
 [Console-log] [Spark] parse 1%
 [Console-log] [Spark] parse 10%
 [Console-log] [Spark] parse 11%
 [Console-log] [Spark] parse 20%
+[Console-log] [Spark] parse 21%
 [Console-log] [Spark] parse 21%
 [Console-log] [Spark] parse 31%
 [Console-log] [Spark] parse 41%
@@ -75,12 +72,13 @@
 [Console-log] [Spark] parse 70%
 [Console-log] [Spark] parse 80%
 [Console-log] [Spark] parse 90%
+[Console-log] [Spark] parse 91%
 [Console-log] [Spark] parse 100%
-[Console-log] [Spark] loaded 937792 splats in 740 ms
-[Console-log] [GaussianViewer] adapter.loadSplat resolved in 740 ms
-[Console-log] [GaussianViewer] frameOnBounds: bounds center=(-0.002, -0.008, -0.000) size=(1.808, 1.841, 2.005)
-[Console-log] [GaussianViewer] Framed: cam=(-0.00, -0.01, -2.47) target=(-0.00, -0.01, -0.00) maxExtent=2.00 radius=2.47 fov=50
+[Console-log] [Spark] loaded 939392 splats in 1025 ms
+[Console-log] [GaussianViewer] adapter.loadSplat resolved in 1026 ms
+[Console-log] [GaussianViewer] frameOnBounds: bounds center=(-0.003, -0.004, -0.000) size=(1.812, 1.847, 2.005)
+[Console-log] [GaussianViewer] Framed: cam=(-0.00, -0.00, -2.47) target=(-0.00, -0.00, -0.00) maxExtent=2.00 radius=2.47 fov=50
 [Console-log] [GaussianViewer] Loaded successfully
-[Console-warning] [.WebGL-0x757c001b5000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Console-warning] [.WebGL-0x757c001b5000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Console-warning] [.WebGL-0x757c001b5000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[Console-warning] [.WebGL-0x23ac0523ee00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Console-warning] [.WebGL-0x23ac0523ee00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Console-warning] [.WebGL-0x23ac0523ee00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)

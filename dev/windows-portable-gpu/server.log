@@ -5,30 +5,30 @@ setup plugin alembic.autogenerate.constraints
 setup plugin alembic.autogenerate.defaults
 setup plugin alembic.autogenerate.comments
 [comfy-env] ComfyUI-LiTo: 1 isolation env(s):
-[comfy-env]   nodes -> C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes
+[comfy-env]   nodes -> C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes
 [comfy-env] Workspace: C:\Users\ContainerUser\AppData\Local\Programs\comfy-env
-[comfy-env]     env: C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes  [OK]
+[comfy-env]     env: C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default  [OK]
 [comfy-env] prestartup complete
 
 Prestartup times for custom nodes:
-   0.0 seconds: C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-GaussianPack
-   0.2 seconds: C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo
+   0.0 seconds: C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-GaussianPack
+   0.3 seconds: C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo
 
-Found comfy_kitchen backend cuda: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_nvfp4']}
 Found comfy_kitchen backend triton: {'available': False, 'disabled': True, 'unavailable_reason': "ImportError: No module named 'triton'", 'capabilities': []}
 Found comfy_kitchen backend eager: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_mxfp8', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_mxfp8', 'scaled_mm_nvfp4']}
+Found comfy_kitchen backend cuda: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_nvfp4']}
 Checkpoint files will always be loaded safely.
-Total VRAM 16380 MB, total RAM 32694 MB
+Total VRAM 8151 MB, total RAM 24466 MB
 pytorch version: 2.11.0+cu130
 Set vram state to: NORMAL_VRAM
-Device: cuda:0 NVIDIA GeForce RTX 4060 Ti : cudaMallocAsync
+Device: cuda:0 NVIDIA GeForce RTX 5060 : cudaMallocAsync
 Using async weight offloading with 2 streams
-Enabled pinned memory 13077.0
+Enabled pinned memory 9786.0
 Using pytorch attention
 aimdo: src-win/cuda-detour.c:38:INFO:aimdo_setup_hooks: installing 6 hooks
 aimdo: src-win/cuda-detour.c:28:DEBUG:install_hook_entries: hooks successfully installed
-aimdo: src-win/shmem-detect.c:80:INFO:comfy-aimdo WDDM adapter match: NVIDIA GeForce RTX 4060 Ti runtime_luid=00000000:00620661 dxgi_luid=00000000:00620661
-aimdo: src/control.c:152:INFO:comfy-aimdo inited for GPU: NVIDIA GeForce RTX 4060 Ti (VRAM: 16379 MB)
+aimdo: src-win/shmem-detect.c:80:INFO:comfy-aimdo WDDM adapter match: NVIDIA GeForce RTX 5060 runtime_luid=00000000:006ee7a7 dxgi_luid=00000000:006ee7a7
+aimdo: src/control.c:152:INFO:comfy-aimdo inited for GPU: NVIDIA GeForce RTX 5060 (VRAM: 8150 MB)
 DynamicVRAM support detected and enabled
 Python version: 3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]
 ComfyUI version: 0.21.1
@@ -37,39 +37,39 @@ comfy-kitchen version: 0.2.8
 ****** User settings have been changed to be stored on the server instead of browser storage. ******
 ****** For multi-user setups add the --multi-user CLI argument to enable multiple user profiles. ******
 ComfyUI frontend version: 1.43.18
-[Prompt Server] web root: C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\python_embeded\Lib\site-packages\comfyui_frontend_package\static
+[Prompt Server] web root: C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\python_embeded\Lib\site-packages\comfyui_frontend_package\static
 Asset seeder disabled
 loading...
 loading...
 calling register_nodes
-[comfy-env] Version: 0.3.89
+[comfy-env] Version: 0.4.1
 [comfy-env] register_nodes: ComfyUI-LiTo
-[comfy-env] ComfyUI source dir: C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI
+[comfy-env] ComfyUI source dir: C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI
 [comfy-env] Found 1 isolation env(s)
 [comfy-env] Scanning nodes metadata (isolation root)...
-[comfy-env] lito-nodes: Library/bin has 431 DLLs
-[comfy-env] Metadata scan: C:\Users\ContainerUser\.pixi\bin\pixi.exe run --as-is --manifest-path C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\pixi.toml -e lito-nodes python C:\Users\ContainerUser\AppData\Local\Temp\comfy_meta_344sbk_4.py C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo nodes C:\Users\ContainerUser\AppData\Local\Temp\comfy_meta_out_h22z3afu.pkl
+[comfy-env] default: Library/bin has 431 DLLs
+[comfy-env] Metadata scan: C:\Users\ContainerUser\.pixi\bin\pixi.exe run --as-is --manifest-path C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\pixi.toml -e default python C:\Users\ContainerUser\AppData\Local\Temp\comfy_meta_ovufcb93.py C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo nodes C:\Users\ContainerUser\AppData\Local\Temp\comfy_meta_out_46sv65yr.pkl
 [comfy-env] Scan env PATH for nodes:
-[comfy-env]   [0] C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes
-[comfy-env]   [1] C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Library\bin
-[comfy-env]   [2] C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Scripts
-[comfy-env]   [3] C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\bpy
+[comfy-env]   [0] C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default
+[comfy-env]   [1] C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Library\bin
+[comfy-env]   [2] C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Scripts
+[comfy-env]   [3] C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\bpy
 [comfy-env]   [4] C:\Windows\System32
 [comfy-env]   [5] C:\Windows
 [comfy-env]   [6] C:\Windows\System32\Wbem
 [comfy-env] Metadata scan stderr for nodes:
-[comfy-env]   [meta-scan] importing nodes from C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo
+[comfy-env]   [meta-scan] importing nodes from C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo
 [comfy-env]   [meta-scan] import OK
-[comfy-env] Scanned nodes: 5 nodes (36.8s)
-[comfy-env] Scanned nodes root: 5 nodes (36.9s)
+[comfy-env] Scanned nodes: 5 nodes (44.2s)
+[comfy-env] Scanned nodes root: 5 nodes (44.3s)
 [comfy-env] Imported nodes root: 5 nodes (isolation)
 [comfy-env] Registered 5 total nodes
 
 Import times for custom nodes:
-   0.0 seconds: C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\websocket_image_save.py
-   0.0 seconds: C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-validate-endpoint
-   0.0 seconds: C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-GaussianPack
-  37.3 seconds: C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo
+   0.0 seconds: C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\websocket_image_save.py
+   0.0 seconds: C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-validate-endpoint
+   0.0 seconds: C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-GaussianPack
+  44.8 seconds: C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo
 
 Context impl SQLiteImpl.
 Will assume non-transactional DDL.
@@ -85,7 +85,7 @@ Change preview_id FK from assets.id to asset_references.id.
 Database upgraded from None to 0003_add_metadata_job_id
 Starting server
 
-To see the GUI go to: http://127.0.0.1:41886
+To see the GUI go to: http://127.0.0.1:41887
 === /validate endpoint called ===
 Received JSON with keys: ['prompt']
 Prompt has 7 nodes
@@ -103,22 +103,22 @@ Prompt has 7 nodes
     Inputs: {"mask": ["9", 0]}
   Node 29: PreviewGaussians
     Inputs: {"fov_degrees": 50, "image_width": 512, "image_height": 512, "renderer": "spark", "transport_format": "ply", "ply_path": ["6", 0]}
-Generated prompt_id: d7049ac1-334a-41ba-9e72-019c62fa3798
+Generated prompt_id: 216d1960-5c91-45d1-9935-9747da477cbf
 Calling execution.validate_prompt()...
 Validation result: valid=True
 === Validation PASSED ===
 got prompt
 [comfy-env] Running LiToLoadModel: checkpoint: 'lito_dit_rgba (recommended)', compile: False, precision: 'auto'
-[VRAM] Before LiToLoadModel: 1156 / 16379 MB
-[comfy-env] SubprocessWorker: C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\python.exe
-[comfy-env] env_vars: {'COMFYUI_BASE': 'C:\\workspaces\\LiTo-1833\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI'}
+[VRAM] Before LiToLoadModel: 1130 / 8150 MB
+[comfy-env] SubprocessWorker: C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\python.exe
+[comfy-env] env_vars: {'COMFYUI_BASE': 'C:\\workspaces\\LiTo-2104\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI'}
 [SubprocessWorker] call_method: nodes.load_model.LiToLoadModel.EXECUTE_NORMALIZED
 [SubprocessWorker] acquired lock, ensuring started...
-[comfy-env] lito-nodes: Library/bin has 431 DLLs
-[ComfyUI-LiTo] python: C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\python.exe
-[ComfyUI-LiTo] sys_path sent to worker: ['C:\\workspaces\\LiTo-1833\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI', 'C:\\workspaces\\LiTo-1833\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo', 'C:\\Users\\ContainerUser\\AppData\\Local\\Programs\\comfy-env\\.pixi\\envs\\lito-nodes\\Lib\\site-packages', 'C:\\workspaces\\LiTo-1833\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo']
-[SubprocessWorker] is_pixi=True, python=C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\python.exe
-[SubprocessWorker] launching cmd=['C:\\Users\\ContainerUser\\.pixi\\bin\\pixi.exe', 'run', '--as-is', '--manifest-path', 'C:\\Users\\ContainerUser\\AppData\\Local\\Programs\\comfy-env\\pixi.toml', '-e', 'lito-nodes', 'python', 'C:\\Users\\ContainerUser\\AppData\\Local\\Temp\\comfyui_pvenv_khebf8lf\\persistent_worker.py', 'tcp://127.0.0.1:58217']...
+[comfy-env] default: Library/bin has 431 DLLs
+[ComfyUI-LiTo] python: C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\python.exe
+[ComfyUI-LiTo] sys_path sent to worker: ['C:\\workspaces\\LiTo-2104\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI', 'C:\\workspaces\\LiTo-2104\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo', 'C:\\Users\\ContainerUser\\AppData\\Local\\Programs\\comfy-env\\envs\\lito-nodes\\.pixi\\envs\\default\\Lib\\site-packages', 'C:\\workspaces\\LiTo-2104\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo']
+[SubprocessWorker] is_pixi=True, python=C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\python.exe
+[SubprocessWorker] launching cmd=['C:\\Users\\ContainerUser\\.pixi\\bin\\pixi.exe', 'run', '--as-is', '--manifest-path', 'C:\\Users\\ContainerUser\\AppData\\Local\\Programs\\comfy-env\\envs\\lito-nodes\\pixi.toml', '-e', 'default', 'python', 'C:\\Users\\ContainerUser\\AppData\\Local\\Temp\\comfyui_pvenv_aq_psh7p\\persistent_worker.py', 'tcp://127.0.0.1:51749']...
 [worker:ComfyUI-LiTo] ERROR: Failed to import comfy_kitchen, Error: No module named 'comfy_kitchen', fp8 and fp4 support will not be available.
 [SubprocessWorker] worker started/confirmed
 [SubprocessWorker] serializing kwargs to shm...
@@ -240,37 +240,34 @@ got prompt
 [SubprocessWorker] callback 'report_progress' from call_id=1
 [SubprocessWorker] callback 'report_progress' from call_id=1
 [SubprocessWorker] callback 'report_progress' from call_id=1
-[SubprocessWorker] callback 'report_progress' from call_id=1
-[SubprocessWorker] callback 'report_progress' from call_id=1
-[SubprocessWorker] callback 'report_progress' from call_id=1
-[SubprocessWorker] callback 'report_progress' from call_id=1
 [worker:ComfyUI-LiTo] 
 === WATCHDOG TICK 1 ===
 [SubprocessWorker] callback 'report_progress' from call_id=1
-[worker:ComfyUI-LiTo] Thread 0x00003264 (most recent call first):
-  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_khebf8lf\persistent_worker.py", line 106 in _vram_poller
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 995 in run
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1044 in _bootstrap_inner
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1015 in _bootstrap
+[SubprocessWorker] callback 'report_progress' from call_id=1
+[worker:ComfyUI-LiTo] Thread 0x00002dcc (most recent call first):
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 106 in _vram_poller
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 995 in run
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
 
-Current thread 0x00003a70 (most recent call first):
-  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_khebf8lf\persistent_worker.py", line 52 in _watchdog
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 995 in run
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1044 in _bootstrap_inner
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1015 in _bootstrap
+Current thread 0x00003304 (most recent call first):
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 52 in _watchdog
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 995 in run
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
 
-Thread 0x00001b88 (most recent call first):
-  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_khebf8lf\persistent_worker.py", line 1075 in send
-  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_khebf8lf\persistent_worker.py", line 1427 in _call_parent
-  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_khebf8lf\persistent_worker.py", line 1571 in _progress_hook
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\comfy\utils.py", line 1266 in update_absolute
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\load_model.py", line 143 in on_chunk
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\load_model.py", line 150 in _get_or_download_checkpoint
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\load_model.py", line 95 in execute
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\torch\utils\_contextlib.py", line 120 in decorate_context
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\comfy_api\latest\_io.py", line 1833 in EXECUTE_NORMALIZED
-  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_khebf8lf\persistent_worker.py", line 1762 in main
-  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_khebf8lf\persistent_worker.py", line 1807 in <module>
+Thread 0x000037a8 (most recent call first):
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1075 in send
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1427 in _call_parent
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1571 in _progress_hook
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\comfy\utils.py", line 1266 in update_absolute
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\load_model.py", line 143 in on_chunk
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\load_model.py", line 150 in _get_or_download_checkpoint
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\load_model.py", line 95 in execute
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\utils\_contextlib.py", line 120 in decorate_context
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\comfy_api\latest\_io.py", line 1833 in EXECUTE_NORMALIZED
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1762 in main
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1807 in <module>
 
 [SubprocessWorker] callback 'report_progress' from call_id=1
 [worker:ComfyUI-LiTo] === END ===
@@ -323,11 +320,15 @@ Thread 0x00001b88 (most recent call first):
 [SubprocessWorker] callback 'report_progress' from call_id=1
 [SubprocessWorker] callback 'report_progress' from call_id=1
 [SubprocessWorker] callback 'report_progress' from call_id=1
+[SubprocessWorker] callback 'report_progress' from call_id=1
+[SubprocessWorker] callback 'report_progress' from call_id=1
+[SubprocessWorker] callback 'report_progress' from call_id=1
+[SubprocessWorker] callback 'report_progress' from call_id=1
 [SubprocessWorker] got response: ok
-[comfy-env] LiToLoadModel done (80.32s): result: NodeOutput
-[VRAM] After LiToLoadModel: 1156 / 16379 MB
+[comfy-env] LiToLoadModel done (85.59s): result: NodeOutput
+[VRAM] After LiToLoadModel: 1130 / 8150 MB
 [comfy-env] Running LiToImageTo3D: sampling_steps: 20, cfg_scale: 3.0, sampling_method: 'heun', seed: 42, model: dict, image: torch.float32 [1,518,518,3] cpu, mask: torch.float32 [1,518,518] cpu
-[VRAM] Before LiToImageTo3D: 1156 / 16379 MB
+[VRAM] Before LiToImageTo3D: 1130 / 8150 MB
 [SubprocessWorker] call_method: nodes.inference.LiToImageTo3D.EXECUTE_NORMALIZED
 [SubprocessWorker] acquired lock, ensuring started...
 [ComfyUI-LiTo] Health check: ping (timeout=5.0s)...
@@ -346,16 +347,16 @@ Thread 0x00001b88 (most recent call first):
 [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[1, 518, 518]
 [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([1, 518, 518])
 [worker:ComfyUI-LiTo] [LiTo] start: device=cuda:0, dtype=bf16, steps=20, method=heun, cfg=3.0, seed=42
-[worker:ComfyUI-LiTo] [LiTo] load: checkpoint=C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\models\lito\lito_dit_rgba.ckpt, compile=False
+[worker:ComfyUI-LiTo] [LiTo] load: checkpoint=C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\models\lito\lito_dit_rgba.ckpt, compile=False
 [worker:ComfyUI-LiTo] WARNING: No comfy kitchen, using old apply_rope functions.
-[worker:ComfyUI-LiTo] loading model from C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\models\lito\lito_dit_rgba.ckpt
-[worker:ComfyUI-LiTo] GPU Name: NVIDIA GeForce RTX 4060 Ti
-[worker:ComfyUI-LiTo] Compute Capability: 8.9
-C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\plibs\rigid_motion.py:1138: SyntaxWarning: invalid escape sequence '\O'
+[worker:ComfyUI-LiTo] loading model from C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\models\lito\lito_dit_rgba.ckpt
+[worker:ComfyUI-LiTo] GPU Name: NVIDIA GeForce RTX 5060
+[worker:ComfyUI-LiTo] Compute Capability: 12.0
+C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\plibs\rigid_motion.py:1138: SyntaxWarning: invalid escape sequence '\O'
   Solid angle is of form d \Omega = sin(\theta) d\theta d\phi.
-C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\odelibs\ode_solvers.py:121: SyntaxWarning: invalid escape sequence '\i'
+C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\odelibs\ode_solvers.py:121: SyntaxWarning: invalid escape sequence '\i'
   We approximate x_final = \int_{ts[0]}^{ts[-1]} func(t, x) dt
-C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\odelibs\ode_solvers.py:175: SyntaxWarning: invalid escape sequence '\i'
+C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\odelibs\ode_solvers.py:175: SyntaxWarning: invalid escape sequence '\i'
   We approximate x_final = \int_{ts[0]}^{ts[-1]} func(t, x) dt
 [worker:ComfyUI-LiTo] [SPARSE] Backend: spconv, Attention: flash_attn
 [worker:ComfyUI-LiTo] [SPARSE][CONV] spconv algo: auto
@@ -363,9 +364,9 @@ C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom
 [worker:ComfyUI-LiTo] [SPARSE] Backend: spconv, Attention: flash_attn
 [worker:ComfyUI-LiTo] [SPARSE][CONV] spconv algo: auto
 [worker:ComfyUI-LiTo] [ATTENTION] Using backend: flash_attn
-C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\plibs\gs_utils.py:929: SyntaxWarning: invalid escape sequence '\s'
+C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\plibs\gs_utils.py:929: SyntaxWarning: invalid escape sequence '\s'
   "expectation": expected z-depth.  z_out = (\sum_i wi zi) / (\sum_i wi)
-C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\plibs\structures.py:10734: SyntaxWarning: invalid escape sequence '\i'
+C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\plibs\structures.py:10734: SyntaxWarning: invalid escape sequence '\i'
   'wrgb': the correction is 3 scalars \in [0, 1] that multiply to RGB channels separately
 C:\Users\ContainerUser/.cache\torch\hub\facebookresearch_dinov2_main\dinov2\layers\swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
   warnings.warn("xFormers is not available (SwiGLU)")
@@ -373,225 +374,239 @@ C:\Users\ContainerUser/.cache\torch\hub\facebookresearch_dinov2_main\dinov2\laye
   warnings.warn("xFormers is not available (Attention)")
 C:\Users\ContainerUser/.cache\torch\hub\facebookresearch_dinov2_main\dinov2\layers\block.py:40: UserWarning: xFormers is not available (Block)
   warnings.warn("xFormers is not available (Block)")
-  0%|          | 0.00/1.13G [00:00<?, ?B/s]  1%|          | 5.88M/1.13G [00:00<00:19, 61.0MB/s]  1%|          | 11.8M/1.13G [00:00<00:20, 57.4MB/s]  2%|▏         | 22.9M/1.13G [00:00<00:14, 82.6MB/s]  3%|▎         | 34.2M/1.13G [00:00<00:12, 96.5MB/s]  4%|▍         | 45.6M/1.13G [00:00<00:11, 104MB/s]   5%|▍         | 57.0M/1.13G [00:00<00:10, 109MB/s]  6%|▌         | 68.4M/1.13G [00:00<00:10, 112MB/s]  7%|▋         | 79.8M/1.13G [00:00<00:09, 114MB/s]  8%|▊         | 91.0M/1.13G [00:00<00:09, 115MB/s]  9%|▉         | 102M/1.13G [00:01<00:09, 116MB/s]  10%|▉         | 114M/1.13G [00:01<00:09, 117MB/s] 11%|█         | 125M/1.13G [00:01<00:09, 118MB/s] 12%|█▏        | 136M/1.13G [00:01<00:09, 118MB/s] 13%|█▎        | 148M/1.13G [00:01<00:09, 118MB/s] 14%|█▎        | 159M/1.13G [00:01<00:08, 118MB/s] 15%|█▍        | 171M/1.13G [00:01<00:08, 118MB/s] 16%|█▌        | 182M/1.13G [00:01<00:08, 118MB/s] 17%|█▋        | 194M/1.13G [00:01<00:08, 119MB/s] 18%|█▊        | 205M/1.13G [00:01<00:08, 118MB/s] 19%|█▊        | 216M/1.13G [00:02<00:08, 118MB/s] 20%|█▉        | 228M/1.13G [00:02<00:08, 118MB/s] 21%|██        | 239M/1.13G [00:02<00:08, 118MB/s] 22%|██▏       | 250M/1.13G [00:02<00:08, 118MB/s] 23%|██▎       | 262M/1.13G [00:02<00:07, 118MB/s] 24%|██▎       | 273M/1.13G [00:02<00:07, 118MB/s] 25%|██▍       | 285M/1.13G [00:02<00:07, 119MB/s] 25%|██▌       | 296M/1.13G [00:02<00:07, 118MB/s] 26%|██▋       | 307M/1.13G [00:02<00:07, 118MB/s] 27%|██▋       | 319M/1.13G [00:02<00:07, 118MB/s] 28%|██▊       | 330M/1.13G [00:03<00:07, 118MB/s] 29%|██▉       | 342M/1.13G [00:03<00:07, 118MB/s] 30%|███       | 353M/1.13G [00:03<00:07, 119MB/s] 31%|███▏      | 364M/1.13G [00:03<00:07, 118MB/s] 32%|███▏      | 376M/1.13G [00:03<00:06, 118MB/s] 33%|███▎      | 387M/1.13G [00:03<00:06, 118MB/s] 34%|███▍      | 398M/1.13G [00:03<00:06, 118MB/s] 35%|███▌      | 410M/1.13G [00:03<00:06, 118MB/s] 36%|███▋      | 421M/1.13G [00:03<00:06, 118MB/s] 37%|███▋      | 432M/1.13G [00:03<00:06, 118MB/s] 38%|███▊      | 444M/1.13G [00:04<00:06, 118MB/s] 39%|███▉      | 455M/1.13G [00:04<00:06, 118MB/s] 40%|████      | 467M/1.13G [00:04<00:06, 119MB/s] 41%|████      | 478M/1.13G [00:04<00:06, 118MB/s] 42%|████▏     | 490M/1.13G [00:04<00:05, 118MB/s] 43%|████▎     | 501M/1.13G [00:04<00:05, 118MB/s] 44%|████▍     | 512M/1.13G [00:04<00:05, 118MB/s] 45%|████▌     | 524M/1.13G [00:04<00:05, 118MB/s] 46%|████▌     | 535M/1.13G [00:04<00:05, 118MB/s] 47%|████▋     | 546M/1.13G [00:04<00:05, 118MB/s] 48%|████▊     | 558M/1.13G [00:05<00:05, 118MB/s] 49%|████▉     | 570M/1.13G [00:05<00:05, 118MB/s] 50%|█████     | 581M/1.13G [00:05<00:05, 118MB/s] 51%|█████     | 592M/1.13G [00:05<00:05, 118MB/s] 52%|█████▏    | 604M/1.13G [00:05<00:04, 119MB/s] 53%|█████▎    | 615M/1.13G [00:05<00:04, 118MB/s] 54%|█████▍    | 626M/1.13G [00:05<00:04, 118MB/s] 55%|█████▍    | 638M/1.13G [00:05<00:04, 118MB/s] 56%|█████▌    | 649M/1.13G [00:05<00:04, 118MB/s] 57%|█████▋    | 661M/1.13G [00:05<00:04, 118MB/s] 58%|█████▊    | 672M/1.13G [00:06<00:04, 119MB/s] 59%|█████▉    | 684M/1.13G [00:06<00:04, 118MB/s] 60%|█████▉    | 695M/1.13G [00:06<00:04, 118MB/s] 61%|██████    | 706M/1.13G [00:06<00:04, 118MB/s] 62%|██████▏   | 718M/1.13G [00:06<00:03, 118MB/s] 63%|██████▎   | 729M/1.13G [00:06<00:03, 118MB/s] 64%|██████▍   | 740M/1.13G [00:06<00:03, 118MB/s] 65%|██████▍   | 752M/1.13G [00:06<00:03, 118MB/s] 66%|██████▌   | 763M/1.13G [00:06<00:03, 118MB/s] 67%|██████▋   | 775M/1.13G [00:06<00:03, 118MB/s] 68%|██████▊   | 786M/1.13G [00:07<00:03, 118MB/s] 69%|██████▊   | 798M/1.13G [00:07<00:03, 119MB/s] 70%|██████▉   | 809M/1.13G [00:07<00:03, 119MB/s] 71%|███████   | 820M/1.13G [00:07<00:03, 118MB/s] 72%|███████▏  | 832M/1.13G [00:07<00:02, 118MB/s] 73%|███████▎  | 843M/1.13G [00:07<00:02, 119MB/s] 74%|███████▎  | 854M/1.13G [00:07<00:02, 118MB/s] 75%|███████▍  | 866M/1.13G [00:07<00:02, 118MB/s] 76%|███████▌  | 877M/1.13G [00:07<00:02, 118MB/s] 77%|███████▋  | 889M/1.13G [00:07<00:02, 118MB/s] 78%|███████▊  | 900M/1.13G [00:08<00:02, 118MB/s] 78%|███████▊  | 912M/1.13G [00:08<00:02, 118MB/s] 79%|███████▉  | 923M/1.13G [00:08<00:02, 119MB/s] 80%|████████  | 934M/1.13G [00:08<00:02, 118MB/s] 81%|████████▏ | 946M/1.13G [00:08<00:01, 118MB/s] 82%|████████▏ | 957M/1.13G [00:08<00:01, 118MB/s] 83%|████████▎ | 968M/1.13G [00:08<00:01, 118MB/s] 84%|████████▍ | 980M/1.13G [00:08<00:01, 119MB/s] 85%|████████▌ | 991M/1.13G [00:08<00:01, 119MB/s] 86%|████████▋ | 0.98G/1.13G [00:08<00:01, 119MB/s] 87%|████████▋ | 0.99G/1.13G [00:09<00:01, 118MB/s] 88%|████████▊ | 1.00G/1.13G [00:09<00:01, 118MB/s] 89%|████████▉ | 1.01G/1.13G [00:09<00:01, 118MB/s] 90%|█████████ | 1.02G/1.13G [00:09<00:01, 118MB/s] 91%|█████████ | 1.03G/1.13G [00:09<00:00, 119MB/s] 92%|█████████▏| 1.05G/1.13G [00:09<00:00, 118MB/s] 93%|█████████▎| 1.06G/1.13G [00:09<00:00, 119MB/s] 94%|█████████▍| 1.07G/1.13G [00:09<00:00, 118MB/s] 95%|█████████▌| 1.08G/1.13G [00:09<00:00, 118MB/s] 96%|█████████▌| 1.09G/1.13G [00:10<00:00, 118MB/s] 97%|█████████▋| 1.10G/1.13G [00:10<00:00, 118MB/s] 98%|█████████▊| 1.11G/1.13G [00:10<00:00, 52.6MB/s] 99%|█████████▉| 1.12G/1.13G [00:10<00:00, 61.3MB/s]100%|█████████▉| 1.13G/1.13G [00:10<00:00, 71.9MB/s]100%|██████████| 1.13G/1.13G [00:10<00:00, 112MB/s] 
-C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\huggingface_hub\file_download.py:138: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\ContainerUser\.cache\huggingface\hub\models--microsoft--TRELLIS-image-large. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
-To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
-  warnings.warn(message)
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-[worker:ComfyUI-LiTo] WARNING: Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  0%|          | 0.00/1.13G [00:00<?, ?B/s]  1%|          | 11.0M/1.13G [00:00<00:10, 114MB/s]  2%|▏         | 22.0M/1.13G [00:00<00:10, 114MB/s]  3%|▎         | 33.6M/1.13G [00:00<00:10, 117MB/s]  4%|▍         | 45.1M/1.13G [00:00<00:09, 117MB/s]  5%|▍         | 56.5M/1.13G [00:00<00:09, 118MB/s]  6%|▌         | 67.8M/1.13G [00:00<00:09, 118MB/s]  7%|▋         | 79.1M/1.13G [00:00<00:09, 118MB/s]  8%|▊         | 90.8M/1.13G [00:00<00:09, 119MB/s]  9%|▉         | 102M/1.13G [00:00<00:09, 118MB/s]  10%|▉         | 113M/1.13G [00:01<00:09, 117MB/s] 11%|█         | 125M/1.13G [00:01<00:09, 117MB/s] 12%|█▏        | 136M/1.13G [00:01<00:09, 118MB/s] 13%|█▎        | 148M/1.13G [00:01<00:08, 118MB/s] 14%|█▎        | 159M/1.13G [00:01<00:08, 118MB/s] 15%|█▍        | 170M/1.13G [00:01<00:08, 118MB/s] 16%|█▌        | 182M/1.13G [00:01<00:08, 118MB/s] 17%|█▋        | 193M/1.13G [00:01<00:08, 116MB/s] 18%|█▊        | 204M/1.13G [00:01<00:08, 116MB/s] 19%|█▊        | 216M/1.13G [00:01<00:08, 117MB/s] 20%|█▉        | 227M/1.13G [00:02<00:08, 118MB/s] 21%|██        | 238M/1.13G [00:02<00:08, 118MB/s] 22%|██▏       | 250M/1.13G [00:02<00:08, 118MB/s] 22%|██▏       | 261M/1.13G [00:02<00:08, 118MB/s] 23%|██▎       | 272M/1.13G [00:02<00:08, 111MB/s] 24%|██▍       | 284M/1.13G [00:02<00:08, 113MB/s] 25%|██▌       | 295M/1.13G [00:02<00:07, 115MB/s] 26%|██▋       | 306M/1.13G [00:02<00:07, 113MB/s] 27%|██▋       | 318M/1.13G [00:02<00:07, 115MB/s] 28%|██▊       | 329M/1.13G [00:02<00:07, 116MB/s] 29%|██▉       | 340M/1.13G [00:03<00:07, 117MB/s] 30%|███       | 352M/1.13G [00:03<00:07, 117MB/s] 31%|███▏      | 363M/1.13G [00:03<00:07, 118MB/s] 32%|███▏      | 375M/1.13G [00:03<00:07, 117MB/s] 33%|███▎      | 386M/1.13G [00:03<00:06, 118MB/s] 34%|███▍      | 397M/1.13G [00:03<00:06, 118MB/s] 35%|███▌      | 409M/1.13G [00:03<00:06, 118MB/s] 36%|███▌      | 420M/1.13G [00:03<00:06, 118MB/s] 37%|███▋      | 432M/1.13G [00:03<00:06, 118MB/s] 38%|███▊      | 443M/1.13G [00:03<00:06, 118MB/s] 39%|███▉      | 454M/1.13G [00:04<00:06, 118MB/s] 40%|████      | 466M/1.13G [00:04<00:06, 118MB/s] 41%|████      | 477M/1.13G [00:04<00:06, 118MB/s] 42%|████▏     | 488M/1.13G [00:04<00:05, 118MB/s] 43%|████▎     | 500M/1.13G [00:04<00:05, 118MB/s] 44%|████▍     | 511M/1.13G [00:04<00:05, 118MB/s] 45%|████▌     | 523M/1.13G [00:04<00:05, 118MB/s] 46%|████▌     | 534M/1.13G [00:04<00:05, 118MB/s] 47%|████▋     | 546M/1.13G [00:04<00:05, 118MB/s] 48%|████▊     | 557M/1.13G [00:04<00:05, 118MB/s] 49%|████▉     | 568M/1.13G [00:05<00:05, 118MB/s] 50%|████▉     | 580M/1.13G [00:05<00:05, 118MB/s] 51%|█████     | 591M/1.13G [00:05<00:05, 118MB/s] 52%|█████▏    | 602M/1.13G [00:05<00:04, 118MB/s] 53%|█████▎    | 614M/1.13G [00:05<00:04, 119MB/s] 54%|█████▍    | 625M/1.13G [00:05<00:04, 118MB/s] 55%|█████▍    | 637M/1.13G [00:05<00:04, 118MB/s] 56%|█████▌    | 648M/1.13G [00:05<00:04, 118MB/s] 57%|█████▋    | 659M/1.13G [00:05<00:04, 118MB/s] 58%|█████▊    | 671M/1.13G [00:05<00:04, 118MB/s] 59%|█████▊    | 682M/1.13G [00:06<00:04, 118MB/s] 60%|█████▉    | 694M/1.13G [00:06<00:04, 118MB/s] 61%|██████    | 705M/1.13G [00:06<00:04, 118MB/s] 62%|██████▏   | 716M/1.13G [00:06<00:03, 118MB/s] 63%|██████▎   | 728M/1.13G [00:06<00:03, 118MB/s] 64%|██████▎   | 739M/1.13G [00:06<00:03, 118MB/s] 65%|██████▍   | 750M/1.13G [00:06<00:03, 116MB/s] 66%|██████▌   | 762M/1.13G [00:06<00:03, 117MB/s] 67%|██████▋   | 773M/1.13G [00:06<00:03, 117MB/s] 68%|██████▊   | 784M/1.13G [00:07<00:03, 118MB/s] 69%|██████▊   | 796M/1.13G [00:07<00:03, 118MB/s] 70%|██████▉   | 807M/1.13G [00:07<00:03, 118MB/s] 70%|███████   | 819M/1.13G [00:07<00:03, 118MB/s] 71%|███████▏  | 830M/1.13G [00:07<00:02, 118MB/s] 72%|███████▏  | 841M/1.13G [00:07<00:02, 118MB/s] 73%|███████▎  | 853M/1.13G [00:07<00:02, 118MB/s] 74%|███████▍  | 864M/1.13G [00:07<00:02, 116MB/s] 75%|███████▌  | 875M/1.13G [00:07<00:02, 117MB/s] 76%|███████▋  | 887M/1.13G [00:07<00:02, 117MB/s] 77%|███████▋  | 898M/1.13G [00:08<00:02, 117MB/s] 78%|███████▊  | 909M/1.13G [00:08<00:02, 118MB/s] 79%|███████▉  | 921M/1.13G [00:08<00:02, 118MB/s] 80%|████████  | 932M/1.13G [00:08<00:02, 118MB/s] 81%|████████▏ | 944M/1.13G [00:08<00:01, 118MB/s] 82%|████████▏ | 955M/1.13G [00:08<00:01, 118MB/s] 83%|████████▎ | 966M/1.13G [00:08<00:01, 118MB/s] 84%|████████▍ | 978M/1.13G [00:08<00:01, 118MB/s] 85%|████████▌ | 989M/1.13G [00:08<00:01, 118MB/s] 86%|████████▌ | 0.98G/1.13G [00:08<00:01, 118MB/s] 87%|████████▋ | 0.99G/1.13G [00:09<00:01, 119MB/s] 88%|████████▊ | 1.00G/1.13G [00:09<00:01, 118MB/s] 89%|████████▉ | 1.01G/1.13G [00:09<00:01, 118MB/s] 90%|█████████ | 1.02G/1.13G [00:09<00:01, 119MB/s] 91%|█████████ | 1.03G/1.13G [00:09<00:00, 118MB/s] 92%|█████████▏| 1.04G/1.13G [00:09<00:00, 118MB/s] 93%|█████████▎| 1.06G/1.13G [00:09<00:00, 116MB/s] 94%|█████████▍| 1.07G/1.13G [00:09<00:00, 117MB/s] 95%|█████████▍| 1.08G/1.13G [00:09<00:00, 117MB/s] 96%|█████████▌| 1.09G/1.13G [00:09<00:00, 117MB/s] 97%|█████████▋| 1.10G/1.13G [00:10<00:00, 117MB/s] 98%|█████████▊| 1.11G/1.13G [00:10<00:00, 117MB/s] 99%|█████████▉| 1.12G/1.13G [00:10<00:00, 118MB/s]100%|█████████▉| 1.13G/1.13G [00:10<00:00, 118MB/s]100%|██████████| 1.13G/1.13G [00:10<00:00, 118MB/s]
 [worker:ComfyUI-LiTo] 
 === WATCHDOG TICK 2 ===
-[worker:ComfyUI-LiTo] Thread 0x00002ca4 (most recent call first):
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 363 in wait
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 660 in wait
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\tqdm\_monitor.py", line 60 in run
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1044 in _bootstrap_inner
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1015 in _bootstrap
+[worker:ComfyUI-LiTo] Thread 0x0000359c (most recent call first):
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 363 in wait
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 660 in wait
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\tqdm\_monitor.py", line 60 in run
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
 
-Thread 0x00003264 (most recent call first):
-  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_khebf8lf\persistent_worker.py", line 106 in _vram_poller
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 995 in run
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1044 in _bootstrap_inner
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1015 in _bootstrap
+Thread 0x00002dcc (most recent call first):
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 106 in _vram_poller
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 995 in run
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
 
-Current thread 0x00003a70 (most recent call first):
-  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_khebf8lf\persistent_worker.py", line 52 in _watchdog
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 995 in run
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1044 in _bootstrap_inner
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1015 in _bootstrap
+Current thread 0x00003304 (most recent call first):
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 52 in _watchdog
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 995 in run
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
 
-Thread 0x00001b88 (most recent call first):
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\cumm\gemm\core\metaarray.py", line 106 in metaseq
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\cumm\gemm\thread_map.py", line 389 in __init__
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\pccm\core\__init__.py", line 983 in wrapper
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\cumm\gemm\algospec\turing.py", line 417 in __init__
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\cumm\conv\algospec\turing.py", line 269 in __init__
-  File "__init__", line ??? in __init__
-  <invalid frame>
+Thread 0x000037a8 (most recent call first):
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\serialization.py", line 2036 in load_tensor
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\serialization.py", line 2083 in persistent_load
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\serialization.py", line 2119 in _load
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\serialization.py", line 1530 in load
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\hub.py", line 875 in load_state_dict_from_url
+  File "C:\Users\ContainerUser/.cache\torch\hub\facebookresearch_dinov2_main\dinov2\hub\backbones.py", line 76 in _make_dinov2_model
+  File "C:\Users\ContainerUser/.cache\torch\hub\facebookresearch_dinov2_main\dinov2\hub\backbones.py", line 150 in dinov2_vitl14_reg
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\hub.py", line 680 in _load_local
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\hub.py", line 647 in load
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\dino.py", line 318 in __init__
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\dino.py", line 497 in __init__
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 560 in load_img_encoder
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 179 in __init__
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\eval_scripts\st_model_utils.py", line 146 in load_model
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\inference.py", line 173 in _load_and_cache_model
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\inference.py", line 289 in execute
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\utils\_contextlib.py", line 120 in decorate_context
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\comfy_api\latest\_io.py", line 1833 in EXECUTE_NORMALIZED
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1762 in main
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1807 in <module>
 
 [worker:ComfyUI-LiTo] === END ===
 
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[worker:ComfyUI-LiTo] WARNING: Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\huggingface_hub\file_download.py:138: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\ContainerUser\.cache\huggingface\hub\models--microsoft--TRELLIS-image-large. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
 [worker:ComfyUI-LiTo] Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
-C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
   warnings.warn(
-C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
   warnings.warn(msg)
-  0%|          | 0.00/528M [00:00<?, ?B/s]  1%|          | 6.25M/528M [00:00<00:08, 65.4MB/s]  2%|▏         | 12.5M/528M [00:00<00:08, 60.4MB/s]  4%|▍         | 23.5M/528M [00:00<00:06, 84.4MB/s]  7%|▋         | 34.4M/528M [00:00<00:05, 95.7MB/s]  9%|▊         | 45.8M/528M [00:00<00:04, 104MB/s]  11%|█         | 57.2M/528M [00:00<00:04, 109MB/s] 13%|█▎        | 68.6M/528M [00:00<00:04, 112MB/s] 15%|█▌        | 80.0M/528M [00:00<00:04, 114MB/s] 17%|█▋        | 91.0M/528M [00:00<00:04, 114MB/s] 19%|█▉        | 102M/528M [00:01<00:03, 116MB/s]  22%|██▏       | 114M/528M [00:01<00:03, 116MB/s] 24%|██▎       | 125M/528M [00:01<00:03, 116MB/s] 26%|██▌       | 136M/528M [00:01<00:03, 117MB/s] 28%|██▊       | 148M/528M [00:01<00:03, 117MB/s] 30%|███       | 159M/528M [00:01<00:03, 118MB/s] 32%|███▏      | 171M/528M [00:01<00:03, 119MB/s] 35%|███▍      | 182M/528M [00:01<00:03, 117MB/s] 37%|███▋      | 193M/528M [00:01<00:03, 117MB/s] 39%|███▉      | 205M/528M [00:01<00:02, 117MB/s] 41%|████      | 216M/528M [00:02<00:02, 118MB/s] 43%|████▎     | 228M/528M [00:02<00:02, 118MB/s] 45%|████▌     | 239M/528M [00:02<00:02, 118MB/s] 47%|████▋     | 250M/528M [00:02<00:02, 118MB/s] 50%|████▉     | 262M/528M [00:02<00:02, 118MB/s] 52%|█████▏    | 273M/528M [00:02<00:02, 118MB/s] 54%|█████▍    | 284M/528M [00:02<00:02, 118MB/s] 56%|█████▌    | 296M/528M [00:02<00:02, 118MB/s] 58%|█████▊    | 307M/528M [00:02<00:01, 118MB/s] 60%|██████    | 318M/528M [00:02<00:01, 118MB/s] 63%|██████▎   | 330M/528M [00:03<00:01, 118MB/s] 65%|██████▍   | 341M/528M [00:03<00:01, 118MB/s] 67%|██████▋   | 353M/528M [00:03<00:01, 118MB/s] 69%|██████▉   | 364M/528M [00:03<00:01, 118MB/s] 71%|███████   | 375M/528M [00:03<00:01, 118MB/s] 73%|███████▎  | 387M/528M [00:03<00:01, 118MB/s] 75%|███████▌  | 398M/528M [00:03<00:01, 118MB/s] 78%|███████▊  | 410M/528M [00:03<00:01, 118MB/s] 80%|███████▉  | 421M/528M [00:03<00:00, 119MB/s] 82%|████████▏ | 432M/528M [00:03<00:00, 118MB/s] 84%|████████▍ | 444M/528M [00:04<00:00, 118MB/s] 86%|████████▌ | 455M/528M [00:04<00:00, 118MB/s] 88%|████████▊ | 466M/528M [00:04<00:00, 118MB/s] 91%|█████████ | 478M/528M [00:04<00:00, 118MB/s] 93%|█████████▎| 489M/528M [00:04<00:00, 118MB/s] 95%|█████████▍| 501M/528M [00:04<00:00, 119MB/s] 97%|█████████▋| 512M/528M [00:04<00:00, 118MB/s] 99%|█████████▉| 524M/528M [00:04<00:00, 118MB/s]100%|██████████| 528M/528M [00:04<00:00, 115MB/s]
-[worker:ComfyUI-LiTo] Loading model from: C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\lpips\weights\v0.1\vgg.pth
-[worker:ComfyUI-LiTo] [VRAM] +223MB (now 223MB) reserved=224MB peak=223MB
-[worker:ComfyUI-LiTo] [VRAM] +875MB (now 1099MB) reserved=1120MB peak=1099MB
-[worker:ComfyUI-LiTo] [VRAM] +1223MB (now 2322MB) reserved=2336MB peak=2322MB
-[worker:ComfyUI-LiTo] [VRAM] +1188MB (now 3511MB) reserved=3520MB peak=3511MB
+  0%|          | 0.00/528M [00:00<?, ?B/s]  1%|          | 5.62M/528M [00:00<00:09, 58.3MB/s]  2%|▏         | 11.2M/528M [00:00<00:09, 54.3MB/s]  4%|▍         | 21.9M/528M [00:00<00:06, 79.1MB/s]  6%|▋         | 33.1M/528M [00:00<00:05, 93.9MB/s]  8%|▊         | 44.6M/528M [00:00<00:04, 103MB/s]  11%|█         | 56.0M/528M [00:00<00:04, 108MB/s] 13%|█▎        | 67.4M/528M [00:00<00:04, 111MB/s] 15%|█▍        | 78.8M/528M [00:00<00:04, 114MB/s] 17%|█▋        | 90.1M/528M [00:00<00:03, 115MB/s] 19%|█▉        | 102M/528M [00:01<00:03, 116MB/s]  21%|██▏       | 113M/528M [00:01<00:03, 117MB/s] 24%|██▎       | 124M/528M [00:01<00:03, 117MB/s] 26%|██▌       | 136M/528M [00:01<00:03, 117MB/s] 28%|██▊       | 147M/528M [00:01<00:03, 118MB/s] 30%|███       | 158M/528M [00:01<00:03, 118MB/s] 32%|███▏      | 170M/528M [00:01<00:03, 118MB/s] 34%|███▍      | 181M/528M [00:01<00:03, 118MB/s] 36%|███▋      | 193M/528M [00:01<00:02, 118MB/s] 39%|███▊      | 204M/528M [00:01<00:02, 118MB/s] 41%|████      | 215M/528M [00:02<00:02, 118MB/s] 43%|████▎     | 227M/528M [00:02<00:02, 118MB/s] 45%|████▌     | 238M/528M [00:02<00:02, 107MB/s] 47%|████▋     | 249M/528M [00:02<00:02, 109MB/s] 49%|████▉     | 260M/528M [00:02<00:02, 111MB/s] 51%|█████▏    | 271M/528M [00:02<00:02, 113MB/s] 53%|█████▎    | 282M/528M [00:02<00:02, 90.2MB/s] 56%|█████▌    | 294M/528M [00:02<00:02, 97.4MB/s] 58%|█████▊    | 305M/528M [00:02<00:02, 102MB/s]  60%|█████▉    | 316M/528M [00:03<00:02, 107MB/s] 62%|██████▏   | 328M/528M [00:03<00:01, 110MB/s] 64%|██████▍   | 339M/528M [00:03<00:01, 112MB/s] 66%|██████▋   | 350M/528M [00:03<00:01, 114MB/s] 69%|██████▊   | 362M/528M [00:03<00:01, 115MB/s] 71%|███████   | 373M/528M [00:03<00:01, 116MB/s] 73%|███████▎  | 384M/528M [00:03<00:01, 117MB/s] 75%|███████▍  | 396M/528M [00:03<00:01, 97.0MB/s] 77%|███████▋  | 406M/528M [00:03<00:01, 99.6MB/s] 79%|███████▉  | 417M/528M [00:04<00:01, 104MB/s]  81%|████████  | 428M/528M [00:04<00:00, 106MB/s] 83%|████████▎ | 439M/528M [00:04<00:00, 110MB/s] 85%|████████▌ | 450M/528M [00:04<00:00, 112MB/s] 87%|████████▋ | 462M/528M [00:04<00:00, 114MB/s] 90%|████████▉ | 473M/528M [00:04<00:00, 115MB/s] 92%|█████████▏| 484M/528M [00:04<00:00, 116MB/s] 94%|█████████▍| 496M/528M [00:04<00:00, 117MB/s] 96%|█████████▌| 507M/528M [00:04<00:00, 117MB/s] 98%|█████████▊| 518M/528M [00:04<00:00, 117MB/s]100%|██████████| 528M/528M [00:05<00:00, 110MB/s]
+[worker:ComfyUI-LiTo] Loading model from: C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\lpips\weights\v0.1\vgg.pth
+[worker:ComfyUI-LiTo] [VRAM] +201MB (now 201MB) reserved=224MB peak=201MB
+[worker:ComfyUI-LiTo] [VRAM] +685MB (now 886MB) reserved=896MB peak=886MB
+[worker:ComfyUI-LiTo] [VRAM] +882MB (now 1769MB) reserved=1792MB peak=1769MB
+[worker:ComfyUI-LiTo] [VRAM] +1222MB (now 2992MB) reserved=3008MB peak=2992MB
 [worker:ComfyUI-LiTo] loaded model at iter 0
+[worker:ComfyUI-LiTo] [VRAM] +519MB (now 3511MB) reserved=3520MB peak=3511MB
 [SubprocessWorker] callback 'request_vram_budget' from call_id=2
-[comfy-env] VRAM request: 3.68GB, free before eviction: 15.96GB
-[comfy-env] VRAM after eviction: 15.96GB
-[worker:ComfyUI-LiTo] [LiTo] load: ok in 57.8s, peak VRAM 3.43 GB
+[comfy-env] VRAM request: 3.68GB, free before eviction: 7.36GB
+[comfy-env] VRAM after eviction: 7.36GB
+[worker:ComfyUI-LiTo] [LiTo] load: ok in 74.3s, peak VRAM 3.43 GB
 [worker:ComfyUI-LiTo] [LiTo] sample: DiT, 20 heun steps
-[worker:ComfyUI-LiTo] [VRAM] +294MB (now 3805MB) reserved=4352MB peak=3805MB
-[worker:ComfyUI-LiTo] [VRAM] -250MB (now 3556MB) reserved=4544MB peak=4146MB
-[worker:ComfyUI-LiTo] [VRAM] +553MB (now 4109MB) reserved=4544MB peak=4146MB
+[worker:ComfyUI-LiTo] [VRAM] +486MB (now 3997MB) reserved=4160MB peak=3997MB
+[worker:ComfyUI-LiTo] [VRAM] -269MB (now 3728MB) reserved=4544MB peak=4213MB
 [SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 1/19 (3.7s elapsed, ~66s remaining)
-[worker:ComfyUI-LiTo] [VRAM] -320MB (now 3789MB) reserved=4544MB peak=4146MB
-[worker:ComfyUI-LiTo] [VRAM] +278MB (now 4068MB) reserved=4544MB peak=4185MB
-[worker:ComfyUI-LiTo] [VRAM] -249MB (now 3819MB) reserved=4544MB peak=4185MB
-[worker:ComfyUI-LiTo] [VRAM] +293MB (now 4113MB) reserved=4544MB peak=4185MB
+[worker:ComfyUI-LiTo] [LiTo] sample: 1/19 (3.9s elapsed, ~70s remaining)
+[worker:ComfyUI-LiTo] [VRAM] +493MB (now 4222MB) reserved=4544MB peak=4222MB
+[worker:ComfyUI-LiTo] [VRAM] -433MB (now 3789MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +438MB (now 4227MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -439MB (now 3789MB) reserved=4544MB peak=4227MB
 [SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 2/19 (7.6s elapsed, ~64s remaining)
-[worker:ComfyUI-LiTo] [VRAM] -396MB (now 3717MB) reserved=4544MB peak=4227MB
-[worker:ComfyUI-LiTo] [VRAM] +431MB (now 4149MB) reserved=4544MB peak=4227MB
-[worker:ComfyUI-LiTo] [VRAM] -276MB (now 3873MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [LiTo] sample: 2/19 (7.7s elapsed, ~65s remaining)
+[worker:ComfyUI-LiTo] [VRAM] +365MB (now 4154MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -366MB (now 3789MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +438MB (now 4227MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -247MB (now 3981MB) reserved=4544MB peak=4227MB
 [SubprocessWorker] callback 'report_progress' from call_id=2
 [worker:ComfyUI-LiTo] [LiTo] sample: 3/19 (11.5s elapsed, ~61s remaining)
-[worker:ComfyUI-LiTo] [VRAM] +311MB (now 4185MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -385MB (now 3800MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +421MB (now 4222MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -427MB (now 3795MB) reserved=4544MB peak=4365MB
+[worker:ComfyUI-LiTo] [VRAM] -264MB (now 3717MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +216MB (now 3933MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +293MB (now 4227MB) reserved=4544MB peak=4227MB
 [SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 4/19 (15.4s elapsed, ~58s remaining)
-[worker:ComfyUI-LiTo] [VRAM] +389MB (now 4185MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -384MB (now 3802MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +352MB (now 4154MB) reserved=4544MB peak=4365MB
+[worker:ComfyUI-LiTo] [LiTo] sample: 4/19 (15.2s elapsed, ~57s remaining)
+[worker:ComfyUI-LiTo] [VRAM] -403MB (now 3825MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +324MB (now 4149MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -276MB (now 3873MB) reserved=4544MB peak=4227MB
 [SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 5/19 (19.3s elapsed, ~54s remaining)
-[worker:ComfyUI-LiTo] [VRAM] -360MB (now 3795MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -224MB (now 3572MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +361MB (now 3933MB) reserved=4544MB peak=4365MB
-[SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 6/19 (23.2s elapsed, ~50s remaining)
-[worker:ComfyUI-LiTo] [VRAM] +239MB (now 4173MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -300MB (now 3873MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +239MB (now 4113MB) reserved=4544MB peak=4365MB
-[SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 7/19 (27.0s elapsed, ~46s remaining)
-[worker:ComfyUI-LiTo] [VRAM] -381MB (now 3732MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +416MB (now 4149MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -349MB (now 3800MB) reserved=4544MB peak=4365MB
-[SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 8/19 (30.9s elapsed, ~43s remaining)
-[worker:ComfyUI-LiTo] [VRAM] +384MB (now 4185MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -468MB (now 3717MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +288MB (now 4005MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -273MB (now 3732MB) reserved=4544MB peak=4365MB
-[SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 9/19 (34.8s elapsed, ~39s remaining)
-[worker:ComfyUI-LiTo] [VRAM] +380MB (now 4113MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -252MB (now 3861MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -216MB (now 3645MB) reserved=4544MB peak=4365MB
-[SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 10/19 (38.7s elapsed, ~35s remaining)
-[worker:ComfyUI-LiTo] [VRAM] +228MB (now 3873MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +280MB (now 4154MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -354MB (now 3800MB) reserved=4544MB peak=4365MB
-[SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 11/19 (42.7s elapsed, ~31s remaining)
-[worker:ComfyUI-LiTo] [VRAM] +384MB (now 4185MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -390MB (now 3795MB) reserved=4544MB peak=4365MB
+[worker:ComfyUI-LiTo] [LiTo] sample: 5/19 (19.0s elapsed, ~53s remaining)
+[worker:ComfyUI-LiTo] [VRAM] +203MB (now 4077MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -204MB (now 3873MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +353MB (now 4227MB) reserved=4544MB peak=4227MB
 [worker:ComfyUI-LiTo] 
 === WATCHDOG TICK 3 ===
-[worker:ComfyUI-LiTo] Thread 0x00002ca4 (most recent call first):
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 363 in wait
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 660 in wait
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\tqdm\_monitor.py", line 60 in run
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1044 in _bootstrap_inner
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1015 in _bootstrap
+[worker:ComfyUI-LiTo] Thread 0x0000359c (most recent call first):
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 363 in wait
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 660 in wait
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\tqdm\_monitor.py", line 60 in run
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
 
-Thread 0x00003264 (most recent call first):
-  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_khebf8lf\persistent_worker.py", line 106 in _vram_poller
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 995 in run
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1044 in _bootstrap_inner
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1015 in _bootstrap
+Thread 0x00002dcc (most recent call first):
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 106 in _vram_poller
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 995 in run
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
 
-Current thread 0x00003a70 (most recent call first):
-  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_khebf8lf\persistent_worker.py", line 52 in _watchdog
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 995 in run
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1044 in _bootstrap_inner
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\threading.py", line 1015 in _bootstrap
+Current thread 0x00003304 (most recent call first):
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 52 in _watchdog
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 995 in run
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
 
-Thread 0x00001b88 (most recent call first):
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\comfy\ops.py", line 475 in forward_comfy_cast_weights
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\comfy\ops.py", line 482 in forward
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\torch\nn\modules\module.py", line 1784 in _call_impl
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\torch\nn\modules\module.py", line 1773 in _wrapped_call_impl
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\dit.py", line 90 in forward
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\torch\nn\modules\module.py", line 1784 in _call_impl
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\torch\nn\modules\module.py", line 1773 in _wrapped_call_impl
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\dit.py", line 153 in forward
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\torch\nn\modules\module.py", line 1784 in _call_impl
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\torch\nn\modules\module.py", line 1773 in _wrapped_call_impl
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\dit.py", line 402 in forward
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\dit.py", line 436 in forward_with_cfg
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 395 in estimate_velocity_sampling
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\torch\utils\_contextlib.py", line 120 in decorate_context
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 466 in <lambda>
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\odelibs\ode_solvers.py", line 210 in odeint_heun
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\odelibs\ode_solvers.py", line 64 in odeint
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 495 in sampling
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 621 in inference_sample_latent
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\torch\utils\_contextlib.py", line 120 in decorate_context
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\inference.py", line 318 in execute
-  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\Lib\site-packages\torch\utils\_contextlib.py", line 120 in decorate_context
-  File "C:\workspaces\LiTo-1833\portable-comfyui\ComfyUI_windows_portable\ComfyUI\comfy_api\latest\_io.py", line 1833 in EXECUTE_NORMALIZED
-  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_khebf8lf\persistent_worker.py", line 1762 in main
-  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_khebf8lf\persistent_worker.py", line 1807 in <module>
+Thread 0x000037a8 (most recent call first):
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\layers.py", line 761 in _normalize
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\layers.py", line 779 in forward
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\nn\modules\module.py", line 1784 in _call_impl
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\nn\modules\module.py", line 1773 in _wrapped_call_impl
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\layers.py", line 177 in forward
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\nn\modules\module.py", line 1784 in _call_impl
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\nn\modules\module.py", line 1773 in _wrapped_call_impl
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\dit.py", line 146 in forward
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\nn\modules\module.py", line 1784 in _call_impl
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\nn\modules\module.py", line 1773 in _wrapped_call_impl
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\dit.py", line 402 in forward
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\dit.py", line 436 in forward_with_cfg
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 395 in estimate_velocity_sampling
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\utils\_contextlib.py", line 120 in decorate_context
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 466 in <lambda>
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\odelibs\ode_solvers.py", line 210 in odeint_heun
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\odelibs\ode_solvers.py", line 64 in odeint
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 495 in sampling
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 621 in inference_sample_latent
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\utils\_contextlib.py", line 120 in decorate_context
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\inference.py", line 318 in execute
+  File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\utils\_contextlib.py", line 120 in decorate_context
+  File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\comfy_api\latest\_io.py", line 1833 in EXECUTE_NORMALIZED
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1762 in main
+  File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1807 in <module>
 
 [worker:ComfyUI-LiTo] === END ===
 
-[worker:ComfyUI-LiTo] [VRAM] +359MB (now 4154MB) reserved=4544MB peak=4365MB
+[worker:ComfyUI-LiTo] [VRAM] -495MB (now 3732MB) reserved=4544MB peak=4227MB
 [SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 12/19 (46.6s elapsed, ~27s remaining)
-[worker:ComfyUI-LiTo] [VRAM] -305MB (now 3849MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +263MB (now 4113MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -240MB (now 3873MB) reserved=4544MB peak=4365MB
+[worker:ComfyUI-LiTo] [LiTo] sample: 6/19 (22.8s elapsed, ~49s remaining)
+[worker:ComfyUI-LiTo] [VRAM] +494MB (now 4227MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -583MB (now 3645MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +468MB (now 4113MB) reserved=4544MB peak=4227MB
 [SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 13/19 (50.5s elapsed, ~23s remaining)
-[worker:ComfyUI-LiTo] [VRAM] +353MB (now 4227MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -354MB (now 3873MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +239MB (now 4113MB) reserved=4544MB peak=4365MB
+[worker:ComfyUI-LiTo] [LiTo] sample: 7/19 (26.6s elapsed, ~46s remaining)
+[worker:ComfyUI-LiTo] [VRAM] -300MB (now 3813MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -234MB (now 3580MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +293MB (now 3873MB) reserved=4544MB peak=4227MB
 [SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 14/19 (54.4s elapsed, ~19s remaining)
-[worker:ComfyUI-LiTo] [VRAM] -396MB (now 3717MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +216MB (now 3933MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -201MB (now 3732MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +380MB (now 4113MB) reserved=4544MB peak=4365MB
+[worker:ComfyUI-LiTo] [LiTo] sample: 8/19 (30.4s elapsed, ~42s remaining)
+[worker:ComfyUI-LiTo] [VRAM] +348MB (now 4222MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -433MB (now 3789MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +395MB (now 4185MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -306MB (now 3879MB) reserved=4544MB peak=4227MB
 [SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 15/19 (58.3s elapsed, ~16s remaining)
-[worker:ComfyUI-LiTo] [VRAM] -252MB (now 3861MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +366MB (now 4227MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -222MB (now 4005MB) reserved=4544MB peak=4365MB
+[worker:ComfyUI-LiTo] [LiTo] sample: 9/19 (34.1s elapsed, ~38s remaining)
+[worker:ComfyUI-LiTo] [VRAM] +347MB (now 4227MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -439MB (now 3789MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +216MB (now 4005MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -204MB (now 3802MB) reserved=4544MB peak=4227MB
 [SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 16/19 (62.2s elapsed, ~12s remaining)
-[worker:ComfyUI-LiTo] [VRAM] -426MB (now 3580MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +425MB (now 4005MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -289MB (now 3717MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +288MB (now 4005MB) reserved=4544MB peak=4365MB
+[worker:ComfyUI-LiTo] [LiTo] sample: 10/19 (37.9s elapsed, ~34s remaining)
+[worker:ComfyUI-LiTo] [VRAM] +347MB (now 4149MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -324MB (now 3826MB) reserved=4544MB peak=4227MB
 [SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 17/19 (66.1s elapsed, ~8s remaining)
-[worker:ComfyUI-LiTo] [VRAM] -203MB (now 3803MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +424MB (now 4227MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -439MB (now 3789MB) reserved=4544MB peak=4365MB
+[worker:ComfyUI-LiTo] [LiTo] sample: 11/19 (41.7s elapsed, ~30s remaining)
+[worker:ComfyUI-LiTo] [VRAM] +328MB (now 4154MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -422MB (now 3732MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +452MB (now 4185MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -312MB (now 3873MB) reserved=4544MB peak=4227MB
 [SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 18/19 (70.0s elapsed, ~4s remaining)
-[worker:ComfyUI-LiTo] [VRAM] +438MB (now 4227MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -354MB (now 3873MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] +203MB (now 4077MB) reserved=4544MB peak=4365MB
-[worker:ComfyUI-LiTo] [VRAM] -204MB (now 3873MB) reserved=4544MB peak=4365MB
+[worker:ComfyUI-LiTo] [LiTo] sample: 12/19 (45.5s elapsed, ~27s remaining)
+[worker:ComfyUI-LiTo] [VRAM] +280MB (now 4154MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -366MB (now 3789MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +395MB (now 4185MB) reserved=4544MB peak=4227MB
 [SubprocessWorker] callback 'report_progress' from call_id=2
-[worker:ComfyUI-LiTo] [LiTo] sample: 19/19 (73.9s elapsed, ~0s remaining)
-[worker:ComfyUI-LiTo] [LiTo] sample: done in 73.9s, peak VRAM 4.26 GB
-[worker:ComfyUI-LiTo] [VRAM] -352MB (now 3522MB) reserved=4544MB peak=4365MB
+[worker:ComfyUI-LiTo] [LiTo] sample: 13/19 (49.3s elapsed, ~23s remaining)
+[worker:ComfyUI-LiTo] [VRAM] -637MB (now 3549MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +324MB (now 3873MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +311MB (now 4185MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -360MB (now 3826MB) reserved=4544MB peak=4227MB
+[SubprocessWorker] callback 'report_progress' from call_id=2
+[worker:ComfyUI-LiTo] [LiTo] sample: 14/19 (53.1s elapsed, ~19s remaining)
+[worker:ComfyUI-LiTo] [VRAM] +328MB (now 4154MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -294MB (now 3861MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +252MB (now 4113MB) reserved=4544MB peak=4227MB
+[SubprocessWorker] callback 'report_progress' from call_id=2
+[worker:ComfyUI-LiTo] [LiTo] sample: 15/19 (56.9s elapsed, ~15s remaining)
+[worker:ComfyUI-LiTo] [VRAM] -288MB (now 3825MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +288MB (now 4113MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -312MB (now 3802MB) reserved=4544MB peak=4227MB
+[SubprocessWorker] callback 'report_progress' from call_id=2
+[worker:ComfyUI-LiTo] [LiTo] sample: 16/19 (60.7s elapsed, ~11s remaining)
+[worker:ComfyUI-LiTo] [VRAM] -253MB (now 3549MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +324MB (now 3873MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +239MB (now 4113MB) reserved=4544MB peak=4227MB
+[SubprocessWorker] callback 'report_progress' from call_id=2
+[worker:ComfyUI-LiTo] [LiTo] sample: 17/19 (64.5s elapsed, ~8s remaining)
+[worker:ComfyUI-LiTo] [VRAM] -288MB (now 3825MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +288MB (now 4113MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -305MB (now 3808MB) reserved=4544MB peak=4227MB
+[SubprocessWorker] callback 'report_progress' from call_id=2
+[worker:ComfyUI-LiTo] [LiTo] sample: 18/19 (68.3s elapsed, ~4s remaining)
+[worker:ComfyUI-LiTo] [VRAM] +345MB (now 4154MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -366MB (now 3789MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] +395MB (now 4185MB) reserved=4544MB peak=4227MB
+[worker:ComfyUI-LiTo] [VRAM] -312MB (now 3873MB) reserved=4544MB peak=4227MB
+[SubprocessWorker] callback 'report_progress' from call_id=2
+[worker:ComfyUI-LiTo] [LiTo] sample: 19/19 (72.1s elapsed, ~0s remaining)
+[worker:ComfyUI-LiTo] [LiTo] sample: done in 72.1s, peak VRAM 4.26 GB
+[worker:ComfyUI-LiTo] [VRAM] -352MB (now 3522MB) reserved=4544MB peak=4227MB
 [worker:ComfyUI-LiTo] [LiTo] decode: Gaussians via voxel_decoder
-[worker:ComfyUI-LiTo] [VRAM] +407MB (now 3929MB) reserved=4000MB peak=4365MB
-[worker:ComfyUI-LiTo] [LiTo] decode: done in 0.9s, 937792 Gaussians, peak VRAM 4.25 GB
-[worker:ComfyUI-LiTo] [LiTo] done: total 133.7s (load + sample 73.9s + decode 0.9s)
+[worker:ComfyUI-LiTo] [VRAM] +407MB (now 3929MB) reserved=4000MB peak=4227MB
+[worker:ComfyUI-LiTo] [LiTo] decode: done in 0.8s, 939392 Gaussians, peak VRAM 4.25 GB
+[worker:ComfyUI-LiTo] [LiTo] done: total 148.4s (load + sample 72.1s + decode 0.8s)
 [SubprocessWorker] got response: ok
 [comfy-env] Created 3 model patchers: ['LiToDiTTrainer_1', 'SparseStructureEncoder_2', 'SparseStructureDecoder_3']
-[comfy-env] LiToImageTo3D done (133.79s): result: NodeOutput
-[VRAM] After LiToImageTo3D: 1156 / 16379 MB
+[comfy-env] LiToImageTo3D done (148.51s): result: NodeOutput
+[VRAM] After LiToImageTo3D: 1130 / 8150 MB
 [VRAM] Loaded: SubprocessModel (140 MB), SubprocessModel (113 MB), SubprocessModel (3511 MB)
 [comfy-env] Running LiToExportPLY: filename: 'lito_output', gaussians: dict
-[VRAM] Before LiToExportPLY: 1156 / 16379 MB
+[VRAM] Before LiToExportPLY: 1130 / 8150 MB
 [VRAM] Loaded: SubprocessModel (140 MB), SubprocessModel (113 MB), SubprocessModel (3511 MB)
 [SubprocessWorker] call_method: nodes.export_ply.LiToExportPLY.EXECUTE_NORMALIZED
 [SubprocessWorker] acquired lock, ensuring started...
@@ -603,32 +618,32 @@ Thread 0x00001b88 (most recent call first):
 [SubprocessWorker] sending request via socket...
 [SubprocessWorker] call_id=3 sending call_method
 [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'manager_path', 'storage_key', 'storage_size']
-[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14653, 64, 3]
-[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14653, 64, 3])
+[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14678, 64, 3]
+[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14678, 64, 3])
 [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'manager_path', 'storage_key', 'storage_size']
-[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14653, 64, 16, 3]
-[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14653, 64, 16, 3])
+[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14678, 64, 16, 3]
+[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14678, 64, 16, 3])
 [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'manager_path', 'storage_key', 'storage_size']
-[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14653, 64, 3]
-[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14653, 64, 3])
+[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14678, 64, 3]
+[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14678, 64, 3])
 [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'manager_path', 'storage_key', 'storage_size']
-[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14653, 64, 4]
-[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14653, 64, 4])
+[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14678, 64, 4]
+[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14678, 64, 4])
 [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'manager_path', 'storage_key', 'storage_size']
-[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14653, 64, 1]
-[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14653, 64, 1])
+[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14678, 64, 1]
+[worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14678, 64, 1])
 [SubprocessWorker] got response: ok
-[comfy-env] LiToExportPLY done (4.66s): result: NodeOutput
-[VRAM] After LiToExportPLY: 1156 / 16379 MB
+[comfy-env] LiToExportPLY done (8.06s): result: NodeOutput
+[VRAM] After LiToExportPLY: 1130 / 8150 MB
 [VRAM] Loaded: SubprocessModel (140 MB), SubprocessModel (113 MB), SubprocessModel (3511 MB)
-Prompt executed in 218.81 seconds
-[comfy-env] [VRAM] Before offload 'SparseStructureEncoder_2' (113 MB) -> cpu: 1156 / 16379 MB
+Prompt executed in 242.24 seconds
+[comfy-env] [VRAM] Before offload 'SparseStructureEncoder_2' (113 MB) -> cpu: 1130 / 8150 MB
 [ComfyUI-LiTo] Health check: ping (timeout=5.0s)...
 [ComfyUI-LiTo] Health check: failed
 [ComfyUI-LiTo] Socket unhealthy, restarting worker...
 [comfy-env] Invalidated 3 stale model patchers (will be cleaned up during next unload)
-[comfy-env] lito-nodes: Library/bin has 431 DLLs
-[ComfyUI-LiTo] python: C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\python.exe
-[ComfyUI-LiTo] sys_path sent to worker: ['C:\\workspaces\\LiTo-1833\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI', 'C:\\workspaces\\LiTo-1833\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo', 'C:\\Users\\ContainerUser\\AppData\\Local\\Programs\\comfy-env\\.pixi\\envs\\lito-nodes\\Lib\\site-packages', 'C:\\workspaces\\LiTo-1833\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo']
-[SubprocessWorker] is_pixi=True, python=C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\.pixi\envs\lito-nodes\python.exe
-[SubprocessWorker] launching cmd=['C:\\Users\\ContainerUser\\.pixi\\bin\\pixi.exe', 'run', '--as-is', '--manifest-path', 'C:\\Users\\ContainerUser\\AppData\\Local\\Programs\\comfy-env\\pixi.toml', '-e', 'lito-nodes', 'python', 'C:\\Users\\ContainerUser\\AppData\\Local\\Temp\\comfyui_pvenv_khebf8lf\\persistent_worker.py', 'tcp://127.0.0.1:56723']...
+[comfy-env] default: Library/bin has 431 DLLs
+[ComfyUI-LiTo] python: C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\python.exe
+[ComfyUI-LiTo] sys_path sent to worker: ['C:\\workspaces\\LiTo-2104\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI', 'C:\\workspaces\\LiTo-2104\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo', 'C:\\Users\\ContainerUser\\AppData\\Local\\Programs\\comfy-env\\envs\\lito-nodes\\.pixi\\envs\\default\\Lib\\site-packages', 'C:\\workspaces\\LiTo-2104\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo']
+[SubprocessWorker] is_pixi=True, python=C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\python.exe
+[SubprocessWorker] launching cmd=['C:\\Users\\ContainerUser\\.pixi\\bin\\pixi.exe', 'run', '--as-is', '--manifest-path', 'C:\\Users\\ContainerUser\\AppData\\Local\\Programs\\comfy-env\\envs\\lito-nodes\\pixi.toml', '-e', 'default', 'python', 'C:\\Users\\ContainerUser\\AppData\\Local\\Temp\\comfyui_pvenv_aq_psh7p\\persistent_worker.py', 'tcp://127.0.0.1:52625']...

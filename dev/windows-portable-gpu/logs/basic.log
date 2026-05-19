@@ -2,169 +2,1023 @@ Capturing execution frames: basic.json
   Frame 1 saved (frame_000.jpg, t=0.0s)
   Validating workflow...
   Queuing workflow for execution...
+  [ComfyUI] === /validate endpoint called ===
+  [ComfyUI] Received JSON with keys: ['prompt']
+  [ComfyUI] Prompt has 7 nodes
+  [ComfyUI]   Node 1: LiToLoadModel
+  [ComfyUI]     Inputs: {"checkpoint": "lito_dit_rgba (recommended)", "compile": false, "precision": "auto"}
+  [ComfyUI]   Node 5: LoadImage
+  [ComfyUI]     Inputs: {"image": "apple.png"}
+  [ComfyUI]   Node 6: LiToExportPLY
+  [ComfyUI]     Inputs: {"filename": "lito_output", "gaussians": ["8", 0]}
+  [ComfyUI]   Node 8: LiToImageTo3D
+  [ComfyUI]     Inputs: {"sampling_steps": 20, "cfg_scale": 3, "sampling_method": "heun", "seed": 42, "model": ["1", 0], "image": ["5", 0], "mask": ["9", 0]}
+  [ComfyUI]   Node 9: InvertMask
+  [ComfyUI]     Inputs: {"mask": ["5", 1]}
+  [ComfyUI]   Node 17: MaskPreview
+  [ComfyUI]     Inputs: {"mask": ["9", 0]}
+  [ComfyUI]   Node 29: PreviewGaussians
+  [ComfyUI]     Inputs: {"fov_degrees": 50, "image_width": 512, "image_height": 512, "renderer": "spark", "transport_format": "ply", "ply_path": ["6", 0]}
+  [ComfyUI] Generated prompt_id: 216d1960-5c91-45d1-9935-9747da477cbf
+  [ComfyUI] Calling execution.validate_prompt()...
+  [ComfyUI] Validation result: valid=True
+  [ComfyUI] === Validation PASSED ===
+  [ComfyUI] got prompt
+  [ComfyUI] [comfy-env] Running LiToLoadModel: checkpoint: 'lito_dit_rgba (recommended)', compile: False, precision: 'auto'
+  [ComfyUI] [VRAM] Before LiToLoadModel: 1130 / 8150 MB
+  [ComfyUI] [comfy-env] SubprocessWorker: C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\python.exe
+  [ComfyUI] [comfy-env] env_vars: {'COMFYUI_BASE': 'C:\\workspaces\\LiTo-2104\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI'}
+  [ComfyUI] [SubprocessWorker] call_method: nodes.load_model.LiToLoadModel.EXECUTE_NORMALIZED
+  [ComfyUI] [SubprocessWorker] acquired lock, ensuring started...
+  [ComfyUI] [comfy-env] default: Library/bin has 431 DLLs
+  [ComfyUI] [ComfyUI-LiTo] python: C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\python.exe
+  [ComfyUI] [ComfyUI-LiTo] sys_path sent to worker: ['C:\\workspaces\\LiTo-2104\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI', 'C:\\workspaces\\LiTo-2104\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo', 'C:\\Users\\ContainerUser\\AppData\\Local\\Programs\\comfy-env\\envs\\lito-nodes\\.pixi\\envs\\default\\Lib\\site-packages', 'C:\\workspaces\\LiTo-2104\\portable-comfyui\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-LiTo']
+  [ComfyUI] [SubprocessWorker] is_pixi=True, python=C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\python.exe
+  [ComfyUI] [SubprocessWorker] launching cmd=['C:\\Users\\ContainerUser\\.pixi\\bin\\pixi.exe', 'run', '--as-is', '--manifest-path', 'C:\\Users\\ContainerUser\\AppData\\Local\\Programs\\comfy-env\\envs\\lito-nodes\\pixi.toml', '-e', 'default', 'python', 'C:\\Users\\ContainerUser\\AppData\\Local\\Temp\\comfyui_pvenv_aq_psh7p\\persistent_worker.py', 'tcp://127.0.0.1:51749']...
   Node executed (1 total), capturing...
-  Frame 2 saved (frame_001.jpg, t=0.4s)
-  [capture-node] freeze=3ms shot=68ms unfreeze=3ms saved=True
-  Frame 3 saved (frame_002.jpg, t=4.7s)
-  [capture-periodic] freeze=2ms shot=66ms unfreeze=2ms saved=True
-  [capture-loop] iter=50 t=6.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.9/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=16% browser_rss=0.71GB
-  [capture-loop] iter=100 t=11.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=9.5/31.9GB (30%) swap=0.0/5.0GB (0%) cpu=20% browser_rss=0.71GB
-  Frame 4 saved (frame_003.jpg, t=13.2s)
-  [capture-periodic] freeze=2ms shot=63ms unfreeze=2ms saved=True
-  Frame 5 saved (frame_004.jpg, t=15.4s)
-  [capture-periodic] freeze=3ms shot=86ms unfreeze=3ms saved=True
-  [capture-loop] iter=150 t=17.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.0/31.9GB (31%) swap=0.0/5.0GB (0%) cpu=29% browser_rss=0.72GB
-  Frame 6 saved (frame_005.jpg, t=17.6s)
-  [capture-periodic] freeze=3ms shot=88ms unfreeze=4ms saved=True
-  Frame 7 saved (frame_006.jpg, t=19.8s)
-  [capture-periodic] freeze=3ms shot=92ms unfreeze=4ms saved=True
-  Frame 8 saved (frame_007.jpg, t=22.0s)
-  [capture-periodic] freeze=3ms shot=85ms unfreeze=3ms saved=True
-  [capture-loop] iter=200 t=23.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.6/31.9GB (33%) swap=0.0/5.0GB (0%) cpu=30% browser_rss=0.74GB
-  Frame 9 saved (frame_008.jpg, t=24.2s)
-  [capture-periodic] freeze=3ms shot=90ms unfreeze=3ms saved=True
-  Frame 10 saved (frame_009.jpg, t=26.4s)
-  [capture-periodic] freeze=3ms shot=71ms unfreeze=5ms saved=True
-  Frame 11 saved (frame_010.jpg, t=28.5s)
+  Frame 2 saved (frame_001.jpg, t=0.5s)
+  [capture-node] freeze=4ms shot=84ms unfreeze=5ms saved=True
+  Frame 3 saved (frame_002.jpg, t=4.9s)
+  [capture-periodic] freeze=2ms shot=73ms unfreeze=5ms saved=True
+  [capture-loop] iter=50 t=6.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=7.9/23.9GB (33%) swap=0.2/14.5GB (1%) cpu=13% browser_rss=0.71GB
+  [capture-loop] iter=100 t=12.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=8.3/23.9GB (35%) swap=0.2/14.5GB (1%) cpu=12% browser_rss=0.71GB
+  [ComfyUI] [worker:ComfyUI-LiTo] ERROR: Failed to import comfy_kitchen, Error: No module named 'comfy_kitchen', fp8 and fp4 support will not be available.
+  [ComfyUI] [SubprocessWorker] worker started/confirmed
+  [ComfyUI] [SubprocessWorker] serializing kwargs to shm...
+  [ComfyUI] [SubprocessWorker] created 0 shm blocks
+  [ComfyUI] [SubprocessWorker] sending request via socket...
+  [ComfyUI] [SubprocessWorker] call_id=1 sending call_method
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 4 saved (frame_003.jpg, t=15.7s)
+  [capture-periodic] freeze=3ms shot=89ms unfreeze=6ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [capture-loop] iter=150 t=17.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=7.5/23.9GB (31%) swap=0.2/14.5GB (1%) cpu=21% browser_rss=0.72GB
+  Frame 5 saved (frame_004.jpg, t=17.9s)
+  [capture-periodic] freeze=4ms shot=92ms unfreeze=4ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 6 saved (frame_005.jpg, t=20.1s)
+  [capture-periodic] freeze=3ms shot=86ms unfreeze=5ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 7 saved (frame_006.jpg, t=22.2s)
+  [capture-periodic] freeze=3ms shot=100ms unfreeze=11ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [capture-loop] iter=200 t=23.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=8.0/23.9GB (34%) swap=0.2/14.5GB (1%) cpu=29% browser_rss=0.67GB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 8 saved (frame_007.jpg, t=24.4s)
+  [capture-periodic] freeze=3ms shot=106ms unfreeze=5ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 9 saved (frame_008.jpg, t=26.6s)
+  [capture-periodic] freeze=3ms shot=85ms unfreeze=4ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 10 saved (frame_009.jpg, t=28.8s)
+  [capture-periodic] freeze=4ms shot=82ms unfreeze=3ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [capture-loop] iter=250 t=30.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=8.2/23.9GB (34%) swap=0.2/14.5GB (1%) cpu=28% browser_rss=0.67GB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 11 saved (frame_010.jpg, t=30.9s)
+  [capture-periodic] freeze=4ms shot=79ms unfreeze=4ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 12 saved (frame_011.jpg, t=33.1s)
+  [capture-periodic] freeze=3ms shot=91ms unfreeze=5ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 13 saved (frame_012.jpg, t=35.3s)
+  [capture-periodic] freeze=4ms shot=95ms unfreeze=6ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [capture-loop] iter=300 t=36.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=12 ram=8.4/23.9GB (35%) swap=0.2/14.5GB (1%) cpu=31% browser_rss=0.68GB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 14 saved (frame_013.jpg, t=37.5s)
+  [capture-periodic] freeze=10ms shot=89ms unfreeze=4ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 15 saved (frame_014.jpg, t=39.7s)
+  [capture-periodic] freeze=5ms shot=87ms unfreeze=4ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 16 saved (frame_015.jpg, t=41.9s)
+  [capture-periodic] freeze=3ms shot=84ms unfreeze=5ms saved=True
+  [capture-loop] iter=350 t=42.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=8.4/23.9GB (35%) swap=0.2/14.5GB (1%) cpu=29% browser_rss=0.68GB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 17 saved (frame_016.jpg, t=44.0s)
   [capture-periodic] freeze=3ms shot=87ms unfreeze=3ms saved=True
-  [capture-loop] iter=250 t=29.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.8/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=30% browser_rss=0.67GB
-  Frame 12 saved (frame_011.jpg, t=30.8s)
-  [capture-periodic] freeze=2ms shot=68ms unfreeze=3ms saved=True
-  Frame 13 saved (frame_012.jpg, t=32.9s)
-  [capture-periodic] freeze=2ms shot=77ms unfreeze=2ms saved=True
-  [capture-loop] iter=300 t=34.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.8/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=27% browser_rss=0.67GB
-  Frame 14 saved (frame_013.jpg, t=35.1s)
-  [capture-periodic] freeze=2ms shot=76ms unfreeze=4ms saved=True
-  Frame 15 saved (frame_014.jpg, t=37.3s)
-  [capture-periodic] freeze=2ms shot=70ms unfreeze=6ms saved=True
-  Frame 16 saved (frame_015.jpg, t=39.5s)
-  [capture-periodic] freeze=3ms shot=83ms unfreeze=4ms saved=True
-  [capture-loop] iter=350 t=40.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=10.7/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=32% browser_rss=0.68GB
-  Frame 17 saved (frame_016.jpg, t=41.6s)
-  [capture-periodic] freeze=3ms shot=82ms unfreeze=4ms saved=True
-  Frame 18 saved (frame_017.jpg, t=43.8s)
-  [capture-periodic] freeze=3ms shot=83ms unfreeze=5ms saved=True
-  Frame 19 saved (frame_018.jpg, t=46.0s)
-  [capture-periodic] freeze=3ms shot=100ms unfreeze=3ms saved=True
-  [capture-loop] iter=400 t=46.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=10.9/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=29% browser_rss=0.68GB
-  Frame 20 saved (frame_019.jpg, t=48.2s)
-  [capture-periodic] freeze=3ms shot=89ms unfreeze=3ms saved=True
-  Frame 21 saved (frame_020.jpg, t=50.4s)
-  [capture-periodic] freeze=3ms shot=88ms unfreeze=3ms saved=True
-  [capture-loop] iter=450 t=52.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=10.7/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=31% browser_rss=0.68GB
-  Frame 22 saved (frame_021.jpg, t=52.6s)
-  [capture-periodic] freeze=3ms shot=84ms unfreeze=4ms saved=True
-  Frame 23 saved (frame_022.jpg, t=54.8s)
-  [capture-periodic] freeze=3ms shot=87ms unfreeze=3ms saved=True
-  Frame 24 saved (frame_023.jpg, t=57.0s)
-  [capture-periodic] freeze=2ms shot=73ms unfreeze=4ms saved=True
-  [capture-loop] iter=500 t=58.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.7/31.9GB (33%) swap=0.0/5.0GB (0%) cpu=29% browser_rss=0.66GB
-  Frame 25 saved (frame_024.jpg, t=59.1s)
-  [capture-periodic] freeze=3ms shot=84ms unfreeze=3ms saved=True
-  Frame 26 saved (frame_025.jpg, t=61.3s)
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 18 saved (frame_017.jpg, t=46.2s)
+  [capture-periodic] freeze=4ms shot=92ms unfreeze=3ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [capture-loop] iter=400 t=48.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=8.4/23.9GB (35%) swap=0.2/14.5GB (1%) cpu=29% browser_rss=0.68GB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 19 saved (frame_018.jpg, t=48.4s)
   [capture-periodic] freeze=3ms shot=94ms unfreeze=4ms saved=True
-  Frame 27 saved (frame_026.jpg, t=63.5s)
-  [capture-periodic] freeze=2ms shot=90ms unfreeze=3ms saved=True
-  [capture-loop] iter=550 t=63.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=10.7/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=28% browser_rss=0.66GB
-  Frame 28 saved (frame_027.jpg, t=65.7s)
-  [capture-periodic] freeze=3ms shot=87ms unfreeze=3ms saved=True
-  Frame 29 saved (frame_028.jpg, t=67.9s)
-  [capture-periodic] freeze=3ms shot=93ms unfreeze=3ms saved=True
-  [capture-loop] iter=600 t=69.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=10.7/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=32% browser_rss=0.66GB
-  Frame 30 saved (frame_029.jpg, t=70.2s)
-  [capture-periodic] freeze=2ms shot=79ms unfreeze=3ms saved=True
-  Frame 31 saved (frame_030.jpg, t=72.3s)
-  [capture-periodic] freeze=3ms shot=86ms unfreeze=4ms saved=True
-  Frame 32 saved (frame_031.jpg, t=74.5s)
-  [capture-periodic] freeze=3ms shot=88ms unfreeze=3ms saved=True
-  [capture-loop] iter=650 t=75.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=10.7/31.9GB (34%) swap=0.0/5.0GB (0%) cpu=29% browser_rss=0.66GB
-  Frame 33 saved (frame_032.jpg, t=76.7s)
-  [capture-periodic] freeze=2ms shot=78ms unfreeze=3ms saved=True
-  Frame 34 saved (frame_033.jpg, t=78.9s)
-  [capture-periodic] freeze=4ms shot=85ms unfreeze=5ms saved=True
-  [capture-loop] iter=700 t=81.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.5/31.9GB (33%) swap=0.0/5.0GB (0%) cpu=30% browser_rss=0.66GB
-  Frame 35 saved (frame_034.jpg, t=81.1s)
-  [capture-periodic] freeze=2ms shot=64ms unfreeze=2ms saved=True
-  [capture-loop] iter=750 t=86.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=10.4/31.9GB (32%) swap=0.0/5.0GB (0%) cpu=22% browser_rss=0.65GB
-  [capture-loop] iter=800 t=92.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=16.8/31.9GB (52%) swap=0.0/5.0GB (0%) cpu=26% browser_rss=0.65GB
-  [capture-loop] iter=850 t=98.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=17.2/31.9GB (54%) swap=0.0/5.0GB (0%) cpu=19% browser_rss=0.65GB
-  [capture-loop] iter=900 t=103.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=18.0/31.9GB (56%) swap=0.0/5.0GB (0%) cpu=34% browser_rss=0.65GB
-  [capture-loop] iter=950 t=109.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=18.0/31.9GB (56%) swap=0.0/5.0GB (0%) cpu=18% browser_rss=0.65GB
-  [capture-loop] iter=1000 t=114.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=18.0/31.9GB (56%) swap=0.0/5.0GB (0%) cpu=21% browser_rss=0.65GB
-  [capture-loop] iter=1050 t=120.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=22.2/31.9GB (70%) swap=0.0/5.0GB (0%) cpu=34% browser_rss=0.61GB
-  [capture-loop] iter=1100 t=126.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=22.4/31.9GB (70%) swap=0.0/5.0GB (0%) cpu=24% browser_rss=0.61GB
-  [capture-loop] iter=1150 t=132.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=23.3/31.9GB (73%) swap=0.0/5.0GB (0%) cpu=19% browser_rss=0.61GB
-  [capture-loop] iter=1200 t=137.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=17.1/31.9GB (54%) swap=0.0/5.0GB (0%) cpu=54% browser_rss=0.59GB
-  Frame 36 saved (frame_035.jpg, t=143.3s)
-  [capture-periodic] freeze=2ms shot=63ms unfreeze=2ms saved=True
-  [capture-loop] iter=1250 t=143.5s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=14.0/31.9GB (44%) swap=0.0/5.0GB (0%) cpu=10% browser_rss=0.60GB
-  Frame 37 saved (frame_036.jpg, t=147.6s)
-  [capture-periodic] freeze=2ms shot=71ms unfreeze=2ms saved=True
-  [capture-loop] iter=1300 t=149.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.9/31.9GB (44%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
-  Frame 38 saved (frame_037.jpg, t=151.9s)
-  [capture-periodic] freeze=2ms shot=69ms unfreeze=2ms saved=True
-  Frame 39 saved (frame_038.jpg, t=154.1s)
-  [capture-periodic] freeze=2ms shot=60ms unfreeze=3ms saved=True
-  [capture-loop] iter=1350 t=154.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=13.8/31.9GB (43%) swap=0.0/5.0GB (0%) cpu=5% browser_rss=0.60GB
-  Frame 40 saved (frame_039.jpg, t=158.3s)
-  [capture-periodic] freeze=2ms shot=69ms unfreeze=2ms saved=True
-  [capture-loop] iter=1400 t=160.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.7/31.9GB (43%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
-  Frame 41 saved (frame_040.jpg, t=162.6s)
-  [capture-periodic] freeze=2ms shot=59ms unfreeze=2ms saved=True
-  [capture-loop] iter=1450 t=166.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.7/31.9GB (43%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.59GB
-  Frame 42 saved (frame_041.jpg, t=166.9s)
-  [capture-periodic] freeze=2ms shot=73ms unfreeze=2ms saved=True
-  Frame 43 saved (frame_042.jpg, t=171.2s)
-  [capture-periodic] freeze=2ms shot=64ms unfreeze=2ms saved=True
-  [capture-loop] iter=1500 t=171.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.7/31.9GB (43%) swap=0.0/5.0GB (0%) cpu=3% browser_rss=0.60GB
-  Frame 44 saved (frame_043.jpg, t=173.4s)
-  [capture-periodic] freeze=2ms shot=57ms unfreeze=2ms saved=True
-  [capture-loop] iter=1550 t=177.3s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=13.6/31.9GB (43%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
-  Frame 45 saved (frame_044.jpg, t=177.7s)
-  [capture-periodic] freeze=2ms shot=63ms unfreeze=2ms saved=True
-  Frame 46 saved (frame_045.jpg, t=182.0s)
-  [capture-periodic] freeze=2ms shot=61ms unfreeze=2ms saved=True
-  [capture-loop] iter=1600 t=183.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=13.6/31.9GB (43%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
-  Frame 47 saved (frame_046.jpg, t=186.2s)
-  [capture-periodic] freeze=2ms shot=64ms unfreeze=2ms saved=True
-  [capture-loop] iter=1650 t=188.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.6/31.9GB (43%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
-  Frame 48 saved (frame_047.jpg, t=190.5s)
-  [capture-periodic] freeze=2ms shot=59ms unfreeze=2ms saved=True
-  [capture-loop] iter=1700 t=194.3s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.6/31.9GB (42%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
-  Frame 49 saved (frame_048.jpg, t=194.8s)
-  [capture-periodic] freeze=2ms shot=73ms unfreeze=2ms saved=True
-  Frame 50 saved (frame_049.jpg, t=197.0s)
-  [capture-periodic] freeze=2ms shot=72ms unfreeze=2ms saved=True
-  [capture-loop] iter=1750 t=199.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.6/31.9GB (42%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
-  Frame 51 saved (frame_050.jpg, t=201.2s)
-  [capture-periodic] freeze=2ms shot=67ms unfreeze=2ms saved=True
-  [capture-loop] iter=1800 t=205.5s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.5/31.9GB (42%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
-  Frame 52 saved (frame_051.jpg, t=205.5s)
-  [capture-periodic] freeze=2ms shot=68ms unfreeze=2ms saved=True
-  Frame 53 saved (frame_052.jpg, t=210.0s)
-  [capture-periodic] freeze=2ms shot=62ms unfreeze=2ms saved=True
-  [capture-loop] iter=1850 t=211.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=2 ram=13.5/31.9GB (42%) swap=0.0/5.0GB (0%) cpu=4% browser_rss=0.60GB
-  Frame 54 saved (frame_053.jpg, t=214.3s)
-  [capture-periodic] freeze=3ms shot=83ms unfreeze=4ms saved=True
-  [capture-loop] iter=1900 t=217.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=16.4/31.9GB (51%) swap=0.0/5.0GB (0%) cpu=14% browser_rss=0.60GB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 20 saved (frame_019.jpg, t=50.6s)
+  [capture-periodic] freeze=3ms shot=107ms unfreeze=5ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 21 saved (frame_020.jpg, t=52.8s)
+  [capture-periodic] freeze=3ms shot=77ms unfreeze=3ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [capture-loop] iter=450 t=54.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=7 ram=8.4/23.9GB (35%) swap=0.2/14.5GB (1%) cpu=29% browser_rss=0.67GB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 22 saved (frame_021.jpg, t=54.9s)
+  [capture-periodic] freeze=3ms shot=79ms unfreeze=4ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 23 saved (frame_022.jpg, t=57.1s)
+  [capture-periodic] freeze=3ms shot=98ms unfreeze=9ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 24 saved (frame_023.jpg, t=59.2s)
+  [capture-periodic] freeze=2ms shot=96ms unfreeze=5ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [capture-loop] iter=500 t=60.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=5 ram=8.2/23.9GB (34%) swap=0.2/14.5GB (1%) cpu=28% browser_rss=0.67GB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 25 saved (frame_024.jpg, t=61.4s)
+  [capture-periodic] freeze=6ms shot=87ms unfreeze=3ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo]
+  [ComfyUI] === WATCHDOG TICK 1 ===
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [worker:ComfyUI-LiTo] Thread 0x00002dcc (most recent call first):
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 106 in _vram_poller
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 995 in run
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
+  [ComfyUI] 
+  [ComfyUI] Current thread 0x00003304 (most recent call first):
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 52 in _watchdog
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 995 in run
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
+  [ComfyUI] 
+  [ComfyUI] Thread 0x000037a8 (most recent call first):
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1075 in send
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1427 in _call_parent
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1571 in _progress_hook
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\comfy\utils.py", line 1266 in update_absolute
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\load_model.py", line 143 in on_chunk
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\load_model.py", line 150 in _get_or_download_checkpoint
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\load_model.py", line 95 in execute
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\utils\_contextlib.py", line 120 in decorate_context
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\comfy_api\latest\_io.py", line 1833 in EXECUTE_NORMALIZED
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1762 in main
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1807 in <module>
+  [ComfyUI] 
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [worker:ComfyUI-LiTo] === END ===
+  [ComfyUI] 
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 26 saved (frame_025.jpg, t=63.7s)
+  [capture-periodic] freeze=4ms shot=89ms unfreeze=3ms saved=True
+  [capture-loop] iter=550 t=66.5s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=8.0/23.9GB (33%) swap=0.2/14.5GB (1%) cpu=24% browser_rss=0.64GB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 27 saved (frame_026.jpg, t=68.1s)
+  [capture-periodic] freeze=3ms shot=71ms unfreeze=8ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 28 saved (frame_027.jpg, t=70.3s)
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [capture-periodic] freeze=3ms shot=83ms unfreeze=3ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [capture-loop] iter=600 t=72.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=7.8/23.9GB (33%) swap=0.2/14.5GB (1%) cpu=24% browser_rss=0.65GB
+  Frame 29 saved (frame_028.jpg, t=72.7s)
+  [capture-periodic] freeze=4ms shot=89ms unfreeze=5ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 30 saved (frame_029.jpg, t=74.9s)
+  [capture-periodic] freeze=3ms shot=94ms unfreeze=4ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 31 saved (frame_030.jpg, t=77.1s)
+  [capture-periodic] freeze=4ms shot=84ms unfreeze=3ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [capture-loop] iter=650 t=78.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=7.8/23.9GB (33%) swap=0.2/14.5GB (1%) cpu=31% browser_rss=0.65GB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 32 saved (frame_031.jpg, t=79.3s)
+  [capture-periodic] freeze=5ms shot=86ms unfreeze=3ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 33 saved (frame_032.jpg, t=81.5s)
+  [capture-periodic] freeze=5ms shot=87ms unfreeze=4ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  Frame 34 saved (frame_033.jpg, t=83.7s)
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [capture-periodic] freeze=8ms shot=89ms unfreeze=4ms saved=True
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [capture-loop] iter=700 t=84.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=7.6/23.9GB (32%) swap=0.2/14.5GB (1%) cpu=29% browser_rss=0.66GB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=1
+  [ComfyUI] [SubprocessWorker] got response: ok
+  [ComfyUI] [comfy-env] LiToLoadModel done (85.59s): result: NodeOutput
+  [ComfyUI] [VRAM] After LiToLoadModel: 1130 / 8150 MB
+  [ComfyUI] [comfy-env] Running LiToImageTo3D: sampling_steps: 20, cfg_scale: 3.0, sampling_method: 'heun', seed: 42, model: dict, image: torch.float32 [1,518,518,3] cpu, mask: torch.float32 [1,518,518] cpu
+  [ComfyUI] [VRAM] Before LiToImageTo3D: 1130 / 8150 MB
+  [ComfyUI] [SubprocessWorker] call_method: nodes.inference.LiToImageTo3D.EXECUTE_NORMALIZED
+  [ComfyUI] [SubprocessWorker] acquired lock, ensuring started...
+  [ComfyUI] [ComfyUI-LiTo] Health check: ping (timeout=5.0s)...
+  [ComfyUI] [ComfyUI-LiTo] Health check: ok
+  [ComfyUI] [SubprocessWorker] worker started/confirmed
+  [ComfyUI] [comfy-env] PRE-SERIALIZE 'image' shape: torch.Size([1, 518, 518, 3])
+  [ComfyUI] [comfy-env] PRE-SERIALIZE 'mask' shape: torch.Size([1, 518, 518])
+  [ComfyUI] [SubprocessWorker] serializing kwargs to shm...
+  [ComfyUI] [SubprocessWorker] created 0 shm blocks
+  [ComfyUI] [SubprocessWorker] sending request via socket...
+  [ComfyUI] [SubprocessWorker] call_id=2 sending call_method
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'manager_path', 'storage_key', 'storage_size']
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[1, 518, 518, 3]
+  Frame 35 saved (frame_034.jpg, t=85.8s)
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([1, 518, 518, 3])
+  [capture-periodic] freeze=6ms shot=100ms unfreeze=5ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'manager_path', 'storage_key', 'storage_size']
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[1, 518, 518]
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([1, 518, 518])
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] start: device=cuda:0, dtype=bf16, steps=20, method=heun, cfg=3.0, seed=42
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] load: checkpoint=C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\models\lito\lito_dit_rgba.ckpt, compile=False
+  [ComfyUI] [worker:ComfyUI-LiTo] WARNING: No comfy kitchen, using old apply_rope functions.
+  [capture-loop] iter=750 t=90.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=7.4/23.9GB (31%) swap=0.2/14.5GB (1%) cpu=16% browser_rss=0.66GB
+  [capture-loop] iter=800 t=96.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=7.3/23.9GB (30%) swap=0.2/14.5GB (1%) cpu=18% browser_rss=0.66GB
+  [ComfyUI] [worker:ComfyUI-LiTo] loading model from C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\models\lito\lito_dit_rgba.ckpt
+  [capture-loop] iter=850 t=102.3s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=13.8/23.9GB (58%) swap=0.2/14.5GB (1%) cpu=24% browser_rss=0.65GB
+  [ComfyUI] [worker:ComfyUI-LiTo] GPU Name: NVIDIA GeForce RTX 5060
+  [ComfyUI] [worker:ComfyUI-LiTo] Compute Capability: 12.0
+  [ComfyUI] C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\plibs\rigid_motion.py:1138: SyntaxWarning: invalid escape sequence '\O'
+  [ComfyUI]   Solid angle is of form d \Omega = sin(\theta) d\theta d\phi.
+  [ComfyUI] C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\odelibs\ode_solvers.py:121: SyntaxWarning: invalid escape sequence '\i'
+  [ComfyUI]   We approximate x_final = \int_{ts[0]}^{ts[-1]} func(t, x) dt
+  [ComfyUI] C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\odelibs\ode_solvers.py:175: SyntaxWarning: invalid escape sequence '\i'
+  [ComfyUI]   We approximate x_final = \int_{ts[0]}^{ts[-1]} func(t, x) dt
+  [ComfyUI] [worker:ComfyUI-LiTo] [SPARSE] Backend: spconv, Attention: flash_attn
+  [ComfyUI] [worker:ComfyUI-LiTo] [SPARSE][CONV] spconv algo: auto
+  [ComfyUI] [worker:ComfyUI-LiTo] [ATTENTION] Using backend: flash_attn
+  [ComfyUI] [worker:ComfyUI-LiTo] [SPARSE] Backend: spconv, Attention: flash_attn
+  [ComfyUI] [worker:ComfyUI-LiTo] [SPARSE][CONV] spconv algo: auto
+  [ComfyUI] [worker:ComfyUI-LiTo] [ATTENTION] Using backend: flash_attn
+  [ComfyUI] C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\plibs\gs_utils.py:929: SyntaxWarning: invalid escape sequence '\s'
+  [ComfyUI]   "expectation": expected z-depth.  z_out = (\sum_i wi zi) / (\sum_i wi)
+  [ComfyUI] C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\plibs\structures.py:10734: SyntaxWarning: invalid escape sequence '\i'
+  [ComfyUI]   'wrgb': the correction is 3 scalars \in [0, 1] that multiply to RGB channels separately
+  [capture-loop] iter=900 t=108.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=13.8/23.9GB (58%) swap=0.2/14.5GB (1%) cpu=11% browser_rss=0.65GB
+  [ComfyUI] C:\Users\ContainerUser/.cache\torch\hub\facebookresearch_dinov2_main\dinov2\layers\swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  [ComfyUI]   warnings.warn("xFormers is not available (SwiGLU)")
+  [ComfyUI] C:\Users\ContainerUser/.cache\torch\hub\facebookresearch_dinov2_main\dinov2\layers\attention.py:33: UserWarning: xFormers is not available (Attention)
+  [ComfyUI]   warnings.warn("xFormers is not available (Attention)")
+  [ComfyUI] C:\Users\ContainerUser/.cache\torch\hub\facebookresearch_dinov2_main\dinov2\layers\block.py:40: UserWarning: xFormers is not available (Block)
+  [ComfyUI]   warnings.warn("xFormers is not available (Block)")
+  [ComfyUI] 
+  [ComfyUI]   0%|          | 0.00/1.13G [00:00<?, ?B/s]
+  [ComfyUI] 
+  [ComfyUI]   1%|          | 11.0M/1.13G [00:00<00:10, 114MB/s]
+  [ComfyUI] 
+  [ComfyUI]   2%|▏         | 22.0M/1.13G [00:00<00:10, 114MB/s]
+  [ComfyUI] 
+  [ComfyUI]   3%|▎         | 33.6M/1.13G [00:00<00:10, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]   4%|▍         | 45.1M/1.13G [00:00<00:09, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]   5%|▍         | 56.5M/1.13G [00:00<00:09, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]   6%|▌         | 67.8M/1.13G [00:00<00:09, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]   7%|▋         | 79.1M/1.13G [00:00<00:09, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]   8%|▊         | 90.8M/1.13G [00:00<00:09, 119MB/s]
+  [ComfyUI] 
+  [ComfyUI]   9%|▉         | 102M/1.13G [00:00<00:09, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  10%|▉         | 113M/1.13G [00:01<00:09, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  11%|█         | 125M/1.13G [00:01<00:09, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  12%|█▏        | 136M/1.13G [00:01<00:09, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  13%|█▎        | 148M/1.13G [00:01<00:08, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  14%|█▎        | 159M/1.13G [00:01<00:08, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  15%|█▍        | 170M/1.13G [00:01<00:08, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  16%|█▌        | 182M/1.13G [00:01<00:08, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  17%|█▋        | 193M/1.13G [00:01<00:08, 116MB/s]
+  [capture-loop] iter=950 t=113.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=15.1/23.9GB (63%) swap=0.2/14.5GB (1%) cpu=31% browser_rss=0.65GB
+  [ComfyUI] 
+  [ComfyUI]  18%|█▊        | 204M/1.13G [00:01<00:08, 116MB/s]
+  [ComfyUI] 
+  [ComfyUI]  19%|█▊        | 216M/1.13G [00:01<00:08, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  20%|█▉        | 227M/1.13G [00:02<00:08, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  21%|██        | 238M/1.13G [00:02<00:08, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  22%|██▏       | 250M/1.13G [00:02<00:08, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  22%|██▏       | 261M/1.13G [00:02<00:08, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  23%|██▎       | 272M/1.13G [00:02<00:08, 111MB/s]
+  [ComfyUI] 
+  [ComfyUI]  24%|██▍       | 284M/1.13G [00:02<00:08, 113MB/s]
+  [ComfyUI] 
+  [ComfyUI]  25%|██▌       | 295M/1.13G [00:02<00:07, 115MB/s]
+  [ComfyUI] 
+  [ComfyUI]  26%|██▋       | 306M/1.13G [00:02<00:07, 113MB/s]
+  [ComfyUI] 
+  [ComfyUI]  27%|██▋       | 318M/1.13G [00:02<00:07, 115MB/s]
+  [ComfyUI] 
+  [ComfyUI]  28%|██▊       | 329M/1.13G [00:02<00:07, 116MB/s]
+  [ComfyUI] 
+  [ComfyUI]  29%|██▉       | 340M/1.13G [00:03<00:07, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  30%|███       | 352M/1.13G [00:03<00:07, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  31%|███▏      | 363M/1.13G [00:03<00:07, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  32%|███▏      | 375M/1.13G [00:03<00:07, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  33%|███▎      | 386M/1.13G [00:03<00:06, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  34%|███▍      | 397M/1.13G [00:03<00:06, 118MB/s]
+  [ComfyUI]  35%|███▌      | 409M/1.13G [00:03<00:06, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  36%|███▌      | 420M/1.13G [00:03<00:06, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  37%|███▋      | 432M/1.13G [00:03<00:06, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  38%|███▊      | 443M/1.13G [00:03<00:06, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  39%|███▉      | 454M/1.13G [00:04<00:06, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  40%|████      | 466M/1.13G [00:04<00:06, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  41%|████      | 477M/1.13G [00:04<00:06, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  42%|████▏     | 488M/1.13G [00:04<00:05, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  43%|████▎     | 500M/1.13G [00:04<00:05, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  44%|████▍     | 511M/1.13G [00:04<00:05, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  45%|████▌     | 523M/1.13G [00:04<00:05, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  46%|████▌     | 534M/1.13G [00:04<00:05, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  47%|████▋     | 546M/1.13G [00:04<00:05, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  48%|████▊     | 557M/1.13G [00:04<00:05, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  49%|████▉     | 568M/1.13G [00:05<00:05, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  50%|████▉     | 580M/1.13G [00:05<00:05, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  51%|█████     | 591M/1.13G [00:05<00:05, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  52%|█████▏    | 602M/1.13G [00:05<00:04, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  53%|█████▎    | 614M/1.13G [00:05<00:04, 119MB/s]
+  [ComfyUI] 
+  [ComfyUI]  54%|█████▍    | 625M/1.13G [00:05<00:04, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  55%|█████▍    | 637M/1.13G [00:05<00:04, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  56%|█████▌    | 648M/1.13G [00:05<00:04, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  57%|█████▋    | 659M/1.13G [00:05<00:04, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  58%|█████▊    | 671M/1.13G [00:05<00:04, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  59%|█████▊    | 682M/1.13G [00:06<00:04, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  60%|█████▉    | 694M/1.13G [00:06<00:04, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  61%|██████    | 705M/1.13G [00:06<00:04, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  62%|██████▏   | 716M/1.13G [00:06<00:03, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  63%|██████▎   | 728M/1.13G [00:06<00:03, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  64%|██████▎   | 739M/1.13G [00:06<00:03, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  65%|██████▍   | 750M/1.13G [00:06<00:03, 116MB/s]
+  [ComfyUI] 
+  [ComfyUI]  66%|██████▌   | 762M/1.13G [00:06<00:03, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  67%|██████▋   | 773M/1.13G [00:06<00:03, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  68%|██████▊   | 784M/1.13G [00:07<00:03, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  69%|██████▊   | 796M/1.13G [00:07<00:03, 118MB/s]
+  [ComfyUI]  70%|██████▉   | 807M/1.13G [00:07<00:03, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  70%|███████   | 819M/1.13G [00:07<00:03, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  71%|███████▏  | 830M/1.13G [00:07<00:02, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  72%|███████▏  | 841M/1.13G [00:07<00:02, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  73%|███████▎  | 853M/1.13G [00:07<00:02, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  74%|███████▍  | 864M/1.13G [00:07<00:02, 116MB/s]
+  [capture-loop] iter=1000 t=119.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=15.4/23.9GB (64%) swap=0.2/14.5GB (1%) cpu=21% browser_rss=0.65GB
+  [ComfyUI] 
+  [ComfyUI]  75%|███████▌  | 875M/1.13G [00:07<00:02, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  76%|███████▋  | 887M/1.13G [00:07<00:02, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  77%|███████▋  | 898M/1.13G [00:08<00:02, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  78%|███████▊  | 909M/1.13G [00:08<00:02, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  79%|███████▉  | 921M/1.13G [00:08<00:02, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  80%|████████  | 932M/1.13G [00:08<00:02, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  81%|████████▏ | 944M/1.13G [00:08<00:01, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  82%|████████▏ | 955M/1.13G [00:08<00:01, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  83%|████████▎ | 966M/1.13G [00:08<00:01, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  84%|████████▍ | 978M/1.13G [00:08<00:01, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  85%|████████▌ | 989M/1.13G [00:08<00:01, 118MB/s]
+  [ComfyUI]  86%|████████▌ | 0.98G/1.13G [00:08<00:01, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  87%|████████▋ | 0.99G/1.13G [00:09<00:01, 119MB/s]
+  [ComfyUI] 
+  [ComfyUI]  88%|████████▊ | 1.00G/1.13G [00:09<00:01, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  89%|████████▉ | 1.01G/1.13G [00:09<00:01, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  90%|█████████ | 1.02G/1.13G [00:09<00:01, 119MB/s]
+  [ComfyUI] 
+  [ComfyUI]  91%|█████████ | 1.03G/1.13G [00:09<00:00, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  92%|█████████▏| 1.04G/1.13G [00:09<00:00, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  93%|█████████▎| 1.06G/1.13G [00:09<00:00, 116MB/s]
+  [ComfyUI] 
+  [ComfyUI]  94%|█████████▍| 1.07G/1.13G [00:09<00:00, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  95%|█████████▍| 1.08G/1.13G [00:09<00:00, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  96%|█████████▌| 1.09G/1.13G [00:09<00:00, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  97%|█████████▋| 1.10G/1.13G [00:10<00:00, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  98%|█████████▊| 1.11G/1.13G [00:10<00:00, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  99%|█████████▉| 1.12G/1.13G [00:10<00:00, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI] 100%|█████████▉| 1.13G/1.13G [00:10<00:00, 118MB/s]
+  [ComfyUI] 100%|██████████| 1.13G/1.13G [00:10<00:00, 118MB/s]
+  [ComfyUI] [worker:ComfyUI-LiTo]
+  [ComfyUI] === WATCHDOG TICK 2 ===
+  [ComfyUI] [worker:ComfyUI-LiTo] Thread 0x0000359c (most recent call first):
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 363 in wait
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 660 in wait
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\tqdm\_monitor.py", line 60 in run
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
+  [ComfyUI] 
+  [ComfyUI] Thread 0x00002dcc (most recent call first):
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 106 in _vram_poller
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 995 in run
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
+  [ComfyUI] 
+  [ComfyUI] Current thread 0x00003304 (most recent call first):
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 52 in _watchdog
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 995 in run
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
+  [ComfyUI] 
+  [ComfyUI] Thread 0x000037a8 (most recent call first):
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\serialization.py", line 2036 in load_tensor
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\serialization.py", line 2083 in persistent_load
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\serialization.py", line 2119 in _load
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\serialization.py", line 1530 in load
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\hub.py", line 875 in load_state_dict_from_url
+  [ComfyUI]   File "C:\Users\ContainerUser/.cache\torch\hub\facebookresearch_dinov2_main\dinov2\hub\backbones.py", line 76 in _make_dinov2_model
+  [ComfyUI]   File "C:\Users\ContainerUser/.cache\torch\hub\facebookresearch_dinov2_main\dinov2\hub\backbones.py", line 150 in dinov2_vitl14_reg
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\hub.py", line 680 in _load_local
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\hub.py", line 647 in load
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\dino.py", line 318 in __init__
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\dino.py", line 497 in __init__
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 560 in load_img_encoder
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 179 in __init__
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\eval_scripts\st_model_utils.py", line 146 in load_model
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\inference.py", line 173 in _load_and_cache_model
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\inference.py", line 289 in execute
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\utils\_contextlib.py", line 120 in decorate_context
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\comfy_api\latest\_io.py", line 1833 in EXECUTE_NORMALIZED
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1762 in main
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1807 in <module>
+  [ComfyUI] 
+  [ComfyUI] [worker:ComfyUI-LiTo] === END ===
+  [ComfyUI] 
+  [ComfyUI] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  [ComfyUI] [worker:ComfyUI-LiTo] WARNING: Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  [ComfyUI] C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\huggingface_hub\file_download.py:138: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\ContainerUser\.cache\huggingface\hub\models--microsoft--TRELLIS-image-large. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+  [ComfyUI] To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  [ComfyUI]   warnings.warn(message)
+  [capture-loop] iter=1050 t=125.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=15.2/23.9GB (64%) swap=0.2/14.5GB (1%) cpu=24% browser_rss=0.65GB
+  [capture-loop] iter=1100 t=132.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=19.8/23.9GB (83%) swap=0.2/14.5GB (2%) cpu=44% browser_rss=0.63GB
+  [capture-loop] iter=1150 t=137.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=19.4/23.9GB (81%) swap=0.2/14.5GB (2%) cpu=21% browser_rss=0.63GB
+  [ComfyUI] [worker:ComfyUI-LiTo] Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+  [ComfyUI] C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  [ComfyUI]   warnings.warn(
+  [ComfyUI] C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  [ComfyUI]   warnings.warn(msg)
+  [ComfyUI] 
+  [ComfyUI]   0%|          | 0.00/528M [00:00<?, ?B/s]
+  [ComfyUI] 
+  [ComfyUI]   1%|          | 5.62M/528M [00:00<00:09, 58.3MB/s]
+  [ComfyUI] 
+  [ComfyUI]   2%|▏         | 11.2M/528M [00:00<00:09, 54.3MB/s]
+  [ComfyUI] 
+  [ComfyUI]   4%|▍         | 21.9M/528M [00:00<00:06, 79.1MB/s]
+  [ComfyUI] 
+  [ComfyUI]   6%|▋         | 33.1M/528M [00:00<00:05, 93.9MB/s]
+  [ComfyUI] 
+  [ComfyUI]   8%|▊         | 44.6M/528M [00:00<00:04, 103MB/s]
+  [ComfyUI] 
+  [ComfyUI]  11%|█         | 56.0M/528M [00:00<00:04, 108MB/s]
+  [ComfyUI] 
+  [ComfyUI]  13%|█▎        | 67.4M/528M [00:00<00:04, 111MB/s]
+  [ComfyUI] 
+  [ComfyUI]  15%|█▍        | 78.8M/528M [00:00<00:04, 114MB/s]
+  [ComfyUI] 
+  [ComfyUI]  17%|█▋        | 90.1M/528M [00:00<00:03, 115MB/s]
+  [ComfyUI] 
+  [ComfyUI]  19%|█▉        | 102M/528M [00:01<00:03, 116MB/s]
+  [ComfyUI] 
+  [ComfyUI]  21%|██▏       | 113M/528M [00:01<00:03, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  24%|██▎       | 124M/528M [00:01<00:03, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  26%|██▌       | 136M/528M [00:01<00:03, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  28%|██▊       | 147M/528M [00:01<00:03, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  30%|███       | 158M/528M [00:01<00:03, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  32%|███▏      | 170M/528M [00:01<00:03, 118MB/s]
+  [capture-loop] iter=1200 t=143.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=20.0/23.9GB (84%) swap=0.2/14.5GB (2%) cpu=23% browser_rss=0.63GB
+  [ComfyUI] 
+  [ComfyUI]  34%|███▍      | 181M/528M [00:01<00:03, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  36%|███▋      | 193M/528M [00:01<00:02, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  39%|███▊      | 204M/528M [00:01<00:02, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  41%|████      | 215M/528M [00:02<00:02, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  43%|████▎     | 227M/528M [00:02<00:02, 118MB/s]
+  [ComfyUI] 
+  [ComfyUI]  45%|████▌     | 238M/528M [00:02<00:02, 107MB/s]
+  [ComfyUI] 
+  [ComfyUI]  47%|████▋     | 249M/528M [00:02<00:02, 109MB/s]
+  [ComfyUI] 
+  [ComfyUI]  49%|████▉     | 260M/528M [00:02<00:02, 111MB/s]
+  [ComfyUI] 
+  [ComfyUI]  51%|█████▏    | 271M/528M [00:02<00:02, 113MB/s]
+  [ComfyUI] 
+  [ComfyUI]  53%|█████▎    | 282M/528M [00:02<00:02, 90.2MB/s]
+  [ComfyUI] 
+  [ComfyUI]  56%|█████▌    | 294M/528M [00:02<00:02, 97.4MB/s]
+  [ComfyUI] 
+  [ComfyUI]  58%|█████▊    | 305M/528M [00:02<00:02, 102MB/s]
+  [ComfyUI] 
+  [ComfyUI]  60%|█████▉    | 316M/528M [00:03<00:02, 107MB/s]
+  [ComfyUI] 
+  [ComfyUI]  62%|██████▏   | 328M/528M [00:03<00:01, 110MB/s]
+  [ComfyUI] 
+  [ComfyUI]  64%|██████▍   | 339M/528M [00:03<00:01, 112MB/s]
+  [ComfyUI] 
+  [ComfyUI]  66%|██████▋   | 350M/528M [00:03<00:01, 114MB/s]
+  [ComfyUI] 
+  [ComfyUI]  69%|██████▊   | 362M/528M [00:03<00:01, 115MB/s]
+  [ComfyUI] 
+  [ComfyUI]  71%|███████   | 373M/528M [00:03<00:01, 116MB/s]
+  [ComfyUI] 
+  [ComfyUI]  73%|███████▎  | 384M/528M [00:03<00:01, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  75%|███████▍  | 396M/528M [00:03<00:01, 97.0MB/s]
+  [ComfyUI] 
+  [ComfyUI]  77%|███████▋  | 406M/528M [00:03<00:01, 99.6MB/s]
+  [ComfyUI] 
+  [ComfyUI]  79%|███████▉  | 417M/528M [00:04<00:01, 104MB/s]
+  [ComfyUI] 
+  [ComfyUI]  81%|████████  | 428M/528M [00:04<00:00, 106MB/s]
+  [ComfyUI] 
+  [ComfyUI]  83%|████████▎ | 439M/528M [00:04<00:00, 110MB/s]
+  [ComfyUI] 
+  [ComfyUI]  85%|████████▌ | 450M/528M [00:04<00:00, 112MB/s]
+  [ComfyUI] 
+  [ComfyUI]  87%|████████▋ | 462M/528M [00:04<00:00, 114MB/s]
+  [ComfyUI] 
+  [ComfyUI]  90%|████████▉ | 473M/528M [00:04<00:00, 115MB/s]
+  [ComfyUI] 
+  [ComfyUI]  92%|█████████▏| 484M/528M [00:04<00:00, 116MB/s]
+  [ComfyUI] 
+  [ComfyUI]  94%|█████████▍| 496M/528M [00:04<00:00, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  96%|█████████▌| 507M/528M [00:04<00:00, 117MB/s]
+  [ComfyUI] 
+  [ComfyUI]  98%|█████████▊| 518M/528M [00:04<00:00, 117MB/s]
+  [ComfyUI] 100%|██████████| 528M/528M [00:05<00:00, 110MB/s]
+  [ComfyUI] [worker:ComfyUI-LiTo] Loading model from: C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\lpips\weights\v0.1\vgg.pth
+  [capture-loop] iter=1250 t=149.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=21.0/23.9GB (88%) swap=0.2/14.5GB (2%) cpu=25% browser_rss=0.63GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +201MB (now 201MB) reserved=224MB peak=201MB
+  [capture-loop] iter=1300 t=155.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=6 ram=22.8/23.9GB (95%) swap=0.2/14.5GB (2%) cpu=74% browser_rss=0.37GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +685MB (now 886MB) reserved=896MB peak=886MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +882MB (now 1769MB) reserved=1792MB peak=1769MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +1222MB (now 2992MB) reserved=3008MB peak=2992MB
+  [ComfyUI] [worker:ComfyUI-LiTo] loaded model at iter 0
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +519MB (now 3511MB) reserved=3520MB peak=3511MB
+  [ComfyUI] [SubprocessWorker] callback 'request_vram_budget' from call_id=2
+  [ComfyUI] [comfy-env] VRAM request: 3.68GB, free before eviction: 7.36GB
+  [ComfyUI] [comfy-env] VRAM after eviction: 7.36GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] load: ok in 74.3s, peak VRAM 3.43 GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: DiT, 20 heun steps
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +486MB (now 3997MB) reserved=4160MB peak=3997MB
+  [capture-loop] iter=1350 t=162.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=8.8/23.9GB (37%) swap=0.2/14.5GB (2%) cpu=64% browser_rss=0.37GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -269MB (now 3728MB) reserved=4544MB peak=4213MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 1/19 (3.9s elapsed, ~70s remaining)
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +493MB (now 4222MB) reserved=4544MB peak=4222MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -433MB (now 3789MB) reserved=4544MB peak=4227MB
+  Frame 36 saved (frame_035.jpg, t=165.9s)
+  [capture-periodic] freeze=2ms shot=77ms unfreeze=4ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +438MB (now 4227MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -439MB (now 3789MB) reserved=4544MB peak=4227MB
+  [capture-loop] iter=1400 t=167.9s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=7.0/23.9GB (30%) swap=0.7/14.5GB (5%) cpu=25% browser_rss=0.38GB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 2/19 (7.7s elapsed, ~65s remaining)
+  Frame 37 saved (frame_036.jpg, t=168.1s)
+  [capture-periodic] freeze=2ms shot=83ms unfreeze=3ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +365MB (now 4154MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -366MB (now 3789MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +438MB (now 4227MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -247MB (now 3981MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 3/19 (11.5s elapsed, ~61s remaining)
+  Frame 38 saved (frame_037.jpg, t=172.4s)
+  [capture-periodic] freeze=3ms shot=85ms unfreeze=7ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -264MB (now 3717MB) reserved=4544MB peak=4227MB
+  [capture-loop] iter=1450 t=173.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=7.0/23.9GB (29%) swap=0.7/14.5GB (5%) cpu=13% browser_rss=0.38GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +216MB (now 3933MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +293MB (now 4227MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 4/19 (15.2s elapsed, ~57s remaining)
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -403MB (now 3825MB) reserved=4544MB peak=4227MB
+  Frame 39 saved (frame_038.jpg, t=176.8s)
+  [capture-periodic] freeze=2ms shot=84ms unfreeze=6ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +324MB (now 4149MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -276MB (now 3873MB) reserved=4544MB peak=4227MB
+  [capture-loop] iter=1500 t=179.4s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=7.0/23.9GB (29%) swap=0.7/14.5GB (5%) cpu=14% browser_rss=0.38GB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 5/19 (19.0s elapsed, ~53s remaining)
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +203MB (now 4077MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -204MB (now 3873MB) reserved=4544MB peak=4227MB
+  Frame 40 saved (frame_039.jpg, t=181.1s)
+  [capture-periodic] freeze=2ms shot=70ms unfreeze=6ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +353MB (now 4227MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo]
+  [ComfyUI] === WATCHDOG TICK 3 ===
+  [ComfyUI] [worker:ComfyUI-LiTo] Thread 0x0000359c (most recent call first):
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 363 in wait
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 660 in wait
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\tqdm\_monitor.py", line 60 in run
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
+  [ComfyUI] 
+  [ComfyUI] Thread 0x00002dcc (most recent call first):
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 106 in _vram_poller
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 995 in run
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
+  [ComfyUI] 
+  [ComfyUI] Current thread 0x00003304 (most recent call first):
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 52 in _watchdog
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 995 in run
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1044 in _bootstrap_inner
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\threading.py", line 1015 in _bootstrap
+  [ComfyUI] 
+  [ComfyUI] Thread 0x000037a8 (most recent call first):
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\layers.py", line 761 in _normalize
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\layers.py", line 779 in forward
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\nn\modules\module.py", line 1784 in _call_impl
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\nn\modules\module.py", line 1773 in _wrapped_call_impl
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\layers.py", line 177 in forward
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\nn\modules\module.py", line 1784 in _call_impl
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\nn\modules\module.py", line 1773 in _wrapped_call_impl
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\dit.py", line 146 in forward
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\nn\modules\module.py", line 1784 in _call_impl
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\nn\modules\module.py", line 1773 in _wrapped_call_impl
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\dit.py", line 402 in forward
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\models\dit.py", line 436 in forward_with_cfg
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 395 in estimate_velocity_sampling
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\utils\_contextlib.py", line 120 in decorate_context
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 466 in <lambda>
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\odelibs\ode_solvers.py", line 210 in odeint_heun
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\odelibs\ode_solvers.py", line 64 in odeint
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 495 in sampling
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\lito_src\lito\trainers\lito_dit_trainer.py", line 621 in inference_sample_latent
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\utils\_contextlib.py", line 120 in decorate_context
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-LiTo\nodes\inference.py", line 318 in execute
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Programs\comfy-env\envs\lito-nodes\.pixi\envs\default\Lib\site-packages\torch\utils\_contextlib.py", line 120 in decorate_context
+  [ComfyUI]   File "C:\workspaces\LiTo-2104\portable-comfyui\ComfyUI_windows_portable\ComfyUI\comfy_api\latest\_io.py", line 1833 in EXECUTE_NORMALIZED
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1762 in main
+  [ComfyUI]   File "C:\Users\ContainerUser\AppData\Local\Temp\comfyui_pvenv_aq_psh7p\persistent_worker.py", line 1807 in <module>
+  [ComfyUI] 
+  [ComfyUI] [worker:ComfyUI-LiTo] === END ===
+  [ComfyUI] 
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -495MB (now 3732MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 6/19 (22.8s elapsed, ~49s remaining)
+  Frame 41 saved (frame_040.jpg, t=183.2s)
+  [capture-periodic] freeze=2ms shot=81ms unfreeze=7ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +494MB (now 4227MB) reserved=4544MB peak=4227MB
+  [capture-loop] iter=1550 t=185.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=7.0/23.9GB (29%) swap=0.7/14.5GB (5%) cpu=13% browser_rss=0.38GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -583MB (now 3645MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +468MB (now 4113MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 7/19 (26.6s elapsed, ~46s remaining)
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -300MB (now 3813MB) reserved=4544MB peak=4227MB
+  Frame 42 saved (frame_041.jpg, t=187.5s)
+  [capture-periodic] freeze=2ms shot=77ms unfreeze=7ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -234MB (now 3580MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +293MB (now 3873MB) reserved=4544MB peak=4227MB
+  [capture-loop] iter=1600 t=190.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=7.0/23.9GB (29%) swap=0.7/14.5GB (5%) cpu=14% browser_rss=0.39GB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 8/19 (30.4s elapsed, ~42s remaining)
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +348MB (now 4222MB) reserved=4544MB peak=4227MB
+  Frame 43 saved (frame_042.jpg, t=191.8s)
+  [capture-periodic] freeze=2ms shot=71ms unfreeze=3ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -433MB (now 3789MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +395MB (now 4185MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -306MB (now 3879MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 9/19 (34.1s elapsed, ~38s remaining)
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +347MB (now 4227MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -439MB (now 3789MB) reserved=4544MB peak=4227MB
+  Frame 44 saved (frame_043.jpg, t=196.2s)
+  [capture-periodic] freeze=2ms shot=77ms unfreeze=7ms saved=True
+  [capture-loop] iter=1650 t=196.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=7.0/23.9GB (29%) swap=0.7/14.5GB (5%) cpu=15% browser_rss=0.40GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +216MB (now 4005MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -204MB (now 3802MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 10/19 (37.9s elapsed, ~34s remaining)
+  Frame 45 saved (frame_044.jpg, t=198.3s)
+  [capture-periodic] freeze=3ms shot=77ms unfreeze=4ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +347MB (now 4149MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -324MB (now 3826MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 11/19 (41.7s elapsed, ~30s remaining)
+  [capture-loop] iter=1700 t=202.2s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=4 ram=7.0/23.9GB (29%) swap=0.7/14.5GB (5%) cpu=14% browser_rss=0.40GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +328MB (now 4154MB) reserved=4544MB peak=4227MB
+  Frame 46 saved (frame_045.jpg, t=202.7s)
+  [capture-periodic] freeze=2ms shot=85ms unfreeze=3ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -422MB (now 3732MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +452MB (now 4185MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -312MB (now 3873MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 12/19 (45.5s elapsed, ~27s remaining)
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +280MB (now 4154MB) reserved=4544MB peak=4227MB
+  Frame 47 saved (frame_046.jpg, t=207.0s)
+  [capture-periodic] freeze=2ms shot=82ms unfreeze=5ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -366MB (now 3789MB) reserved=4544MB peak=4227MB
+  [capture-loop] iter=1750 t=208.0s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=7.0/23.9GB (29%) swap=0.7/14.5GB (5%) cpu=14% browser_rss=0.40GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +395MB (now 4185MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 13/19 (49.3s elapsed, ~23s remaining)
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -637MB (now 3549MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +324MB (now 3873MB) reserved=4544MB peak=4227MB
+  Frame 48 saved (frame_047.jpg, t=211.3s)
+  [capture-periodic] freeze=4ms shot=79ms unfreeze=7ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +311MB (now 4185MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -360MB (now 3826MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 14/19 (53.1s elapsed, ~19s remaining)
+  Frame 49 saved (frame_048.jpg, t=213.5s)
+  [capture-periodic] freeze=3ms shot=70ms unfreeze=7ms saved=True
+  [capture-loop] iter=1800 t=213.7s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=7.0/23.9GB (29%) swap=0.7/14.5GB (5%) cpu=14% browser_rss=0.40GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +328MB (now 4154MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -294MB (now 3861MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +252MB (now 4113MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 15/19 (56.9s elapsed, ~15s remaining)
+  Frame 50 saved (frame_049.jpg, t=217.8s)
+  [capture-periodic] freeze=2ms shot=81ms unfreeze=7ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -288MB (now 3825MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +288MB (now 4113MB) reserved=4544MB peak=4227MB
+  [capture-loop] iter=1850 t=219.3s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=7.0/23.9GB (29%) swap=0.7/14.5GB (5%) cpu=13% browser_rss=0.40GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -312MB (now 3802MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 16/19 (60.7s elapsed, ~11s remaining)
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -253MB (now 3549MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +324MB (now 3873MB) reserved=4544MB peak=4227MB
+  Frame 51 saved (frame_050.jpg, t=222.2s)
+  [capture-periodic] freeze=3ms shot=81ms unfreeze=5ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +239MB (now 4113MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 17/19 (64.5s elapsed, ~8s remaining)
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -288MB (now 3825MB) reserved=4544MB peak=4227MB
+  [capture-loop] iter=1900 t=225.1s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=7.0/23.9GB (29%) swap=0.7/14.5GB (5%) cpu=14% browser_rss=0.40GB
+  Frame 52 saved (frame_051.jpg, t=226.5s)
+  [capture-periodic] freeze=2ms shot=83ms unfreeze=3ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +288MB (now 4113MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -305MB (now 3808MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 18/19 (68.3s elapsed, ~4s remaining)
+  Frame 53 saved (frame_052.jpg, t=228.7s)
+  [capture-periodic] freeze=7ms shot=74ms unfreeze=7ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +345MB (now 4154MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -366MB (now 3789MB) reserved=4544MB peak=4227MB
+  [capture-loop] iter=1950 t=230.8s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=7.0/23.9GB (29%) swap=0.7/14.5GB (5%) cpu=14% browser_rss=0.40GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +395MB (now 4185MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -312MB (now 3873MB) reserved=4544MB peak=4227MB
+  [ComfyUI] [SubprocessWorker] callback 'report_progress' from call_id=2
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: 19/19 (72.1s elapsed, ~0s remaining)
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] sample: done in 72.1s, peak VRAM 4.26 GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] -352MB (now 3522MB) reserved=4544MB peak=4227MB
+  Frame 54 saved (frame_053.jpg, t=233.0s)
+  [capture-periodic] freeze=2ms shot=74ms unfreeze=7ms saved=True
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] decode: Gaussians via voxel_decoder
+  [ComfyUI] [worker:ComfyUI-LiTo] [VRAM] +407MB (now 3929MB) reserved=4000MB peak=4227MB
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] decode: done in 0.8s, 939392 Gaussians, peak VRAM 4.25 GB
+  [ComfyUI] [worker:ComfyUI-LiTo] [LiTo] done: total 148.4s (load + sample 72.1s + decode 0.8s)
+  [ComfyUI] [SubprocessWorker] got response: ok
+  [ComfyUI] [comfy-env] Created 3 model patchers: ['LiToDiTTrainer_1', 'SparseStructureEncoder_2', 'SparseStructureDecoder_3']
+  [ComfyUI] [comfy-env] LiToImageTo3D done (148.51s): result: NodeOutput
+  [ComfyUI] [VRAM] After LiToImageTo3D: 1130 / 8150 MB
+  [ComfyUI] [VRAM] Loaded: SubprocessModel (140 MB), SubprocessModel (113 MB), SubprocessModel (3511 MB)
+  [ComfyUI] [comfy-env] Running LiToExportPLY: filename: 'lito_output', gaussians: dict
+  [ComfyUI] [VRAM] Before LiToExportPLY: 1130 / 8150 MB
+  [ComfyUI] [VRAM] Loaded: SubprocessModel (140 MB), SubprocessModel (113 MB), SubprocessModel (3511 MB)
+  [ComfyUI] [SubprocessWorker] call_method: nodes.export_ply.LiToExportPLY.EXECUTE_NORMALIZED
+  [ComfyUI] [SubprocessWorker] acquired lock, ensuring started...
+  [ComfyUI] [ComfyUI-LiTo] Health check: ping (timeout=5.0s)...
+  [ComfyUI] [ComfyUI-LiTo] Health check: ok
+  [ComfyUI] [SubprocessWorker] worker started/confirmed
+  [ComfyUI] [SubprocessWorker] serializing kwargs to shm...
+  [ComfyUI] [SubprocessWorker] created 0 shm blocks
+  [ComfyUI] [SubprocessWorker] sending request via socket...
+  [ComfyUI] [SubprocessWorker] call_id=3 sending call_method
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'manager_path', 'storage_key', 'storage_size']
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14678, 64, 3]
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14678, 64, 3])
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'manager_path', 'storage_key', 'storage_size']
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14678, 64, 16, 3]
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14678, 64, 16, 3])
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'manager_path', 'storage_key', 'storage_size']
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14678, 64, 3]
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14678, 64, 3])
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'manager_path', 'storage_key', 'storage_size']
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14678, 64, 4]
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14678, 64, 4])
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] _from_shm got dict with keys: ['__type__', 'strategy', 'manager_path', 'storage_key', 'storage_size']
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZE TensorRef: tensor_size=[14678, 64, 1]
+  [ComfyUI] [worker:ComfyUI-LiTo] [comfy-env] DESERIALIZED tensor shape: torch.Size([14678, 64, 1])
+  Frame 55 saved (frame_054.jpg, t=235.1s)
+  [capture-periodic] freeze=3ms shot=84ms unfreeze=4ms saved=True
+  [capture-loop] iter=2000 t=236.6s state={'complete': False, 'error': None, 'executedCount': 1, 'wsState': 1} eval_ms=3 ram=9.1/23.9GB (38%) swap=0.6/14.5GB (4%) cpu=22% browser_rss=0.40GB
+  [ComfyUI] [SubprocessWorker] got response: ok
+  [ComfyUI] [comfy-env] LiToExportPLY done (8.06s): result: NodeOutput
+  [ComfyUI] [VRAM] After LiToExportPLY: 1130 / 8150 MB
+  [ComfyUI] [VRAM] Loaded: SubprocessModel (140 MB), SubprocessModel (113 MB), SubprocessModel (3511 MB)
+  [ComfyUI] Prompt executed in 242.24 seconds
   Node executed (2 total), capturing...
-  Frame 55 saved (frame_054.jpg, t=219.2s)
-  [capture-node] freeze=9ms shot=69ms unfreeze=0ms saved=True
-  Execution complete (t=219.2s)
+  Frame 56 saved (frame_055.jpg, t=242.7s)
+  [capture-node] freeze=4ms shot=99ms unfreeze=0ms saved=True
+  Execution complete (t=242.7s)
   [3d-wait] Phase 1: Waiting for 'Loading 3D Model' text to disappear...
   [3d-wait] Phase 1 done in 0.0s
   [3d-wait] Phase 2: iframes=1
   [3d-wait] iframe viewer_ready=False (matched 0 console logs)
   [3d-wait] Waiting for 'Loaded successfully' console message (timeout=60s)...
-  [3d-wait] Got 'Loaded successfully' after 1.2s
-  [3d-wait] Unfrozen in 0.012s, rendering for 5s...
-  [3d-wait] JS halted via CDP after 5.3s
-  [3d-wait] Re-frozen in 20.6s
-  [3d-wait] Total 3D wait: 21.9s
-  Captured 55 unique frames over 241.19s
+  [3d-wait] Got 'Loaded successfully' after 1.8s
+  [3d-wait] Unfrozen in 0.004s, rendering for 5s...
+  [3d-wait] JS halted via CDP after 11.7s
+  [3d-wait] Re-frozen in 46.3s
+  [3d-wait] Total 3D wait: 48.1s
+  Captured 56 unique frames over 290.85s
   [debug] iframes: 1
-  [debug]   iframe[0]: src=http://127.0.0.1:41886/extensions/ComfyUI-GaussianPack/viewer_gaussian.html?v=17, canvas=486x223, rafFrozen=True
+  [debug]   iframe[0]: src=http://127.0.0.1:41887/extensions/ComfyUI-GaussianPack/viewer_gaussian.html?v=17, canvas=486x223, rafFrozen=True
   [timing] trigger_3d_previews: 0.0s
   Saved high-quality screenshot: basic_executed.png
   [timing] final_screenshot: 0.2s
-    Captured 56 video frames
+    Captured 57 video frames
