@@ -1,7 +1,7 @@
 > [!WARNING]
 > Warning, uses experimental package `comfy-env` to attempt a one click isolated install. Will download and use pixi package manager.
 
-WORK IN PROGRESS
+https://github.com/user-attachments/assets/c3ff490b-e0d4-47cc-953b-a2236673e8bf
 
 # ComfyUI-LiTo
 
