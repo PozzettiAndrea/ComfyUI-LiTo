@@ -14,8 +14,8 @@
 [Console-error] [vite:preloadError] {url: null, fileType: unknown, chunkName: null, message: Failed to resolve module specifier "playcanvas". R…ences must start with either "/", "./", or "../".}
 [Console-warning] THREE.WARNING: Multiple instances of Three.js being imported.
 [Console-log] [GaussianPack] Loading extension...
-[Console-log] [VTK Bundle] GLTFImporter included in bundle
 [Console-error] [vite:preloadError] {url: null, fileType: unknown, chunkName: null, message: Failed to resolve module specifier "three". Relati…ences must start with either "/", "./", or "../".}
+[Console-log] [VTK Bundle] GLTFImporter included in bundle
 [Console-warning] [MaskEditor] ComfyApp.open_maskeditor is deprecated. Plugins should migrate to using the command system or direct node context menu integration.
 [Console-log] [GaussianPack] Registering Preview Gaussians node
 [Console-log] [GaussianViewer] Ready — waiting for LOAD_MESH_DATA
@@ -24,28 +24,28 @@
 [Console-log] [GaussianPack] Resized node to: 512 x 572 (aspect ratio: 1.00 )
 [Console-log] [GaussianPack] fetch start: /view?filename=lito_output.ply&type=output&subfolder=
 [Console-log] [GaussianPack] fetch response 200; content-length=236113403
-[Console-log] [GaussianPack] download 0%  2.0/225.2 MB
-[Console-log] [GaussianPack] download 5%  11.6/225.2 MB
-[Console-log] [GaussianPack] download 10%  22.8/225.2 MB
-[Console-log] [GaussianPack] download 15%  33.9/225.2 MB
-[Console-log] [GaussianPack] download 20%  46.0/225.2 MB
-[Console-log] [GaussianPack] download 25%  56.5/225.2 MB
+[Console-log] [GaussianPack] download 0%  1.0/225.2 MB
+[Console-log] [GaussianPack] download 5%  12.0/225.2 MB
+[Console-log] [GaussianPack] download 10%  22.7/225.2 MB
+[Console-log] [GaussianPack] download 15%  34.0/225.2 MB
+[Console-log] [GaussianPack] download 20%  45.3/225.2 MB
+[Console-log] [GaussianPack] download 25%  56.9/225.2 MB
 [Console-log] [GaussianPack] download 30%  68.0/225.2 MB
-[Console-log] [GaussianPack] download 35%  78.8/225.2 MB
+[Console-log] [GaussianPack] download 35%  80.0/225.2 MB
 [Console-log] [GaussianPack] download 40%  90.1/225.2 MB
-[Console-log] [GaussianPack] download 45%  101.4/225.2 MB
-[Console-log] [GaussianPack] download 50%  112.8/225.2 MB
+[Console-log] [GaussianPack] download 45%  101.5/225.2 MB
+[Console-log] [GaussianPack] download 50%  113.4/225.2 MB
 [Console-log] [GaussianPack] download 55%  124.0/225.2 MB
 [Console-log] [GaussianPack] download 60%  136.0/225.2 MB
 [Console-log] [GaussianPack] download 65%  146.4/225.2 MB
-[Console-log] [GaussianPack] download 70%  157.9/225.2 MB
+[Console-log] [GaussianPack] download 70%  157.6/225.2 MB
 [Console-log] [GaussianPack] download 75%  168.9/225.2 MB
 [Console-log] [GaussianPack] download 80%  180.2/225.2 MB
-[Console-log] [GaussianPack] download 85%  191.7/225.2 MB
-[Console-log] [GaussianPack] download 90%  202.9/225.2 MB
+[Console-log] [GaussianPack] download 85%  191.6/225.2 MB
+[Console-log] [GaussianPack] download 90%  203.7/225.2 MB
 [Console-log] [GaussianPack] download 95%  214.0/225.2 MB
 [Console-log] [GaussianPack] download 100%  225.2/225.2 MB
-[Console-log] [GaussianPack] fetch done: 236113403 bytes in 1106 ms (203.5 MB/s)
+[Console-log] [GaussianPack] fetch done: 236113403 bytes in 960 ms (234.6 MB/s)
 [Console-log] [GaussianPack] posting LOAD_MESH_DATA to iframe, renderer: spark filename: lito_output.ply
 [Console-log] [GaussianViewer] Received LOAD_MESH_DATA, size: 236113403 renderer: spark
 [Console-log] [GaussianViewer] ensureRenderer('spark') starting...
@@ -55,10 +55,10 @@
 [Console-log] [GaussianViewer] Adapter ready: spark
 [Console-log] [GaussianViewer] Loading splat (236,113,403 bytes) via spark...
 [Console-log] [Spark] new SplatMesh url=lito_output.ply
-[Console-warning] [.WebGL-0xadc0014c200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Console-warning] [.WebGL-0xadc0014c200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Console-warning] [.WebGL-0xadc0014c200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Console-warning] [.WebGL-0xadc0014c200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[Console-warning] [.WebGL-0x161c05c9ea00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Console-warning] [.WebGL-0x161c05c9ea00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Console-warning] [.WebGL-0x161c05c9ea00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Console-warning] [.WebGL-0x161c05c9ea00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
 [Console-log] [Spark] parse 1%
 [Console-log] [Spark] parse 11%
 [Console-log] [Spark] parse 20%
@@ -70,8 +70,8 @@
 [Console-log] [Spark] parse 81%
 [Console-log] [Spark] parse 91%
 [Console-log] [Spark] parse 100%
-[Console-log] [Spark] loaded 952064 splats in 1745 ms
-[Console-log] [GaussianViewer] adapter.loadSplat resolved in 1746 ms
+[Console-log] [Spark] loaded 952064 splats in 1742 ms
+[Console-log] [GaussianViewer] adapter.loadSplat resolved in 1743 ms
 [Console-log] [GaussianViewer] frameOnBounds: bounds center=(0.000, -0.002, -0.007) size=(1.814, 1.865, 1.987)
 [Console-log] [GaussianViewer] Framed: cam=(0.00, -0.00, -2.46) target=(0.00, -0.00, -0.01) maxExtent=1.99 radius=2.45 fov=50
 [Console-log] [GaussianViewer] Loaded successfully
