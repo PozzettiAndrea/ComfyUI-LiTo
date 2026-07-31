@@ -22,6 +22,7 @@ av = "*"
 c-compiler = "*"
 
 [pypi-dependencies]
+comfy-kitchen = "*"
 timm = ">=0.9.16"
 rembg = { version = "*", extras = ["cpu"] }
 lpips = { git = "https://github.com/richzhang/PerceptualSimilarity.git" }
