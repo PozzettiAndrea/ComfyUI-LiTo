@@ -4,10 +4,34 @@
     <meta charset="utf-8">
     <title>GeomPack VTK.js Viewer (Unified)</title>
     <link rel="stylesheet" href="./js/viewer/ui/styles.css">
+    <style>
+        /* draggable divider between the 3D view and the bottom utilities */
+        #vsplit {
+            flex: 0 0 7px;
+            height: 7px;
+            cursor: row-resize;
+            background: #3a3a3a;
+            border-top: 1px solid #555;
+            border-bottom: 1px solid #222;
+        }
+        #vsplit:hover, #vsplit.dragging { background: #4a90d9; }
+        #viewerContainer { position: relative; }
+        #controls { overflow-y: auto; box-sizing: border-box; }
+        /* minimise / restore toggle for the bottom utilities */
+        #ctrlToggle {
+            position: absolute; right: 8px; bottom: 6px;
+            width: 22px; height: 16px; line-height: 14px; text-align: center;
+            font-size: 11px; color: #bbb; background: rgba(20, 20, 20, 0.55);
+            border: 1px solid #555; border-radius: 3px; cursor: pointer;
+            opacity: 0.45; user-select: none; z-index: 6;
+        }
+        #ctrlToggle:hover { opacity: 1; background: rgba(40, 40, 40, 0.9); }
+    </style>
 </head>
 <body>
     <div id="viewerContainer">
         <div id="container"></div>
+        <div id="ctrlToggle" title="Hide controls">&#9662;</div>
         <div id="loading" class="loading">
             <div class="spinner"></div>
             <div class="loading-text">Ready to load mesh</div>
@@ -74,6 +98,8 @@
         </div>
     </div>
 
+    <div id="vsplit" title="Drag to resize the 3D view vs the controls"></div>
+
     <div id="controls">
         <button id="settingsButton" class="settings-button" title="Appearance Settings">[Settings]</button>
 
@@ -125,9 +151,9 @@
     </div>
 
     <!-- Load VTK.js bundle -->
-    <script src="./js/vtk-gltf.js"></script>
+    <script src="./js/vtk-gltf.mjs"></script>
     <!-- Load unified viewer bundle -->
-    <script src="./js/viewer-bundle-vtk.js"></script>
+    <script src="./js/viewer-bundle-vtk.mjs"></script>
 
     <script>
         // Use unified viewer modules
@@ -439,10 +465,23 @@
             // Store field metadata for channel selector
             fieldComponentMap = {};
             if (fieldInfo.hasFields) {
+                const fmtRange = (v) => (v === 0 ? '0'
+                    : (Math.abs(v) >= 1000 || Math.abs(v) < 0.01) ? v.toExponential(2) : v.toFixed(3));
                 fieldInfo.allFields.forEach(field => {
                     const option = document.createElement('option');
                     option.value = field.fullName;
-                    option.textContent = field.displayName;
+                    let label = field.displayName;
+                    try {
+                        const isCell = field.fullName.startsWith('cell:');
+                        const actual = field.fullName.substring(field.fullName.indexOf(':') + 1);
+                        const data = isCell ? polydata.getCellData() : polydata.getPointData();
+                        const arr = data.getArrayByName(actual);
+                        if (arr) {
+                            const r = arr.getRange();
+                            label += `  [${fmtRange(r[0])}, ${fmtRange(r[1])}]`;
+                        }
+                    } catch (e) { /* range optional */ }
+                    option.textContent = label;
                     fieldSelector.appendChild(option);
                     fieldComponentMap[field.fullName] = field.numComponents;
                 });
@@ -881,6 +920,61 @@
             }, '*');
         });
 
+        // ---- resizable 3D view <-> bottom utilities + canvas auto-resize ----
+        (function setupViewResize() {
+            const ctrls = document.getElementById('controls');
+            const split = document.getElementById('vsplit');
+            // size-change guard: never re-trigger work for an unchanged size
+            // (this is what prevents the ResizeObserver-style feedback loop).
+            let lastW = 0, lastH = 0;
+            function resizeCanvas() {
+                const r = container.getBoundingClientRect();
+                const w = Math.round(r.width), h = Math.round(r.height);
+                if (w < 2 || h < 2 || (w === lastW && h === lastH)) return;
+                lastW = w; lastH = h;
+                openGLRenderWindow.setSize(w, h);
+                renderWindow.render();
+            }
+            // the iframe's own window fires 'resize' when the node/iframe resizes
+            window.addEventListener('resize', resizeCanvas);
+            // drag the divider to rebalance the 3D view vs the controls
+            let dragging = false;
+            split.addEventListener('mousedown', (e) => {
+                dragging = true; split.classList.add('dragging');
+                document.body.style.cursor = 'row-resize'; e.preventDefault();
+            });
+            window.addEventListener('mousemove', (e) => {
+                if (!dragging) return;
+                const total = document.body.clientHeight;
+                let h = total - e.clientY - split.offsetHeight / 2;
+                h = Math.max(30, Math.min(total - 80, h));
+                ctrls.style.flex = '0 0 ' + h + 'px';
+                ctrls.style.height = h + 'px';
+                resizeCanvas();
+            });
+            window.addEventListener('mouseup', () => {
+                if (!dragging) return;
+                dragging = false; split.classList.remove('dragging');
+                document.body.style.cursor = ''; resizeCanvas();
+            });
+
+            // minimise / restore the bottom utilities
+            const toggle = document.getElementById('ctrlToggle');
+            let collapsed = false;
+            function setCollapsed(c) {
+                collapsed = c;
+                ctrls.style.display = c ? 'none' : '';
+                split.style.display = c ? 'none' : '';
+                toggle.innerHTML = c ? '&#9652;' : '&#9662;';  // up when hidden, down when shown
+                toggle.title = c ? 'Show controls' : 'Hide controls';
+                resizeCanvas();
+                // tell the parent node to collapse/restore its info panel too,
+                // so this single arrow minimises BOTH the controls and the info.
+                try { window.parent.postMessage({ type: 'TOGGLE_INFO', collapsed: c }, '*'); } catch (e) {}
+            }
+            toggle.addEventListener('click', () => setCollapsed(!collapsed));
+        })();
+
         // Colormap selector
         document.getElementById('colormapSelector').addEventListener('change', () => {
             updateColormap();
@@ -1002,9 +1096,6 @@
             // Convert hex to RGB
             const rgb = hexToRgb(newColor);
 
-            // Disable scalar viz to show custom color
-            mapper.setScalarVisibility(false);
-
             property.setColor(rgb[0], rgb[1], rgb[2]);
             property.setLineWidth(newEdgeWidth);
             property.setPointSize(newPointSize);
@@ -1016,6 +1107,16 @@
 
             cameraController.setParallelProjection(newParallel);
             axisIndicator.setEnabled(newAxisIndicator);
+
+            // Preserve field coloring: if a field is selected, re-apply it so the
+            // (possibly new) colormap range sticks instead of the field vanishing.
+            // Only fall back to the solid mesh colour when no field is active.
+            const _activeField = document.getElementById('fieldSelector')?.value;
+            if (_activeField && _activeField !== '') {
+                updateColormap();
+            } else {
+                mapper.setScalarVisibility(false);
+            }
 
             // Update stored settings
             currentSettings = {

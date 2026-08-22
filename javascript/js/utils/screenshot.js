@@ -58,8 +58,11 @@ export async function uploadScreenshot(dataUrl, prefix = 'screenshot') {
  * @param {Function} onError - Error callback
  * @returns {Function} Event handler function
  */
-export function createScreenshotHandler(prefix = 'screenshot', onError = console.error) {
+export function createScreenshotHandler(prefix = 'screenshot', iframe = null, onError = console.error) {
     return async (event) => {
+        // Provenance guard: without it this fires for EVERY pack's iframe
+        // messages in the shared page, not just ours.
+        if (iframe && event.source !== iframe.contentWindow) return;
         if (event.data.type === 'SCREENSHOT' && event.data.image) {
             try {
                 await uploadScreenshot(event.data.image, prefix);

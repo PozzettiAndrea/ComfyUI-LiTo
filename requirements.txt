@@ -1,3 +1,2 @@
 # Process isolation for ComfyUI nodes
 comfy-env==0.4.1
-comfy-3d-viewers==0.2.44

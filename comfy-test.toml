@@ -1,5 +1,5 @@
 [test]
-levels = ["syntax", "install", "registration", "instantiation", "execution"]
+levels = ["syntax", "javascript", "install", "registration", "instantiation", "execution"]
 publish = true
 
 [test.workflows]
@@ -10,16 +10,7 @@ publish = true
 # download from Apple's CDN before the ~5s sampling on H100.
 timeout = 600
 cpu = ["!basic"]
-gpu = ["basic"]
+cuda = ["basic"]
 
 [test.platforms]
-linux = false
-macos = false
-windows = false
-windows_portable = false
-linux_gpu = true
-windows_gpu = true
-windows_portable_gpu = true
-macos_desktop = false
-windows_desktop = false
-windows_desktop_gpu = true
+platforms = ["linux_cuda", "windows_cuda", "windows_portable_cuda", "windows_desktop_cuda"]

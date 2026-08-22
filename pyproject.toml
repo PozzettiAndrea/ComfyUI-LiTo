@@ -9,5 +9,6 @@ Repository = "https://github.com/PozzettiAndrea/ComfyUI-LiTo"
 
 [tool.comfy]
 PublisherId = "pznodes"
-DisplayName = "LiTo Image-to-3D"
+DisplayName = "LiTo"
+web = "javascript"
 Icon = ""

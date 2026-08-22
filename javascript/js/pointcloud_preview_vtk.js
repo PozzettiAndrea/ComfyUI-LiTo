@@ -11,7 +11,7 @@ import { createViewerManager, createErrorHandler, buildViewUrl } from "./utils/p
 const POINTCLOUD_NODES = ["SAM3D_PreviewPointCloud", "DA3_PreviewPointCloud"];
 
 app.registerExtension({
-    name: "comfy3d.pointcloud.vtk",
+    name: "lito.pointcloud.vtk",
 
     async beforeRegisterNodeDef(nodeType, nodeData, app) {
         if (POINTCLOUD_NODES.includes(nodeData.name)) {
@@ -45,7 +45,7 @@ app.registerExtension({
                 const viewerManager = createViewerManager(iframe, "[PointCloud VTK]");
 
                 // Listen for error messages
-                window.addEventListener('message', createErrorHandler(infoPanel, "[PointCloud VTK]"));
+                window.addEventListener('message', createErrorHandler(infoPanel, "[PointCloud VTK]", iframe));
 
                 // Set initial node size
                 this.setSize([512, 580]);

@@ -32,6 +32,20 @@ export function formatExtents(extents, decimals = 2) {
 }
 
 /**
+ * Format a {typeName: count} map as a sorted, human-readable string, e.g.
+ * "3 Planes, 2 Cylinders, 1 BSpline".
+ * @param {Object<string, number>} counts
+ * @returns {string} Formatted string (empty string if counts is empty/missing)
+ */
+export function formatTypeCounts(counts) {
+    if (!counts) return '';
+    return Object.entries(counts)
+        .sort((a, b) => b[1] - a[1])
+        .map(([name, count]) => `${count} ${name}${count === 1 ? '' : 's'}`)
+        .join(', ');
+}
+
+/**
  * Get color for mode label
  * @param {string} mode - Viewer mode (fields, texture, pbr)
  * @returns {string} CSS color
@@ -70,8 +84,10 @@ export function buildMeshInfoHTML(data) {
         boundsMin = [],
         boundsMax = [],
         extents = [],
+        avgEdge,
         isWatertight,
         fieldNames = [],
+        fieldRanges = [],
         hasTexture,
         hasVertexColors,
         visualKind
@@ -99,6 +115,17 @@ export function buildMeshInfoHTML(data) {
             <span style="color: #888;">Extents:</span>
             <span>${extentsStr}</span>
     `;
+
+    // Average edge length (mesh resolution)
+    if (avgEdge !== undefined && avgEdge !== null) {
+        const avgStr = (typeof avgEdge === 'number')
+            ? avgEdge.toLocaleString(undefined, { maximumSignificantDigits: 4 })
+            : avgEdge;
+        html += `
+            <span style="color: #888;">Avg edge:</span>
+            <span>${avgStr}</span>
+        `;
+    }
 
     // Watertight status
     if (isWatertight !== undefined) {
@@ -132,9 +159,23 @@ export function buildMeshInfoHTML(data) {
             `;
         }
     } else {
-        // Fields mode
+        // Fields mode — annotate each field with its [min, max] value range
         if (fieldNames && fieldNames.length > 0) {
-            const fields = fieldNames.join(', ');
+            const fmt = (n) => {
+                if (n == null || !isFinite(n)) return '?';
+                if (Number.isInteger(n) && Math.abs(n) < 1e7) return String(n);
+                return Number(Number(n).toPrecision(4)).toString();
+            };
+            const ext = (i, which, v) =>
+                `<span class="field-extreme" data-fidx="${i}" data-which="${which}" ` +
+                `style="cursor:pointer;text-decoration:underline dotted;" ` +
+                `title="focus camera on ${which}">${fmt(v)}</span>`;
+            const fields = fieldNames.map((name, i) => {
+                const r = fieldRanges && fieldRanges[i];
+                return (r && r.length === 2)
+                    ? `${name} [${ext(i, 'min', r[0])}, ${ext(i, 'max', r[1])}]`
+                    : name;
+            }).join(', ');
             html += `
                 <span style="color: #888;">Fields:</span>
                 <span style="font-size: 9px; color: #6cc;">${fields}</span>
@@ -189,7 +230,24 @@ export function buildDualMeshInfoHTML(data) {
             <span style="color: #888;">Faces:</span>
             <span>${(mesh1.faces || 'N/A').toLocaleString()}</span>
             <span>${(mesh2.faces || 'N/A').toLocaleString()}</span>
+    `;
 
+    if (mesh1.faceTypes !== undefined && mesh2.faceTypes !== undefined) {
+        html += `
+            <span style="color: #888;">Face types:</span>
+            <span style="font-size: 9px;">${mesh1.faceTypes || 'n/a'}</span>
+            <span style="font-size: 9px;">${mesh2.faceTypes || 'n/a'}</span>
+        `;
+    }
+    if (mesh1.edgeTypes !== undefined && mesh2.edgeTypes !== undefined) {
+        html += `
+            <span style="color: #888;">Edge types:</span>
+            <span style="font-size: 9px;">${mesh1.edgeTypes || 'n/a'}</span>
+            <span style="font-size: 9px;">${mesh2.edgeTypes || 'n/a'}</span>
+        `;
+    }
+
+    html += `
             <span style="color: #888;">Extents:</span>
             <span style="font-size: 9px;">${extentsStr1}</span>
             <span style="font-size: 9px;">${extentsStr2}</span>

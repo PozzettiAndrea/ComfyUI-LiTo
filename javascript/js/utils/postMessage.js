@@ -184,8 +184,11 @@ export function createViewerManager(iframe, logPrefix = "[Viewer]") {
  * @param {string} logPrefix - Logging prefix
  * @returns {Function} Event handler function
  */
-export function createErrorHandler(infoPanel, logPrefix = "[Viewer]") {
+export function createErrorHandler(infoPanel, logPrefix = "[Viewer]", iframe = null) {
     return (event) => {
+        // Provenance guard: without it this fires for EVERY pack's iframe
+        // messages in the shared page, not just ours.
+        if (iframe && event.source !== iframe.contentWindow) return;
         if (event.data.type === 'MESH_ERROR' && event.data.error) {
             console.error(`${logPrefix} Error from viewer:`, event.data.error);
             if (infoPanel) {
